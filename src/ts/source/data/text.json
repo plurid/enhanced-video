@@ -1,0 +1,33 @@
+{
+    "videoId": "d1j3kzai",
+    "videoText": [
+        {
+            "videoTextId": "4kz5mp9nbz",
+            "begin": 23,
+            "end": 29,
+            "xCoord": 150,
+            "yCoord": 150,
+            "perspective": "flat",
+            "rotation": "none",
+            "skew": "none",
+            "fontSize": 12,
+            "letterSpacing": 1,
+            "textTransform": "lowercase",
+            "textContent": "here is text"
+        },
+        {
+            "videoTextId": "po7ja5e7vh",
+            "begin": 28,
+            "end": 35,
+            "xCoord": 150,
+            "yCoord": 295,
+            "perspective": "flat",
+            "rotation": "none",
+            "skew": "none",
+            "fontSize": 12,
+            "letterSpacing": 1,
+            "textTransform": "lowercase",
+            "textContent": "here is another text"
+        }
+    ]
+}
