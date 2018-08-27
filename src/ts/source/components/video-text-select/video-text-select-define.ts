@@ -2,7 +2,7 @@ import { setVideo } from './video-text-select-core';
 
 
 
-export class VideoTextSelect extends HTMLElement {
+export class HTMLVideoTextSelectElement extends HTMLElement {
     private _autoplay: boolean = false;
     private _controls: boolean = true;
     private _height: string;
@@ -145,4 +145,4 @@ export class VideoTextSelect extends HTMLElement {
 }
 
 
-customElements.define('video-text-select', VideoTextSelect);
+customElements.define('video-text-select', HTMLVideoTextSelectElement);
