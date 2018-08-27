@@ -10,11 +10,24 @@
     <body>
 
         <div class="container">
-            <div class="video-container">
+            <!-- <div class="video-container">
                 <video controls src="./video.mov"></video>
                 <div id="test-text">this is a video with text</div>
-
-            </div>
+            </div> -->
+            <video-text-select
+                autoplay="true"
+                controls="false"
+                height="100"
+                loop="true"
+                muted="false"
+                poster="./img"
+                pregenerate="true"
+                preload="auto"
+                src="./video.mov"
+                sources="./video.mov ./video.mp4"
+                width="300"
+            >
+            </video-text-select>
         </div>
 
         <script src="https://unpkg.com/@webcomponents/webcomponentsjs@2.0.3/custom-elements-es5-adapter.js"></script>
