@@ -1,8 +1,8 @@
 {
-    "videoId": "d1j3kzai",
+    "id": "d1j3kzai",
     "videoText": [
         {
-            "videoTextId": "4kz5mp9nbz",
+            "id": "4kz5mp9nbz",
             "begin": 23,
             "end": 29,
             "xCoord": 150,
@@ -16,7 +16,7 @@
             "textContent": "here is text"
         },
         {
-            "videoTextId": "po7ja5e7vh",
+            "id": "po7ja5e7vh",
             "begin": 28,
             "end": 35,
             "xCoord": 150,
