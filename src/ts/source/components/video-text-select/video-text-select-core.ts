@@ -1,4 +1,6 @@
 import { HTMLVideoTextSelectElement } from './video-text-select-define';
+import { HTMLVideoTextElement } from '../video-text/video-text-define';
+import { HTMLVideoSelectElement } from '../video-select/video-select-define';
 
 
 
@@ -27,7 +29,6 @@ interface IVTSData {
 export function setVideo(video: HTMLVideoTextSelectElement) {
     const videoEl: HTMLVideoElement = document.createElement('video');
     let sourcesChildren: Array<Element> = [];
-
 
     videoEl.autoplay = video.autoplay;
     // videoEl.controls = video.controls;
@@ -102,19 +103,14 @@ function setVideoText(video: HTMLVideoTextSelectElement, vtsData: IVTSData) {
 
     // console.log(video);
     // console.log(videoEl);
-
     video.id = vtsData.id;
 
-    let videoText = document.createElement('div');
+    let videoText: HTMLVideoTextElement = document.createElement('video-text');
 
     vtsData.videoText.map((videoTextEl: IVideoText) => {
-
-        let div = document.createElement('div');
-
-        div.innerText = videoTextEl.textContent;
-
-        videoText.appendChild(div);
-        // console.log(videoTextEl.id);
+        let videoSelect: HTMLVideoSelectElement = document.createElement('video-select');
+        videoSelect.innerText = videoTextEl.textContent;
+        videoText.appendChild(videoSelect);
     });
 
     video.appendChild(videoText);
