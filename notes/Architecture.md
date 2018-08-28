@@ -34,10 +34,10 @@ The`<video-select>` tag has an id formed thus:
 When the user opts in for the video text selection, the video from the `src` attribute is sent to `vst.deview.plurid.com` where the text is extracted from the video and a `.json` object is generated. The object contains:
 
     {
-        "videoId": "d1j3kzai",
+        "id": "d1j3kzai",
         "videoText": [
             {
-                "videoTextId": "4kz5mp9nbz",
+                "id": "4kz5mp9nbz",
                 "begin": 23,
                 "end": 29,
                 "xCoord": 150,
@@ -51,7 +51,7 @@ When the user opts in for the video text selection, the video from the `src` att
                 "textContent": "here is text"
             },
             {
-                "videoTextId": "po7ja5e7vh",
+                "id": "po7ja5e7vh",
                 "begin": 28,
                 "end": 35,
                 "xCoord": 150,
