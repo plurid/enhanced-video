@@ -26,6 +26,8 @@ interface IVTSData {
 
 export function setVideo(video: HTMLVideoTextSelectElement) {
     const videoEl: HTMLVideoElement = document.createElement('video');
+    let sourcesChildren: Array<Element> = [];
+
 
     videoEl.autoplay = video.autoplay;
     // videoEl.controls = video.controls;
@@ -36,6 +38,18 @@ export function setVideo(video: HTMLVideoTextSelectElement) {
     videoEl.preload = video.preload;
     // videoEl.src = video.source;
     videoEl.width = parseInt(video.width);
+
+
+    // Get source children of video-text-select and append them to the video element.
+    for (let child of <any>video.children) {
+        if (child.tagName == 'SOURCE') {
+            sourcesChildren.push(child);
+        }
+    }
+
+    for (let sourceChild of sourcesChildren) {
+        videoEl.appendChild(sourceChild);
+    }
 
     video.appendChild(videoEl);
 
@@ -72,22 +86,22 @@ function loadJSON(path: string, callback: Function) {
 
 
 function setVideoText(video: HTMLVideoTextSelectElement, vtsData: IVTSData) {
-    console.log('autoplay', video.autoplay);
-    console.log('controls', video.controls);
-    console.log('height', video.height);
-    console.log('loop', video.loop);
-    console.log('muted', video.muted);
-    console.log('poster', video.poster);
-    console.log('pregenerate', video.pregenerate);
-    console.log('preload', video.preload);
-    console.log('source', video.source);
-    console.log('sources', video.sources);
-    console.log('width', video.width);
+    // console.log('autoplay', video.autoplay);
+    // console.log('controls', video.controls);
+    // console.log('height', video.height);
+    // console.log('loop', video.loop);
+    // console.log('muted', video.muted);
+    // console.log('poster', video.poster);
+    // console.log('pregenerate', video.pregenerate);
+    // console.log('preload', video.preload);
+    // console.log('source', video.source);
+    // console.log('sources', video.sources);
+    // console.log('width', video.width);
 
     const videoEl = video.getElementsByTagName('video')[0];
 
-    console.log(video);
-    console.log(videoEl);
+    // console.log(video);
+    // console.log(videoEl);
 
     video.id = vtsData.id;
 
@@ -105,5 +119,5 @@ function setVideoText(video: HTMLVideoTextSelectElement, vtsData: IVTSData) {
 
     video.appendChild(videoText);
 
-    console.log('vtsData', vtsData);
+    // console.log('vtsData', vtsData);
 }
