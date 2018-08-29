@@ -1,12 +1,12 @@
 video-text-select {
-    display: inline-block;
+    display: block;
     position: relative;
 }
 
 video-text-select > video {
     border: none;
     display: block;
-    height: 100%;
+    height: auto;
     margin: 0;
     padding: 0;
     width: 100%;
