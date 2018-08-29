@@ -1,6 +1,7 @@
 import { HTMLVideoTextSelectElement } from './video-text-select-define';
 import { HTMLVideoTextElement } from '../video-text/video-text-define';
 import { HTMLVideoSelectElement } from '../video-select/video-select-define';
+import { HTMLVideoTextSelectControlsElement } from '../video-text-select-controls/video-text-select-controls-define';
 
 
 
@@ -60,7 +61,10 @@ export function setVideo(vts: HTMLVideoTextSelectElement) {
 
 
     // Set controls.
+    let controls: HTMLVideoTextSelectControlsElement = document.createElement('video-text-select-controls');
 
+
+    vts.appendChild(controls);
 
     // If text has been generated, load it from database
     // or get it from server and set it in page.
