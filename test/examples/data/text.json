@@ -1,37 +1,37 @@
 {
-    "id": "d1j3kzai",
+    "id": "vts-d1j3kzai",
     "videoText": [
         {
-            "id": "4kz5mp9nbz",
+            "id": "vts-d1j3kzai-4kz5mp9nbz-23-29-59-48",
             "begin": 23,
             "end": 29,
-            "xCoord": 150,
-            "yCoord": 150,
+            "xCoord": 59,
+            "yCoord": 48,
             "perspective": "flat",
             "rotation": "none",
             "skew": "none",
             "fontFamily": "Gill Sans",
-            "fontSize": 12,
-            "letterSpacing": 1,
+            "fontSize": 10,
+            "letterSpacing": 0,
             "lineHeight": 14,
-            "wordSpacing": 0,
-            "textContent": "here is text"
+            "wordSpacing": 2,
+            "textContent": "> this is a video with text"
         },
         {
-            "id": "po7ja5e7vh",
+            "id": "vts-d1j3kzai-po7ja5e7vh-28-35-56-61",
             "begin": 28,
             "end": 35,
-            "xCoord": 150,
-            "yCoord": 295,
+            "xCoord": 56,
+            "yCoord": 61,
             "perspective": "flat",
             "rotation": "none",
             "skew": "none",
             "fontFamily": "Gill Sans",
-            "fontSize": 12,
-            "letterSpacing": 1,
+            "fontSize": 10,
+            "letterSpacing": 0,
             "lineHeight": 14,
-            "wordSpacing": 0,
-            "textContent": "here is another text"
+            "wordSpacing": 1,
+            "textContent": "-bash: this: command not found"
         }
     ]
 }

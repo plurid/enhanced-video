@@ -3,14 +3,14 @@ video-select {
         Text color transparent so the text stands only for selection.
         The user will 'view' the text in the video.
     */
-    // color: transparent;
+    color: transparent;
 
     display: block;
+    position: absolute;
 
     /*
         General typography.
     */
-    direction: rtl;
     text-align: left;
     text-decoration: none;
     text-indent: 0;
