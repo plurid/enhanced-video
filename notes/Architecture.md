@@ -45,9 +45,11 @@ When the user opts in for the video text selection, the video from the `src` att
                 "perspective": "flat",
                 "rotation": "none",
                 "skew": "none",
+                "fontFamily": "Gill Sans",
                 "fontSize": 12,
                 "letterSpacing": 1,
-                "textTransform": "lowercase",
+                "lineHeight": 14,
+                "wordSpacing": 0,
                 "textContent": "here is text"
             },
             {
@@ -59,9 +61,11 @@ When the user opts in for the video text selection, the video from the `src` att
                 "perspective": "flat",
                 "rotation": "none",
                 "skew": "none",
+                "fontFamily": "Gill Sans",
                 "fontSize": 12,
                 "letterSpacing": 1,
-                "textTransform": "lowercase",
+                "lineHeight": 14,
+                "wordSpacing": 0,
                 "textContent": "here is another text"
             }
         ]
