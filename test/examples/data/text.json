@@ -10,9 +10,11 @@
             "perspective": "flat",
             "rotation": "none",
             "skew": "none",
+            "fontFamily": "Gill Sans",
             "fontSize": 12,
             "letterSpacing": 1,
-            "textTransform": "lowercase",
+            "lineHeight": 14,
+            "wordSpacing": 0,
             "textContent": "here is text"
         },
         {
@@ -24,9 +26,11 @@
             "perspective": "flat",
             "rotation": "none",
             "skew": "none",
+            "fontFamily": "Gill Sans",
             "fontSize": 12,
             "letterSpacing": 1,
-            "textTransform": "lowercase",
+            "lineHeight": 14,
+            "wordSpacing": 0,
             "textContent": "here is another text"
         }
     ]

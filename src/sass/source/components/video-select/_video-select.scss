@@ -1,3 +1,37 @@
 video-select {
+    /*
+        Text color transparent so the text stands only for selection.
+        The user will 'view' the text in the video.
+    */
+    // color: transparent;
+
     display: block;
+
+    /*
+        General typography.
+    */
+    direction: rtl;
+    text-align: left;
+    text-decoration: none;
+    text-indent: 0;
+    text-transform: normal;
+
+
+    /*
+        Specific typography. Will be adjusted programatically.
+    */
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+    font-size: 12px;
+    letter-spacing: 0;
+    line-height: 14px;
+    word-spacing: 0px;
+}
+
+
+video-select::selection {
+    /*
+        Selection background should adjust dynamically
+        based on the median value of the pixels in the video.
+    */
+    background-color: hsl(0, 0%, 60%);
 }

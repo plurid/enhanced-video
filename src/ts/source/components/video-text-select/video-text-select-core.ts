@@ -13,9 +13,11 @@ interface IVideoText {
     perspective: string,
     rotation: string,
     skew: string,
+    fontFamily: string,
     fontSize: number,
     letterSpacing: number,
-    textTransform: string,
+    lineHeight: number,
+    wordSpacing: number,
     textContent: string
 }
 
