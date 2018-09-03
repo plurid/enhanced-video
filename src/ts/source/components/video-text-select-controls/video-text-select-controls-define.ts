@@ -1,4 +1,4 @@
-import { setVideoControls } from './video-text-select-controls-core';
+import { setVideoControls, setButtons } from './video-text-select-controls-core';
 
 
 
@@ -7,6 +7,8 @@ export class HTMLVideoTextSelectControlsElement extends HTMLElement {
         super();
 
         setVideoControls(this);
+
+        setButtons(this);
     }
 }
 

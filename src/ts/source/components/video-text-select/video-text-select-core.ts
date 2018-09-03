@@ -65,7 +65,6 @@ export function setVideo(vts: HTMLVideoTextSelectElement) {
 
 
     vts.appendChild(controls);
-
     // If text has been generated, load it from database
     // or get it from server and set it in page.
 
@@ -120,10 +119,11 @@ function setVideoText(video: HTMLVideoTextSelectElement, vtsData: IVTSData) {
             let ratioHW = height/width;
             let ratioWH = width/height;
 
-            console.log('width', width);
-            console.log('height', height);
-            console.log('ratioHW', ratioHW);
-            console.log('ratioWH', ratioWH);
+            // console.log('width', width);
+            // console.log('height', height);
+            // console.log('ratioHW', ratioHW);
+            // console.log('ratioWH', ratioWH);
+            // console.log('duration', videoEl.duration);
 
             return {
                 width: width,
@@ -141,8 +141,8 @@ function setVideoText(video: HTMLVideoTextSelectElement, vtsData: IVTSData) {
         // let videoHeight = videoEl.videoHeight;
         // let videoWidth = videoEl.videoWidth;
         let videoHeight = videoBounding.height;
-        console.log('width', videoWidth);
-        console.log('height', videoHeight);
+        // console.log('width', videoWidth);
+        // console.log('height', videoHeight);
         // console.log(videoBounding);
 
         // values are good for 995px width page
