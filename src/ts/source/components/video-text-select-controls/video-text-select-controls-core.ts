@@ -4,10 +4,19 @@ import { HTMLVideoTextSelectControlsElement } from "./video-text-select-controls
 
 export function setVideoControls(videoControls: HTMLVideoTextSelectControlsElement) {
     let videoControlsContent = `
+        <div class="video-text-select-controls-timebar-container">
+            <div class="video-text-select-controls-timebar-current-ball"></div>
+            <div class="video-text-select-controls-timebar-current"></div>
+            <div class="video-text-select-controls-timebar-time"></div>
+        </div>
+
         <div class="video-text-select-controls-container">
             <div class="video-text-select-controls-button video-text-select-controls-play">&#9654;</div>
 
-            <div class="video-text-select-controls-time">0:23 / 0:45</div>
+            <div class="video-text-select-controls-time">
+                <span class="video-text-select-controls-time-current-hours"></span><span class="video-text-select-controls-time-current-minutes"></span><span class="video-text-select-controls-time-current-seconds"></span> /
+                <span class="video-text-select-controls-time-end-hours"></span><span class="video-text-select-controls-time-end-minutes"></span><span class="video-text-select-controls-time-end-seconds"></span>
+            </div>
 
             <div class="video-text-select-controls-button video-text-select-controls-volume">
                 <?xml version="1.0" encoding="iso-8859-1"?>
@@ -54,4 +63,108 @@ export function setVideoControls(videoControls: HTMLVideoTextSelectControlsEleme
 
 
     videoControls.innerHTML = videoControlsContent;
+}
+
+
+export function setButtons(videoControls: HTMLVideoTextSelectControlsElement) {
+    let vst = videoControls.parentElement;
+    let video = vst.getElementsByTagName('video')[0];
+
+
+    video.addEventListener('loadedmetadata', () => {
+        setEndTime(videoControls, video.duration);
+    });
+
+    video.addEventListener('timeupdate', () => {
+        setCurrentTime(videoControls, video.currentTime, video.duration);
+    });
+}
+
+
+function setEndTime(
+        videoControls: HTMLVideoTextSelectControlsElement,
+        duration: number) {
+
+    // duration = 1005654;
+
+    let videoCurrentHours = videoControls.getElementsByClassName('video-text-select-controls-time-current-hours')[0];
+    let videoCurrentMinutes = videoControls.getElementsByClassName('video-text-select-controls-time-current-minutes')[0];
+    let videoCurrentSeconds = videoControls.getElementsByClassName('video-text-select-controls-time-current-seconds')[0];
+
+    let videoEndHours = videoControls.getElementsByClassName('video-text-select-controls-time-end-hours')[0];
+    let videoEndMinutes = videoControls.getElementsByClassName('video-text-select-controls-time-end-minutes')[0];
+    let videoEndSeconds = videoControls.getElementsByClassName('video-text-select-controls-time-end-seconds')[0];
+
+    let hours = Math.floor(duration / 3600);
+    let minutes = Math.floor((duration - hours * 3600) / 60);
+    let seconds = Math.floor(duration - hours * 3600 - minutes * 60);
+
+    if (hours != 0) {
+        videoEndHours.innerHTML = `${hours}:`;
+
+        if (hours < 10) {
+            videoCurrentHours.innerHTML = '0:';
+        } else if (hours < 100) {
+            videoCurrentHours.innerHTML = '00:';
+        } else {
+            videoCurrentHours.innerHTML = '000:';
+        }
+    }
+    videoEndMinutes.innerHTML = `${minutes}:`;
+
+    if (minutes < 10) {
+        videoCurrentMinutes.innerHTML = '0:';
+    } else {
+        videoCurrentMinutes.innerHTML = '00:';
+    }
+
+    videoEndSeconds.innerHTML = `${seconds}`;
+    if (seconds < 10) {
+        videoCurrentSeconds.innerHTML = '0';
+    } else {
+        videoCurrentSeconds.innerHTML = '00';
+    }
+}
+
+
+function setCurrentTime(
+        videoControls: HTMLVideoTextSelectControlsElement,
+        currentTime: number,
+        duration: number) {
+
+    let videoCurrentHours = videoControls.getElementsByClassName('video-text-select-controls-time-current-hours')[0];
+    let videoCurrentMinutes = videoControls.getElementsByClassName('video-text-select-controls-time-current-minutes')[0];
+    let videoCurrentSeconds = videoControls.getElementsByClassName('video-text-select-controls-time-current-seconds')[0];
+
+    let hours = Math.floor(currentTime / 3600);
+    let minutes = Math.floor((currentTime - hours * 3600) / 60);
+    let seconds = Math.floor(currentTime - hours * 3600 - minutes * 60);
+
+    let durationHours = Math.floor(duration / 3600);
+    let durationMinutes = Math.floor((duration - durationHours * 3600) / 60);
+    let durationSeconds = Math.floor(duration - durationHours * 3600 - durationMinutes * 60);
+
+
+    if (hours != 0) {
+        videoCurrentHours.innerHTML = `${hours}:`;
+    }
+
+    if (minutes < 10) {
+        if (durationMinutes < 10) {
+            videoCurrentMinutes.innerHTML = `${minutes}:`;
+        } else {
+            videoCurrentMinutes.innerHTML = `0${minutes}:`;
+        }
+    } else {
+        videoCurrentMinutes.innerHTML = `${minutes}:`;
+    }
+
+    if (seconds < 10) {
+        if (durationSeconds < 10) {
+            videoCurrentSeconds.innerHTML = `${seconds}`;
+        }
+        videoCurrentSeconds.innerHTML = `0${seconds}`;
+    } else {
+        videoCurrentSeconds.innerHTML = `${seconds}`;
+    }
 }
