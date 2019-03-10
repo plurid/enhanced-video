@@ -1,0 +1,30 @@
+{
+    "name": "enhanced-video-html",
+    "version": "0.0.1",
+    "description": "Enhanced Video HTML",
+    "author": "Jan Cavel <mail@caveljan.com> (https://caveljan.com/)",
+    "repository": {
+        "type": "git",
+        "url": "git+https://github.com/plurid/enhanced-video-html.git"
+    },
+    "license": "MIT",
+    "module": "dist/esm/index.js",
+    "main": "dist/index.js",
+    "unpkg": "dist/ionic.js",
+    "types": "dist/types/components.d.ts",
+    "collection": "dist/collection/collection-manifest.json",
+    "files": [
+        "dist/"
+    ],
+    "scripts": {
+        "build": "stencil build --docs",
+        "start": "stencil build --dev --watch --serve",
+        "test": "stencil test --spec --e2e",
+        "test.watch": "stencil test --spec --e2e --watchAll"
+    },
+    "dependencies": {},
+    "devDependencies": {
+        "@stencil/core": "~0.16.2",
+        "@types/jest": "^24.0.11"
+    }
+}
