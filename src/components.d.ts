@@ -9,33 +9,104 @@ import '@stencil/core';
 
 
 import {
-  ITextImage,
-  ITextSelectImageData,
+  ITextSelectVideoData,
+  ITextVideo,
 } from './interfaces/video-text';
 
 
 export namespace Components {
 
-  interface SelectImage {
+  interface SelectVideo {
     'deleteText': (id: string) => void;
     'duplicateText': (id: string) => void;
     'editable': boolean;
-    'imageHeight': number;
-    'imageWidth': number;
-    'selectText': ITextSelectImageData;
-    'updateText': (id: string, text: ITextImage) => void;
+    'selectText': ITextSelectVideoData;
+    'updateText': (id: string, text: ITextVideo) => void;
+    'videoHeight': number;
+    'videoWidth': number;
   }
-  interface SelectImageAttributes extends StencilHTMLAttributes {
+  interface SelectVideoAttributes extends StencilHTMLAttributes {
     'deleteText'?: (id: string) => void;
     'duplicateText'?: (id: string) => void;
     'editable'?: boolean;
-    'imageHeight'?: number;
-    'imageWidth'?: number;
-    'selectText'?: ITextSelectImageData;
-    'updateText'?: (id: string, text: ITextImage) => void;
+    'selectText'?: ITextSelectVideoData;
+    'updateText'?: (id: string, text: ITextVideo) => void;
+    'videoHeight'?: number;
+    'videoWidth'?: number;
   }
 
-  interface TextImageEditorButtonDropdown {
+  interface TextSelectVideoButtonCheckmark {
+    'checked': boolean;
+    'text': string;
+    'toggle': (event: MouseEvent) => void;
+  }
+  interface TextSelectVideoButtonCheckmarkAttributes extends StencilHTMLAttributes {
+    'checked'?: boolean;
+    'text'?: string;
+    'toggle'?: (event: MouseEvent) => void;
+  }
+
+  interface TextSelectVideoButtonItem {
+    'atClick': (event: MouseEvent) => void;
+    'icon': string;
+    'text': string;
+  }
+  interface TextSelectVideoButtonItemAttributes extends StencilHTMLAttributes {
+    'atClick'?: (event: MouseEvent) => void;
+    'icon'?: string;
+    'text'?: string;
+  }
+
+  interface TextSelectVideoSettingsMenu {
+    'addText': () => void;
+    'editable': boolean;
+    'toggleEditable': () => void;
+    'toggleMenu': () => void;
+  }
+  interface TextSelectVideoSettingsMenuAttributes extends StencilHTMLAttributes {
+    'addText'?: () => void;
+    'editable'?: boolean;
+    'toggleEditable'?: () => void;
+    'toggleMenu'?: () => void;
+  }
+
+  interface TextSelectVideoSettings {
+    'addText': () => void;
+    'editable': boolean;
+    'toggleEditable': () => void;
+    'toggleSettings': () => void;
+    'toggledSettings': boolean;
+  }
+  interface TextSelectVideoSettingsAttributes extends StencilHTMLAttributes {
+    'addText'?: () => void;
+    'editable'?: boolean;
+    'toggleEditable'?: () => void;
+    'toggleSettings'?: () => void;
+    'toggledSettings'?: boolean;
+  }
+
+  interface TextSelectVideo {
+    'classes': string;
+    'control': boolean;
+    'height': string;
+    'src': string;
+    'styling': string;
+    'textData': string;
+    'type': string;
+    'width': string;
+  }
+  interface TextSelectVideoAttributes extends StencilHTMLAttributes {
+    'classes'?: string;
+    'control'?: boolean;
+    'height'?: string;
+    'src'?: string;
+    'styling'?: string;
+    'textData'?: string;
+    'type'?: string;
+    'width'?: string;
+  }
+
+  interface TextVideoEditorButtonDropdown {
     'alterStyle': string;
     'changeSelected': (type: string, value: string) => void;
     'selectables': string[];
@@ -43,7 +114,7 @@ export namespace Components {
     'toggleEditor': () => void;
     'type': string;
   }
-  interface TextImageEditorButtonDropdownAttributes extends StencilHTMLAttributes {
+  interface TextVideoEditorButtonDropdownAttributes extends StencilHTMLAttributes {
     'alterStyle'?: string;
     'changeSelected'?: (type: string, value: string) => void;
     'selectables'?: string[];
@@ -52,7 +123,7 @@ export namespace Components {
     'type'?: string;
   }
 
-  interface TextImageEditorButtonIncrements {
+  interface TextVideoEditorButtonIncrements {
     'changeValue': (type: string, value: number) => void;
     'icon': string;
     'step': number;
@@ -60,7 +131,7 @@ export namespace Components {
     'unit': string;
     'value': number;
   }
-  interface TextImageEditorButtonIncrementsAttributes extends StencilHTMLAttributes {
+  interface TextVideoEditorButtonIncrementsAttributes extends StencilHTMLAttributes {
     'changeValue'?: (type: string, value: number) => void;
     'icon'?: string;
     'step'?: number;
@@ -69,18 +140,18 @@ export namespace Components {
     'value'?: number;
   }
 
-  interface TextImageEditorButtonToggle {
+  interface TextVideoEditorButtonToggle {
     'icon': string;
     'toggle': () => void;
     'toggled': boolean;
   }
-  interface TextImageEditorButtonToggleAttributes extends StencilHTMLAttributes {
+  interface TextVideoEditorButtonToggleAttributes extends StencilHTMLAttributes {
     'icon'?: string;
     'toggle'?: () => void;
     'toggled'?: boolean;
   }
 
-  interface TextImageEditor {
+  interface TextVideoEditor {
     'changeValue': (type: string, value: number | string) => void;
     'colorValue': string;
     'draggable': boolean;
@@ -100,7 +171,7 @@ export namespace Components {
     'toggleTextEditable': () => void;
     'wordSpacingValue': number;
   }
-  interface TextImageEditorAttributes extends StencilHTMLAttributes {
+  interface TextVideoEditorAttributes extends StencilHTMLAttributes {
     'changeValue'?: (type: string, value: number | string) => void;
     'colorValue'?: string;
     'draggable'?: boolean;
@@ -121,223 +192,152 @@ export namespace Components {
     'wordSpacingValue'?: number;
   }
 
-  interface TextImage {
+  interface TextVideo {
     'duplicateText': (id: string) => void;
     'editable': boolean;
-    'imageHeight': number;
-    'imageText': ITextImage[];
-    'imageWidth': number;
     'removeText': (id: string) => void;
     'textId': string;
-    'textImage': ITextImage;
-    'updateText': (id: string, text: ITextImage) => void;
+    'textVideo': ITextVideo;
+    'updateText': (id: string, text: ITextVideo) => void;
+    'videoHeight': number;
+    'videoText': ITextVideo[];
+    'videoWidth': number;
   }
-  interface TextImageAttributes extends StencilHTMLAttributes {
+  interface TextVideoAttributes extends StencilHTMLAttributes {
     'duplicateText'?: (id: string) => void;
     'editable'?: boolean;
-    'imageHeight'?: number;
-    'imageText'?: ITextImage[];
-    'imageWidth'?: number;
     'removeText'?: (id: string) => void;
     'textId'?: string;
-    'textImage'?: ITextImage;
-    'updateText'?: (id: string, text: ITextImage) => void;
-  }
-
-  interface TextSelectImageButtonCheckmark {
-    'checked': boolean;
-    'text': string;
-    'toggle': (event: MouseEvent) => void;
-  }
-  interface TextSelectImageButtonCheckmarkAttributes extends StencilHTMLAttributes {
-    'checked'?: boolean;
-    'text'?: string;
-    'toggle'?: (event: MouseEvent) => void;
-  }
-
-  interface TextSelectImageButtonItem {
-    'atClick': (event: MouseEvent) => void;
-    'icon': string;
-    'text': string;
-  }
-  interface TextSelectImageButtonItemAttributes extends StencilHTMLAttributes {
-    'atClick'?: (event: MouseEvent) => void;
-    'icon'?: string;
-    'text'?: string;
-  }
-
-  interface TextSelectImageSettingsMenu {
-    'addText': () => void;
-    'editable': boolean;
-    'toggleEditable': () => void;
-    'toggleMenu': () => void;
-  }
-  interface TextSelectImageSettingsMenuAttributes extends StencilHTMLAttributes {
-    'addText'?: () => void;
-    'editable'?: boolean;
-    'toggleEditable'?: () => void;
-    'toggleMenu'?: () => void;
-  }
-
-  interface TextSelectImageSettings {
-    'addText': () => void;
-    'editable': boolean;
-    'toggleEditable': () => void;
-    'toggleSettings': () => void;
-    'toggledSettings': boolean;
-  }
-  interface TextSelectImageSettingsAttributes extends StencilHTMLAttributes {
-    'addText'?: () => void;
-    'editable'?: boolean;
-    'toggleEditable'?: () => void;
-    'toggleSettings'?: () => void;
-    'toggledSettings'?: boolean;
-  }
-
-  interface TextSelectImage {
-    'alt': string;
-    'classes': string;
-    'control': boolean;
-    'height': string;
-    'src': string;
-    'styling': string;
-    'textData': string;
-    'width': string;
-  }
-  interface TextSelectImageAttributes extends StencilHTMLAttributes {
-    'alt'?: string;
-    'classes'?: string;
-    'control'?: boolean;
-    'height'?: string;
-    'src'?: string;
-    'styling'?: string;
-    'textData'?: string;
-    'width'?: string;
+    'textVideo'?: ITextVideo;
+    'updateText'?: (id: string, text: ITextVideo) => void;
+    'videoHeight'?: number;
+    'videoText'?: ITextVideo[];
+    'videoWidth'?: number;
   }
 }
 
 declare global {
   interface StencilElementInterfaces {
-    'SelectImage': Components.SelectImage;
-    'TextImageEditorButtonDropdown': Components.TextImageEditorButtonDropdown;
-    'TextImageEditorButtonIncrements': Components.TextImageEditorButtonIncrements;
-    'TextImageEditorButtonToggle': Components.TextImageEditorButtonToggle;
-    'TextImageEditor': Components.TextImageEditor;
-    'TextImage': Components.TextImage;
-    'TextSelectImageButtonCheckmark': Components.TextSelectImageButtonCheckmark;
-    'TextSelectImageButtonItem': Components.TextSelectImageButtonItem;
-    'TextSelectImageSettingsMenu': Components.TextSelectImageSettingsMenu;
-    'TextSelectImageSettings': Components.TextSelectImageSettings;
-    'TextSelectImage': Components.TextSelectImage;
+    'SelectVideo': Components.SelectVideo;
+    'TextSelectVideoButtonCheckmark': Components.TextSelectVideoButtonCheckmark;
+    'TextSelectVideoButtonItem': Components.TextSelectVideoButtonItem;
+    'TextSelectVideoSettingsMenu': Components.TextSelectVideoSettingsMenu;
+    'TextSelectVideoSettings': Components.TextSelectVideoSettings;
+    'TextSelectVideo': Components.TextSelectVideo;
+    'TextVideoEditorButtonDropdown': Components.TextVideoEditorButtonDropdown;
+    'TextVideoEditorButtonIncrements': Components.TextVideoEditorButtonIncrements;
+    'TextVideoEditorButtonToggle': Components.TextVideoEditorButtonToggle;
+    'TextVideoEditor': Components.TextVideoEditor;
+    'TextVideo': Components.TextVideo;
   }
 
   interface StencilIntrinsicElements {
-    'select-image': Components.SelectImageAttributes;
-    'text-image-editor-button-dropdown': Components.TextImageEditorButtonDropdownAttributes;
-    'text-image-editor-button-increments': Components.TextImageEditorButtonIncrementsAttributes;
-    'text-image-editor-button-toggle': Components.TextImageEditorButtonToggleAttributes;
-    'text-image-editor': Components.TextImageEditorAttributes;
-    'text-image': Components.TextImageAttributes;
-    'text-select-image-button-checkmark': Components.TextSelectImageButtonCheckmarkAttributes;
-    'text-select-image-button-item': Components.TextSelectImageButtonItemAttributes;
-    'text-select-image-settings-menu': Components.TextSelectImageSettingsMenuAttributes;
-    'text-select-image-settings': Components.TextSelectImageSettingsAttributes;
-    'text-select-image': Components.TextSelectImageAttributes;
+    'select-video': Components.SelectVideoAttributes;
+    'text-select-video-button-checkmark': Components.TextSelectVideoButtonCheckmarkAttributes;
+    'text-select-video-button-item': Components.TextSelectVideoButtonItemAttributes;
+    'text-select-video-settings-menu': Components.TextSelectVideoSettingsMenuAttributes;
+    'text-select-video-settings': Components.TextSelectVideoSettingsAttributes;
+    'text-select-video': Components.TextSelectVideoAttributes;
+    'text-video-editor-button-dropdown': Components.TextVideoEditorButtonDropdownAttributes;
+    'text-video-editor-button-increments': Components.TextVideoEditorButtonIncrementsAttributes;
+    'text-video-editor-button-toggle': Components.TextVideoEditorButtonToggleAttributes;
+    'text-video-editor': Components.TextVideoEditorAttributes;
+    'text-video': Components.TextVideoAttributes;
   }
 
 
-  interface HTMLSelectImageElement extends Components.SelectImage, HTMLStencilElement {}
-  var HTMLSelectImageElement: {
-    prototype: HTMLSelectImageElement;
-    new (): HTMLSelectImageElement;
+  interface HTMLSelectVideoElement extends Components.SelectVideo, HTMLStencilElement {}
+  var HTMLSelectVideoElement: {
+    prototype: HTMLSelectVideoElement;
+    new (): HTMLSelectVideoElement;
   };
 
-  interface HTMLTextImageEditorButtonDropdownElement extends Components.TextImageEditorButtonDropdown, HTMLStencilElement {}
-  var HTMLTextImageEditorButtonDropdownElement: {
-    prototype: HTMLTextImageEditorButtonDropdownElement;
-    new (): HTMLTextImageEditorButtonDropdownElement;
+  interface HTMLTextSelectVideoButtonCheckmarkElement extends Components.TextSelectVideoButtonCheckmark, HTMLStencilElement {}
+  var HTMLTextSelectVideoButtonCheckmarkElement: {
+    prototype: HTMLTextSelectVideoButtonCheckmarkElement;
+    new (): HTMLTextSelectVideoButtonCheckmarkElement;
   };
 
-  interface HTMLTextImageEditorButtonIncrementsElement extends Components.TextImageEditorButtonIncrements, HTMLStencilElement {}
-  var HTMLTextImageEditorButtonIncrementsElement: {
-    prototype: HTMLTextImageEditorButtonIncrementsElement;
-    new (): HTMLTextImageEditorButtonIncrementsElement;
+  interface HTMLTextSelectVideoButtonItemElement extends Components.TextSelectVideoButtonItem, HTMLStencilElement {}
+  var HTMLTextSelectVideoButtonItemElement: {
+    prototype: HTMLTextSelectVideoButtonItemElement;
+    new (): HTMLTextSelectVideoButtonItemElement;
   };
 
-  interface HTMLTextImageEditorButtonToggleElement extends Components.TextImageEditorButtonToggle, HTMLStencilElement {}
-  var HTMLTextImageEditorButtonToggleElement: {
-    prototype: HTMLTextImageEditorButtonToggleElement;
-    new (): HTMLTextImageEditorButtonToggleElement;
+  interface HTMLTextSelectVideoSettingsMenuElement extends Components.TextSelectVideoSettingsMenu, HTMLStencilElement {}
+  var HTMLTextSelectVideoSettingsMenuElement: {
+    prototype: HTMLTextSelectVideoSettingsMenuElement;
+    new (): HTMLTextSelectVideoSettingsMenuElement;
   };
 
-  interface HTMLTextImageEditorElement extends Components.TextImageEditor, HTMLStencilElement {}
-  var HTMLTextImageEditorElement: {
-    prototype: HTMLTextImageEditorElement;
-    new (): HTMLTextImageEditorElement;
+  interface HTMLTextSelectVideoSettingsElement extends Components.TextSelectVideoSettings, HTMLStencilElement {}
+  var HTMLTextSelectVideoSettingsElement: {
+    prototype: HTMLTextSelectVideoSettingsElement;
+    new (): HTMLTextSelectVideoSettingsElement;
   };
 
-  interface HTMLTextImageElement extends Components.TextImage, HTMLStencilElement {}
-  var HTMLTextImageElement: {
-    prototype: HTMLTextImageElement;
-    new (): HTMLTextImageElement;
+  interface HTMLTextSelectVideoElement extends Components.TextSelectVideo, HTMLStencilElement {}
+  var HTMLTextSelectVideoElement: {
+    prototype: HTMLTextSelectVideoElement;
+    new (): HTMLTextSelectVideoElement;
   };
 
-  interface HTMLTextSelectImageButtonCheckmarkElement extends Components.TextSelectImageButtonCheckmark, HTMLStencilElement {}
-  var HTMLTextSelectImageButtonCheckmarkElement: {
-    prototype: HTMLTextSelectImageButtonCheckmarkElement;
-    new (): HTMLTextSelectImageButtonCheckmarkElement;
+  interface HTMLTextVideoEditorButtonDropdownElement extends Components.TextVideoEditorButtonDropdown, HTMLStencilElement {}
+  var HTMLTextVideoEditorButtonDropdownElement: {
+    prototype: HTMLTextVideoEditorButtonDropdownElement;
+    new (): HTMLTextVideoEditorButtonDropdownElement;
   };
 
-  interface HTMLTextSelectImageButtonItemElement extends Components.TextSelectImageButtonItem, HTMLStencilElement {}
-  var HTMLTextSelectImageButtonItemElement: {
-    prototype: HTMLTextSelectImageButtonItemElement;
-    new (): HTMLTextSelectImageButtonItemElement;
+  interface HTMLTextVideoEditorButtonIncrementsElement extends Components.TextVideoEditorButtonIncrements, HTMLStencilElement {}
+  var HTMLTextVideoEditorButtonIncrementsElement: {
+    prototype: HTMLTextVideoEditorButtonIncrementsElement;
+    new (): HTMLTextVideoEditorButtonIncrementsElement;
   };
 
-  interface HTMLTextSelectImageSettingsMenuElement extends Components.TextSelectImageSettingsMenu, HTMLStencilElement {}
-  var HTMLTextSelectImageSettingsMenuElement: {
-    prototype: HTMLTextSelectImageSettingsMenuElement;
-    new (): HTMLTextSelectImageSettingsMenuElement;
+  interface HTMLTextVideoEditorButtonToggleElement extends Components.TextVideoEditorButtonToggle, HTMLStencilElement {}
+  var HTMLTextVideoEditorButtonToggleElement: {
+    prototype: HTMLTextVideoEditorButtonToggleElement;
+    new (): HTMLTextVideoEditorButtonToggleElement;
   };
 
-  interface HTMLTextSelectImageSettingsElement extends Components.TextSelectImageSettings, HTMLStencilElement {}
-  var HTMLTextSelectImageSettingsElement: {
-    prototype: HTMLTextSelectImageSettingsElement;
-    new (): HTMLTextSelectImageSettingsElement;
+  interface HTMLTextVideoEditorElement extends Components.TextVideoEditor, HTMLStencilElement {}
+  var HTMLTextVideoEditorElement: {
+    prototype: HTMLTextVideoEditorElement;
+    new (): HTMLTextVideoEditorElement;
   };
 
-  interface HTMLTextSelectImageElement extends Components.TextSelectImage, HTMLStencilElement {}
-  var HTMLTextSelectImageElement: {
-    prototype: HTMLTextSelectImageElement;
-    new (): HTMLTextSelectImageElement;
+  interface HTMLTextVideoElement extends Components.TextVideo, HTMLStencilElement {}
+  var HTMLTextVideoElement: {
+    prototype: HTMLTextVideoElement;
+    new (): HTMLTextVideoElement;
   };
 
   interface HTMLElementTagNameMap {
-    'select-image': HTMLSelectImageElement
-    'text-image-editor-button-dropdown': HTMLTextImageEditorButtonDropdownElement
-    'text-image-editor-button-increments': HTMLTextImageEditorButtonIncrementsElement
-    'text-image-editor-button-toggle': HTMLTextImageEditorButtonToggleElement
-    'text-image-editor': HTMLTextImageEditorElement
-    'text-image': HTMLTextImageElement
-    'text-select-image-button-checkmark': HTMLTextSelectImageButtonCheckmarkElement
-    'text-select-image-button-item': HTMLTextSelectImageButtonItemElement
-    'text-select-image-settings-menu': HTMLTextSelectImageSettingsMenuElement
-    'text-select-image-settings': HTMLTextSelectImageSettingsElement
-    'text-select-image': HTMLTextSelectImageElement
+    'select-video': HTMLSelectVideoElement
+    'text-select-video-button-checkmark': HTMLTextSelectVideoButtonCheckmarkElement
+    'text-select-video-button-item': HTMLTextSelectVideoButtonItemElement
+    'text-select-video-settings-menu': HTMLTextSelectVideoSettingsMenuElement
+    'text-select-video-settings': HTMLTextSelectVideoSettingsElement
+    'text-select-video': HTMLTextSelectVideoElement
+    'text-video-editor-button-dropdown': HTMLTextVideoEditorButtonDropdownElement
+    'text-video-editor-button-increments': HTMLTextVideoEditorButtonIncrementsElement
+    'text-video-editor-button-toggle': HTMLTextVideoEditorButtonToggleElement
+    'text-video-editor': HTMLTextVideoEditorElement
+    'text-video': HTMLTextVideoElement
   }
 
   interface ElementTagNameMap {
-    'select-image': HTMLSelectImageElement;
-    'text-image-editor-button-dropdown': HTMLTextImageEditorButtonDropdownElement;
-    'text-image-editor-button-increments': HTMLTextImageEditorButtonIncrementsElement;
-    'text-image-editor-button-toggle': HTMLTextImageEditorButtonToggleElement;
-    'text-image-editor': HTMLTextImageEditorElement;
-    'text-image': HTMLTextImageElement;
-    'text-select-image-button-checkmark': HTMLTextSelectImageButtonCheckmarkElement;
-    'text-select-image-button-item': HTMLTextSelectImageButtonItemElement;
-    'text-select-image-settings-menu': HTMLTextSelectImageSettingsMenuElement;
-    'text-select-image-settings': HTMLTextSelectImageSettingsElement;
-    'text-select-image': HTMLTextSelectImageElement;
+    'select-video': HTMLSelectVideoElement;
+    'text-select-video-button-checkmark': HTMLTextSelectVideoButtonCheckmarkElement;
+    'text-select-video-button-item': HTMLTextSelectVideoButtonItemElement;
+    'text-select-video-settings-menu': HTMLTextSelectVideoSettingsMenuElement;
+    'text-select-video-settings': HTMLTextSelectVideoSettingsElement;
+    'text-select-video': HTMLTextSelectVideoElement;
+    'text-video-editor-button-dropdown': HTMLTextVideoEditorButtonDropdownElement;
+    'text-video-editor-button-increments': HTMLTextVideoEditorButtonIncrementsElement;
+    'text-video-editor-button-toggle': HTMLTextVideoEditorButtonToggleElement;
+    'text-video-editor': HTMLTextVideoEditorElement;
+    'text-video': HTMLTextVideoElement;
   }
 
 

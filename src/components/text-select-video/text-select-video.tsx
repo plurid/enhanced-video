@@ -9,14 +9,14 @@ import { uuidv4 } from '../../utils/uuid';
 
 @Component({
     tag: 'text-select-video',
-    styleUrl: 'text-select-video.css',
+    styleUrl: 'text-select-video.scss',
     shadow: true
 })
 export class TextSelectVideo {
     video!: HTMLVideoElement;
 
     @Prop() src: string;
-    @Prop() alt: string;
+    @Prop() type: string;
     @Prop() height: string;
     @Prop() width: string;
     @Prop() classes: string;
@@ -162,16 +162,19 @@ export class TextSelectVideo {
     }
 
     render() {
-        // console.log('RENDER TSI', this.selectText);
+        // console.log('RENDER TSV', this.selectText);
 
         return (
             <div
                 style={ {...this.styled} }
-                class="text-select-image-container"
+                class="text-select-video-container"
             >
                 <video
                     ref={(imgEl) => this.video = imgEl as HTMLVideoElement}
-                />
+                    controls
+                >
+                    <source src={this.src} type={`video/${this.type}`} />
+                </video>
 
                 <select-video
                     selectText={this.selectText}
