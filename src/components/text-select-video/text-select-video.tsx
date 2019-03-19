@@ -22,7 +22,7 @@ export class TextSelectVideo {
     @Prop() classes: string;
     @Prop() styling: string;
 
-    @Prop() control: boolean;
+    @Prop() controls: boolean;
     @Prop() textData: string;
 
     @State() styled: any;
@@ -37,8 +37,8 @@ export class TextSelectVideo {
         this.styled = this.styling
             ? styleStringToObject(this.styling)
             : {};
-        this.showControl = this.control
-            ? this.control
+        this.showControl = this.controls
+            ? this.controls
             : false;
         this.selectText = this.textData
             ? this.parseText(this.textData)

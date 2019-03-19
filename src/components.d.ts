@@ -87,7 +87,7 @@ export namespace Components {
 
   interface TextSelectVideo {
     'classes': string;
-    'control': boolean;
+    'controls': boolean;
     'height': string;
     'src': string;
     'styling': string;
@@ -97,7 +97,7 @@ export namespace Components {
   }
   interface TextSelectVideoAttributes extends StencilHTMLAttributes {
     'classes'?: string;
-    'control'?: boolean;
+    'controls'?: boolean;
     'height'?: string;
     'src'?: string;
     'styling'?: string;
