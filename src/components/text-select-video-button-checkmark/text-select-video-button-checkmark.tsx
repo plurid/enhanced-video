@@ -4,7 +4,7 @@ import { Component, Prop } from '@stencil/core';
 
 @Component({
     tag: 'text-select-video-button-checkmark',
-    styleUrl: 'text-select-video-button-checkmark.css',
+    styleUrl: 'text-select-video-button-checkmark.scss',
     shadow: true
 })
 export class TextSelectVideoButtonCheckmark {

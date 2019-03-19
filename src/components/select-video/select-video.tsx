@@ -29,14 +29,14 @@ export class SelectVideo {
     }
 
     render() {
-        // console.log('select-image :: this.selectText', this.selectText);
-        const { videoText } = this.selectText;
+        console.log('select-image :: this.selectText', this.selectText);
+        // const { videoText } = this.selectText;
 
         return (
             <div
                 ref={(el) => this.div = el as HTMLDivElement}
             >
-                {videoText.map(text => {
+                {/* {videoText.map(text => {
                     return (
                         <text-video
                             key={text.id}
@@ -55,7 +55,7 @@ export class SelectVideo {
                             videoHeight={this.videoHeight}
                         />
                     );
-                })}
+                })} */}
             </div>
         );
     }
