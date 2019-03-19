@@ -23,7 +23,7 @@ export class TextSelectVideoSettingsMenu {
     }
 
     about = () => {
-        const aboutURL = "https://github.com/plurid/text-select-image-html"
+        const aboutURL = "https://github.com/plurid/text-select-video-html"
         window.open(aboutURL, '_blank');
     }
 
@@ -50,7 +50,7 @@ export class TextSelectVideoSettingsMenu {
                         <text-select-video-button-item
                             atClick={this.about}
                             icon={aboutIcon}
-                            text='About TSI'
+                            text='About TSV'
                         />
                     </li>
                 </ul>
