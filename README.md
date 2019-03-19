@@ -38,3 +38,13 @@ Each frame of a video is analysed and established if it contains text. If it doe
 <p align="center">
     <img src="https://raw.githubusercontent.com/plurid/video-text-select/master/about/docs/images/3.png" height="500px">
 </p>
+
+
+
+## [Demo](https://caveljan.com/text-select-video/)
+
+Editing the text.
+
+<p align="center">
+    <img src="https://raw.githubusercontent.com/plurid/video-text-select/master/about/demo/on-edit.png" height="500px">
+</p>
