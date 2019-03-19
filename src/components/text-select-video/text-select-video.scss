@@ -11,6 +11,7 @@
 
 .text-select-video-container select-video {
     position: absolute;
+    pointer-events: none;
     top: 0;
     left: 0;
     right: 0;
