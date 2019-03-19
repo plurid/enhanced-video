@@ -57,7 +57,7 @@ export class TextSelectVideo {
     }
 
     loadDummyText = async () => {
-        const response = await fetch('../../test-data/food-text.json');
+        const response = await fetch('../../test-data/video-text.json');
         const dummyData: ITextSelectVideoData = await response.json();
         // console.log('dummyData', dummyData);
         return dummyData;
