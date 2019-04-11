@@ -1,22 +1,33 @@
 {
-    "name": "enhanced-video-react",
-    "version": "0.1.0",
-    "description": "React implementation for enhanced-video-html",
-    "author": "Jan Cavel <mail@caveljan.com> (https://caveljan.com/)",
+    "name": "@plurid/enhanced-video-react",
+    "version": "0.0.0",
+    "description": "Enhanced Video HTML Element, React implementation",
+    "keywords": [
+        "enhanced",
+        "video",
+        "html",
+        "react"
+    ],
+    "author": "Jan Cavel <caveljan@plurid.com> (https://plurid.com)",
     "license": "MIT",
     "repository": {
         "type": "git",
-        "url": "git+https://github.com/plurid/enhanced-video-react.git"
+        "url": "https://github.com/plurid/enhanced-video"
     },
     "bugs": {
-        "url": "https://github.com/plurid/enhanced-video-react/issues"
+        "email": "feedback@plurid.com",
+        "url": "https://github.com/plurid/enhanced-video/issues"
     },
+    "homepage": "https://github.com/plurid/enhanced-video/blob/master/packages/enhanced-video-react",
+    "publishConfig": {
+        "access": "public"
+    },
+    "files": [
+        "dist/"
+    ],
     "main": "dist/index.js",
     "module": "dist/index.es.js",
     "jsnext:main": "dist/index.es.js",
-    "files": [
-        "dist"
-    ],
     "engines": {
         "node": ">=8",
         "npm": ">=5"
