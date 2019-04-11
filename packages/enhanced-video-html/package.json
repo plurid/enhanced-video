@@ -1,21 +1,34 @@
 {
-    "name": "enhanced-video-html",
-    "version": "0.0.1",
-    "description": "Enhanced Video HTML",
-    "author": "Jan Cavel <mail@caveljan.com> (https://caveljan.com/)",
+    "name": "@plurid/enhanced-video-html",
+    "version": "0.0.0",
+    "description": "Enhanced Video HTML Element, HTML Custom Elements implementation",
+    "keywords": [
+        "enhanced",
+        "video",
+        "html custom elements"
+    ],
+    "author": "Jan Cavel <caveljan@plurid.com> (https://plurid.com)",
+    "license": "MIT",
     "repository": {
         "type": "git",
-        "url": "git+https://github.com/plurid/enhanced-video-html.git"
+        "url": "https://github.com/plurid/enhanced-video"
     },
-    "license": "MIT",
+    "bugs": {
+        "email": "feedback@plurid.com",
+        "url": "https://github.com/plurid/enhanced-video/issues"
+    },
+    "homepage": "https://github.com/plurid/enhanced-video/blob/master/packages/enhanced-video-html",
+    "publishConfig": {
+        "access": "public"
+    },
+    "files": [
+        "dist/"
+    ],
     "module": "dist/esm/index.js",
     "main": "dist/index.js",
     "unpkg": "dist/ionic.js",
     "types": "dist/types/components.d.ts",
     "collection": "dist/collection/collection-manifest.json",
-    "files": [
-        "dist/"
-    ],
     "scripts": {
         "build": "stencil build --docs",
         "start": "stencil build --dev --watch --serve",

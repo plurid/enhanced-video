@@ -1,13 +1,13 @@
 {
-    "name": "@plurid/enhanced-video-vue",
+    "name": "@plurid/enhanced-video-chrome",
     "version": "0.0.0",
-    "description": "Enhanced Video HTML Element, Vue implementation",
+    "description": "Enhanced Video HTML Element, Chrome extension",
     "keywords": [
         "enhanced",
         "video",
-        "html",
-        "vue"
+        "html"
     ],
+    "private": true,
     "author": "Jan Cavel <caveljan@plurid.com> (https://plurid.com)",
     "license": "MIT",
     "repository": {
@@ -18,7 +18,7 @@
         "email": "feedback@plurid.com",
         "url": "https://github.com/plurid/enhanced-video/issues"
     },
-    "homepage": "https://github.com/plurid/enhanced-video/blob/master/packages/enhanced-video-vue",
+    "homepage": "https://github.com/plurid/enhanced-video/blob/master/packages/enhanced-video-chrome",
     "publishConfig": {
         "access": "public"
     },

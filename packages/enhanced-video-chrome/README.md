@@ -9,5 +9,5 @@
 
 
 <h1 align="center">
-    Enhanced Video
+    Enhanced Video <i>for</i> Chrome
 </h1>
