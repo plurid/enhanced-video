@@ -1,0 +1,13 @@
+video-text-select {
+    display: block;
+    position: relative;
+}
+
+video-text-select > video {
+    border: none;
+    display: block;
+    height: auto;
+    margin: 0;
+    padding: 0;
+    width: 100%;
+}
