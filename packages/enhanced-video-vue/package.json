@@ -1,0 +1,31 @@
+{
+    "name": "enhanced-video-vue",
+    "version": "0.1.0",
+    "description": "Vue implementation for enhanced-video-html",
+    "author": "Jan Cavel <mail@caveljan.com> (https://caveljan.com/)",
+    "license": "MIT",
+    "repository": {
+        "type": "git",
+        "url": "git+https://github.com/plurid/enhanced-video.git"
+    },
+    "bugs": {
+        "url": "https://github.com/plurid/enhanced-video/issues"
+    },
+    "main": "dist/index.js",
+    "module": "dist/index.es.js",
+    "jsnext:main": "dist/index.es.js",
+    "files": [
+        "dist"
+    ],
+    "engines": {
+        "node": ">=8",
+        "npm": ">=5"
+    },
+    "scripts": {
+        "clean": "rm -rf ./dist"
+    },
+    "peerDependencies": {
+    },
+    "devDependencies": {
+    }
+}
