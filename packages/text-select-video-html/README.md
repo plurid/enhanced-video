@@ -1,13 +1,13 @@
 <p align="center">
-    <img src="https://raw.githubusercontent.com/plurid/text-select-video-html/master/about/identity/TSV-logo.png" height="250px">
+    <img src="https://raw.githubusercontent.com/plurid/text-select-video/master/about/identity/TSV-logo.png" height="250px">
     <br />
-    <a target="_blank" href="https://www.npmjs.com/package/text-select-video-html">
-        <img src="https://img.shields.io/npm/v/text-select-video-html.svg?logo=npm&colorB=1380C3&style=for-the-badge" alt="Version">
+    <a target="_blank" href="https://www.npmjs.com/package/@plurid/text-select-video-html">
+        <img src="https://img.shields.io/npm/v/@plurid/text-select-video-html.svg?logo=npm&colorB=1380C3&style=for-the-badge" alt="Version">
     </a>
     <a target="_blank" href="https://travis-ci.org/plurid/text-select-video-html">
         <img src="https://img.shields.io/travis/plurid/text-select-video-html.svg?logo=travis&colorB=1380C3&style=for-the-badge" alt="Build Status">
     </a>
-    <a target="_blank" href="https://github.com/plurid/text-select-video-html/blob/master/LICENSE">
+    <a target="_blank" href="https://github.com/plurid/text-select-video/blob/master/LICENSE">
         <img src="https://img.shields.io/badge/license-MIT-blue.svg?colorB=1380C3&style=for-the-badge" alt="License: MIT">
     </a>
 </p>
@@ -28,15 +28,15 @@ Each frame of a video is analysed and established if it contains text. If it doe
 [Proof of Concept](https://youtu.be/WCH7w-q5KtA)
 
 <p align="center">
-    <img src="https://raw.githubusercontent.com/plurid/video-text-select/master/about/docs/images/1.png" height="500px">
+    <img src="https://raw.githubusercontent.com/plurid/video-text-select/master/about/demo/images/1.png" height="500px">
 </p>
 
 <p align="center">
-    <img src="https://raw.githubusercontent.com/plurid/video-text-select/master/about/docs/images/2.png" height="500px">
+    <img src="https://raw.githubusercontent.com/plurid/video-text-select/master/about/demo/images/2.png" height="500px">
 </p>
 
 <p align="center">
-    <img src="https://raw.githubusercontent.com/plurid/video-text-select/master/about/docs/images/3.png" height="500px">
+    <img src="https://raw.githubusercontent.com/plurid/video-text-select/master/about/demo/images/3.png" height="500px">
 </p>
 
 
