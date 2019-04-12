@@ -1,6 +1,6 @@
 {
     "name": "@plurid/text-select-video-react",
-    "version": "0.0.0",
+    "version": "0.1.0",
     "description": "React Component to select the text from videos",
     "keywords": [
         "text",
