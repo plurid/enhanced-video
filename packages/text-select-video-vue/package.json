@@ -1,6 +1,6 @@
 {
     "name": "@plurid/text-select-video-vue",
-    "version": "0.0.0",
+    "version": "0.1.0",
     "description": "Vue Component to select the text from videos",
     "keywords": [
         "text",
@@ -33,9 +33,5 @@
     },
     "scripts": {
         "clean": "rm -rf ./dist"
-    },
-    "peerDependencies": {
-    },
-    "devDependencies": {
     }
 }
