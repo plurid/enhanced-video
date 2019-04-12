@@ -28,15 +28,15 @@ Each frame of a video is analysed and established if it contains text. If it doe
 [Proof of Concept](https://youtu.be/WCH7w-q5KtA)
 
 <p align="center">
-    <img src="https://raw.githubusercontent.com/plurid/video-text-select/master/about/demo/images/1.png" height="500px">
+    <img src="https://raw.githubusercontent.com/plurid/video-text-select/master/about/demo/1.png" height="500px">
 </p>
 
 <p align="center">
-    <img src="https://raw.githubusercontent.com/plurid/video-text-select/master/about/demo/images/2.png" height="500px">
+    <img src="https://raw.githubusercontent.com/plurid/video-text-select/master/about/demo/2.png" height="500px">
 </p>
 
 <p align="center">
-    <img src="https://raw.githubusercontent.com/plurid/video-text-select/master/about/demo/images/3.png" height="500px">
+    <img src="https://raw.githubusercontent.com/plurid/video-text-select/master/about/demo/3.png" height="500px">
 </p>
 
 
