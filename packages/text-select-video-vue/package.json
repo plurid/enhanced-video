@@ -1,22 +1,32 @@
 {
-    "name": "text-select-video-vue",
-    "version": "0.1.0",
-    "description": "Vue implementation for text-select-video-html",
-    "author": "Jan Cavel <mail@caveljan.com> (https://caveljan.com/)",
+    "name": "@plurid/text-select-video-vue",
+    "version": "0.0.0",
+    "description": "Vue Component to select the text from videos",
+    "keywords": [
+        "text",
+        "video",
+        "vue"
+    ],
+    "author": "Jan Cavel <caveljan@plurid.com> (https://plurid.com)",
     "license": "MIT",
     "repository": {
         "type": "git",
-        "url": "git+https://github.com/plurid/text-select-video.git"
+        "url": "https://github.com/plurid/text-select-video"
     },
     "bugs": {
+        "email": "feedback@plurid.com",
         "url": "https://github.com/plurid/text-select-video/issues"
     },
+    "homepage": "https://github.com/plurid/text-select-video/blob/master/packages/text-select-video-vue",
+    "publishConfig": {
+        "access": "public"
+    },
+    "files": [
+        "dist/"
+    ],
     "main": "dist/index.js",
     "module": "dist/index.es.js",
     "jsnext:main": "dist/index.es.js",
-    "files": [
-        "dist"
-    ],
     "engines": {
         "node": ">=8",
         "npm": ">=5"
