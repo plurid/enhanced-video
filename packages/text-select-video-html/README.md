@@ -46,5 +46,5 @@ Each frame of a video is analysed and established if it contains text. If it doe
 Editing the text.
 
 <p align="center">
-    <img src="https://raw.githubusercontent.com/plurid/video-text-select/master/about/demo/on-edit.png" height="500px">
+    <img src="https://raw.githubusercontent.com/plurid/text-select-video/master/about/demo/on-edit.png" height="500px">
 </p>
