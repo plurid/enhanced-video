@@ -1,6 +1,6 @@
 {
-  "short_name": "text-select-video-react",
-  "name": "text-select-video-react",
+  "short_name": "text-select-video-react-impl",
+  "name": "text-select-video-react-impl",
   "start_url": "./index.html",
   "display": "standalone",
   "theme_color": "#000000",
