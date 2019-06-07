@@ -19,16 +19,39 @@ class Timescroll extends Component<
 
     timescrollArea: any = React.createRef();
 
-    public render() {
+    public state = {
+        videoDurationHours: 0,
+        videoDurationMiutes: 0,
+        videoDurationFormat: '',
+    }
+
+    componentDidMount() {
         const {
-            videoTime,
             videoDuration,
         } = this.context;
 
-        const timePercentage = this.computeTimePercentage();
+        console.log(videoDuration);
+        const { hours, minutes, format } = this.formatTimeString(videoDuration);
 
-        const videoTimeFormatted = this.formatTimeString(videoTime);
-        const videoDurationFormatted = this.formatTimeString(videoDuration);
+        this.setState({
+            videoDurationHours: hours,
+            videoDurationMiutes: minutes,
+            videoDurationFormat: format,
+        });
+    }
+
+    public render() {
+        const {
+            videoDurationFormat,
+        } = this.state;
+
+        const {
+            videoTime,
+        } = this.context;
+
+        const timePercentage = this.computeTimePercentage();
+        const currentTime = true;
+        const videoTimeFormat = this.formatTimeString(videoTime, currentTime).format;
 
         return (
             <StyledTimescroll>
@@ -39,12 +62,16 @@ class Timescroll extends Component<
                 <StyledTimescrollArea
                     onClick={this.setTime}
                     ref={this.timescrollArea}
+                    onKeyDown={this.handleKeyDown}
+                    tabIndex={0}
                 >
                     <StyledTimescrollViewed
-                        timePercentage={timePercentage}
+                        style={{
+                            width: timePercentage + '%',
+                        }}
                     />
                     <StyledTimescrollTime>
-                        {videoTimeFormatted}/{videoDurationFormatted}
+                        {videoTimeFormat}/{videoDurationFormat}
                     </StyledTimescrollTime>
                 </StyledTimescrollArea>
             </StyledTimescroll>
@@ -84,7 +111,7 @@ class Timescroll extends Component<
         });
     }
 
-    private formatTimeString = (time: number): string => {
+    private formatTimeString = (time: number, current?: boolean): any => {
         const hours = Math.floor(time / 3600);
         const minutes = Math.floor((time - 3600 * hours) / 60);
         const seconds = Math.floor(time - (3600 * hours + 60 * minutes));
@@ -105,16 +132,88 @@ class Timescroll extends Component<
             secondsString = seconds + '';
         }
 
-        let timestamp = '';
         if (hours === 0) {
-            timestamp = minutesString + ':' + secondsString;
-        } else if (minutes === 0) {
-            timestamp = `${seconds}`;
-        } else {
-            timestamp = hoursString + ':' + minutesString + ':' + secondsString;
+            if (current) {
+                const {
+                    videoDurationHours
+                } = this.state;
+
+                if (videoDurationHours > 0) {
+                    const timestamp = {
+                        hours,
+                        minutes,
+                        seconds,
+                        format: '00:' + minutesString + ':' + secondsString,
+                    }
+                    return timestamp;
+                }
+            }
+
+            const timestamp = {
+                hours,
+                minutes,
+                seconds,
+                format: minutesString + ':' + secondsString,
+            }
+            return timestamp;
         }
 
+        if (minutes === 0 && hours === 0) {
+            const timestamp = {
+                hours,
+                minutes,
+                seconds,
+                format: secondsString,
+            }
+            return timestamp;
+        }
+
+        const timestamp = {
+            hours,
+            minutes,
+            seconds,
+            format: hoursString + ':' + minutesString + ':' + secondsString,
+        }
         return timestamp;
+    }
+
+    private handleKeyDown = (event: any) => {
+        const {
+            videoTime,
+            videoDuration,
+            setVideoTime,
+        } = this.context;
+
+        let newVideoTime = videoTime;
+
+        const smallTimeValue = 5;
+        const largeTimeValue = 15;
+
+        if (event.key === 'ArrowLeft' && !event.shiftKey) {
+            newVideoTime = videoTime - smallTimeValue;
+        }
+
+        if (event.key === 'ArrowRight' && !event.shiftKey) {
+            newVideoTime = videoTime + smallTimeValue;
+        }
+
+        if (event.key === 'ArrowLeft' && event.shiftKey) {
+            newVideoTime = videoTime - largeTimeValue;
+        }
+
+        if (event.key === 'ArrowRight' && event.shiftKey) {
+            newVideoTime = videoTime + largeTimeValue;
+        }
+
+        if (newVideoTime < 0) {
+            newVideoTime = 0;
+        }
+
+        if (newVideoTime > videoDuration) {
+            newVideoTime = videoDuration;
+        }
+
+        setVideoTime(newVideoTime);
     }
 }
 
