@@ -16,13 +16,15 @@ export const StyledTextSelectVideo: any = styled.div`
         return 'hidden';
     }};
 
+    background-color: black;
+
     video {
         user-select: none;
         pointer-events: all;
         outline: none;
         display: block;
         width: 100%;
-        height: auto;
+        /* height: 600px; */
     }
 
     a {

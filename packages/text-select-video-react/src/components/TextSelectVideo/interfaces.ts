@@ -33,6 +33,12 @@ export interface ITextSelectVideoState {
     about: boolean;
     controls: boolean;
 
+    videoVolume: number;
+    videoPlaybackRate: number;
+    videoTime: number;
+    videoDuration: number;
+    video: any;
+    videoPlaying: boolean;
     loading: boolean;
     videoLoaded: boolean;
     imageSha: string;
@@ -42,6 +48,13 @@ export interface ITextSelectVideoState {
     imageNaturalWidth: number;
     imageText: any;
     message: string;
+
+    playVideo: () => void;
+    pauseVideo: () => void;
+
+    setVideoTime: (value: number) => void;
+    setVideoVolume: (value: number) => void;
+    setVideoPlaybackRate: (value: number) => void;
 
     toggleSettingsButton: () => void;
     toggledSettingsButton: boolean;
