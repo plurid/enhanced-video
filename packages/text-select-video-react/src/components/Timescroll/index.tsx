@@ -10,6 +10,8 @@ import {
 
 import Context from '../../context';
 
+import { getWheelDirection } from '../../utils/wheelDirection';
+
 
 
 class Timescroll extends Component<
@@ -30,7 +32,8 @@ class Timescroll extends Component<
             videoDuration,
         } = this.context;
 
-        console.log(videoDuration);
+        this.timescrollArea.current.addEventListener('wheel', this.handleWheel, { passive: false});
+
         const { hours, minutes, format } = this.formatTimeString(videoDuration);
 
         this.setState({
@@ -38,6 +41,10 @@ class Timescroll extends Component<
             videoDurationMiutes: minutes,
             videoDurationFormat: format,
         });
+    }
+
+    componentWillUnmount() {
+        this.timescrollArea.current.removeEventListener('wheel', this.handleWheel);
     }
 
     public render() {
@@ -60,10 +67,10 @@ class Timescroll extends Component<
                 </StyledTimescrollTitle>
 
                 <StyledTimescrollArea
+                    tabIndex={0}
                     onClick={this.setTime}
                     ref={this.timescrollArea}
                     onKeyDown={this.handleKeyDown}
-                    tabIndex={0}
                 >
                     <StyledTimescrollViewed
                         style={{
@@ -213,6 +220,45 @@ class Timescroll extends Component<
             newVideoTime = videoDuration;
         }
 
+        setVideoTime(newVideoTime);
+    }
+
+    private handleWheel = (event: any) => {
+        event.preventDefault();
+
+        const deltas = {
+            deltaX: event.deltaX,
+            deltaY: event.deltaY,
+        };
+
+        const direction = getWheelDirection(deltas);
+
+        const {
+            videoTime,
+            videoDuration,
+            setVideoTime,
+        } = this.context;
+
+        const deltaTimeValue = 1;
+        let newVideoTime = videoTime;
+
+        if (direction === 'left') {
+            newVideoTime = videoTime - deltaTimeValue;
+        }
+
+        if (direction === 'right') {
+            newVideoTime = videoTime + deltaTimeValue;
+        }
+
+        if (newVideoTime < 0) {
+            newVideoTime = 0;
+        }
+
+        if (newVideoTime > videoDuration) {
+            newVideoTime = videoDuration;
+        }
+
+        console.log(direction);
         setVideoTime(newVideoTime);
     }
 }
