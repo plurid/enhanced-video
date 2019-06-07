@@ -53,8 +53,12 @@ class TextSelectVideo extends Component<
 
     private extractInterval: any;
 
+    video: any;
+
     constructor(props: ITextSelectVideoProps) {
         super(props);
+
+        this.video = React.createRef();
 
         // console.log('CONSTRUCTOR');
         const apiEndpoint = this.props.apiEndpoint || PLURID_API;
@@ -67,6 +71,11 @@ class TextSelectVideo extends Component<
 
             loading: false,
 
+            videoVolume: 0.8,
+            videoPlaybackRate: 1,
+            videoTime: 0,
+            videoDuration: 0,
+            videoPlaying: false,
             videoLoaded: true,
             imageSha: '',
             imageHeight: 0,
@@ -121,6 +130,12 @@ class TextSelectVideo extends Component<
             controls: _controls,
             theme: _theme,
             themeName: _themeName,
+            video: this.video.current,
+            playVideo: this.playVideo,
+            pauseVideo: this.pauseVideo,
+            setVideoTime: this.setVideoTime,
+            setVideoVolume: this.setVideoVolume,
+            setVideoPlaybackRate: this.setVideoPlaybackRate,
         });
     }
 
@@ -162,9 +177,12 @@ class TextSelectVideo extends Component<
                         width={width}
                         // height={height || 500}
                         height={height}
-                        controls
-                        // onLoad={this.handleLoadedVideo}
+                        // controls
                         style={{...imageStyle}}
+
+                        ref={this.video}
+                        onTimeUpdate={this.setVideoCurrentTime}
+                        onLoadedData={this.handleLoadedVideo}
                     >
                         <source
                             src={src}
@@ -192,6 +210,48 @@ class TextSelectVideo extends Component<
                 </StyledTextSelectVideo>
             </Context.Provider>
         );
+    }
+
+    private setVideoCurrentTime = () => {
+        const videoTime = this.video.current.currentTime
+        this.setState({
+            videoTime,
+        });
+    }
+
+    private setVideoTime = (videoTime: number) => {
+        this.video.current.currentTime = videoTime;
+        this.setState({
+            videoTime,
+        });
+    }
+
+    private setVideoVolume = (videoVolume: number) => {
+        this.video.current.volume = videoVolume;
+        this.setState({
+            videoVolume,
+        });
+    }
+
+    private setVideoPlaybackRate = (videoPlaybackRate: number) => {
+        this.video.current.playbackRate = videoPlaybackRate;
+        this.setState({
+            videoPlaybackRate,
+        });
+    }
+
+    private playVideo = () => {
+        this.video.current.play();
+        this.setState({
+            videoPlaying: true,
+        });
+    }
+
+    private pauseVideo = () => {
+        this.video.current.pause();
+        this.setState({
+            videoPlaying: false,
+        });
     }
 
     private createTextVideo = () => {
@@ -365,12 +425,14 @@ class TextSelectVideo extends Component<
             atLoad,
         } = this.props;
 
-        const {
-            offsetHeight,
-            offsetWidth,
-            naturalHeight,
-            naturalWidth,
-        } = video.target;
+        // const {
+        //     offsetHeight,
+        //     offsetWidth,
+        //     naturalHeight,
+        //     naturalWidth,
+        // } = video.target;
+
+        const videoDuration = video.target.duration;
 
         if (atLoad) {
             await atLoad(video);
@@ -378,12 +440,13 @@ class TextSelectVideo extends Component<
 
         this.setState({
             videoLoaded: true,
-            imageWidth: offsetWidth,
-            imageHeight: offsetHeight,
-            imageNaturalHeight: naturalHeight,
-            imageNaturalWidth: naturalWidth,
+            videoDuration,
+            // imageWidth: offsetWidth,
+            // imageHeight: offsetHeight,
+            // imageNaturalHeight: naturalHeight,
+            // imageNaturalWidth: naturalWidth,
         },
-            await this.computeVideoSha
+            // await this.computeVideoSha
         );
     }
 
