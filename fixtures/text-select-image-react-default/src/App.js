@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 
-// import video from './assets/video.mov';
+import video from './assets/video.mov';
 
 import TextSelectVideo from '@plurid/text-select-video-react';
 
@@ -15,7 +15,7 @@ class App extends Component {
                 >
                     <TextSelectVideo
                         theme="night"
-                        // src={video}
+                        src={video}
                         controls={true}
                         // getTextOnLoad={true}
                         apiEndpoint="http://192.168.1.2:3360/graphql"

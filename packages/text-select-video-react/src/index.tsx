@@ -1,12 +1,5 @@
-import React, { Component } from 'react';
+import TextSelectVideo from './components/TextSelectVideo';
 
 
 
-export default class TextSelectVideo extends Component {
-
-    render() {
-        return (
-            <div>Video</div>
-        )
-    }
-}
+export default TextSelectVideo;
