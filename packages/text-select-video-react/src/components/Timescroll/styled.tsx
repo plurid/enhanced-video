@@ -18,6 +18,7 @@ export const StyledTimescrollArea = styled.div`
     width: 100%;
     cursor: pointer;
     position: relative;
+    outline: none;
 `;
 
 export const StyledTimescrollViewed: any = styled.div`
@@ -26,9 +27,6 @@ export const StyledTimescrollViewed: any = styled.div`
     top: 0;
     left: 0;
     bottom: 0;
-    width: ${(props: any) => {
-        return props.timePercentage + '%'
-    }};
 `;
 
 
