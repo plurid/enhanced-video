@@ -9,9 +9,9 @@ export const StyledTextSelectVideo: any = styled.div`
         Roboto, Helvetica, Arial, sans-serif;
     position: relative;
     overflow: ${(props: any) => {
-        if (props.toggledEditable && props.imageWidth < 745) {
-            return 'visible';
-        }
+        // if (props.toggledEditable && props.imageWidth < 745) {
+        //     return 'visible';
+        // }
 
         return 'hidden';
     }};

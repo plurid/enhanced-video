@@ -27,7 +27,15 @@ import Timescroll from '../Timescroll';
 class TextSelectVideoSettingsMenu extends Component<any, any> {
     static contextType = Context;
 
+    state = {
+        menuOpacity: 1,
+    };
+
     public render() {
+        const {
+            menuOpacity,
+        } = this.state;
+
         const {
             about,
             theme,
@@ -45,6 +53,9 @@ class TextSelectVideoSettingsMenu extends Component<any, any> {
         return (
             <StyledTextSelectVideoSettingsMenu
                 theme={theme}
+                style={{
+                    opacity: menuOpacity
+                }}
             >
                 <ul>
                     <li>
@@ -73,6 +84,7 @@ class TextSelectVideoSettingsMenu extends Component<any, any> {
                             defaultValue={0.8}
                             step={0.01}
                             normalized={true}
+                            toggleMenuOpaque={this.toggleMenuOpaque}
                         />
                     </li>
 
@@ -82,13 +94,14 @@ class TextSelectVideoSettingsMenu extends Component<any, any> {
                             type="playback"
                             name="Playback Rate"
                             min={0}
-                            max={3}
+                            max={2}
                             setValue={setVideoPlaybackRate}
                             value={videoPlaybackRate}
                             valueSign=""
                             step={0.01}
                             normalized={true}
                             defaultValue={1}
+                            toggleMenuOpaque={this.toggleMenuOpaque}
                         />
                     </li>
 
@@ -158,6 +171,22 @@ class TextSelectVideoSettingsMenu extends Component<any, any> {
                 </ul>
             </StyledTextSelectVideoSettingsMenu>
         );
+    }
+
+    private toggleMenuOpaque = () => {
+        const {
+            menuOpacity,
+        } = this.state;
+
+        if (menuOpacity === 1) {
+            this.setState({
+                menuOpacity: 0.7,
+            });
+        } else {
+            this.setState({
+                menuOpacity: 1,
+            });
+        }
     }
 
     private playPause = () => {

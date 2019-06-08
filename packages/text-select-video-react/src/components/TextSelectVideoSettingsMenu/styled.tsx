@@ -5,6 +5,8 @@ import styled from 'styled-components';
 export const StyledTextSelectVideoSettingsMenu = styled.div`
     z-index: 9999;
 
+    transition: opacity 600ms linear;
+
     ul {
         background-color: ${props => props.theme.backgroundColor};
         background: ${props => {

@@ -39,11 +39,8 @@ class SliderItem extends Component<
             valueSign,
             step,
             normalized,
-        } = this.props;
-
-        const {
             toggleMenuOpaque,
-        } = this.context;
+        } = this.props;
 
         const displayValue = normalized
             ? Math.floor(value * 100)

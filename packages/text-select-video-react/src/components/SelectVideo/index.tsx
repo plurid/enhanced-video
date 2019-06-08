@@ -15,6 +15,10 @@ class SelectVideo extends Component<any, any> {
         // console.log('RENDER SelectVideo');
         const {
             imageText,
+            videoBoxWidth,
+            videoBoxHeight,
+            videoBoxLeft,
+            videoBoxTop,
         } = this.context;
         // console.log('imageText in SelectVideo', imageText);
 
@@ -31,7 +35,14 @@ class SelectVideo extends Component<any, any> {
         }
 
         return (
-            <StyledSelectVideo>
+            <StyledSelectVideo
+                style={{
+                    width: videoBoxWidth + 'px',
+                    height: videoBoxHeight + 'px',
+                    left: videoBoxLeft + 'px',
+                    top: videoBoxTop + 'px',
+                }}
+            >
                 {renderVideoText}
             </StyledSelectVideo>
         );

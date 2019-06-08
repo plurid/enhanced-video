@@ -33,6 +33,17 @@ export interface ITextSelectVideoState {
     about: boolean;
     controls: boolean;
 
+    videoContainerWidth: number;
+    videoContainerHeight: number;
+
+    videoBoxWidth: number;
+    videoBoxHeight: number;
+    videoBoxLeft: number;
+    videoBoxTop: number;
+
+    videoHeight: number;
+    videoWidth: number;
+    videoRatio: number;
     videoVolume: number;
     videoPlaybackRate: number;
     videoTime: number;
