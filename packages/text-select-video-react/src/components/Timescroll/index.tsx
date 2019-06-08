@@ -145,7 +145,17 @@ class Timescroll extends Component<
                     videoDurationHours
                 } = this.state;
 
-                if (videoDurationHours > 0) {
+                if (videoDurationHours > 0 && videoDurationHours < 10) {
+                    const timestamp = {
+                        hours,
+                        minutes,
+                        seconds,
+                        format: '0:' + minutesString + ':' + secondsString,
+                    }
+                    return timestamp;
+                }
+
+                if (videoDurationHours > 9) {
                     const timestamp = {
                         hours,
                         minutes,

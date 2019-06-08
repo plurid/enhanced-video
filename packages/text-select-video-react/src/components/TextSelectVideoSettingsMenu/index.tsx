@@ -93,8 +93,8 @@ class TextSelectVideoSettingsMenu extends Component<any, any> {
                             theme={theme}
                             type="playback"
                             name="Playback Rate"
-                            min={0}
-                            max={2}
+                            min={0.25}
+                            max={2.50}
                             setValue={setVideoPlaybackRate}
                             value={videoPlaybackRate}
                             valueSign=""
