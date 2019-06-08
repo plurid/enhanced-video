@@ -127,6 +127,7 @@ class TextSelectVideo extends Component<
 
     async componentDidMount() {
         // console.log('MOUNT');
+        window.addEventListener('resize', this.computeVideoBoxDimensions);
 
         const {
             about,
@@ -151,6 +152,10 @@ class TextSelectVideo extends Component<
             setVideoVolume: this.setVideoVolume,
             setVideoPlaybackRate: this.setVideoPlaybackRate,
         });
+    }
+
+    componentWillUnmount() {
+        window.removeEventListener('resize', this.computeVideoBoxDimensions);
     }
 
     public render() {
@@ -461,6 +466,21 @@ class TextSelectVideo extends Component<
         const videoRatio = videoWidth / videoHeight;
         console.log(videoRatio, videoWidth, videoHeight);
 
+        this.setState({
+            videoWidth,
+            videoHeight,
+            videoRatio,
+        },
+            this.computeVideoBoxDimensions
+        );
+    }
+
+    private computeVideoBoxDimensions = () => {
+        const {
+            videoHeight,
+            videoRatio,
+        } = this.state;
+
         const videoContainerWidth = this.videoContainer.current.offsetWidth;
         const videoContainerHeight = this.videoContainer.current.offsetHeight;
         console.log(videoContainerWidth, videoContainerHeight);
@@ -483,9 +503,6 @@ class TextSelectVideo extends Component<
         console.log(videoBoxLeft, videoBoxTop);
 
         this.setState({
-            videoWidth,
-            videoHeight,
-            videoRatio,
             videoContainerWidth,
             videoContainerHeight,
             videoBoxWidth,
