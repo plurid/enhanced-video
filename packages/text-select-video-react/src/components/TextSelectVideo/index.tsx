@@ -232,42 +232,42 @@ class TextSelectVideo extends Component<
     }
 
     private setVideoCurrentTime = () => {
-        const videoTime = this.video.current.currentTime
+        const videoTime = this.video.current!.currentTime
         this.setState({
             videoTime,
         });
     }
 
     private setVideoTime = (videoTime: number) => {
-        this.video.current.currentTime = videoTime;
+        this.video.current!.currentTime = videoTime;
         this.setState({
             videoTime,
         });
     }
 
     private setVideoVolume = (videoVolume: number) => {
-        this.video.current.volume = videoVolume;
+        this.video.current!.volume = videoVolume;
         this.setState({
             videoVolume,
         });
     }
 
     private setVideoPlaybackRate = (videoPlaybackRate: number) => {
-        this.video.current.playbackRate = videoPlaybackRate;
+        this.video.current!.playbackRate = videoPlaybackRate;
         this.setState({
             videoPlaybackRate,
         });
     }
 
     private playVideo = () => {
-        this.video.current.play();
+        this.video.current!.play();
         this.setState({
             videoPlaying: true,
         });
     }
 
     private pauseVideo = () => {
-        this.video.current.pause();
+        this.video.current!.pause();
         this.setState({
             videoPlaying: false,
         });
@@ -481,8 +481,8 @@ class TextSelectVideo extends Component<
             videoRatio,
         } = this.state;
 
-        const videoContainerWidth = this.videoContainer.current.offsetWidth;
-        const videoContainerHeight = this.videoContainer.current.offsetHeight;
+        const videoContainerWidth = this.videoContainer.current!.offsetWidth;
+        const videoContainerHeight = this.videoContainer.current!.offsetHeight;
         console.log(videoContainerWidth, videoContainerHeight);
 
         let videoBoxWidth = 0;
