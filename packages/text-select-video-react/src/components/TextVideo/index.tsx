@@ -168,17 +168,17 @@ class TextVideo extends Component<
         const {
             theme,
             toggledEditable,
-            imageHeight,
-            imageWidth,
             contentMoreLimit,
+            videoBoxWidth,
+            videoBoxHeight,
         } = this.context;
 
-        const xCoord = valueFromPercentage(xCoordPercentage, imageWidth || 800);
-        const yCoord = valueFromPercentage(yCoordPercentage, imageHeight || 500);
+        const xCoord = valueFromPercentage(xCoordPercentage, videoBoxWidth || 800);
+        const yCoord = valueFromPercentage(yCoordPercentage, videoBoxHeight || 500);
 
-        const fontSize = valueFromPercentage(fontSizePercentage, imageHeight || 500);
-        const letterSpacing = valueFromPercentage(letterSpacingPercentage, imageWidth || 800);
-        const wordSpacing = valueFromPercentage(wordSpacingPercentage, imageWidth || 800);
+        const fontSize = valueFromPercentage(fontSizePercentage, videoBoxHeight || 500);
+        const letterSpacing = valueFromPercentage(letterSpacingPercentage, videoBoxWidth || 800);
+        const wordSpacing = valueFromPercentage(wordSpacingPercentage, videoBoxWidth || 800);
 
         const editableDiv = (
             <StyledEditableDiv
@@ -223,73 +223,71 @@ class TextVideo extends Component<
 
 
         return (
-            <div>
-               <StyledTextVideo
-                    theme={theme}
-                    editMode={toggledEditable}
-                    dragMode={textDraggable}
-                    draggingMode={dragging}
-                    viewable={textViewable}
+            <StyledTextVideo
+                theme={theme}
+                editMode={toggledEditable}
+                dragMode={textDraggable}
+                draggingMode={dragging}
+                viewable={textViewable}
 
-                    style={{
-                        top: yCoord + 'px',
-                        left: xCoord + 'px',
-                        color: toggledEditable ? color : 'transparent',
-                        fontFamily,
-                        fontSize: fontSize + 'px',
-                        fontWeight: bold ? 'bold' : 'normal',
-                        fontStyle: italic ? 'italic' : 'normal',
-                        letterSpacing: letterSpacing + 'px',
-                        lineHeight: lineHeight + '',
-                        wordSpacing: wordSpacing + 'px',
-                    }}
+                style={{
+                    top: yCoord + 'px',
+                    left: xCoord + 'px',
+                    color: toggledEditable ? color : 'transparent',
+                    fontFamily,
+                    fontSize: fontSize + 'px',
+                    fontWeight: bold ? 'bold' : 'normal',
+                    fontStyle: italic ? 'italic' : 'normal',
+                    letterSpacing: letterSpacing + 'px',
+                    lineHeight: lineHeight + '',
+                    wordSpacing: wordSpacing + 'px',
+                }}
 
-                    onMouseEnter={this.handleMouseEnter}
-                    onMouseLeave={this.handleMouseEnter}
+                onMouseEnter={this.handleMouseEnter}
+                onMouseLeave={this.handleMouseEnter}
 
-                    onMouseUp={this.dragMouseUp}
+                onMouseUp={this.dragMouseUp}
 
-                    onKeyDown={this.handleKey}
-                    tabIndex="0"
+                onKeyDown={this.handleKey}
+                tabIndex="0"
 
-                    ref={this.textVideo}
-                >
-                    {textContent}
+                ref={this.textVideo}
+            >
+                {textContent}
 
-                    {showMore && !toggledEditable && content.length > contentMoreLimit && (
-                        <TextVideoMore
-                            content={content}
-                            toggleShow={this.toggleShowMore}
-                        />
-                    )}
+                {showMore && !toggledEditable && content.length > contentMoreLimit && (
+                    <TextVideoMore
+                        content={content}
+                        toggleShow={this.toggleShowMore}
+                    />
+                )}
 
-                    {showEditor && !dragging && (
-                        <TextVideoEditor
-                            toggleTextEditable={this.toggleTextEditable}
-                            textEditable={textEditable}
+                {showEditor && !dragging && (
+                    <TextVideoEditor
+                        toggleTextEditable={this.toggleTextEditable}
+                        textEditable={textEditable}
 
-                            toggleTextDraggable={this.toggleTextDraggable}
-                            textDraggable={textDraggable}
+                        toggleTextDraggable={this.toggleTextDraggable}
+                        textDraggable={textDraggable}
 
-                            toggleTextViewable={this.toggleTextViewable}
-                            textViewable={textViewable}
+                        toggleTextViewable={this.toggleTextViewable}
+                        textViewable={textViewable}
 
-                            toggleEditor={this.toggleShowEditor}
-                            toggleSelected={this.toggleSelected}
+                        toggleEditor={this.toggleShowEditor}
+                        toggleSelected={this.toggleSelected}
 
-                            version={currentVersion}
-                            textId={text.id}
+                        version={currentVersion}
+                        textId={text.id}
 
-                            xCoord={editorXCoord}
-                            yCoord={editorYCoord}
+                        xCoord={editorXCoord}
+                        yCoord={editorYCoord}
 
-                            fontSize={fontSize}
-                            letterSpacing={letterSpacing}
-                            wordSpacing={wordSpacing}
-                        />
-                    )}
-                </StyledTextVideo>
-            </div>
+                        fontSize={fontSize}
+                        letterSpacing={letterSpacing}
+                        wordSpacing={wordSpacing}
+                    />
+                )}
+            </StyledTextVideo>
         );
     }
 
@@ -435,12 +433,12 @@ class TextVideo extends Component<
         } = this.state;
 
         const {
-            imageHeight,
-            imageWidth,
+            videoBoxWidth,
+            videoBoxHeight,
         } = this.context;
 
-        const xCoordPercentage = percentageFromValue(xCoord, imageWidth);
-        const yCoordPercentage = percentageFromValue(yCoord, imageHeight);
+        const xCoordPercentage = percentageFromValue(xCoord, videoBoxWidth);
+        const yCoordPercentage = percentageFromValue(yCoord, videoBoxHeight);
 
         return {
             xCoordPercentage,
@@ -530,7 +528,7 @@ class TextVideo extends Component<
 
     private editorPosition() {
         const {
-            imageWidth,
+            videoBoxWidth,
             editorWidth,
         } = this.context;
 
@@ -543,8 +541,8 @@ class TextVideo extends Component<
         } = this.textVideo.current;
 
         // Do not let editor to go to the right.
-        let editorXCoord = offsetLeft + editorWidth > imageWidth
-            ? -1 * (offsetLeft + editorWidth - imageWidth)
+        let editorXCoord = offsetLeft + editorWidth > videoBoxWidth
+            ? -1 * (offsetLeft + editorWidth - videoBoxWidth)
             : -17;
 
         // Do not let editor to go to the left.
