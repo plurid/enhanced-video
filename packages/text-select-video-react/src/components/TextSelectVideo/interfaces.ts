@@ -24,14 +24,15 @@ export interface ITextSelectVideoProps {
 
 
 export interface ITextSelectVideoState {
+    about?: boolean;
+    controls?: boolean;
+    theme?: any;
+    themeName?: string;
+    video?: any;
+
     apiEndpoint: string;
     updateDebounce: number;
     contentMoreLimit: number;
-
-    theme: any;
-    themeName: string;
-    about: boolean;
-    controls: boolean;
 
     videoContainerWidth: number;
     videoContainerHeight: number;
@@ -48,7 +49,6 @@ export interface ITextSelectVideoState {
     videoPlaybackRate: number;
     videoTime: number;
     videoDuration: number;
-    video: any;
     videoPlaying: boolean;
     loading: boolean;
     videoLoaded: boolean;

@@ -45,22 +45,19 @@ import {
 
 
 class TextSelectVideo extends Component<
-    ITextSelectVideoProps, Partial<ITextSelectVideoState>
+    ITextSelectVideoProps, ITextSelectVideoState
 > {
     static contextType = Context;
 
-    client: ApolloClient<any>;
+    private client: ApolloClient<any>;
+    private extractInterval: number;
+    private video = React.createRef<HTMLVideoElement>();
+    private videoContainer = React.createRef<HTMLDivElement>();
 
-    private extractInterval: any;
-
-    video: any;
-    videoContainer: any;
+    public state: ITextSelectVideoState;
 
     constructor(props: ITextSelectVideoProps) {
         super(props);
-
-        this.video = React.createRef();
-        this.videoContainer = React.createRef();
 
         // console.log('CONSTRUCTOR');
         const apiEndpoint = this.props.apiEndpoint || PLURID_API;
@@ -68,9 +65,6 @@ class TextSelectVideo extends Component<
         this.client = graphqlClient(apiEndpoint);
 
         this.state = {
-            apiEndpoint,
-            updateDebounce,
-
             loading: false,
 
             videoWidth: 0,
@@ -99,6 +93,9 @@ class TextSelectVideo extends Component<
             imageText: emptyVideoText,
             message: '',
 
+            apiEndpoint,
+            updateDebounce,
+
             toggleSettingsButton: this.toggleSettingsButton,
             toggledSettingsButton: false,
             toggleSettings: this.toggleSettings,
@@ -122,6 +119,12 @@ class TextSelectVideo extends Component<
             saveVideoText: this.saveVideoText,
 
             contentMoreLimit: this.props.moreLimit || CONTENT_MORE_LIMIT,
+
+            playVideo: this.playVideo,
+            pauseVideo: this.pauseVideo,
+            setVideoTime: this.setVideoTime,
+            setVideoVolume: this.setVideoVolume,
+            setVideoPlaybackRate: this.setVideoPlaybackRate,
         };
     }
 
@@ -146,11 +149,6 @@ class TextSelectVideo extends Component<
             theme: _theme,
             themeName: _themeName,
             video: this.video.current,
-            playVideo: this.playVideo,
-            pauseVideo: this.pauseVideo,
-            setVideoTime: this.setVideoTime,
-            setVideoVolume: this.setVideoVolume,
-            setVideoPlaybackRate: this.setVideoPlaybackRate,
         });
     }
 
@@ -461,18 +459,20 @@ class TextSelectVideo extends Component<
     }
 
     private handleLoadedMetadata = (video: any) => {
-        const videoWidth = video.target.videoWidth;
-        const videoHeight = video.target.videoHeight;
-        const videoRatio = videoWidth / videoHeight;
-        console.log(videoRatio, videoWidth, videoHeight);
+        if (video.target) {
+            const videoWidth = video.target.videoWidth;
+            const videoHeight = video.target.videoHeight;
+            const videoRatio = videoWidth / videoHeight;
+            console.log(videoRatio, videoWidth, videoHeight);
 
-        this.setState({
-            videoWidth,
-            videoHeight,
-            videoRatio,
-        },
-            this.computeVideoBoxDimensions
-        );
+            this.setState({
+                videoWidth,
+                videoHeight,
+                videoRatio,
+            },
+                this.computeVideoBoxDimensions
+            );
+        }
     }
 
     private computeVideoBoxDimensions = () => {
