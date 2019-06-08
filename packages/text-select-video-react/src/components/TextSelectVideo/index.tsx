@@ -54,11 +54,13 @@ class TextSelectVideo extends Component<
     private extractInterval: any;
 
     video: any;
+    videoContainer: any;
 
     constructor(props: ITextSelectVideoProps) {
         super(props);
 
         this.video = React.createRef();
+        this.videoContainer = React.createRef();
 
         // console.log('CONSTRUCTOR');
         const apiEndpoint = this.props.apiEndpoint || PLURID_API;
@@ -70,6 +72,18 @@ class TextSelectVideo extends Component<
             updateDebounce,
 
             loading: false,
+
+            videoWidth: 0,
+            videoHeight: 0,
+            videoRatio: 0,
+
+            videoContainerWidth: 0,
+            videoContainerHeight: 0,
+
+            videoBoxWidth: 0,
+            videoBoxHeight: 0,
+            videoBoxLeft: 0,
+            videoBoxTop: 0,
 
             videoVolume: 0.8,
             videoPlaybackRate: 1,
@@ -171,6 +185,7 @@ class TextSelectVideo extends Component<
                     imageWidth={imageWidth}
                     onMouseEnter={this.toggleSettingsButton}
                     onMouseLeave={this.toggleSettingsButton}
+                    ref={this.videoContainer}
                 >
                     <video
                         // width={width || 800}
@@ -183,6 +198,7 @@ class TextSelectVideo extends Component<
                         ref={this.video}
                         onTimeUpdate={this.setVideoCurrentTime}
                         onLoadedData={this.handleLoadedVideo}
+                        onLoadedMetadata={this.handleLoadedMetadata}
                     >
                         <source
                             src={src}
@@ -425,13 +441,6 @@ class TextSelectVideo extends Component<
             atLoad,
         } = this.props;
 
-        // const {
-        //     offsetHeight,
-        //     offsetWidth,
-        //     naturalHeight,
-        //     naturalWidth,
-        // } = video.target;
-
         const videoDuration = video.target.duration;
 
         if (atLoad) {
@@ -441,13 +450,49 @@ class TextSelectVideo extends Component<
         this.setState({
             videoLoaded: true,
             videoDuration,
-            // imageWidth: offsetWidth,
-            // imageHeight: offsetHeight,
-            // imageNaturalHeight: naturalHeight,
-            // imageNaturalWidth: naturalWidth,
         },
             // await this.computeVideoSha
         );
+    }
+
+    private handleLoadedMetadata = (video: any) => {
+        const videoWidth = video.target.videoWidth;
+        const videoHeight = video.target.videoHeight;
+        const videoRatio = videoWidth / videoHeight;
+        console.log(videoRatio, videoWidth, videoHeight);
+
+        const videoContainerWidth = this.videoContainer.current.offsetWidth;
+        const videoContainerHeight = this.videoContainer.current.offsetHeight;
+        console.log(videoContainerWidth, videoContainerHeight);
+
+        let videoBoxWidth = 0;
+        let videoBoxHeight = 0;
+        if (videoHeight > videoContainerHeight) {
+            videoBoxWidth = videoContainerWidth;
+            videoBoxHeight = videoContainerWidth / videoRatio;
+        }
+
+        if (videoBoxHeight > videoContainerHeight) {
+            videoBoxWidth = videoContainerHeight * videoRatio;
+            videoBoxHeight = videoContainerHeight;
+        }
+
+        const videoBoxLeft = (videoContainerWidth - videoBoxWidth) / 2;
+        const videoBoxTop = (videoContainerHeight - videoBoxHeight) / 2;
+        console.log(videoBoxWidth, videoBoxHeight);
+        console.log(videoBoxLeft, videoBoxTop);
+
+        this.setState({
+            videoWidth,
+            videoHeight,
+            videoRatio,
+            videoContainerWidth,
+            videoContainerHeight,
+            videoBoxWidth,
+            videoBoxHeight,
+            videoBoxLeft,
+            videoBoxTop,
+        })
     }
 
     private setMessage = (message: string, time?: number) => {
