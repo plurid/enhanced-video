@@ -25,6 +25,8 @@ class SelectVideo extends Component<any, any> {
         let renderVideoText = (<></>);
         if (typeof imageText === 'object' && imageText.length > 0) {
             renderVideoText = imageText.map((text: any) => {
+                // check if video time is between the version's startTime and endTime
+
                 return (
                     <TextVideo
                         key={text.currentVersionId}

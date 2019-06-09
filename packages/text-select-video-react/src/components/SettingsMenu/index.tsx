@@ -81,7 +81,7 @@ class SettingsMenu extends Component<any, any> {
                             setValue={setVideoVolume}
                             value={videoVolume}
                             valueSign=""
-                            defaultValue={0.8}
+                            defaultValue={0.75}
                             step={0.01}
                             normalized={true}
                             toggleMenuOpaque={this.toggleMenuOpaque}
@@ -94,7 +94,7 @@ class SettingsMenu extends Component<any, any> {
                             type="playback"
                             name="Playback Rate"
                             min={0.25}
-                            max={2.50}
+                            max={2.25}
                             setValue={setVideoPlaybackRate}
                             value={videoPlaybackRate}
                             valueSign=""

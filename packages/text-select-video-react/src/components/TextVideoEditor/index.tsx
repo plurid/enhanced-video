@@ -9,6 +9,7 @@ import Context from '../../context';
 
 import TextVideoEditorButtonDropdown from '../TextVideoEditorButtonDropdown';
 import TextVideoEditorButtonIncrements from '../TextVideoEditorButtonIncrements';
+import TextVideoEditorButtonTimeIncrements from '../TextVideoEditorButtonTimeIncrements';
 import TextVideoEditorButtonInput from '../TextVideoEditorButtonInput';
 import TextVideoEditorButtonToggle from '../TextVideoEditorButtonToggle';
 import TextVideoEditorButtonsColors from '../TextVideoEditorButtonsColors';
@@ -20,6 +21,8 @@ import SelectTextIcon from '../../assets/select-text-icon';
 import GrabIcon from '../../assets/grab-icon';
 import ViewableIcon from '../../assets/viewable-icon';
 import NotViewableIcon from '../../assets/not-viewable-icon';
+import StartTimeIcon from '../../assets/start-time-icon';
+import EndTimeIcon from '../../assets/end-time-icon';
 import FontSizeIcon from '../../assets/font-size-icon';
 import LinkIcon from '../../assets/link-icon';
 import BoldIcon from '../../assets/bold-icon';
@@ -53,8 +56,8 @@ class TextVideoEditor extends Component<any, any> {
     public render() {
         const {
             theme,
-            imageHeight,
-            imageWidth,
+            videoBoxWidth,
+            videoBoxHeight,
         } = this.context;
 
         const {
@@ -72,6 +75,8 @@ class TextVideoEditor extends Component<any, any> {
         } = this.props;
 
         const {
+            startTime,
+            endTime,
             color,
             fontSizePercentage,
             fontFamily,
@@ -83,9 +88,9 @@ class TextVideoEditor extends Component<any, any> {
             letterSpacingPercentage,
         } = version;
 
-        const fontSize = Math.round(valueFromPercentage(fontSizePercentage, imageHeight));
-        const letterSpacing = valueFromPercentage(letterSpacingPercentage, imageWidth);
-        const wordSpacing = valueFromPercentage(wordSpacingPercentage, imageWidth);
+        const fontSize = Math.round(valueFromPercentage(fontSizePercentage, videoBoxHeight));
+        const letterSpacing = valueFromPercentage(letterSpacingPercentage, videoBoxWidth);
+        const wordSpacing = valueFromPercentage(wordSpacingPercentage, videoBoxWidth);
 
         return (
             <StyledTextVideoEditor
@@ -115,6 +120,30 @@ class TextVideoEditor extends Component<any, any> {
                     toggle={toggleTextViewable}
                     toggled={textViewable}
                     icon={textViewable ? ViewableIcon : NotViewableIcon}
+                />
+
+                <StyledTextVideoEditorVerticalDivider
+                    theme={theme}
+                >
+                    &nbsp;
+                </StyledTextVideoEditorVerticalDivider>
+
+
+                <TextVideoEditorButtonTimeIncrements
+                    theme={theme}
+                    type="startTime"
+                    changeValue={this.updateField}
+                    time={startTime}
+                    icon={StartTimeIcon}
+                />
+
+                <TextVideoEditorButtonTimeIncrements
+                    theme={theme}
+                    type="endTime"
+                    changeValue={this.updateField}
+                    time={endTime}
+                    icon={EndTimeIcon}
+                    iconAfter={true}
                 />
 
                 <StyledTextVideoEditorVerticalDivider
@@ -214,8 +243,8 @@ class TextVideoEditor extends Component<any, any> {
     private updateField = (element: any, value?: any) => {
         const {
             updateTextVideoField,
-            imageHeight,
-            imageWidth,
+            videoBoxWidth,
+            videoBoxHeight,
         } = this.context;
 
         const {
@@ -229,15 +258,15 @@ class TextVideoEditor extends Component<any, any> {
         switch(element) {
             case 'fontSize':
                 el = 'fontSizePercentage';
-                val = percentageFromValue(value, imageHeight);
+                val = percentageFromValue(value, videoBoxHeight);
                 break;
             case 'letterSpacing':
                 el = 'letterSpacingPercentage';
-                val = percentageFromValue(value, imageWidth);
+                val = percentageFromValue(value, videoBoxWidth);
                 break;
             case 'wordSpacing':
                 el = 'wordSpacingPercentage';
-                val = percentageFromValue(value, imageWidth);
+                val = percentageFromValue(value, videoBoxWidth);
                 break;
             case 'link':
                 el = 'link';
@@ -257,7 +286,6 @@ class TextVideoEditor extends Component<any, any> {
         }
 
         // console.log(el, val);
-
         updateTextVideoField(textId, el, val);
     }
 

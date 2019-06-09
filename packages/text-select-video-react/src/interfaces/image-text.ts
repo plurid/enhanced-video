@@ -5,6 +5,8 @@ export interface IVideoTextVersion {
     userGenerated: boolean;
     ownerGenerated: boolean;
     adminGenerated: boolean;
+    startTime: number;
+    endTime: number;
     xCoordPercentage: number;
     yCoordPercentage: number;
     perspective: string;
