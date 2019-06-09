@@ -4,6 +4,7 @@ import SelectVideo from '../SelectVideo';
 import Settings from '../Settings';
 import Spinner from '../Spinner';
 import Message from '../Message';
+import TimescrollView from '../TimescrollView';
 
 import {
     ITextSelectVideoProps,
@@ -92,6 +93,8 @@ class TextSelectVideo extends Component<
             imageNaturalWidth: 0,
             imageText: emptyVideoText,
             message: '',
+
+            timescrollView: true,
 
             apiEndpoint,
             updateDebounce,
@@ -188,6 +191,7 @@ class TextSelectVideo extends Component<
             toggledEditable,
             toggledSettingsButton,
             message,
+            timescrollView,
             // imageText,
         } = this.state;
 
@@ -221,6 +225,10 @@ class TextSelectVideo extends Component<
                             type="video/mp4"
                         />
                     </video>
+
+                    {timescrollView && (
+                        <TimescrollView />
+                    )}
 
                     {videoLoaded && (
                         <SelectVideo />
@@ -418,6 +426,12 @@ class TextSelectVideo extends Component<
     private toggleSettings = () => {
         this.setState((prevState: any) => ({
             toggledSettings: !prevState.toggledSettings,
+        }));
+    }
+
+    private toggleTimescrollView = () => {
+        this.setState((prevState: any) => ({
+            timescrollView: !prevState.timescrollView,
         }));
     }
 

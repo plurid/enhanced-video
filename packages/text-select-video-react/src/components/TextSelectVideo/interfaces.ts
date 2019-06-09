@@ -34,6 +34,8 @@ export interface ITextSelectVideoState {
     updateDebounce: number;
     contentMoreLimit: number;
 
+    timescrollView: boolean;
+
     videoContainerWidth: number;
     videoContainerHeight: number;
 
