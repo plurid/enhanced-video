@@ -90,4 +90,6 @@ export interface ITextSelectVideoState {
     getAndSetText: () => any;
     extractText: () => any;
     saveVideoText: () => any;
+
+    toggleTimescrollView: () => void;
 }

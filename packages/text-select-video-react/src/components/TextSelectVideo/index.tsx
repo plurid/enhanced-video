@@ -94,7 +94,7 @@ class TextSelectVideo extends Component<
             imageText: emptyVideoText,
             message: '',
 
-            timescrollView: true,
+            timescrollView: false,
 
             apiEndpoint,
             updateDebounce,
@@ -128,6 +128,8 @@ class TextSelectVideo extends Component<
             setVideoTime: this.setVideoTime,
             setVideoVolume: this.setVideoVolume,
             setVideoPlaybackRate: this.setVideoPlaybackRate,
+
+            toggleTimescrollView: this.toggleTimescrollView,
         };
     }
 

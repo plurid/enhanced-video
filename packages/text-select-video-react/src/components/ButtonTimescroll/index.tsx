@@ -3,6 +3,8 @@ import React, { Component } from 'react';
 import {
     StyledTimescroll,
     StyledTimescrollTitle,
+    StyledTimescrollTitleIcon,
+    StyledTimescrollTitleSpan,
     StyledTimescrollArea,
     StyledTimescrollViewed,
     StyledTimescrollTime,
@@ -11,6 +13,9 @@ import {
 import Context from '../../context';
 
 import { getWheelDirection } from '../../utils/wheelDirection';
+
+import TimescrollToggled from '../../assets/timescroll-toggled-icon';
+import TimescrollUntoggled from '../../assets/timescroll-untoggled-icon';
 
 
 
@@ -53,6 +58,12 @@ class Timescroll extends Component<
         } = this.state;
 
         const {
+            toggle,
+            toggled,
+        } = this.props;
+
+        const {
+            theme,
             videoTime,
         } = this.context;
 
@@ -62,8 +73,18 @@ class Timescroll extends Component<
 
         return (
             <StyledTimescroll>
-                <StyledTimescrollTitle>
-                    Timescroll
+                <StyledTimescrollTitle
+                    onClick={toggle}
+                >
+                    <StyledTimescrollTitleIcon
+                        theme={theme}
+                    >
+                        {toggled ? TimescrollToggled : TimescrollUntoggled}
+                    </StyledTimescrollTitleIcon>
+
+                    <div>
+                        Timescroll
+                    </div>
                 </StyledTimescrollTitle>
 
                 <StyledTimescrollArea
