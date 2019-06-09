@@ -2,18 +2,18 @@ import React, { Component } from 'react';
 
 import Context from '../../context';
 
-import TextVideoMoreMenu from '../TextVideoMoreMenu';
+import ButtonMoreMenu from '../ButtonMoreMenu';
 
 import {
-    StyledTextVideoMore,
-    StyledTextVideoMoreButton,
+    StyledMore,
+    StyledMoreButton,
 } from './styled';
 
 import MoreIcon from '../../assets/more-icon';
 
 
 
-class TextVideoMore extends Component<any, any> {
+class ButtonMore extends Component<any, any> {
     static contextType = Context;
 
     state = {
@@ -31,21 +31,21 @@ class TextVideoMore extends Component<any, any> {
         } = this.props;
 
         return (
-            <StyledTextVideoMore>
-                <StyledTextVideoMoreButton
+            <StyledMore>
+                <StyledMoreButton
                     onClick={this.toggleMenu}
                 >
                     {MoreIcon}
-                </StyledTextVideoMoreButton>
+                </StyledMoreButton>
 
                 {showMenu && (
-                    <TextVideoMoreMenu
+                    <ButtonMoreMenu
                         content={content}
                         toggleMenu={this.toggleMenu}
                         toggleShow={toggleShow}
                     />
                 )}
-            </StyledTextVideoMore>
+            </StyledMore>
         );
     }
 
@@ -57,4 +57,4 @@ class TextVideoMore extends Component<any, any> {
 }
 
 
-export default TextVideoMore;
+export default ButtonMore;

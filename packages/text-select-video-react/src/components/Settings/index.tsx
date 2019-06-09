@@ -3,17 +3,17 @@ import React, { Component } from 'react';
 import SettingsIcon from '../../assets/settings-icon';
 
 import {
-    StyledTextSelectVideoSettings,
-    StyledTextSelectVideoSettingsButton,
+    StyledSettings,
+    StyledSettingsButton,
 } from './styled';
 
 import Context from '../../context';
 
-import TextSelectVideoSettingsMenu from '../TextSelectVideoSettingsMenu';
+import SettingsMenu from '../SettingsMenu';
 
 
 
-class TextSelectVideoSettings extends Component<any, any> {
+class Settings extends Component<any, any> {
     public render() {
         return (
             <Context.Consumer>
@@ -25,20 +25,20 @@ class TextSelectVideoSettings extends Component<any, any> {
                     } = context;
 
                     return (
-                        <StyledTextSelectVideoSettings
+                        <StyledSettings
                             theme={theme}
                         >
-                            <StyledTextSelectVideoSettingsButton
+                            <StyledSettingsButton
                                 onClick={toggleSettings}
                             >
                                 {SettingsIcon}
-                            </StyledTextSelectVideoSettingsButton>
+                            </StyledSettingsButton>
 
                             {toggledSettings && (
-                                <TextSelectVideoSettingsMenu
+                                <SettingsMenu
                                 />
                             )}
-                        </StyledTextSelectVideoSettings>
+                        </StyledSettings>
                     )
                 }}
             </Context.Consumer>
@@ -47,4 +47,4 @@ class TextSelectVideoSettings extends Component<any, any> {
 }
 
 
-export default TextSelectVideoSettings;
+export default Settings;

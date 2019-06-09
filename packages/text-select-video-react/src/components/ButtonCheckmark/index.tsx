@@ -1,13 +1,13 @@
 import React, { Component } from 'react';
 
 import {
-    StyledTextSelectVideoButtonCheckmark,
-    StyledTextSelectVideoButtonCheckmarkCheckbox,
+    StyledButtonCheckmark,
+    StyledButtonCheckmarkCheckbox,
 } from './styled';
 
 
 
-interface ITextSelectVideoButtonCheckmarkProps {
+interface IButtonCheckmarkProps {
     checked: boolean;
     text: string;
     toggle: () => void;
@@ -15,8 +15,8 @@ interface ITextSelectVideoButtonCheckmarkProps {
 }
 
 
-class TextSelectVideoButtonCheckmark extends Component<
-    ITextSelectVideoButtonCheckmarkProps, any
+class ButtonCheckmark extends Component<
+    IButtonCheckmarkProps, any
 > {
     public render() {
         const {
@@ -27,21 +27,21 @@ class TextSelectVideoButtonCheckmark extends Component<
         } = this.props;
 
         return (
-            <StyledTextSelectVideoButtonCheckmark
+            <StyledButtonCheckmark
                 onClick={toggle}
             >
                 <div>
                     {text}
                 </div>
 
-                <StyledTextSelectVideoButtonCheckmarkCheckbox
+                <StyledButtonCheckmarkCheckbox
                     theme={theme}
                     isChecked={checked}
                 />
-            </StyledTextSelectVideoButtonCheckmark>
+            </StyledButtonCheckmark>
         );
     }
 }
 
 
-export default TextSelectVideoButtonCheckmark;
+export default ButtonCheckmark;

@@ -2,7 +2,7 @@ import styled from 'styled-components';
 
 
 
-export const StyledTextVideoMore = styled.div`
+export const StyledMore = styled.div`
     position: relative;
     margin: 0px 5px;
     user-select: none;
@@ -24,7 +24,7 @@ export const StyledTextVideoMore = styled.div`
 `;
 
 
-export const StyledTextVideoMoreButton = styled.div`
+export const StyledMoreButton = styled.div`
     background-color: hsla(220, 2%, 10%, 0.4);
     cursor: pointer;
     display: grid;

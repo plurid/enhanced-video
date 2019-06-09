@@ -1,13 +1,13 @@
 import React, { Component } from 'react';
 
 import {
-    StyledTextSelectVideoButtonItem,
-    StyledTextSelectVideoButtonItemIcon,
+    StyledButtonItem,
+    StyledButtonItemIcon,
 } from './styled';
 
 
 
-interface ITextSelectVideoButtonItemProps {
+interface IButtonItemProps {
     icon: JSX.Element;
     text: string;
     atClick: (event: any) => void;
@@ -15,8 +15,8 @@ interface ITextSelectVideoButtonItemProps {
 }
 
 
-class TextSelectVideoButtonItem extends Component<
-    ITextSelectVideoButtonItemProps, any
+class ButtonItem extends Component<
+    IButtonItemProps, any
 > {
     public render() {
         const {
@@ -27,22 +27,22 @@ class TextSelectVideoButtonItem extends Component<
         } = this.props;
 
         return (
-            <StyledTextSelectVideoButtonItem
+            <StyledButtonItem
                 onClick={atClick}
             >
-                <StyledTextSelectVideoButtonItemIcon
+                <StyledButtonItemIcon
                     theme={theme}
                 >
                     {icon}
-                </StyledTextSelectVideoButtonItemIcon>
+                </StyledButtonItemIcon>
 
                 <div>
                     {text}
                 </div>
-            </StyledTextSelectVideoButtonItem>
+            </StyledButtonItem>
         );
     }
 }
 
 
-export default TextSelectVideoButtonItem;
+export default ButtonItem;

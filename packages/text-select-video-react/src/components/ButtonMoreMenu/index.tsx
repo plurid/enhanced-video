@@ -2,9 +2,12 @@ import React, { Component } from 'react';
 
 import Context from '../../context';
 
-import { StyledTextVideoMoreMenu } from './styled';
+import {
+    StyledButtonMoreMenu,
+} from './styled';
 
-import TextSelectVideoButtonItem from '../TextSelectVideoButtonItem';
+import ButtonItem from '../ButtonItem';
+
 import CopyIcon from '../../assets/copy-icon';
 // import TranslateIcon from '../../assets/translate-icon';
 
@@ -12,7 +15,7 @@ import copyToClipboard from '../../utils/clipboard';
 
 
 
-class TextVideoMoreMenu extends Component<any, any> {
+class ButtonMoreMenu extends Component<any, any> {
     static contextType = Context;
 
     state = {
@@ -24,12 +27,12 @@ class TextVideoMoreMenu extends Component<any, any> {
         } = this.context;
 
         return (
-            <StyledTextVideoMoreMenu
+            <StyledButtonMoreMenu
                 theme={theme}
             >
                 <ul>
                     <li>
-                        <TextSelectVideoButtonItem
+                        <ButtonItem
                             theme={theme}
                             atClick={this.copyText}
                             icon={CopyIcon}
@@ -37,7 +40,7 @@ class TextVideoMoreMenu extends Component<any, any> {
                         />
                     </li>
                     {/* <li>
-                        <TextSelectVideoButtonItem
+                        <ButtonItem
                             theme={theme}
                             atClick={this.translate}
                             icon={TranslateIcon}
@@ -45,7 +48,7 @@ class TextVideoMoreMenu extends Component<any, any> {
                         />
                     </li> */}
                 </ul>
-            </StyledTextVideoMoreMenu>
+            </StyledButtonMoreMenu>
         );
     }
 
@@ -65,4 +68,4 @@ class TextVideoMoreMenu extends Component<any, any> {
 }
 
 
-export default TextVideoMoreMenu;
+export default ButtonMoreMenu;

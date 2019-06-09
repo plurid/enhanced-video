@@ -2,7 +2,7 @@ import styled from 'styled-components';
 
 
 
-export const StyledTextSelectVideoButtonCheckmark = styled.div`
+export const StyledButtonCheckmark = styled.div`
     cursor: pointer;
     display: flex;
     align-items: center;
@@ -11,7 +11,7 @@ export const StyledTextSelectVideoButtonCheckmark = styled.div`
     height: 32px;
 `;
 
-export const StyledTextSelectVideoButtonCheckmarkCheckbox: any = styled.div`
+export const StyledButtonCheckmarkCheckbox: any = styled.div`
     display: block;
     height: 13px;
     width: 13px;
