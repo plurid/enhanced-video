@@ -1,10 +1,16 @@
 import React, { Component } from 'react';
 
-import { StyledSelectVideo } from './styled';
+import {
+    StyledSelectVideo,
+} from './styled';
 
 import Context from '../../context';
 
 import TextVideo from '../TextVideo';
+
+import {
+    getVersionById,
+} from '../../utils/textVideo';
 
 
 
@@ -19,20 +25,33 @@ class SelectVideo extends Component<any, any> {
             videoBoxHeight,
             videoBoxLeft,
             videoBoxTop,
+            videoTime,
         } = this.context;
         // console.log('imageText in SelectVideo', imageText);
 
         let renderVideoText = (<></>);
         if (typeof imageText === 'object' && imageText.length > 0) {
             renderVideoText = imageText.map((text: any) => {
-                // check if video time is between the version's startTime and endTime
+                const {
+                    currentVersionId,
+                    versions,
+                } = text;
 
-                return (
-                    <TextVideo
-                        key={text.currentVersionId}
-                        text={text}
-                    />
-                );
+                const currentVersion = getVersionById(currentVersionId, versions);
+
+                if (
+                    videoTime >= currentVersion.startTime
+                    && videoTime <= currentVersion.endTime
+                ) {
+                    return (
+                        <TextVideo
+                            key={currentVersionId}
+                            text={text}
+                        />
+                    );
+                } else {
+                    return null;
+                }
             });
         }
 

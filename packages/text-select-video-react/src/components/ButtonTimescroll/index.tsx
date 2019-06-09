@@ -268,7 +268,6 @@ class Timescroll extends Component<
             newVideoTime = videoDuration;
         }
 
-        console.log(direction);
         setVideoTime(newVideoTime);
     }
 }
