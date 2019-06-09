@@ -2,11 +2,10 @@ import styled from 'styled-components';
 
 
 
-export const StyledTextVideoMoreMenu = styled.div`
-    position: absolute;
-    top: 20px;
-    right: 0;
+export const StyledSettingsMenu = styled.div`
     z-index: 9999;
+
+    transition: opacity 600ms linear;
 
     ul {
         background-color: ${props => props.theme.backgroundColor};
@@ -18,12 +17,10 @@ export const StyledTextVideoMoreMenu = styled.div`
                 return backgroundColor;
             }
         }};
-        color: ${props => props.theme.color};
-
         box-shadow: 0px 0px 5px 1px hsla(220, 10%, 2%, 0.7);
 
-        min-width: 90px;
-        width: 110px;
+        min-width: 130px;
+        width: 150px;
         display: flex;
         flex-direction: column;
         list-style: none;
@@ -31,7 +28,6 @@ export const StyledTextVideoMoreMenu = styled.div`
         border-radius: 10px;
         padding: 0;
         font-size: 13px;
-        font-weight: normal;
     }
 
     ul li {

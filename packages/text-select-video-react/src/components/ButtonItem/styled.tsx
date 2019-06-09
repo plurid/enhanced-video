@@ -2,7 +2,7 @@ import styled from 'styled-components';
 
 
 
-export const StyledTextSelectVideoButtonItem = styled.div`
+export const StyledButtonItem = styled.div`
     display: flex;
     align-items: center;
     padding: 7px 10px;
@@ -10,7 +10,7 @@ export const StyledTextSelectVideoButtonItem = styled.div`
     height: 32px;
 `;
 
-export const StyledTextSelectVideoButtonItemIcon = styled.div`
+export const StyledButtonItemIcon = styled.div`
     height: 14px;
     width: 14px;
     margin-right: 8px;

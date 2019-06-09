@@ -18,7 +18,7 @@ class App extends Component {
                         theme="dusk"
                         src={longVideo}
                         controls={true}
-                        height={600}
+                        height={700}
                         // getTextOnLoad={true}
                         apiEndpoint="http://192.168.1.2:3360/graphql"
                         // apiEndpoint="https://api.plurid.com/graphql"

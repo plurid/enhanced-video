@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import Context from '../../context';
 import SelectVideo from '../SelectVideo';
-import TextSelectVideoSettings from '../TextSelectVideoSettings';
+import Settings from '../Settings';
 import Spinner from '../Spinner';
 import Message from '../Message';
 
@@ -143,6 +143,19 @@ class TextSelectVideo extends Component<
         const _theme = theme === undefined ? this.context.theme : themes[theme];
         const _themeName = theme === undefined ? this.context.themeName : theme;
 
+
+        // https://stackoverflow.com/a/43794379
+        const audioContext = new AudioContext();
+        const audioContextSource = audioContext.createMediaElementSource(this.video.current!);
+        // create a gain node
+        const gainNode = audioContext!.createGain();
+        gainNode.gain.value = 2; // double the volume
+        audioContextSource!.connect(gainNode);
+        // connect the gain node to an output destination
+        gainNode.connect(audioContext!.destination);
+        this.video.current!.volume = this.state.videoVolume;
+
+
         this.setState({
             about: _about,
             controls: _controls,
@@ -214,7 +227,7 @@ class TextSelectVideo extends Component<
                     )}
 
                     {toggledSettingsButton && controls && (
-                        <TextSelectVideoSettings />
+                        <Settings />
                     )}
 
                     {loading && (
@@ -246,7 +259,7 @@ class TextSelectVideo extends Component<
     }
 
     private setVideoVolume = (videoVolume: number) => {
-        this.video.current!.volume = videoVolume;
+        this.video.current!.volume = videoVolume / 2;
         this.setState({
             videoVolume,
         });
@@ -483,7 +496,7 @@ class TextSelectVideo extends Component<
 
         const videoContainerWidth = this.videoContainer.current!.offsetWidth;
         const videoContainerHeight = this.videoContainer.current!.offsetHeight;
-        console.log(videoContainerWidth, videoContainerHeight);
+        // console.log(videoContainerWidth, videoContainerHeight);
 
         let videoBoxWidth = 0;
         let videoBoxHeight = 0;
@@ -499,8 +512,8 @@ class TextSelectVideo extends Component<
 
         const videoBoxLeft = (videoContainerWidth - videoBoxWidth) / 2;
         const videoBoxTop = (videoContainerHeight - videoBoxHeight) / 2;
-        console.log(videoBoxWidth, videoBoxHeight);
-        console.log(videoBoxLeft, videoBoxTop);
+        // console.log(videoBoxWidth, videoBoxHeight);
+        // console.log(videoBoxLeft, videoBoxTop);
 
         this.setState({
             videoContainerWidth,

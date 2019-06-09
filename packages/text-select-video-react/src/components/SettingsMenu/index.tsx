@@ -14,17 +14,17 @@ import ExtractTextIcon from '../../assets/extract-text-icon';
 import { ABOUT_URL } from '../../data/constants';
 
 import {
-    StyledTextSelectVideoSettingsMenu,
+    StyledSettingsMenu,
 } from './styled';
 
-import TextSelectVideoButtonCheckmark from '../TextSelectVideoButtonCheckmark';
-import TextSelectVideoButtonItem from '../TextSelectVideoButtonItem';
-import SliderItem from '../SliderItem';
-import Timescroll from '../Timescroll';
+import ButtonCheckmark from '../ButtonCheckmark';
+import ButtonItem from '../ButtonItem';
+import ButtonSliderItem from '../ButtonSliderItem';
+import ButtonTimescroll from '../ButtonTimescroll';
 
 
 
-class TextSelectVideoSettingsMenu extends Component<any, any> {
+class SettingsMenu extends Component<any, any> {
     static contextType = Context;
 
     state = {
@@ -51,7 +51,7 @@ class TextSelectVideoSettingsMenu extends Component<any, any> {
         } = this.context;
 
         return (
-            <StyledTextSelectVideoSettingsMenu
+            <StyledSettingsMenu
                 theme={theme}
                 style={{
                     opacity: menuOpacity
@@ -59,7 +59,7 @@ class TextSelectVideoSettingsMenu extends Component<any, any> {
             >
                 <ul>
                     <li>
-                        <TextSelectVideoButtonItem
+                        <ButtonItem
                             theme={theme}
                             atClick={this.playPause}
                             icon={videoPlaying ? PauseIcon : PlayIcon}
@@ -68,16 +68,16 @@ class TextSelectVideoSettingsMenu extends Component<any, any> {
                     </li>
 
                     <li>
-                        <Timescroll />
+                        <ButtonTimescroll />
                     </li>
 
                     <li>
-                        <SliderItem
+                        <ButtonSliderItem
                             theme={theme}
                             type="volume"
                             name="Volume"
                             min={0}
-                            max={1}
+                            max={2}
                             setValue={setVideoVolume}
                             value={videoVolume}
                             valueSign=""
@@ -89,7 +89,7 @@ class TextSelectVideoSettingsMenu extends Component<any, any> {
                     </li>
 
                     <li>
-                        <SliderItem
+                        <ButtonSliderItem
                             theme={theme}
                             type="playback"
                             name="Playback Rate"
@@ -108,7 +108,7 @@ class TextSelectVideoSettingsMenu extends Component<any, any> {
                     <hr />
 
                     <li>
-                        <TextSelectVideoButtonCheckmark
+                        <ButtonCheckmark
                             theme={theme}
                             toggle={toggleEditable}
                             text="Edit Text"
@@ -117,7 +117,7 @@ class TextSelectVideoSettingsMenu extends Component<any, any> {
                     </li>
 
                     <li>
-                        <TextSelectVideoButtonItem
+                        <ButtonItem
                             theme={theme}
                             atClick={this.addText}
                             icon={AddTextIcon}
@@ -126,7 +126,7 @@ class TextSelectVideoSettingsMenu extends Component<any, any> {
                     </li>
 
                     <li>
-                        <TextSelectVideoButtonItem
+                        <ButtonItem
                             theme={theme}
                             atClick={this.saveText}
                             icon={SaveVideoTextIcon}
@@ -137,7 +137,7 @@ class TextSelectVideoSettingsMenu extends Component<any, any> {
                     <hr />
 
                     <li>
-                        <TextSelectVideoButtonItem
+                        <ButtonItem
                             theme={theme}
                             atClick={this.getText}
                             icon={GetTextIcon}
@@ -146,7 +146,7 @@ class TextSelectVideoSettingsMenu extends Component<any, any> {
                     </li>
 
                     <li>
-                        <TextSelectVideoButtonItem
+                        <ButtonItem
                             theme={theme}
                             atClick={this.extractText}
                             icon={ExtractTextIcon}
@@ -160,7 +160,7 @@ class TextSelectVideoSettingsMenu extends Component<any, any> {
 
                     {about && (
                         <li>
-                            <TextSelectVideoButtonItem
+                            <ButtonItem
                                 theme={theme}
                                 atClick={this.about}
                                 icon={AboutIcon}
@@ -169,7 +169,7 @@ class TextSelectVideoSettingsMenu extends Component<any, any> {
                         </li>
                     )}
                 </ul>
-            </StyledTextSelectVideoSettingsMenu>
+            </StyledSettingsMenu>
         );
     }
 
@@ -268,4 +268,4 @@ class TextSelectVideoSettingsMenu extends Component<any, any> {
 }
 
 
-export default TextSelectVideoSettingsMenu;
+export default SettingsMenu;

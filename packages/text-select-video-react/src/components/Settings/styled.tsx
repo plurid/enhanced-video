@@ -2,7 +2,7 @@ import styled from 'styled-components';
 
 
 
-export const StyledTextSelectVideoSettings = styled.div`
+export const StyledSettings = styled.div`
     position: absolute;
     top: 20px;
     right: 20px;
@@ -11,7 +11,7 @@ export const StyledTextSelectVideoSettings = styled.div`
     justify-items: right;
 `;
 
-export const StyledTextSelectVideoSettingsButton = styled.div`
+export const StyledSettingsButton = styled.div`
     cursor: pointer;
     user-select: none;
     height: 30px;

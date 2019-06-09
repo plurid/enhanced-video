@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import Context from '../../context';
 import TextVideoEditor from '../TextVideoEditor';
-import TextVideoMore from '../TextVideoMore';
+import ButtonMore from '../ButtonMore';
 import {
     StyledTextVideo,
     StyledTextVideoTextContent,
@@ -256,7 +256,7 @@ class TextVideo extends Component<
                 {textContent}
 
                 {showMore && !toggledEditable && content.length > contentMoreLimit && (
-                    <TextVideoMore
+                    <ButtonMore
                         content={content}
                         toggleShow={this.toggleShowMore}
                     />
