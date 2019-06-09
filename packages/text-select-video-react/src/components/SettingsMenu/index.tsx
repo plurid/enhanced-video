@@ -48,6 +48,9 @@ class SettingsMenu extends Component<any, any> {
 
             videoPlaybackRate,
             setVideoPlaybackRate,
+
+            timescrollView,
+            toggleTimescrollView,
         } = this.context;
 
         return (
@@ -68,7 +71,10 @@ class SettingsMenu extends Component<any, any> {
                     </li>
 
                     <li>
-                        <ButtonTimescroll />
+                        <ButtonTimescroll
+                            toggle={toggleTimescrollView}
+                            toggled={timescrollView}
+                        />
                     </li>
 
                     <li>

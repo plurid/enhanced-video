@@ -6,11 +6,33 @@ export const StyledTimescroll = styled.div`
     text-align: left;
 `;
 
+
 export const StyledTimescrollTitle = styled.div`
     padding: 7px 10px;
-    /* padding-bottom: 0; */
     height: 30px;
+    display: grid;
+    grid-template-columns: 22px 1fr;
+    justify-content: left;
+    align-items: center;
+    cursor: pointer;
 `;
+
+
+export const StyledTimescrollTitleIcon = styled.div`
+    height: 14px;
+    width: 14px;
+    margin-right: 8px;
+    display: grid;
+    place-content: center;
+    text-align: center;
+
+    svg {
+        width: 14px;
+        height: 14px;
+        fill: ${props => props.theme.color};
+    }
+`;
+
 
 export const StyledTimescrollArea = styled.div`
     background: hsla(0, 0%, 50%, 0.15);
@@ -20,6 +42,7 @@ export const StyledTimescrollArea = styled.div`
     position: relative;
     outline: none;
 `;
+
 
 export const StyledTimescrollViewed: any = styled.div`
     background: hsla(0, 0%, 50%, 0.5);
