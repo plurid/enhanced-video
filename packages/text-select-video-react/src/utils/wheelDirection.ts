@@ -3,6 +3,7 @@ interface Deltas {
     deltaY: number;
 }
 
+
 export const getWheelDirection = (
     deltas: Deltas,
     ABSTHRESHOLD: number = 10,

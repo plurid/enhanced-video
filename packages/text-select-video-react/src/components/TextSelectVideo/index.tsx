@@ -145,15 +145,15 @@ class TextSelectVideo extends Component<
 
 
         // https://stackoverflow.com/a/43794379
-        const audioContext = new AudioContext();
-        const audioContextSource = audioContext.createMediaElementSource(this.video.current!);
-        // create a gain node
-        const gainNode = audioContext!.createGain();
-        gainNode.gain.value = 2; // double the volume
-        audioContextSource!.connect(gainNode);
-        // connect the gain node to an output destination
-        gainNode.connect(audioContext!.destination);
-        this.video.current!.volume = this.state.videoVolume;
+        // const audioContext = new AudioContext();
+        // const audioContextSource = audioContext.createMediaElementSource(this.video.current!);
+        // // create a gain node
+        // const gainNode = audioContext!.createGain();
+        // gainNode.gain.value = 2; // double the volume
+        // audioContextSource!.connect(gainNode);
+        // // connect the gain node to an output destination
+        // gainNode.connect(audioContext!.destination);
+        // this.video.current!.volume = this.state.videoVolume;
 
 
         this.setState({
@@ -287,11 +287,16 @@ class TextSelectVideo extends Component<
     }
 
     private createTextVideo = () => {
-        const { imageText } = this.state;
+        const {
+            imageText,
+            videoTime,
+        } = this.state;
 
         const versionId = `tsi-version-${uuidv4()}`;
         const newVersion = { ...newTextVideoVersion };
         newVersion.id = versionId;
+        newVersion.startTime = videoTime;
+        newVersion.endTime = videoTime + 10;
 
         const textVideoId = `tsi-text-${uuidv4()}`;
         const newTextVideo = {

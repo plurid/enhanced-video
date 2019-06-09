@@ -22,7 +22,6 @@ import {
 } from '../../utils/percentage';
 import {
     getVersionById,
-    checkDifferentTexts,
 } from '../../utils/textVideo';
 
 
