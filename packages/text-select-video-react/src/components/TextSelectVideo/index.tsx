@@ -79,7 +79,7 @@ class TextSelectVideo extends Component<
             videoBoxLeft: 0,
             videoBoxTop: 0,
 
-            videoVolume: 0.8,
+            videoVolume: 0.75,
             videoPlaybackRate: 1,
             videoTime: 0,
             videoDuration: 0,
@@ -288,7 +288,6 @@ class TextSelectVideo extends Component<
 
     private createTextVideo = () => {
         const { imageText } = this.state;
-        console.log(imageText);
 
         const versionId = `tsi-version-${uuidv4()}`;
         const newVersion = { ...newTextVideoVersion };
@@ -365,6 +364,7 @@ class TextSelectVideo extends Component<
             updatedVideoText.push({...imgText});
             return;
         });
+        // console.log(updatedVideoText);
 
         this.setState({
             imageText: updatedVideoText,
@@ -476,7 +476,7 @@ class TextSelectVideo extends Component<
             const videoWidth = video.target.videoWidth;
             const videoHeight = video.target.videoHeight;
             const videoRatio = videoWidth / videoHeight;
-            console.log(videoRatio, videoWidth, videoHeight);
+            // console.log(videoRatio, videoWidth, videoHeight);
 
             this.setState({
                 videoWidth,

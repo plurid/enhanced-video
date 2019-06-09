@@ -3,6 +3,8 @@ import {
     IVideoTextVersion,
 } from '../interfaces/image-text';
 
+
+
 export const emptyVideoText: any[] = [];
 
 
@@ -24,6 +26,8 @@ export const newTextVideoVersion: IVideoTextVersion = {
     userGenerated: true,
     ownerGenerated: false,
     adminGenerated: false,
+    startTime: 0,
+    endTime: 0,
     xCoordPercentage: 5,
     yCoordPercentage: 10,
     perspective: '',

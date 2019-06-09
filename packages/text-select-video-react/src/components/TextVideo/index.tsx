@@ -173,12 +173,12 @@ class TextVideo extends Component<
             videoBoxHeight,
         } = this.context;
 
-        const xCoord = valueFromPercentage(xCoordPercentage, videoBoxWidth || 800);
-        const yCoord = valueFromPercentage(yCoordPercentage, videoBoxHeight || 500);
+        const xCoord = valueFromPercentage(xCoordPercentage, videoBoxWidth);
+        const yCoord = valueFromPercentage(yCoordPercentage, videoBoxHeight);
 
-        const fontSize = valueFromPercentage(fontSizePercentage, videoBoxHeight || 500);
-        const letterSpacing = valueFromPercentage(letterSpacingPercentage, videoBoxWidth || 800);
-        const wordSpacing = valueFromPercentage(wordSpacingPercentage, videoBoxWidth || 800);
+        const fontSize = valueFromPercentage(fontSizePercentage, videoBoxHeight);
+        const letterSpacing = valueFromPercentage(letterSpacingPercentage, videoBoxWidth);
+        const wordSpacing = valueFromPercentage(wordSpacingPercentage, videoBoxWidth);
 
         const editableDiv = (
             <StyledEditableDiv
