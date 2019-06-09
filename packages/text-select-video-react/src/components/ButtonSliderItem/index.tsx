@@ -3,6 +3,7 @@ import React, { Component } from 'react';
 import {
     StyledSliderItem,
     StyledSliderType,
+    StyledSliderIcon,
     StyledSliderValue,
     StyledSliderInputContainer,
 } from './styled';
@@ -30,8 +31,9 @@ class SliderItem extends Component<
         } = this.state;
 
         const {
-            name,
             theme,
+            name,
+            icon,
             type,
             min,
             max,
@@ -49,11 +51,30 @@ class SliderItem extends Component<
         return (
             <StyledSliderItem>
                 <StyledSliderType>
-                    {name}
+                    {icon && (
+                        <StyledSliderIcon
+                            theme={theme}
+                        >
+                            {icon}
+                        </StyledSliderIcon>
+                    )}
 
-                    <StyledSliderValue>
-                        {displayValue}{valueSign}
-                    </StyledSliderValue>
+                    <div
+                        style={{
+                            display: 'inline-flex',
+                            flexDirection: 'row',
+                            alignItems: 'center',
+                            justifyItems: 'space-between',
+                            justifyContent: 'space-between',
+                            width: '100%'
+                        }}
+                    >
+                        {name}
+
+                        <StyledSliderValue>
+                            {displayValue}{valueSign}
+                        </StyledSliderValue>
+                    </div>
                 </StyledSliderType>
 
                 <StyledSliderInputContainer

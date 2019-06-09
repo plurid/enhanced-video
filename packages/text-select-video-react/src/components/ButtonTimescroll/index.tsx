@@ -4,7 +4,6 @@ import {
     StyledTimescroll,
     StyledTimescrollTitle,
     StyledTimescrollTitleIcon,
-    StyledTimescrollTitleSpan,
     StyledTimescrollArea,
     StyledTimescrollViewed,
     StyledTimescrollTime,

@@ -4,12 +4,16 @@ import Context from '../../context';
 
 import PlayIcon from '../../assets/play-icon';
 import PauseIcon from '../../assets/pause-icon';
-import TimescrollIcon from '../../assets/timescroll-icon';
+import VolumeHighIcon from '../../assets/volume-high-icon';
+import VolumeMiddleIcon from '../../assets/volume-middle-icon';
+import VolumeLowIcon from '../../assets/volume-low-icon';
+import VolumeMutedIcon from '../../assets/volume-muted-icon';
 import AboutIcon from '../../assets/about-icon';
 import AddTextIcon from '../../assets/add-text-icon';
 import SaveVideoTextIcon from '../../assets/save-image-text-icon';
 import GetTextIcon from '../../assets/get-text-icon';
 import ExtractTextIcon from '../../assets/extract-text-icon';
+
 
 import { ABOUT_URL } from '../../data/constants';
 
@@ -53,6 +57,14 @@ class SettingsMenu extends Component<any, any> {
             toggleTimescrollView,
         } = this.context;
 
+        const videoVolumeIcon = videoVolume == 0
+            ? VolumeMutedIcon
+            : videoVolume < 0.7
+                ? VolumeLowIcon
+                : videoVolume < 1.3
+                    ? VolumeMiddleIcon
+                    : VolumeHighIcon;
+
         return (
             <StyledSettingsMenu
                 theme={theme}
@@ -80,6 +92,7 @@ class SettingsMenu extends Component<any, any> {
                     <li>
                         <ButtonSliderItem
                             theme={theme}
+                            icon={videoVolumeIcon}
                             type="volume"
                             name="Volume"
                             min={0}

@@ -10,11 +10,32 @@ export const StyledSliderItem = styled.div`
 
 export const StyledSliderType = styled.div`
     text-align: left;
+    display: inline-flex;
+    flex-direction: row;
+    align-items: center;
+    justify-items: left;
+    width: 100%;
+`;
+
+
+export const StyledSliderIcon = styled.div`
+    height: 14px;
+    width: 14px;
+    margin-right: 8px;
+    display: grid;
+    place-content: center;
+    text-align: center;
+
+    svg {
+        width: 14px;
+        height: 14px;
+        fill: ${props => props.theme.color};
+    }
 `;
 
 
 export const StyledSliderValue = styled.div`
-    float: right;
+    /* float: right; */
     font-size: 12px;
 `;
 
