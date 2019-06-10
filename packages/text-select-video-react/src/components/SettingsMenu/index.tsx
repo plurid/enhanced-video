@@ -143,7 +143,7 @@ class SettingsMenu extends Component<any, any> {
                                 value={selectedQualitySource}
                                 valueString={qualitySources[selectedQualitySource].quality}
                                 step={1}
-                                defaultValue={0}
+                                defaultValue={qualitySources.length - 1}
                                 toggleMenuOpaque={this.toggleMenuOpaque}
                             />
                         </li>
