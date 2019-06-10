@@ -1,13 +1,13 @@
-import { ITextVideo } from '../../interfaces/image-text';
+import { IVideoText } from '../../interfaces/image-text';
 
 
 
 export interface ITextVideoProps {
-    textVideo: ITextVideo;
+//     textVideo: IVideoText;
 }
 
 export interface ITextVideoState {
-    text: ITextVideo;
+    // text: IVideoText;
     xCoord: number;
     yCoord: number;
     textEditable: boolean;

@@ -85,4 +85,5 @@ export const StyledTextVideoEditorButtonIncrementButton = styled.div`
 
 export const StyledTextVideoEditorButtonIncrementsInputs = styled.div`
     background: ${props => props.theme.backgroundColorHover};
+    user-select: none;
 `;

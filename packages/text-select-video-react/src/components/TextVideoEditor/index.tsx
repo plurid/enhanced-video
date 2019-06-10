@@ -21,6 +21,8 @@ import SelectTextIcon from '../../assets/select-text-icon';
 import GrabIcon from '../../assets/grab-icon';
 import ViewableIcon from '../../assets/viewable-icon';
 import NotViewableIcon from '../../assets/not-viewable-icon';
+import AlwaysShowOnIcon from '../../assets/always-show-on-icon';
+import AlwaysShowOffIcon from '../../assets/always-show-off-icon';
 import StartTimeIcon from '../../assets/start-time-icon';
 import EndTimeIcon from '../../assets/end-time-icon';
 import FontSizeIcon from '../../assets/font-size-icon';
@@ -72,6 +74,8 @@ class TextVideoEditor extends Component<any, any> {
             xCoord,
             yCoord,
             version,
+            toggleTextAlwaysShow,
+            textAlwaysShow,
         } = this.props;
 
         const {
@@ -128,6 +132,13 @@ class TextVideoEditor extends Component<any, any> {
                     &nbsp;
                 </StyledTextVideoEditorVerticalDivider>
 
+                {/* toggle always show, irrespective of time */}
+                <TextVideoEditorButtonToggle
+                    theme={theme}
+                    toggle={toggleTextAlwaysShow}
+                    toggled={textAlwaysShow}
+                    icon={textAlwaysShow ? AlwaysShowOnIcon : AlwaysShowOffIcon}
+                />
 
                 <TextVideoEditorButtonTimeIncrements
                     theme={theme}

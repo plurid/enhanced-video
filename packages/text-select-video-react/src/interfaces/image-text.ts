@@ -24,6 +24,7 @@ export interface IVideoTextVersion {
     link: boolean;
     linkTo: string;
     viewable: boolean;
+    alwaysShow: boolean;
 }
 
 
