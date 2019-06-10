@@ -47,6 +47,7 @@ class SettingsMenu extends Component<any, any> {
             toggleEditable,
             toggledEditable,
 
+            toggleVideoVolume,
             videoVolume,
             setVideoVolume,
 
@@ -93,6 +94,7 @@ class SettingsMenu extends Component<any, any> {
                         <ButtonSliderItem
                             theme={theme}
                             icon={videoVolumeIcon}
+                            iconClick={toggleVideoVolume}
                             type="volume"
                             name="Volume"
                             min={0}
@@ -112,6 +114,23 @@ class SettingsMenu extends Component<any, any> {
                             theme={theme}
                             type="playback"
                             name="Playback Rate"
+                            min={0.25}
+                            max={2.25}
+                            setValue={setVideoPlaybackRate}
+                            value={videoPlaybackRate}
+                            valueSign=""
+                            step={0.01}
+                            normalized={true}
+                            defaultValue={1}
+                            toggleMenuOpaque={this.toggleMenuOpaque}
+                        />
+                    </li>
+
+                    <li>
+                        <ButtonSliderItem
+                            theme={theme}
+                            type="playback"
+                            name="Quality"
                             min={0.25}
                             max={2.25}
                             setValue={setVideoPlaybackRate}

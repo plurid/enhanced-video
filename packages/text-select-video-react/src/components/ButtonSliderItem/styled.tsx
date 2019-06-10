@@ -25,6 +25,7 @@ export const StyledSliderIcon = styled.div`
     display: grid;
     place-content: center;
     text-align: center;
+    cursor: pointer;
 
     svg {
         width: 14px;

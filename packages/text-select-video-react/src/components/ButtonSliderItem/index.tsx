@@ -34,6 +34,7 @@ class SliderItem extends Component<
             theme,
             name,
             icon,
+            iconClick,
             type,
             min,
             max,
@@ -54,6 +55,7 @@ class SliderItem extends Component<
                     {icon && (
                         <StyledSliderIcon
                             theme={theme}
+                            onClick={iconClick}
                         >
                             {icon}
                         </StyledSliderIcon>
