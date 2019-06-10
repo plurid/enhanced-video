@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 
-// import video from './assets/video.mov';
-import longVideo from './assets/long-video.mp4';
+import video from './assets/video.mov';
+// import longVideo from './assets/long-video.mp4';
 
 import TextSelectVideo from '@plurid/text-select-video-react';
 
@@ -52,7 +52,8 @@ class App extends Component {
                 >
                     <TextSelectVideo
                         theme="dusk"
-                        src={longVideo}
+                        src={video}
+                        // src={longVideo}
                         type="video/mp4"
                         controls={true}
                         height={700}

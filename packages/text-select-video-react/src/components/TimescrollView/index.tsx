@@ -39,9 +39,10 @@ class TimescrollView extends Component<
 
         const totalMinutes = hours * 60 + minutes;
         const total = Math.ceil(totalMinutes / 10);
+        const limit = total === 0 ? 1 : total;
 
         const lines = [];
-        for (let i = 0; i < total; i++) {
+        for (let i = 0; i < limit; i++) {
             const line = (
                 <TimescrollViewLine
                     startTime={10 * i}
