@@ -103,7 +103,7 @@ class TextSelectVideo extends Component<
             updateDebounce,
 
             qualitySources: qualitySources,
-            selectedQualitySource: 0,
+            selectedQualitySource: qualitySources ? qualitySources.length - 1 : 0,
             selectedQualitySourceSrc: '',
 
             toggleSettingsButton: this.toggleSettingsButton,
@@ -317,7 +317,7 @@ class TextSelectVideo extends Component<
             src: '/determined/at/runtime',
         };
 
-        return [autoSource, ...qualitySources];
+        return [...qualitySources, autoSource];
     }
 
     private selectQualitySource = (selectedQualitySource: number) => {
