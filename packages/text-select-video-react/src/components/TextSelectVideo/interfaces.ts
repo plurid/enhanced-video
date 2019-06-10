@@ -47,6 +47,7 @@ export interface ITextSelectVideoState {
     videoHeight: number;
     videoWidth: number;
     videoRatio: number;
+    previousVideoVolume: number;
     videoVolume: number;
     videoPlaybackRate: number;
     videoTime: number;
@@ -92,4 +93,5 @@ export interface ITextSelectVideoState {
     saveVideoText: () => any;
 
     toggleTimescrollView: () => void;
+    toggleVideoVolume: () => void;
 }

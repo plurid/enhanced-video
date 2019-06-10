@@ -80,6 +80,7 @@ class TextSelectVideo extends Component<
             videoBoxLeft: 0,
             videoBoxTop: 0,
 
+            previousVideoVolume: 0.75,
             videoVolume: 0.75,
             videoPlaybackRate: 1,
             videoTime: 0,
@@ -130,6 +131,7 @@ class TextSelectVideo extends Component<
             setVideoPlaybackRate: this.setVideoPlaybackRate,
 
             toggleTimescrollView: this.toggleTimescrollView,
+            toggleVideoVolume: this.toggleVideoVolume,
         };
     }
 
@@ -266,6 +268,26 @@ class TextSelectVideo extends Component<
         this.setState({
             videoTime,
         });
+    }
+
+    private toggleVideoVolume = () => {
+        const {
+            previousVideoVolume,
+            videoVolume,
+        } = this.state;
+
+        if (videoVolume === 0) {
+            this.video.current!.volume = previousVideoVolume / 2;
+            this.setState({
+                videoVolume: previousVideoVolume,
+            });
+        } else {
+            this.video.current!.volume = 0;
+            this.setState({
+                videoVolume: 0,
+                previousVideoVolume: videoVolume,
+            });
+        }
     }
 
     private setVideoVolume = (videoVolume: number) => {
