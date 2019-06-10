@@ -56,6 +56,11 @@ class SettingsMenu extends Component<any, any> {
 
             timescrollView,
             toggleTimescrollView,
+
+            qualitySources,
+            selectQualitySource,
+            selectedQualitySource,
+
         } = this.context;
 
         const videoVolumeIcon = videoVolume == 0
@@ -126,22 +131,23 @@ class SettingsMenu extends Component<any, any> {
                         />
                     </li>
 
-                    <li>
-                        <ButtonSliderItem
-                            theme={theme}
-                            type="playback"
-                            name="Quality"
-                            min={0.25}
-                            max={2.25}
-                            setValue={setVideoPlaybackRate}
-                            value={videoPlaybackRate}
-                            valueSign=""
-                            step={0.01}
-                            normalized={true}
-                            defaultValue={1}
-                            toggleMenuOpaque={this.toggleMenuOpaque}
-                        />
-                    </li>
+                    {qualitySources && (
+                        <li>
+                            <ButtonSliderItem
+                                theme={theme}
+                                type="quality"
+                                name="Quality"
+                                min={0}
+                                max={qualitySources.length - 1}
+                                setValue={selectQualitySource}
+                                value={selectedQualitySource}
+                                valueString={qualitySources[selectedQualitySource].quality}
+                                step={1}
+                                defaultValue={0}
+                                toggleMenuOpaque={this.toggleMenuOpaque}
+                            />
+                        </li>
+                    )}
 
                     <hr />
 

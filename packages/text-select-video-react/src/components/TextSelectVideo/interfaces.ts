@@ -1,12 +1,20 @@
+interface QualitySource {
+    quality: string;
+    src: string;
+}
+
+
 export interface ITextSelectVideoProps {
     about?: boolean;
     width?: string;
     height?: string;
     controls?: boolean;
     src: string;
+    type: string;
     theme?: string;
-    // imageText?: any;
-    imageStyle?: any;
+    qualitySources?: QualitySource[];
+
+    videoStyle?: any;
     atLoad?: any;
 
     // To be specified when using another API than https://api.plurid.com
@@ -33,6 +41,10 @@ export interface ITextSelectVideoState {
     apiEndpoint: string;
     updateDebounce: number;
     contentMoreLimit: number;
+
+    qualitySources?: QualitySource[];
+    selectedQualitySource: number;
+    selectedQualitySourceSrc: string;
 
     timescrollView: boolean;
 
@@ -94,4 +106,6 @@ export interface ITextSelectVideoState {
 
     toggleTimescrollView: () => void;
     toggleVideoVolume: () => void;
+
+    selectQualitySource: (value: number) => void;
 }
