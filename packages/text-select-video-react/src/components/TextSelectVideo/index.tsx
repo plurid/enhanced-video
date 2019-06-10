@@ -65,6 +65,8 @@ class TextSelectVideo extends Component<
         const updateDebounce = this.props.updateDebounce || UPDATE_DEBOUNCE;
         this.client = graphqlClient(apiEndpoint);
 
+        const qualitySources = this.makeQualitySources(this.props.qualitySources);
+
         this.state = {
             loading: false,
 
@@ -100,6 +102,10 @@ class TextSelectVideo extends Component<
             apiEndpoint,
             updateDebounce,
 
+            qualitySources: qualitySources,
+            selectedQualitySource: 0,
+            selectedQualitySourceSrc: '',
+
             toggleSettingsButton: this.toggleSettingsButton,
             toggledSettingsButton: false,
             toggleSettings: this.toggleSettings,
@@ -132,6 +138,8 @@ class TextSelectVideo extends Component<
 
             toggleTimescrollView: this.toggleTimescrollView,
             toggleVideoVolume: this.toggleVideoVolume,
+
+            selectQualitySource: this.selectQualitySource,
         };
     }
 
@@ -178,12 +186,12 @@ class TextSelectVideo extends Component<
 
     public render() {
         // console.log('RENDER');
-
         const {
             src,
+            type,
             width,
             height,
-            imageStyle,
+            videoStyle,
         } = this.props;
 
         const {
@@ -196,10 +204,13 @@ class TextSelectVideo extends Component<
             toggledSettingsButton,
             message,
             timescrollView,
+            selectedQualitySourceSrc,
             // imageText,
         } = this.state;
-
         // console.log(imageText);
+
+        const videoSrc = selectedQualitySourceSrc ? selectedQualitySourceSrc : src;
+        // console.log(videoSrc);
 
         return (
             <Context.Provider value={this.state}>
@@ -212,21 +223,17 @@ class TextSelectVideo extends Component<
                     ref={this.videoContainer}
                 >
                     <video
-                        // width={width || 800}
                         width={width}
-                        // height={height || 500}
                         height={height}
-                        // controls
-                        style={{...imageStyle}}
-
+                        style={{...videoStyle}}
                         ref={this.video}
                         onTimeUpdate={this.setVideoCurrentTime}
                         onLoadedData={this.handleLoadedVideo}
                         onLoadedMetadata={this.handleLoadedMetadata}
                     >
                         <source
-                            src={src}
-                            type="video/mp4"
+                            src={videoSrc}
+                            type={type}
                         />
                     </video>
 
@@ -301,6 +308,30 @@ class TextSelectVideo extends Component<
         this.video.current!.playbackRate = videoPlaybackRate;
         this.setState({
             videoPlaybackRate,
+        });
+    }
+
+    private makeQualitySources = (qualitySources: any): any => {
+        const autoSource = {
+            quality: 'auto',
+            src: '/determined/at/runtime',
+        };
+
+        return [autoSource, ...qualitySources];
+    }
+
+    private selectQualitySource = (selectedQualitySource: number) => {
+        const {
+            qualitySources,
+        } = this.state;
+
+        // set the adequate source
+        const { src } = qualitySources![selectedQualitySource];
+        // console.log(src);
+
+        this.setState({
+            selectedQualitySource,
+            selectedQualitySourceSrc: src,
         });
     }
 

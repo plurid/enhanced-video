@@ -40,6 +40,7 @@ class SliderItem extends Component<
             max,
             value,
             valueSign,
+            valueString,
             step,
             normalized,
             toggleMenuOpaque,
@@ -48,6 +49,8 @@ class SliderItem extends Component<
         const displayValue = normalized
             ? Math.floor(value * 100)
             : value;
+
+        const displayString = valueString ? valueString : displayValue + valueSign;
 
         return (
             <StyledSliderItem>
@@ -74,7 +77,7 @@ class SliderItem extends Component<
                         {name}
 
                         <StyledSliderValue>
-                            {displayValue}{valueSign}
+                            {displayString}
                         </StyledSliderValue>
                     </div>
                 </StyledSliderType>
