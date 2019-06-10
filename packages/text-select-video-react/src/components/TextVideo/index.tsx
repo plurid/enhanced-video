@@ -48,7 +48,6 @@ class TextVideo extends Component<
         textEditable: false,
         textDraggable: false,
         dragging: false,
-        textViewable: false,
 
         pos1: 0,
         pos2: 0,
@@ -128,14 +127,13 @@ class TextVideo extends Component<
             textEditable,
             textDraggable,
             dragging,
-            textViewable,
 
             editorXCoord,
             editorYCoord,
         } = this.state;
 
         const {
-            text
+            text,
         } = this.props;
 
         const {
@@ -162,6 +160,8 @@ class TextVideo extends Component<
             fontSizePercentage,
             letterSpacingPercentage,
             wordSpacingPercentage,
+            viewable,
+            alwaysShow,
         }: any = currentVersion;
 
         const {
@@ -198,7 +198,7 @@ class TextVideo extends Component<
                 editMode={textEditable}
                 dragMode={textDraggable}
                 draggingMode={dragging}
-                viewable={textViewable}
+                viewable={viewable}
                 color={color}
 
                 onMouseDown={this.dragMouseDown}
@@ -208,7 +208,7 @@ class TextVideo extends Component<
                         <StyledTextVideoTextContentLink
                             href={linkTo}
                             target="_blank"
-                            viewable={textViewable}
+                            viewable={viewable}
                             color={color}
                         >
                             {editableDiv}
@@ -227,7 +227,7 @@ class TextVideo extends Component<
                 editMode={toggledEditable}
                 dragMode={textDraggable}
                 draggingMode={dragging}
-                viewable={textViewable}
+                viewable={viewable}
 
                 style={{
                     top: yCoord + 'px',
@@ -270,7 +270,10 @@ class TextVideo extends Component<
                         textDraggable={textDraggable}
 
                         toggleTextViewable={this.toggleTextViewable}
-                        textViewable={textViewable}
+                        textViewable={viewable}
+
+                        toggleTextAlwaysShow={this.toggleTextAlwaysShow}
+                        textAlwaysShow={alwaysShow}
 
                         toggleEditor={this.toggleShowEditor}
                         toggleSelected={this.toggleSelected}
@@ -641,9 +644,49 @@ class TextVideo extends Component<
     }
 
     private toggleTextViewable = () => {
-        this.setState((prevState: any) => ({
-            textViewable: !prevState.textViewable,
-        }));
+        const {
+            updateTextVideoField,
+        } = this.context;
+
+        const {
+            text,
+        } = this.props;
+
+        const {
+            currentVersionId,
+            versions,
+        } = text;
+
+        const currentVersion = getVersionById(currentVersionId, versions);
+
+        if (currentVersion.viewable) {
+            updateTextVideoField(text.id, 'viewable', false);
+        } else {
+            updateTextVideoField(text.id, 'viewable', true);
+        }
+    }
+
+    private toggleTextAlwaysShow = () => {
+        const {
+            updateTextVideoField,
+        } = this.context;
+
+        const {
+            text,
+        } = this.props;
+
+        const {
+            currentVersionId,
+            versions,
+        } = text;
+
+        const currentVersion = getVersionById(currentVersionId, versions);
+
+        if (currentVersion.alwaysShow) {
+            updateTextVideoField(text.id, 'alwaysShow', false);
+        } else {
+            updateTextVideoField(text.id, 'alwaysShow', true);
+        }
     }
 
     private toggleSelected = () => {

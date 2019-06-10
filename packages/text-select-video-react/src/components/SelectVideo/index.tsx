@@ -40,8 +40,9 @@ class SelectVideo extends Component<any, any> {
                 const currentVersion = getVersionById(currentVersionId, versions);
 
                 if (
-                    videoTime >= currentVersion.startTime
-                    && videoTime <= currentVersion.endTime
+                    (videoTime >= currentVersion.startTime
+                    && videoTime <= currentVersion.endTime)
+                    || currentVersion.alwaysShow
                 ) {
                     return (
                         <TextVideo

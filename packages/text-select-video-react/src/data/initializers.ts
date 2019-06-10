@@ -45,4 +45,5 @@ export const newTextVideoVersion: IVideoTextVersion = {
     link: false,
     linkTo: '',
     viewable: false,
+    alwaysShow: true,
 };
