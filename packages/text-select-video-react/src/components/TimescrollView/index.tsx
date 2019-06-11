@@ -22,6 +22,8 @@ class TimescrollView extends Component<
     private timescrollView: any = React.createRef();
 
     state = {
+        addTextFramesMode: false,
+        addTextSequenceMode: false,
         lines: [],
     }
 
@@ -43,6 +45,11 @@ class TimescrollView extends Component<
         const {
             textTimescroll,
         } = this.props;
+
+        const {
+            addTextFramesMode,
+            addTextSequenceMode,
+        } = this.state;
 
         const hours = Math.floor(videoDuration / 3600);
         const minutes = Math.floor((videoDuration - 3600 * hours) / 60);
@@ -72,6 +79,7 @@ class TimescrollView extends Component<
                 tabIndex={0}
                 ref={this.timescrollView}
                 onKeyDown={this.handleKeyDown}
+                onMouseDown={this.handleMouseDown}
             >
                 <StyledTimescrollViewContainer
                     textTimescroll={textTimescroll}
@@ -99,6 +107,7 @@ class TimescrollView extends Component<
                                     theme={theme}
                                     text="Add Text Frames"
                                     atClick={this.addTextFrames}
+                                    pressed={addTextFramesMode}
                                 />
                             </div>
                             <div>
@@ -106,6 +115,7 @@ class TimescrollView extends Component<
                                     theme={theme}
                                     text="Add Text Sequence"
                                     atClick={this.addTextSequence}
+                                    pressed={addTextSequenceMode}
                                 />
                             </div>
                             <div>
@@ -133,6 +143,10 @@ class TimescrollView extends Component<
                 </StyledTimescrollViewContainer>
             </StyledTimescrollView>
         );
+    }
+
+    private handleMouseDown = (event: any) => {
+        console.log(event.target);
     }
 
     private handleKeyDown = (event: any) => {
@@ -219,9 +233,27 @@ class TimescrollView extends Component<
     }
 
     private addTextFrames = () => {
+        const {
+            addTextFramesMode,
+            addTextSequenceMode,
+        } = this.state;
+
+        this.setState((prevState: any) => ({
+            addTextFramesMode: !prevState.addTextFramesMode,
+            addTextSequenceMode: false,
+        }));
     }
 
     private addTextSequence = () => {
+        const {
+            addTextFramesMode,
+            addTextSequenceMode,
+        } = this.state;
+
+        this.setState((prevState: any) => ({
+            addTextFramesMode: false,
+            addTextSequenceMode: !prevState.addTextSequenceMode,
+        }));
     }
 
     private extractFrames = () => {

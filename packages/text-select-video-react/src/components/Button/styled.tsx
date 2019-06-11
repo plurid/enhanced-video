@@ -2,15 +2,30 @@ import styled from 'styled-components';
 
 
 
-export const StyledButtonItem = styled.div`
+export const StyledButtonItem: any = styled.div`
     background-color: ${props => props.theme.backgroundColor};
-    background: ${props => {
-        const { backgroundGradient, backgroundColor } = props.theme;
+    background: ${(props: any) => {
+        const {
+            backgroundGradient,
+            backgroundColor,
+            backgroundColorSecondary,
+        } = props.theme;
+
         if (backgroundGradient) {
             return backgroundGradient;
-        } else {
-            return backgroundColor;
         }
+
+        if (props.pressed) {
+            return backgroundColorSecondary;
+        }
+
+        return backgroundColor;
+    }};
+    box-shadow: ${(props: any) => {
+        if (props.pressed) {
+            return 'inset 0px 4px 4px hsla(220, 5%, 5%, 0.8)';
+        }
+        return '0px 0px 4px 0px hsla(220, 5%, 5%, 0.6)';
     }};
 
     display: flex;
@@ -22,7 +37,6 @@ export const StyledButtonItem = styled.div`
     min-width: 190px;
     border-radius: 20px;
     padding: 7px 10px;
-    box-shadow: 0px 0px 4px 0px hsla(220, 5%, 5%, 0.6);
     transition: box-shadow 150ms linear;
 
     :hover {
