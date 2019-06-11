@@ -51,7 +51,7 @@ class App extends Component {
                     style={ {width: '100%', margin: '150px auto'} }
                 >
                     <TextSelectVideo
-                        // theme="dawn"
+                        // theme="night"
                         // src={video}
                         src={longVideo}
                         type="video/mp4"

@@ -12,6 +12,7 @@ interface IButtonItemProps {
     text: string;
     atClick: (event: any) => void;
     theme: any;
+    pressed?: boolean;
 }
 
 
@@ -24,12 +25,14 @@ class ButtonItem extends Component<
             text,
             atClick,
             theme,
+            pressed,
         } = this.props;
 
         return (
             <StyledButtonItem
                 onClick={atClick}
                 theme={theme}
+                pressed={pressed}
             >
                 {/* <StyledButtonItemIcon
                     theme={theme}

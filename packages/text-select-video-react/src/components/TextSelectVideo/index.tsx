@@ -497,14 +497,24 @@ class TextSelectVideo extends Component<
     }
 
     private toggleTimescrollView = () => {
+        const {
+            textTimescrollView,
+        } = this.state;
+
         this.setState((prevState: any) => ({
             timescrollView: !prevState.timescrollView,
+            textTimescrollView: false,
         }));
     }
 
     private toggleTextTimescrollView = () => {
+        const {
+            timescrollView,
+        } = this.state;
+
         this.setState((prevState: any) => ({
             textTimescrollView: !prevState.textTimescrollView,
+            timescrollView: false,
         }));
     }
 
