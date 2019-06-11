@@ -98,6 +98,7 @@ class TextSelectVideo extends Component<
             message: '',
 
             timescrollView: false,
+            textTimescrollView: false,
 
             apiEndpoint,
             updateDebounce,
@@ -137,6 +138,7 @@ class TextSelectVideo extends Component<
             setVideoPlaybackRate: this.setVideoPlaybackRate,
 
             toggleTimescrollView: this.toggleTimescrollView,
+            toggleTextTimescrollView: this.toggleTextTimescrollView,
             toggleVideoVolume: this.toggleVideoVolume,
 
             selectQualitySource: this.selectQualitySource,
@@ -204,6 +206,7 @@ class TextSelectVideo extends Component<
             toggledSettingsButton,
             message,
             timescrollView,
+            textTimescrollView,
             selectedQualitySourceSrc,
             // imageText,
         } = this.state;
@@ -239,6 +242,14 @@ class TextSelectVideo extends Component<
 
                     {timescrollView && (
                         <TimescrollView />
+                    )}
+
+                    {textTimescrollView && (
+                        <>
+                            <TimescrollView
+                                textTimescroll={true}
+                            />
+                        </>
                     )}
 
                     {videoLoaded && (
@@ -487,6 +498,12 @@ class TextSelectVideo extends Component<
     private toggleTimescrollView = () => {
         this.setState((prevState: any) => ({
             timescrollView: !prevState.timescrollView,
+        }));
+    }
+
+    private toggleTextTimescrollView = () => {
+        this.setState((prevState: any) => ({
+            textTimescrollView: !prevState.textTimescrollView,
         }));
     }
 

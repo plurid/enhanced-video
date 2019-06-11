@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React, { PureComponent } from 'react';
 
 import {
     StyledTimescrollViewLine,
@@ -16,7 +16,7 @@ import { formatTimeString } from '../../utils/timeString';
 
 
 
-class TimescrollViewLine extends Component<
+class TimescrollViewLine extends PureComponent<
     any, any
 > {
     static contextType = Context;
@@ -24,6 +24,8 @@ class TimescrollViewLine extends Component<
     private viewlineTime: any = React.createRef();
 
     public render() {
+        console.log('render');
+
         const {
             startTime,
             endTime,
