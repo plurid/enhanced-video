@@ -24,6 +24,7 @@ class TimescrollView extends Component<
     state = {
         addTextFramesMode: false,
         addTextSequenceMode: false,
+        addingText: false,
         lines: [],
     }
 
@@ -49,6 +50,7 @@ class TimescrollView extends Component<
         const {
             addTextFramesMode,
             addTextSequenceMode,
+            addingText,
         } = this.state;
 
         const hours = Math.floor(videoDuration / 3600);
@@ -69,6 +71,10 @@ class TimescrollView extends Component<
                     endTime={10 * (i + 1)}
                     videoTime={videoTime}
                     textTimescroll={textTimescroll}
+                    addTextFramesMode={addTextFramesMode}
+                    addTextSequenceMode={addTextSequenceMode}
+                    addingText={addingText}
+                    toggleAddingText={this.toggleAddingText}
                 />
             );
             lines.push(line);
@@ -233,11 +239,6 @@ class TimescrollView extends Component<
     }
 
     private addTextFrames = () => {
-        const {
-            addTextFramesMode,
-            addTextSequenceMode,
-        } = this.state;
-
         this.setState((prevState: any) => ({
             addTextFramesMode: !prevState.addTextFramesMode,
             addTextSequenceMode: false,
@@ -245,11 +246,6 @@ class TimescrollView extends Component<
     }
 
     private addTextSequence = () => {
-        const {
-            addTextFramesMode,
-            addTextSequenceMode,
-        } = this.state;
-
         this.setState((prevState: any) => ({
             addTextFramesMode: false,
             addTextSequenceMode: !prevState.addTextSequenceMode,
@@ -260,6 +256,12 @@ class TimescrollView extends Component<
     }
 
     private extractSequences = () => {
+    }
+
+    private toggleAddingText = () => {
+        this.setState((prevState: any) => ({
+            addingText: !prevState.addingText,
+        }));
     }
 }
 
