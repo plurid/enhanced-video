@@ -223,6 +223,7 @@ class TextSelectVideo extends Component<
                     imageWidth={imageWidth}
                     onMouseEnter={this.toggleSettingsButton}
                     onMouseLeave={this.toggleSettingsButton}
+                    onMouseMove={this.verifySettingsButton}
                     ref={this.videoContainer}
                 >
                     <video
@@ -511,6 +512,18 @@ class TextSelectVideo extends Component<
         this.setState((prevState: any) => ({
             toggledSettingsButton: !prevState.toggledSettingsButton,
         }));
+    }
+
+    private verifySettingsButton = () => {
+        const {
+            toggledSettingsButton,
+        } = this.state;
+
+        if (!toggledSettingsButton) {
+            this.setState((prevState: any) => ({
+                toggledSettingsButton: !prevState.toggledSettingsButton,
+            }));
+        }
     }
 
     private toggleEditable = () => {

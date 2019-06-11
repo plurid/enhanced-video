@@ -18,7 +18,8 @@ export const StyledTimescrollView = styled.div`
     }
 
     ul li {
-        margin: 20px;
+        margin: 20px auto;
+        width: 70%;
         user-select: none;
         padding: 0 40px;
     }

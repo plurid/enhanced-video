@@ -30,6 +30,9 @@ class TimescrollViewLine extends PureComponent<
             startTime,
             endTime,
             videoTime,
+            firstLine,
+            lastLine,
+            textTimescroll,
         } = this.props;
 
         const startTimeString = formatTimeString(startTime * 60).format;
@@ -37,6 +40,7 @@ class TimescrollViewLine extends PureComponent<
 
         let viewedWidth = 0;
         let currentTimeString = '';
+        let currentTimeHours = 0;
         if (endTime * 60 < videoTime) {
             viewedWidth = 100;
         }
@@ -57,36 +61,48 @@ class TimescrollViewLine extends PureComponent<
 
             viewedWidth = currentTimeMinutesPercentage + currentTimeSecondsPercentage;
 
-            currentTimeString = formatTimeString(videoTime).format;
+            const currentVideoTime = formatTimeString(videoTime);
+            currentTimeString = currentVideoTime.format;
+            currentTimeHours = currentVideoTime.hours;
         }
 
         return (
             <StyledTimescrollViewLine
                 ref={this.viewlineTime}
                 onClick={this.setTime}
+                // style={{
+                //     width: lastLine ? '40%' : '100%'
+                // }}
             >
                 <StyledTimescrollViewLineViewArea
-                />
-
-                <StyledTimescrollViewLineViewed
-                    style={{
-                        width: viewedWidth + '%',
-                    }}
+                    firstLine={firstLine}
+                    lastLine={lastLine}
                 >
-                    <StyledTimescrollViewLineCurrentTime>
-                        {currentTimeString}
-                    </StyledTimescrollViewLineCurrentTime>
-                </StyledTimescrollViewLineViewed>
+                    <StyledTimescrollViewLineViewed
+                        style={{
+                            width: viewedWidth + '%',
+                        }}
+                        firstLine={firstLine}
+                        lastLine={lastLine}
+                    >
+                        <StyledTimescrollViewLineCurrentTime
+                            viewedWidth={viewedWidth}
+                            currentTimeHours={currentTimeHours}
+                        >
+                            {currentTimeString}
+                        </StyledTimescrollViewLineCurrentTime>
+                    </StyledTimescrollViewLineViewed>
 
-                <StyledTimescrollViewLineTime>
-                    <StyledTimescrollViewLineStartTime>
-                        {startTimeString}
-                    </StyledTimescrollViewLineStartTime>
+                    <StyledTimescrollViewLineTime>
+                        <StyledTimescrollViewLineStartTime>
+                            {startTimeString}
+                        </StyledTimescrollViewLineStartTime>
 
-                    <StyledTimescrollViewLineEndTime>
-                        {endTimeString}
-                    </StyledTimescrollViewLineEndTime>
-                </StyledTimescrollViewLineTime>
+                        <StyledTimescrollViewLineEndTime>
+                            {endTimeString}
+                        </StyledTimescrollViewLineEndTime>
+                    </StyledTimescrollViewLineTime>
+                </StyledTimescrollViewLineViewArea>
             </StyledTimescrollViewLine>
         );
     }

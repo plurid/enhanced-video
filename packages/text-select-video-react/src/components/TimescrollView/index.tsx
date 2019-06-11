@@ -56,9 +56,12 @@ class TimescrollView extends Component<
         for (let i = 0; i < limit; i++) {
             const line = (
                 <TimescrollViewLine
+                    firstLine={i === 0}
+                    lastLine={i === limit - 1}
                     startTime={10 * i}
                     endTime={10 * (i + 1)}
                     videoTime={videoTime}
+                    textTimescroll={textTimescroll}
                 />
             );
             lines.push(line);
