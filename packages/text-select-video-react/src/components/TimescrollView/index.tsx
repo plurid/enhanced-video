@@ -4,8 +4,10 @@ import Context from '../../context';
 import {
     StyledTimescrollView,
     StyledTimescrollViewContainer,
+    StyledTimescrollTextExtractContainer,
 } from './styled';
 
+import Button from '../Button';
 import TimescrollViewLine from '../TimescrollViewLine';
 
 import { getWheelDirection } from '../../utils/wheelDirection';
@@ -19,6 +21,10 @@ class TimescrollView extends Component<
 
     private timescrollView: any = React.createRef();
 
+    state = {
+        lines: [],
+    }
+
     componentDidMount() {
         this.timescrollView.current.addEventListener('wheel', this.handleWheel, { passive: false});
     }
@@ -29,9 +35,14 @@ class TimescrollView extends Component<
 
     public render() {
         const {
+            theme,
             videoTime,
             videoDuration,
         } = this.context;
+
+        const {
+            textTimescroll,
+        } = this.props;
 
         const hours = Math.floor(videoDuration / 3600);
         const minutes = Math.floor((videoDuration - 3600 * hours) / 60);
@@ -59,10 +70,12 @@ class TimescrollView extends Component<
                 ref={this.timescrollView}
                 onKeyDown={this.handleKeyDown}
             >
-                <StyledTimescrollViewContainer>
+                <StyledTimescrollViewContainer
+                    textTimescroll={textTimescroll}
+                >
                     <ul>
                         {
-                            lines.map(line => {
+                            lines.map((line: any) => {
                                 return (
                                     <li
                                         key={Math.random() * 100000}
@@ -73,13 +86,54 @@ class TimescrollView extends Component<
                             })
                         }
                     </ul>
+
+                    {textTimescroll && (
+                        <StyledTimescrollTextExtractContainer
+                            theme={theme}
+                        >
+                            <div>
+                                <Button
+                                    theme={theme}
+                                    text="Add Text Frames"
+                                    atClick={this.addTextFrames}
+                                />
+                            </div>
+                            <div>
+                                <Button
+                                    theme={theme}
+                                    text="Add Text Sequence"
+                                    atClick={this.addTextSequence}
+                                />
+                            </div>
+                            <div>
+                                Text Frames: 3
+                            </div>
+                            <div>
+                                Text Sequence Seconds: 20.5
+                            </div>
+                            <div>
+                                <Button
+                                    theme={theme}
+                                    text="Extract Text Frames"
+                                    atClick={this.extractFrames}
+                                />
+                            </div>
+                            <div>
+                                <Button
+                                    theme={theme}
+                                    text="Extract Text Sequences"
+                                    atClick={this.extractSequences}
+                                />
+                            </div>
+                        </StyledTimescrollTextExtractContainer>
+                    )}
                 </StyledTimescrollViewContainer>
             </StyledTimescrollView>
         );
     }
 
     private handleKeyDown = (event: any) => {
-        console.log(event.key);
+        // console.log(event.key);
 
         const {
             videoTime,
@@ -159,6 +213,18 @@ class TimescrollView extends Component<
         }
 
         setVideoTime(newVideoTime);
+    }
+
+    private addTextFrames = () => {
+    }
+
+    private addTextSequence = () => {
+    }
+
+    private extractFrames = () => {
+    }
+
+    private extractSequences = () => {
     }
 }
 

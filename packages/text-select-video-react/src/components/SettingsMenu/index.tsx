@@ -12,6 +12,8 @@ import AboutIcon from '../../assets/about-icon';
 import AddTextIcon from '../../assets/add-text-icon';
 import SaveVideoTextIcon from '../../assets/save-image-text-icon';
 import GetTextIcon from '../../assets/get-text-icon';
+import MarkTextTimeUntoggledIcon from '../../assets/mark-text-time-untoggled-icon';
+import MarkTextTimeToggledIcon from '../../assets/mark-text-time-toggled-icon';
 import ExtractTextIcon from '../../assets/extract-text-icon';
 
 
@@ -56,11 +58,11 @@ class SettingsMenu extends Component<any, any> {
 
             timescrollView,
             toggleTimescrollView,
+            textTimescrollView,
 
             qualitySources,
             selectQualitySource,
             selectedQualitySource,
-
         } = this.context;
 
         const videoVolumeIcon = videoVolume == 0
@@ -192,9 +194,18 @@ class SettingsMenu extends Component<any, any> {
                     <li>
                         <ButtonItem
                             theme={theme}
-                            atClick={this.extractText}
+                            atClick={this.markTextTime}
+                            icon={textTimescrollView ? MarkTextTimeToggledIcon : MarkTextTimeUntoggledIcon}
+                            text="Mark Text Time"
+                        />
+                    </li>
+
+                    <li>
+                        <ButtonItem
+                            theme={theme}
+                            atClick={this.extractFrame}
                             icon={ExtractTextIcon}
-                            text="Extract Text"
+                            text="Extract Frame"
                         />
                     </li>
 
@@ -288,6 +299,19 @@ class SettingsMenu extends Component<any, any> {
 
         toggleSettings();
         await getAndSetText();
+    }
+
+    private markTextTime = () => {
+        console.log('mark text time');
+        const {
+            toggleTextTimescrollView
+        } = this.context;
+
+        toggleTextTimescrollView();
+    }
+
+    private extractFrame = () => {
+
     }
 
     private extractText = async () => {

@@ -47,6 +47,7 @@ export interface ITextSelectVideoState {
     selectedQualitySourceSrc: string;
 
     timescrollView: boolean;
+    textTimescrollView: boolean;
 
     videoContainerWidth: number;
     videoContainerHeight: number;
@@ -105,6 +106,7 @@ export interface ITextSelectVideoState {
     saveVideoText: () => any;
 
     toggleTimescrollView: () => void;
+    toggleTextTimescrollView: () => void;
     toggleVideoVolume: () => void;
 
     selectQualitySource: (value: number) => void;
