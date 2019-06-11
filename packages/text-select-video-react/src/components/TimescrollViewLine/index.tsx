@@ -69,7 +69,9 @@ class TimescrollViewLine extends PureComponent<
         return (
             <StyledTimescrollViewLine
                 ref={this.viewlineTime}
-                onClick={this.setTime}
+                onClick={!textTimescroll ? this.setTime : undefined}
+                onMouseDown={textTimescroll ? this.setText : undefined}
+                onMouseMove={textTimescroll ? this.addingText : undefined}
                 // style={{
                 //     width: lastLine ? '40%' : '100%'
                 // }}
@@ -131,6 +133,30 @@ class TimescrollViewLine extends PureComponent<
 
         // console.log(videoTime);
         setVideoTime(videoTime);
+    }
+
+    private setText = (event: any) => {
+        const {
+            addTextFramesMode,
+            addTextSequenceMode,
+            toggleAddingText,
+        } = this.props;
+
+        if (addTextFramesMode || addTextSequenceMode) {
+            toggleAddingText();
+        }
+
+        console.log(addTextFramesMode, addTextSequenceMode);
+    }
+
+    private addingText = () => {
+        const {
+            addingText,
+        } = this.props;
+
+        if (addingText) {
+            console.log('adding text');
+        }
     }
 }
 
