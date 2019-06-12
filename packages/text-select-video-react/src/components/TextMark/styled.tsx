@@ -58,21 +58,34 @@ export const StyledTextMark: any = styled.div`
 
 
 export const StyledTimeString: any = styled.div`
-    font-size: 12px;
+    font-size: 11px;
     position: relative;
     width: 100%;
+    height: 100%;
 `;
 
 
 export const StyledStartTimeString: any = styled.div`
     position: absolute;
-    top: 0;
-    left: 0;
+    bottom: 2px;
+    left: ${(props: any) => {
+        if (props.width > 12) {
+            return '2px';
+        }
+
+        return '-36px';
+    }};
 `;
 
 
 export const StyledEndTimeString: any = styled.div`
     position: absolute;
-    top: 0;
-    right: 0;
+    bottom: 2px;
+    right: ${(props: any) => {
+        if (props.width > 12) {
+            return '2px';
+        }
+
+        return '-36px';
+    }};
 `;

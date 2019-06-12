@@ -64,6 +64,7 @@ class TextMark extends Component<
 
         // console.log(data.id, type);
         const width = end - start;
+        // console.log(width);
 
         const startTimeString = formatTimeString(data.start).format;
         const endTimeString = formatTimeString(data.end).format;
@@ -90,11 +91,15 @@ class TextMark extends Component<
             >
                 {showTime && (
                     <StyledTimeString>
-                        <StyledStartTimeString>
+                        <StyledStartTimeString
+                            width={width}
+                        >
                             {startTimeString}
                         </StyledStartTimeString>
 
-                        <StyledEndTimeString>
+                        <StyledEndTimeString
+                            width={width}
+                        >
                             {endTimeString}
                         </StyledEndTimeString>
                     </StyledTimeString>
@@ -195,15 +200,15 @@ class TextMark extends Component<
     }
 
     private toggleShowTime = () => {
-        const {
-            dragging
-        } = this.state;
+        // const {
+        //     dragging,
+        // } = this.state;
 
-        if (!dragging) {
+        // if (!dragging) {
             this.setState((prevState: any) => ({
                 showTime: !prevState.showTime,
             }));
-        }
+        // }
     }
 }
 

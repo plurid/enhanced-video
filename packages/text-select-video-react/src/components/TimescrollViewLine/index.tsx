@@ -272,7 +272,7 @@ class TimescrollViewLine extends PureComponent<
 
         const timePercentage = (clientX - left)/width * 100;
         const viewLineTime = timePercentage / 100 * (10 * 60);
-        console.log('viewLineTime', viewLineTime);
+        // console.log('viewLineTime', viewLineTime);
 
         const startTimeSeconds = startTime * 60;
         // console.log('startTimeSeconds', startTimeSeconds);
