@@ -29,7 +29,7 @@ class TimescrollView extends Component<
         textFrames: [
             {
                 id: '1',
-                start: 200,
+                start: 220,
                 end: 230,
             },
             {

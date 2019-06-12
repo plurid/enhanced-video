@@ -76,7 +76,7 @@ class TimescrollViewLine extends PureComponent<
                     end,
                 } = textFrame;
 
-                if (start > startTime * 60 && start < endTime * 60) {
+                if (start >= startTime * 60 && start <= endTime * 60) {
                     const startPercentage = (start - startTime * 60) * 100 / (10 * 60);
                     const endPercentage = (end - startTime * 60) * 100 / (10 * 60);
 
@@ -84,6 +84,7 @@ class TimescrollViewLine extends PureComponent<
                         <TextMark
                             type="frame"
                             key={id}
+                            id={id}
                             start={startPercentage}
                             end={endPercentage}
                         />
@@ -103,7 +104,7 @@ class TimescrollViewLine extends PureComponent<
                     end,
                 } = textSequence;
 
-                if (start > startTime * 60 && start < endTime * 60) {
+                if (start >= startTime * 60 && start <= endTime * 60) {
                     const startPercentage = (start - startTime * 60) * 100 / (10 * 60);
                     const endPercentage = (end - startTime * 60) * 100 / (10 * 60);
 
@@ -111,6 +112,7 @@ class TimescrollViewLine extends PureComponent<
                         <TextMark
                             type="sequence"
                             key={id}
+                            id={id}
                             start={startPercentage}
                             end={endPercentage}
                         />

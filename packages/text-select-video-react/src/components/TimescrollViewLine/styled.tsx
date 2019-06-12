@@ -7,7 +7,7 @@ export const StyledTimescrollViewLine = styled.div`
     height: 30px;
     position: relative;
     cursor: pointer;
-    z-index: 99999;
+    z-index: 100;
     overflow: hidden;
 `;
 
