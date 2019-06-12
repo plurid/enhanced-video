@@ -22,8 +22,16 @@ class TimescrollViewLine extends PureComponent<
 
     private viewlineTime: any = React.createRef();
 
+    state = {
+        viewLineTime: 0,
+    }
+
     public render() {
         console.log('render');
+
+        const {
+            viewLineTime,
+        } = this.state;
 
         const {
             startTime,
@@ -89,6 +97,7 @@ class TimescrollViewLine extends PureComponent<
                             start={startPercentage}
                             end={endPercentage}
                             updateTextMark={updateTextMark}
+                            viewLineTime={viewLineTime}
                         />
                     )
                 }
@@ -118,6 +127,7 @@ class TimescrollViewLine extends PureComponent<
                             start={startPercentage}
                             end={endPercentage}
                             updateTextMark={updateTextMark}
+                            viewLineTime={viewLineTime}
                         />
                     )
                 }
@@ -262,7 +272,7 @@ class TimescrollViewLine extends PureComponent<
 
         const timePercentage = (clientX - left)/width * 100;
         const viewLineTime = timePercentage / 100 * (10 * 60);
-        // console.log('viewLineTime', viewLineTime);
+        console.log('viewLineTime', viewLineTime);
 
         const startTimeSeconds = startTime * 60;
         // console.log('startTimeSeconds', startTimeSeconds);
@@ -273,6 +283,10 @@ class TimescrollViewLine extends PureComponent<
             console.log('adding text');
             setTextEnding(time);
         }
+
+        this.setState({
+            viewLineTime,
+        });
     }
 }
 

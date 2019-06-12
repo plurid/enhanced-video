@@ -2,7 +2,18 @@ import React, { Component } from 'react';
 
 import {
     StyledTextMark,
+    StyledTimeString,
+    StyledStartTimeString,
+    StyledEndTimeString,
 } from './styled';
+
+import {
+    LEFT_HANDLE,
+    RIGHT_HANDLE,
+    MOVE_MARK,
+} from './constants';
+
+import { formatTimeString } from '../../utils/timeString';
 
 
 
@@ -12,6 +23,7 @@ class TextMark extends Component<
     private textMark: any;
 
     public state = {
+        showTime: false,
         dragging: false,
         dragType: '',
         pos1: 0,
@@ -38,6 +50,7 @@ class TextMark extends Component<
 
     public render() {
         const {
+            showTime,
             dragging,
             dragType,
         } = this.state;
@@ -49,7 +62,11 @@ class TextMark extends Component<
             end,
         } = this.props;
 
-        console.log(data.id, type);
+        // console.log(data.id, type);
+        const width = end - start;
+
+        const startTimeString = formatTimeString(data.start).format;
+        const endTimeString = formatTimeString(data.end).format;
 
         return (
             <StyledTextMark
@@ -61,9 +78,27 @@ class TextMark extends Component<
 
                 onMouseDown={this.dragMouseDown}
                 onMouseUp={this.dragMouseUp}
+                onMouseEnter={this.toggleShowTime}
+                onMouseLeave={this.toggleShowTime}
 
                 ref={this.textMark}
+
+                style={{
+                    width: width + '%',
+                    left: start + '%',
+                }}
             >
+                {showTime && (
+                    <StyledTimeString>
+                        <StyledStartTimeString>
+                            {startTimeString}
+                        </StyledStartTimeString>
+
+                        <StyledEndTimeString>
+                            {endTimeString}
+                        </StyledEndTimeString>
+                    </StyledTimeString>
+                )}
             </StyledTextMark>
         );
     }
@@ -86,11 +121,11 @@ class TextMark extends Component<
         const handleLimit = width < 20 ? 1 : 6;
         let dragType = '';
         if (clickLocationX < handleLimit) {
-            dragType = 'leftHandle';
+            dragType = LEFT_HANDLE;
         } else if (clickLocationX + handleLimit > width) {
-            dragType = 'rightHandle';
+            dragType = RIGHT_HANDLE;
         } else {
-            dragType = 'allHandle';
+            dragType = MOVE_MARK;
         }
 
         this.setState({
@@ -112,40 +147,42 @@ class TextMark extends Component<
         const { dragging } = this.state;
         if (!dragging) { return; }
 
+        event.preventDefault();
+
         const {
             dragType,
+            pos3,
+            pos4,
         } = this.state;
 
         const {
             type,
             data,
             updateTextMark,
+            viewLineTime,
         } = this.props;
 
-        event.preventDefault();
+        const {
+            pageX,
+            pageY,
+        } = event;
 
-        // console.log(dragType);
-        if (dragType === 'leftHandle') {
-            // console.log(data.start + 1);
-            updateTextMark(type, data.id, 'start', data.start - 1);
+        // calculate the new cursor position:
+        const diffX = pageX - pos3;
+        const diffY = pageY - pos4;
+
+        switch (dragType) {
+            case LEFT_HANDLE:
+                updateTextMark(type, data.id, 'start', viewLineTime);
+                break;
+            case RIGHT_HANDLE:
+                updateTextMark(type, data.id, 'end', viewLineTime);
+                break;
+            case MOVE_MARK:
+                console.log('move mark');
+            default:
+                console.log('move mark');
         }
-
-        // const {
-        //     pos3,
-        //     pos4,
-        // } = this.state;
-
-        // const {
-        //     offsetLeft,
-        //     offsetTop,
-        // } = this.textMark.current;
-
-        // const pageX = event.pageX;
-        // const pageY = event.pageY;
-
-        // // calculate the new cursor position:
-        // const diffX = pageX - pos3;
-        // const diffY = pageY - pos4;
 
         // this.setState({
         //     pos1: pos3,
@@ -155,6 +192,18 @@ class TextMark extends Component<
         //     xCoord: offsetLeft + diffX,
         //     yCoord: offsetTop + diffY,
         // });
+    }
+
+    private toggleShowTime = () => {
+        const {
+            dragging
+        } = this.state;
+
+        if (!dragging) {
+            this.setState((prevState: any) => ({
+                showTime: !prevState.showTime,
+            }));
+        }
     }
 }
 

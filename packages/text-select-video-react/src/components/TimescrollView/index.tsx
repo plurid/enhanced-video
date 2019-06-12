@@ -124,7 +124,7 @@ class TimescrollView extends Component<
                     textTimescroll={textTimescroll}
                 >
                     <ul>
-                        {
+                        {/* {
                             lines.map((line: any) => {
                                 return (
                                     <li
@@ -134,7 +134,27 @@ class TimescrollView extends Component<
                                     </li>
                                 );
                             })
-                        }
+                        } */}
+
+                        <li>
+                            <TimescrollViewLine
+                                firstLine={true}
+                                lastLine={true}
+                                startTime={0}
+                                endTime={10}
+                                videoTime={videoTime}
+                                textTimescroll={textTimescroll}
+                                addTextFramesMode={addTextFramesMode}
+                                addTextSequenceMode={addTextSequenceMode}
+                                addingText={addingText}
+                                toggleAddingText={this.toggleAddingText}
+                                setTextBeginning={this.setTextBeginning}
+                                setTextEnding={this.setTextEnding}
+                                textFrames={textFrames}
+                                textSequences={textSequences}
+                                updateTextMark={this.updateTextMark}
+                            />
+                        </li>
                     </ul>
 
                     {textTimescroll && (
