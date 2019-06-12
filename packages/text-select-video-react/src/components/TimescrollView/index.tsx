@@ -26,6 +26,32 @@ class TimescrollView extends Component<
         addTextSequenceMode: false,
         addingText: false,
         lines: [],
+        textFrames: [
+            {
+                id: '1',
+                start: 200,
+                end: 230,
+            },
+            {
+                id: '2',
+                start: 2450,
+                end: 2560,
+            },
+        ],
+        textSequences: [
+            {
+                id: '1',
+                start: 240,
+                end: 300,
+            },
+            {
+                id: '2',
+                start: 3850,
+                end: 3960,
+            },
+        ],
+        textBeginning: 0,
+        textEnding: 0,
     }
 
     componentDidMount() {
@@ -51,6 +77,8 @@ class TimescrollView extends Component<
             addTextFramesMode,
             addTextSequenceMode,
             addingText,
+            textFrames,
+            textSequences,
         } = this.state;
 
         const hours = Math.floor(videoDuration / 3600);
@@ -75,6 +103,10 @@ class TimescrollView extends Component<
                     addTextSequenceMode={addTextSequenceMode}
                     addingText={addingText}
                     toggleAddingText={this.toggleAddingText}
+                    setTextBeginning={this.setTextBeginning}
+                    setTextEnding={this.setTextEnding}
+                    textFrames={textFrames}
+                    textSequences={textSequences}
                 />
             );
             lines.push(line);
@@ -152,7 +184,7 @@ class TimescrollView extends Component<
     }
 
     private handleMouseDown = (event: any) => {
-        console.log(event.target);
+        // console.log(event.target);
     }
 
     private handleKeyDown = (event: any) => {
@@ -262,6 +294,69 @@ class TimescrollView extends Component<
         this.setState((prevState: any) => ({
             addingText: !prevState.addingText,
         }));
+    }
+
+    private setTextBeginning = (textBeginning: number) => {
+        this.setState({
+            textBeginning,
+        });
+    }
+
+    private setTextEnding = (textEnding: number) => {
+        const {
+            textBeginning,
+        } = this.state;
+
+        this.createTextMark(textBeginning, textEnding);
+
+        this.setState({
+            textEnding,
+        });
+    }
+
+    private createTextMark = (beginning: number, ending: number) => {
+        // console.log(beginning, ending);
+        const {
+            addTextFramesMode,
+            addTextSequenceMode,
+            textFrames,
+            textSequences,
+        } = this.state;
+
+        const start = beginning < ending ? beginning : ending;
+        const end = beginning < ending ? ending : beginning;
+
+        if (addTextFramesMode) {
+            const newTextFrames: any = [ ...textFrames ];
+
+            const newTextFrame = {
+                id: Math.random() * 10000 + '',
+                start,
+                end,
+            };
+
+            newTextFrames.push(newTextFrame);
+
+            this.setState({
+                textFrames: newTextFrames,
+            });
+        }
+
+        if (addTextSequenceMode) {
+            const newTextSequences: any = [ ...textSequences ];
+
+            const newTextSequence = {
+                id: Math.random() * 10000 + '',
+                start,
+                end,
+            };
+
+            newTextSequences.push(newTextSequence);
+
+            this.setState({
+                textSequences: newTextSequences,
+            });
+        }
     }
 }
 

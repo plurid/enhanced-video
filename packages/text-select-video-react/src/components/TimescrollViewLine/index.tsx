@@ -8,6 +8,8 @@ import {
     StyledTimescrollViewLineStartTime,
     StyledTimescrollViewLineEndTime,
     StyledTimescrollViewLineCurrentTime,
+    StyledTextFrame,
+    StyledTextSequence,
 } from './styled';
 
 import Context from '../../context';
@@ -33,6 +35,8 @@ class TimescrollViewLine extends PureComponent<
             firstLine,
             lastLine,
             textTimescroll,
+            textFrames,
+            textSequences,
         } = this.props;
 
         const startTimeString = formatTimeString(startTime * 60).format;
@@ -66,6 +70,58 @@ class TimescrollViewLine extends PureComponent<
             currentTimeHours = currentVideoTime.hours;
         }
 
+        let textFramesRender = (<></>);
+        if (textFrames) {
+            textFramesRender = textFrames.map((textFrame: any) => {
+                const {
+                    id,
+                    start,
+                    end,
+                } = textFrame;
+
+                if (start > startTime * 60 && start < endTime * 60) {
+                    const startPercentage = (start - startTime * 60) * 100 / (10 * 60);
+                    const endPercentage = (end - startTime * 60) * 100 / (10 * 60);
+
+                    return (
+                        <StyledTextFrame
+                            key={id}
+                            start={startPercentage}
+                            end={endPercentage}
+                        />
+                    )
+                }
+
+                return;
+            });
+        }
+
+        let textSequencesRender = (<></>);
+        if (textSequences) {
+            textSequencesRender = textSequences.map((textSequence: any) => {
+                const {
+                    id,
+                    start,
+                    end,
+                } = textSequence;
+
+                if (start > startTime * 60 && start < endTime * 60) {
+                    const startPercentage = (start - startTime * 60) * 100 / (10 * 60);
+                    const endPercentage = (end - startTime * 60) * 100 / (10 * 60);
+
+                    return (
+                        <StyledTextSequence
+                            key={id}
+                            start={startPercentage}
+                            end={endPercentage}
+                        />
+                    )
+                }
+
+                return;
+            });
+        }
+
         return (
             <StyledTimescrollViewLine
                 ref={this.viewlineTime}
@@ -94,6 +150,13 @@ class TimescrollViewLine extends PureComponent<
                             {currentTimeString}
                         </StyledTimescrollViewLineCurrentTime>
                     </StyledTimescrollViewLineViewed>
+
+                    {textTimescroll && (
+                        <>
+                            {textFramesRender}
+                            {textSequencesRender}
+                        </>
+                    )}
 
                     <StyledTimescrollViewLineTime>
                         <StyledTimescrollViewLineStartTime>
@@ -137,25 +200,74 @@ class TimescrollViewLine extends PureComponent<
 
     private setText = (event: any) => {
         const {
+            startTime,
             addTextFramesMode,
             addTextSequenceMode,
             toggleAddingText,
+            setTextBeginning,
+            setTextEnding,
+            addingText,
         } = this.props;
 
         if (addTextFramesMode || addTextSequenceMode) {
             toggleAddingText();
         }
 
-        console.log(addTextFramesMode, addTextSequenceMode);
+        const { clientX } = event;
+        // console.log(event.clientX);
+
+        const {
+            width,
+            left,
+        } = this.viewlineTime.current.getBoundingClientRect();
+
+        const timePercentage = (clientX - left)/width * 100;
+        const viewLineTime = timePercentage / 100 * (10 * 60);
+        // console.log('viewLineTime', viewLineTime);
+
+        const startTimeSeconds = startTime * 60;
+        // console.log('startTimeSeconds', startTimeSeconds);
+
+        const time = startTimeSeconds + viewLineTime;
+
+        if (addTextFramesMode || addTextSequenceMode) {
+            setTextBeginning(time);
+        }
+
+        // console.log(time);
+        // console.log(time / 60);
+        // console.log(timePercentage);
+
+        // console.log(addTextFramesMode, addTextSequenceMode);
     }
 
-    private addingText = () => {
+    private addingText = (event: any) => {
         const {
+            startTime,
             addingText,
+            setTextEnding,
         } = this.props;
+
+        const { clientX } = event;
+        // console.log(event.clientX);
+
+        const {
+            width,
+            left,
+        } = this.viewlineTime.current.getBoundingClientRect();
+
+        const timePercentage = (clientX - left)/width * 100;
+        const viewLineTime = timePercentage / 100 * (10 * 60);
+        // console.log('viewLineTime', viewLineTime);
+
+        const startTimeSeconds = startTime * 60;
+        // console.log('startTimeSeconds', startTimeSeconds);
+
+        const time = startTimeSeconds + viewLineTime;
 
         if (addingText) {
             console.log('adding text');
+            setTextEnding(time);
         }
     }
 }

@@ -125,7 +125,7 @@ class Timescroll extends Component<
 
         const {
             width,
-            left
+            left,
         } = this.timescrollArea.current.getBoundingClientRect();
 
         const timePercentage = (clientX - left)/width * 100;

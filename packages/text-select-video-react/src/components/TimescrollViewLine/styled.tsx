@@ -116,15 +116,47 @@ export const StyledTimescrollViewLineCurrentTime: any = styled.div`
             return '-44px';
         }
         return '2px';
-    }}
+    }};
 `;
 
 
 export const StyledTimescrollViewLineStartTime = styled.div`
-
 `;
 
 
 export const StyledTimescrollViewLineEndTime = styled.div`
+`;
 
+
+export const StyledTextFrame: any = styled.div`
+    position: absolute;
+    height: 100%;
+    background-color: hsla(220, 90%, 40%, 0.8);
+    border-left: 1px solid hsla(220, 90%, 90%, 0.8);
+    border-right: 1px solid hsla(220, 90%, 90%, 0.8);
+
+    left: ${(props: any) => {
+        return props.start + '%';
+    }};
+    width: ${(props: any) => {
+        const width = props.end - props.start;
+        return width + '%';
+    }};
+`;
+
+
+export const StyledTextSequence: any = styled.div`
+    position: absolute;
+    height: 100%;
+    background-color: hsla(300, 90%, 40%, 0.8);
+    border-left: 1px solid hsla(300, 90%, 90%, 0.8);
+    border-right: 1px solid hsla(300, 90%, 90%, 0.8);
+
+    left: ${(props: any) => {
+        return props.start + '%';
+    }};
+    width: ${(props: any) => {
+        const width = props.end - props.start;
+        return width + '%';
+    }};
 `;
