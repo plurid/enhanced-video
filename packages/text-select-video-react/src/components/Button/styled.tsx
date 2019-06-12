@@ -23,7 +23,7 @@ export const StyledButtonItem: any = styled.div`
     }};
     box-shadow: ${(props: any) => {
         if (props.pressed) {
-            return 'inset 0px 4px 4px hsla(220, 5%, 5%, 0.8)';
+            return 'inset 0px 3px 3px hsla(220, 5%, 5%, 0.8)';
         }
         return '0px 0px 4px 0px hsla(220, 5%, 5%, 0.6)';
     }};
