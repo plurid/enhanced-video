@@ -34,6 +34,7 @@ class TimescrollViewLine extends PureComponent<
             textTimescroll,
             textFrames,
             textSequences,
+            updateTextMark,
         } = this.props;
 
         const startTimeString = formatTimeString(startTime * 60).format;
@@ -84,9 +85,10 @@ class TimescrollViewLine extends PureComponent<
                         <TextMark
                             type="frame"
                             key={id}
-                            id={id}
+                            data={textFrame}
                             start={startPercentage}
                             end={endPercentage}
+                            updateTextMark={updateTextMark}
                         />
                     )
                 }
@@ -112,9 +114,10 @@ class TimescrollViewLine extends PureComponent<
                         <TextMark
                             type="sequence"
                             key={id}
-                            id={id}
+                            data={textSequence}
                             start={startPercentage}
                             end={endPercentage}
+                            updateTextMark={updateTextMark}
                         />
                     )
                 }

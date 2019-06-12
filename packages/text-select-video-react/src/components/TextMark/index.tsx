@@ -43,13 +43,13 @@ class TextMark extends Component<
         } = this.state;
 
         const {
-            id,
+            data,
             type,
             start,
             end,
         } = this.props;
 
-        console.log(id, type);
+        console.log(data.id, type);
 
         return (
             <StyledTextMark
@@ -116,35 +116,45 @@ class TextMark extends Component<
             dragType,
         } = this.state;
 
+        const {
+            type,
+            data,
+            updateTextMark,
+        } = this.props;
+
         event.preventDefault();
 
-        console.log(dragType);
+        // console.log(dragType);
+        if (dragType === 'leftHandle') {
+            // console.log(data.start + 1);
+            updateTextMark(type, data.id, 'start', data.start - 1);
+        }
 
-        const {
-            pos3,
-            pos4,
-        } = this.state;
+        // const {
+        //     pos3,
+        //     pos4,
+        // } = this.state;
 
-        const {
-            offsetLeft,
-            offsetTop,
-        } = this.textMark.current;
+        // const {
+        //     offsetLeft,
+        //     offsetTop,
+        // } = this.textMark.current;
 
-        const pageX = event.pageX;
-        const pageY = event.pageY;
+        // const pageX = event.pageX;
+        // const pageY = event.pageY;
 
-        // calculate the new cursor position:
-        const diffX = pageX - pos3;
-        const diffY = pageY - pos4;
+        // // calculate the new cursor position:
+        // const diffX = pageX - pos3;
+        // const diffY = pageY - pos4;
 
-        this.setState({
-            pos1: pos3,
-            pos2: pos4,
-            pos3: pageX,
-            pos4: pageY,
-            xCoord: offsetLeft + diffX,
-            yCoord: offsetTop + diffY,
-        });
+        // this.setState({
+        //     pos1: pos3,
+        //     pos2: pos4,
+        //     pos3: pageX,
+        //     pos4: pageY,
+        //     xCoord: offsetLeft + diffX,
+        //     yCoord: offsetTop + diffY,
+        // });
     }
 }
 
