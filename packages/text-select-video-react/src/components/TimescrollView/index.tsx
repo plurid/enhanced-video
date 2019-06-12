@@ -107,6 +107,7 @@ class TimescrollView extends Component<
                     setTextEnding={this.setTextEnding}
                     textFrames={textFrames}
                     textSequences={textSequences}
+                    updateTextMark={this.updateTextMark}
                 />
             );
             lines.push(line);
@@ -355,6 +356,45 @@ class TimescrollView extends Component<
 
             this.setState({
                 textSequences: newTextSequences,
+            });
+        }
+    }
+
+    private updateTextMark = (type: string, id: string, element: string, value: any) => {
+        const {
+            textFrames,
+            textSequences,
+        } = this.state;
+
+        const textMarks = type === 'frame' ? [...textFrames] : [...textSequences];
+
+        // const textMark = getTextMarkById(id, textMarks);
+        const textMarksFiltered = textMarks.filter(mark => {
+            if (mark.id === id) {
+                return mark;
+            }
+
+            return false;
+        });
+        const textMark = {...textMarksFiltered[0]};
+        textMark[element] = value;
+
+        const updatedTextMarks = textMarks.map(mark => {
+            if (mark.id === id) {
+                return textMark;
+            }
+
+            return mark;
+        });
+
+        console.log(updatedTextMarks);
+        if (type === 'frame') {
+            this.setState({
+                textFrames: updatedTextMarks,
+            });
+        } else {
+            this.setState({
+                textSequences: updatedTextMarks,
             });
         }
     }
