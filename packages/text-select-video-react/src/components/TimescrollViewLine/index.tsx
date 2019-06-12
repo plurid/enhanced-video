@@ -1,18 +1,15 @@
 import React, { PureComponent } from 'react';
+import Context from '../../context';
 
 import {
     StyledTimescrollViewLine,
     StyledTimescrollViewLineViewArea,
     StyledTimescrollViewLineViewed,
     StyledTimescrollViewLineTime,
-    StyledTimescrollViewLineStartTime,
-    StyledTimescrollViewLineEndTime,
     StyledTimescrollViewLineCurrentTime,
-    StyledTextFrame,
-    StyledTextSequence,
 } from './styled';
 
-import Context from '../../context';
+import TextMark from '../TextMark';
 
 import { formatTimeString } from '../../utils/timeString';
 
@@ -84,7 +81,8 @@ class TimescrollViewLine extends PureComponent<
                     const endPercentage = (end - startTime * 60) * 100 / (10 * 60);
 
                     return (
-                        <StyledTextFrame
+                        <TextMark
+                            type="frame"
                             key={id}
                             start={startPercentage}
                             end={endPercentage}
@@ -110,7 +108,8 @@ class TimescrollViewLine extends PureComponent<
                     const endPercentage = (end - startTime * 60) * 100 / (10 * 60);
 
                     return (
-                        <StyledTextSequence
+                        <TextMark
+                            type="sequence"
                             key={id}
                             start={startPercentage}
                             end={endPercentage}
@@ -159,13 +158,13 @@ class TimescrollViewLine extends PureComponent<
                     )}
 
                     <StyledTimescrollViewLineTime>
-                        <StyledTimescrollViewLineStartTime>
+                        <div>
                             {startTimeString}
-                        </StyledTimescrollViewLineStartTime>
+                        </div>
 
-                        <StyledTimescrollViewLineEndTime>
+                        <div>
                             {endTimeString}
-                        </StyledTimescrollViewLineEndTime>
+                        </div>
                     </StyledTimescrollViewLineTime>
                 </StyledTimescrollViewLineViewArea>
             </StyledTimescrollViewLine>
