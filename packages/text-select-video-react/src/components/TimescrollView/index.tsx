@@ -124,7 +124,7 @@ class TimescrollView extends Component<
                     textTimescroll={textTimescroll}
                 >
                     <ul>
-                        {/* {
+                        {
                             lines.map((line: any) => {
                                 return (
                                     <li
@@ -134,9 +134,9 @@ class TimescrollView extends Component<
                                     </li>
                                 );
                             })
-                        } */}
+                        }
 
-                        <li>
+                        {/* <li>
                             <TimescrollViewLine
                                 firstLine={true}
                                 lastLine={true}
@@ -154,7 +154,7 @@ class TimescrollView extends Component<
                                 textSequences={textSequences}
                                 updateTextMark={this.updateTextMark}
                             />
-                        </li>
+                        </li> */}
                     </ul>
 
                     {textTimescroll && (
