@@ -1,5 +1,4 @@
-import React, { Component } from 'react';
+import EnhancedVideo from './components/EnhancedVideo';
 
 
-
-export default class EnhancedVideo extends Component {}
+export default EnhancedVideo;

@@ -6,13 +6,18 @@
     text-rendering: optimizeLegibility;
 }
 
-html, body {
-    height: 100%;
-    margin: 0;
-    width: 100%;
+body {
     background-color: hsl(220, 20%, 20%);
     color: white;
-    font-family: 'Lucida Sans', 'Lucida Sans Regular', sans-serif;
+    height: 100%;
+    width: 100%;
+
+    margin: 0;
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
+        'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
+        sans-serif;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
 }
 
 .app {

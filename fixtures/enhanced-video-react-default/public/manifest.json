@@ -1,8 +1,0 @@
-{
-    "short_name": "enhanced-video-react-impl",
-    "name": "enhanced-video-react-impl",
-    "start_url": "./index.html",
-    "display": "standalone",
-    "theme_color": "#000000",
-    "background_color": "#ffffff"
-}
