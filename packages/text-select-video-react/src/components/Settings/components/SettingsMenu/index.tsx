@@ -119,12 +119,14 @@ const SettingsMenu: React.FC<any> = () => {
                     />
                 </li>
 
-                {/* <li>
+                <li>
                     <ButtonTimescroll
-                        toggle={toggleTimescrollView}
-                        toggled={timescrollView}
+                        // toggle={toggleTimescrollView}
+                        toggle={() => {}}
+                        // toggled={timescrollView}
+                        toggled={true}
                     />
-                </li> */}
+                </li>
 
                 {/* <li>
                     <ButtonSliderItem

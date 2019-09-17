@@ -8,8 +8,6 @@ export const StyledButtonItem = styled.div`
     padding: 7px 10px;
     cursor: pointer;
     height: 32px;
-
-    color: ${props => props.theme.colorPrimary};
 `;
 
 export const StyledButtonItemIcon = styled.div`

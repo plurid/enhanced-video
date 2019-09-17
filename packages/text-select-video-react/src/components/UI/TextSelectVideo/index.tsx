@@ -355,20 +355,6 @@ class TextSelectVideo extends Component<
         });
     }
 
-    private playVideo = () => {
-        this.video.current!.play();
-        this.setState({
-            videoPlaying: true,
-        });
-    }
-
-    private pauseVideo = () => {
-        this.video.current!.pause();
-        this.setState({
-            videoPlaying: false,
-        });
-    }
-
     private createTextVideo = () => {
         const {
             imageText,
@@ -498,12 +484,6 @@ class TextSelectVideo extends Component<
         });
     }
 
-    private toggleSettings = () => {
-        this.setState((prevState: any) => ({
-            toggledSettings: !prevState.toggledSettings,
-        }));
-    }
-
     private toggleTimescrollView = () => {
         const {
             textTimescrollView,
@@ -572,79 +552,6 @@ class TextSelectVideo extends Component<
                 }
             }
         );
-    }
-
-    private handleLoadedVideo = async (video: any) => {
-        const {
-            atLoad,
-        } = this.props;
-
-        const videoDuration = video.target.duration;
-
-        if (atLoad) {
-            await atLoad(video);
-        }
-
-        this.setState({
-            videoLoaded: true,
-            videoDuration,
-        },
-            // await this.computeVideoSha
-        );
-    }
-
-    private handleLoadedMetadata = (video: any) => {
-        if (video.target) {
-            const videoWidth = video.target.videoWidth;
-            const videoHeight = video.target.videoHeight;
-            const videoRatio = videoWidth / videoHeight;
-            // console.log(videoRatio, videoWidth, videoHeight);
-
-            this.setState({
-                videoWidth,
-                videoHeight,
-                videoRatio,
-            },
-                this.computeVideoBoxDimensions
-            );
-        }
-    }
-
-    private computeVideoBoxDimensions = () => {
-        const {
-            videoHeight,
-            videoRatio,
-        } = this.state;
-
-        const videoContainerWidth = this.videoContainer.current!.offsetWidth;
-        const videoContainerHeight = this.videoContainer.current!.offsetHeight;
-        // console.log(videoContainerWidth, videoContainerHeight);
-
-        let videoBoxWidth = 0;
-        let videoBoxHeight = 0;
-        if (videoHeight > videoContainerHeight) {
-            videoBoxWidth = videoContainerWidth;
-            videoBoxHeight = videoContainerWidth / videoRatio;
-        }
-
-        if (videoBoxHeight > videoContainerHeight) {
-            videoBoxWidth = videoContainerHeight * videoRatio;
-            videoBoxHeight = videoContainerHeight;
-        }
-
-        const videoBoxLeft = (videoContainerWidth - videoBoxWidth) / 2;
-        const videoBoxTop = (videoContainerHeight - videoBoxHeight) / 2;
-        // console.log(videoBoxWidth, videoBoxHeight);
-        // console.log(videoBoxLeft, videoBoxTop);
-
-        this.setState({
-            videoContainerWidth,
-            videoContainerHeight,
-            videoBoxWidth,
-            videoBoxHeight,
-            videoBoxLeft,
-            videoBoxTop,
-        })
     }
 
     private setMessage = (message: string, time?: number) => {
