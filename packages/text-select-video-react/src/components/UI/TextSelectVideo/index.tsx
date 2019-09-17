@@ -289,40 +289,6 @@ class TextSelectVideo extends Component<
         });
     }
 
-    private toggleVideoVolume = () => {
-        const {
-            previousVideoVolume,
-            videoVolume,
-        } = this.state;
-
-        if (videoVolume === 0) {
-            this.video.current!.volume = previousVideoVolume / 2;
-            this.setState({
-                videoVolume: previousVideoVolume,
-            });
-        } else {
-            this.video.current!.volume = 0;
-            this.setState({
-                videoVolume: 0,
-                previousVideoVolume: videoVolume,
-            });
-        }
-    }
-
-    private setVideoVolume = (videoVolume: number) => {
-        this.video.current!.volume = videoVolume / 2;
-        this.setState({
-            videoVolume,
-        });
-    }
-
-    private setVideoPlaybackRate = (videoPlaybackRate: number) => {
-        this.video.current!.playbackRate = videoPlaybackRate;
-        this.setState({
-            videoPlaybackRate,
-        });
-    }
-
     private makeQualitySources = (qualitySources: any): any => {
         const autoSource = {
             quality: 'auto',

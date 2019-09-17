@@ -60,6 +60,7 @@ const SettingsMenu: React.FC<any> = () => {
 
         videoPlaybackRate,
         setVideoPlaybackRate,
+        handleVideoPlaybackRate,
 
         editableText,
         setEditableText,
@@ -166,7 +167,7 @@ const SettingsMenu: React.FC<any> = () => {
                         name="Playback Rate"
                         min={0.25}
                         max={2.25}
-                        setValue={setVideoPlaybackRate}
+                        setValue={handleVideoPlaybackRate}
                         value={videoPlaybackRate}
                         valueSign=""
                         step={0.01}

@@ -124,6 +124,11 @@ const TextSelectVideo: React.FC<TextSelectVideoProperties> = (properties) => {
         setVideoVolume(volume);
     }
 
+    const handleVideoPlaybackRate = (videoPlaybackRate: number) => {
+        video.current!.playbackRate = videoPlaybackRate;
+        setVideoPlaybackRate(videoPlaybackRate)
+    }
+
     const selectQualitySource = () => {
 
     }
@@ -203,6 +208,7 @@ const TextSelectVideo: React.FC<TextSelectVideoProperties> = (properties) => {
 
     useEffect(() => {
         video.current!.volume = videoVolume / 2;
+        video.current!.playbackRate = videoPlaybackRate;
     }, [loadedVideo])
 
     const selectedTheme: Theme = theme && themes[theme]
@@ -251,6 +257,7 @@ const TextSelectVideo: React.FC<TextSelectVideoProperties> = (properties) => {
 
         videoPlaybackRate,
         setVideoPlaybackRate,
+        handleVideoPlaybackRate,
 
         editableText,
         setEditableText,
