@@ -73,6 +73,7 @@ const TextSelectVideo: React.FC<TextSelectVideoProperties> = (properties) => {
     const [videoPlaying, setVideoPlaying] = useState(false);
 
     const videoContainer = useRef<HTMLDivElement>(null);
+    const video = useRef<HTMLVideoElement>(null);
 
     const setMessageTimed = (message: string, time: number) => {
         setMessage(message);
@@ -90,13 +91,14 @@ const TextSelectVideo: React.FC<TextSelectVideoProperties> = (properties) => {
     }
 
     const playVideo = () => {
-
+        video.current!.play();
+        setVideoPlaying(true);
     }
 
     const pauseVideo = () => {
-
+        video.current!.pause();
+        setVideoPlaying(false);
     }
-
 
     const handleLoadedVideo = async (video: any) => {
         if (atLoad) {
@@ -224,7 +226,7 @@ const TextSelectVideo: React.FC<TextSelectVideoProperties> = (properties) => {
                 <video
                     height={height}
                     style={videoStyle ? {...videoStyle} : {}}
-                    // ref={video}
+                    ref={video}
                     // onTimeUpdate={this.setVideoCurrentTime}
                     onLoadedData={handleLoadedVideo}
                     onLoadedMetadata={handleLoadedMetadata}

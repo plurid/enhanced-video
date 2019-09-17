@@ -50,7 +50,7 @@ export const StyledSettingsMenu = styled.div`
 
     hr {
         border: none;
-        border-top: 1px solid hsl(220, 2%, 55%);
+        border-top: 1px solid ${props => props.theme.colorSecondary};
         margin: 0;
     }
 `;
