@@ -5,17 +5,11 @@ import {
     StyledLoader
 } from './styled';
 
-import Context from '../../context';
-
 
 
 class Spinner extends Component<any, any> {
-    static contextType = Context;
 
     public render() {
-        const {
-        } = this.context;
-
         return (
             <StyledSpinner>
                 <StyledLoader />
