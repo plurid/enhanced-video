@@ -51,15 +51,15 @@ class App extends Component {
                     style={ {width: '100%', margin: '150px auto'} }
                 >
                     <TextSelectVideo
-                        theme="dusk"
-                        // src={video}
                         src={longVideo}
                         type="video/mp4"
-                        controls={true}
-                        height={700}
+                        // theme="dusk"
+                        // src={video}
+                        // controls={true}
+                        // height={700}
                         // qualitySources={qualitySources}
                         // getTextOnLoad={true}
-                        apiEndpoint="http://192.168.1.2:3360/graphql"
+                        // apiEndpoint="http://192.168.1.2:3360/graphql"
                         // apiEndpoint="https://api.plurid.com/graphql"
                     />
                 </div>
