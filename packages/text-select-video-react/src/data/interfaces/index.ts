@@ -160,6 +160,10 @@ export interface IContext {
     videoDimensions: VideoDimensions;
     videoContainerDimensions: VideoContainerDimensions;
     videoBoxDimensions: VideoBoxDimensions;
+
+    videoPlaying: boolean;
+    playVideo: () => void,
+    pauseVideo: () => void,
 }
 
 

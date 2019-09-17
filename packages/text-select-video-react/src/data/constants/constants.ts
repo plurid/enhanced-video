@@ -7,7 +7,6 @@ export const CONTENT_MORE_LIMIT = 10;
 
 export const DEFAULT_THEME = 'gradient';
 
-export const ABOUT_URL = 'https://github.com/plurid/text-select-video';
 
 
 const PLURID_API_DEV = 'https://api.plurid.dev/graphql';

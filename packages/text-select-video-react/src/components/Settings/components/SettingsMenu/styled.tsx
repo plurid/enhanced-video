@@ -8,13 +8,13 @@ export const StyledSettingsMenu = styled.div`
     transition: opacity 600ms linear;
 
     ul {
-        background-color: ${props => props.theme.backgroundColor};
+        background-color: ${props => props.theme.backgroundColorPrimary};
         background: ${props => {
-            const { backgroundGradient, backgroundColor } = props.theme;
+            const { backgroundGradient, backgroundColorPrimary } = props.theme;
             if (backgroundGradient) {
                 return backgroundGradient;
             } else {
-                return backgroundColor;
+                return backgroundColorPrimary;
             }
         }};
         box-shadow: 0px 0px 5px 1px hsla(220, 10%, 2%, 0.7);
@@ -45,7 +45,7 @@ export const StyledSettingsMenu = styled.div`
     }
 
     ul li:hover {
-        background-color: ${props => props.theme.backgroundColorHover};
+        background-color: ${props => props.theme.backgroundColorSecondary};
     }
 
     hr {
