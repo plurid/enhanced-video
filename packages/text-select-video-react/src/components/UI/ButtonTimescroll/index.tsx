@@ -9,12 +9,12 @@ import {
     StyledTimescrollTime,
 } from './styled';
 
-import Context from '../../context';
+import Context from '../../../services/utilities/context';
 
-import { getWheelDirection } from '../../utils/wheelDirection';
+import { getWheelDirection } from '../../../services/utilities/wheelDirection';
 
-import TimescrollToggled from '../../assets/timescroll-toggled-icon';
-import TimescrollUntoggled from '../../assets/timescroll-untoggled-icon';
+import TimescrollToggled from '../../../assets/timescroll-toggled-icon';
+import TimescrollUntoggled from '../../../assets/timescroll-untoggled-icon';
 
 
 

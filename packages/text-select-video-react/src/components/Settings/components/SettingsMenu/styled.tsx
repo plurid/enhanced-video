@@ -32,6 +32,7 @@ export const StyledSettingsMenu = styled.div`
 
     ul li {
         min-height: 32px;
+        color: ${props => props.theme.colorPrimary};
     }
 
     ul li:first-child {
