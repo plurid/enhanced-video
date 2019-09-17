@@ -172,6 +172,7 @@ export interface IContext {
 
     videoPlaybackRate: number;
     setVideoPlaybackRate: any;
+    handleVideoPlaybackRate: any;
 
     editableText: boolean;
     setEditableText: any;
