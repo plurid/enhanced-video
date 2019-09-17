@@ -164,6 +164,19 @@ export interface IContext {
     videoPlaying: boolean;
     playVideo: () => void,
     pauseVideo: () => void,
+
+    videoVolume: number;
+    toggleVideoVolume: any;
+    setVideoVolume: any;
+
+    videoPlaybackRate: number;
+    setVideoPlaybackRate: any;
+
+    editableText: boolean;
+    setEditableText: any;
+
+    qualitySource: any;
+    setQualitySource: any;
 }
 
 

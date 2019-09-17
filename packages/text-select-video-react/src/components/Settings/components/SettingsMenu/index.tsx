@@ -53,29 +53,32 @@ const SettingsMenu: React.FC<any> = () => {
         // toggleEditable,
         // toggledEditable,
 
-        // toggleVideoVolume,
-        // videoVolume,
-        // setVideoVolume,
+        videoVolume,
+        toggleVideoVolume,
+        setVideoVolume,
 
-        // videoPlaybackRate,
-        // setVideoPlaybackRate,
+        videoPlaybackRate,
+        setVideoPlaybackRate,
+
+        editableText,
+        setEditableText,
 
         // timescrollView,
         // toggleTimescrollView,
         // textTimescrollView,
 
-        // qualitySources,
-        // selectQualitySource,
-        // selectedQualitySource,
+        qualitySources,
+        qualitySource,
+        setQualitySource,
     } = context;
 
-    // const VideoVolumeIcon = videoVolume == 0
-    //     ? VolumeMutedIcon
-    //     : videoVolume < 0.7
-    //         ? VolumeLowIcon
-    //         : videoVolume < 1.3
-    //             ? VolumeMiddleIcon
-    //             : VolumeHighIcon;
+    const VideoVolumeIcon = videoVolume == 0
+        ? VolumeMutedIcon
+        : videoVolume < 0.7
+            ? VolumeLowIcon
+            : videoVolume < 1.3
+                ? VolumeMiddleIcon
+                : VolumeHighIcon;
 
 
     const handlePlayPause = () => {
@@ -100,6 +103,10 @@ const SettingsMenu: React.FC<any> = () => {
 
     const handleAboutClick = () => {
         window.open(ABOUT_URL, '_blank');
+    }
+
+    const toggleMenuOpaque = () => {
+
     }
 
     return (
@@ -128,10 +135,10 @@ const SettingsMenu: React.FC<any> = () => {
                     />
                 </li>
 
-                {/* <li>
+                <li>
                     <ButtonSliderItem
                         theme={theme}
-                        icon={videoVolumeIcon}
+                        icon={VideoVolumeIcon}
                         iconClick={toggleVideoVolume}
                         type="volume"
                         name="Volume"
@@ -143,11 +150,11 @@ const SettingsMenu: React.FC<any> = () => {
                         defaultValue={0.75}
                         step={0.01}
                         normalized={true}
-                        toggleMenuOpaque={this.toggleMenuOpaque}
+                        toggleMenuOpaque={toggleMenuOpaque}
                     />
-                </li> */}
+                </li>
 
-                {/* <li>
+                <li>
                     <ButtonSliderItem
                         theme={theme}
                         type="playback"
@@ -160,11 +167,11 @@ const SettingsMenu: React.FC<any> = () => {
                         step={0.01}
                         normalized={true}
                         defaultValue={1}
-                        toggleMenuOpaque={this.toggleMenuOpaque}
+                        toggleMenuOpaque={toggleMenuOpaque}
                     />
-                </li> */}
+                </li>
 
-                {/* {qualitySources && (
+                {qualitySources && (
                     <li>
                         <ButtonSliderItem
                             theme={theme}
@@ -172,26 +179,26 @@ const SettingsMenu: React.FC<any> = () => {
                             name="Quality"
                             min={0}
                             max={qualitySources.length - 1}
-                            setValue={selectQualitySource}
-                            value={selectedQualitySource}
-                            valueString={qualitySources[selectedQualitySource].quality}
+                            setValue={setQualitySource}
+                            value={qualitySource}
+                            valueString={qualitySources[qualitySource].quality}
                             step={1}
                             defaultValue={qualitySources.length - 1}
-                            toggleMenuOpaque={this.toggleMenuOpaque}
+                            toggleMenuOpaque={toggleMenuOpaque}
                         />
                     </li>
-                )} */}
+                )}
 
                 <hr />
 
-                {/* <li>
+                <li>
                     <ButtonCheckmark
                         theme={theme}
-                        toggle={toggleEditable}
+                        toggle={setEditableText}
                         text="Edit Text"
-                        checked={toggledEditable}
+                        checked={editableText}
                     />
-                </li> */}
+                </li>
 
                 <li>
                     <ButtonItem
