@@ -29,6 +29,7 @@ class ButtonItem extends Component<
         return (
             <StyledButtonItem
                 onClick={atClick}
+                theme={theme}
             >
                 <StyledButtonItemIcon
                     theme={theme}

@@ -8,6 +8,8 @@ export const StyledButtonItem = styled.div`
     padding: 7px 10px;
     cursor: pointer;
     height: 32px;
+
+    color: ${props => props.theme.colorPrimary};
 `;
 
 export const StyledButtonItemIcon = styled.div`
@@ -21,6 +23,6 @@ export const StyledButtonItemIcon = styled.div`
     svg {
         width: 14px;
         height: 14px;
-        fill: ${props => props.theme.color};
+        fill: ${props => props.theme.colorPrimary};
     }
 `;
