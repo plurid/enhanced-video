@@ -168,6 +168,7 @@ export interface IContext {
     videoVolume: number;
     toggleVideoVolume: any;
     setVideoVolume: any;
+    handleVideoVolume: any;
 
     videoPlaybackRate: number;
     setVideoPlaybackRate: any;
