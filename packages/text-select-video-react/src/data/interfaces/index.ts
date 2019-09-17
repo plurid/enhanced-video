@@ -1,10 +1,7 @@
+import { Dispatch, SetStateAction } from 'react';
+
 import themes from '@plurid/apps.utilities.themes';
 
-
-export interface QualitySource {
-    quality: string;
-    src: string;
-}
 
 
 export interface TextSelectVideoProperties {
@@ -116,4 +113,41 @@ export interface TextSelectVideoState {
     toggleVideoVolume: () => void;
 
     selectQualitySource: (value: number) => void;
+}
+
+
+export interface QualitySource {
+    quality: string;
+    src: string;
+}
+
+
+export interface IContext {
+    src: string;
+    type: string;
+
+    theme: keyof typeof themes;
+    controls: boolean;
+    height: number;
+    qualitySources: any;
+    about: boolean;
+
+    apiEndpoint: string;
+    apiKey: string | undefined;
+    userToken: string | undefined;
+    deviewVideoID: string | undefined;
+
+    setMessage: Dispatch<SetStateAction<string>>;
+    setMessageTimed: (message: string, time: number) => void;
+    setShowSpinner: Dispatch<SetStateAction<boolean>>;
+
+    // toggleSettings: () => void;
+    // toggledSettings: boolean;
+    // toggleEditable: () => void,
+    // toggledEditable: boolean,
+    // selectText: any;
+    // imageWidth: number;
+    // imageHeight: number;
+    // editorWidth: number;
+    // setEditorWidth: (value: number) => void;
 }
