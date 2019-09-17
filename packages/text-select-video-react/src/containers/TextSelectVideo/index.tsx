@@ -72,6 +72,13 @@ const TextSelectVideo: React.FC<TextSelectVideoProperties> = (properties) => {
 
     const [videoPlaying, setVideoPlaying] = useState(false);
 
+    const [videoVolume, setVideoVolume] = useState(0);
+    const [videoPlaybackRate, setVideoPlaybackRate] = useState(1);
+
+    const [editableText, setEditableText] = useState(false);
+
+    const [qualitySource, setQualitySource] = useState('');
+
     const videoContainer = useRef<HTMLDivElement>(null);
     const video = useRef<HTMLVideoElement>(null);
 
@@ -98,6 +105,14 @@ const TextSelectVideo: React.FC<TextSelectVideoProperties> = (properties) => {
     const pauseVideo = () => {
         video.current!.pause();
         setVideoPlaying(false);
+    }
+
+    const toggleVideoVolume = () => {
+
+    }
+
+    const selectQualitySource = () => {
+
     }
 
     const handleLoadedVideo = async (video: any) => {
@@ -211,6 +226,19 @@ const TextSelectVideo: React.FC<TextSelectVideoProperties> = (properties) => {
         videoPlaying,
         playVideo,
         pauseVideo,
+
+        videoVolume,
+        toggleVideoVolume,
+        setVideoVolume,
+
+        videoPlaybackRate,
+        setVideoPlaybackRate,
+
+        editableText,
+        setEditableText,
+
+        qualitySource,
+        setQualitySource,
     };
 
     return (

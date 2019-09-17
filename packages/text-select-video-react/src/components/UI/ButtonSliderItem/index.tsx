@@ -8,15 +8,11 @@ import {
     StyledSliderInputContainer,
 } from './styled';
 
-import Context from '../../context';
-
 
 
 class SliderItem extends Component<
     any, any
 > {
-    static contextType = Context;
-
     constructor(props: any) {
         super(props);
 
