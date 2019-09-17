@@ -185,6 +185,7 @@ class TextMark extends Component<
                 break;
             case MOVE_MARK:
                 console.log('move mark');
+                break;
             default:
                 console.log('move mark');
         }

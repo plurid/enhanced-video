@@ -12,8 +12,8 @@ class Message extends Component<any, any> {
     static contextType = Context;
 
     public render() {
-        const {
-        } = this.context;
+        // const {
+        // } = this.context;
 
         const {
             text
