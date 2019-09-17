@@ -168,16 +168,14 @@ export interface IContext {
     pauseVideo: () => void,
 
     videoVolume: number;
-    toggleVideoVolume: any;
-    setVideoVolume: any;
-    handleVideoVolume: any;
+    toggleVideoVolume: () => void;
+    handleVideoVolume: (volume: number) => void;
 
     videoPlaybackRate: number;
-    setVideoPlaybackRate: any;
-    handleVideoPlaybackRate: any;
+    handleVideoPlaybackRate: (videoPlaybackRate: number) => void;
 
     videoTime: number;
-    handleVideoTime: any;
+    handleVideoTime: (videoTime: number) => void;
 
     editableText: boolean;
     setEditableText: any;

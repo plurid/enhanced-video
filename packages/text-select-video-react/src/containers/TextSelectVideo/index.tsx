@@ -141,7 +141,6 @@ const TextSelectVideo: React.FC<TextSelectVideoProperties> = (properties) => {
     }
 
     const selectQualitySource = () => {
-
     }
 
     const checkAndSetVideoDuration = () => {
@@ -273,11 +272,9 @@ const TextSelectVideo: React.FC<TextSelectVideoProperties> = (properties) => {
 
         videoVolume,
         toggleVideoVolume,
-        setVideoVolume,
         handleVideoVolume,
 
         videoPlaybackRate,
-        setVideoPlaybackRate,
         handleVideoPlaybackRate,
 
         videoTime,
