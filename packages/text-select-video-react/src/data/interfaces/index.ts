@@ -14,8 +14,15 @@ export interface TextSelectVideoProperties {
     qualitySources?: QualitySource[];
     about?: boolean;
 
+    /**
+     * Inline styling object for the video.
+     */
     videoStyle?: any;
-    // atLoad?: any;
+
+    /**
+     * Function to be run after the video is loaded.
+     */
+    atLoad?: any;
 
     // To be specified when using another API than https://api.plurid.com
     // GraphlQL-based
@@ -147,13 +154,29 @@ export interface IContext {
     showSettingsMenu: boolean;
     setShowSettingsMenu: Dispatch<SetStateAction<boolean>>;
 
-    // toggleSettings: () => void;
-    // toggledSettings: boolean;
-    // toggleEditable: () => void,
-    // toggledEditable: boolean,
-    // selectText: any;
-    // imageWidth: number;
-    // imageHeight: number;
-    // editorWidth: number;
-    // setEditorWidth: (value: number) => void;
+
+    loadedVideo: boolean;
+    videoDuration: number;
+    videoDimensions: VideoDimensions;
+    videoContainerDimensions: VideoContainerDimensions;
+    videoBoxDimensions: VideoBoxDimensions;
+}
+
+
+export interface VideoDimensions {
+    width: number;
+    height: number;
+    ratio: number;
+}
+
+export interface VideoContainerDimensions {
+    width: number;
+    height: number;
+}
+
+export interface VideoBoxDimensions {
+    width: number;
+    height: number;
+    left: number;
+    top: number;
 }

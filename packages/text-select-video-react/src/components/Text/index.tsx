@@ -17,10 +17,18 @@ const Text: React.FC<any> = () => {
     }
 
     const {
+        videoBoxDimensions,
     } = context;
 
     return (
-        <StyledText>
+        <StyledText
+            style={{
+                width: videoBoxDimensions.width + 'px',
+                height: videoBoxDimensions.height + 'px',
+                left: videoBoxDimensions.left + 'px',
+                top: videoBoxDimensions.top + 'px',
+            }}
+        >
         </StyledText>
     );
 }
@@ -30,13 +38,9 @@ export default Text;
 
 
 
-// import React, { Component } from 'react';
-
 // import {
 //     StyledSelectVideo,
 // } from './styled';
-
-// import Context from '../../context';
 
 // import TextVideo from '../TextVideo';
 
@@ -53,11 +57,6 @@ export default Text;
 //         // console.log('RENDER SelectVideo');
 //         const {
 //             imageText,
-//             videoBoxWidth,
-//             videoBoxHeight,
-//             videoBoxLeft,
-//             videoBoxTop,
-//             videoTime,
 //         } = this.context;
 //         // console.log('imageText in SelectVideo', imageText);
 
