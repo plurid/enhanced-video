@@ -1,5 +1,13 @@
-import TextSelectVideo from './components/TextSelectVideo';
+import TextSelectVideo from './containers/TextSelectVideo';
+
+import {
+    TextSelectVideoProperties,
+} from './interfaces';
 
 
+
+export {
+    TextSelectVideoProperties,
+}
 
 export default TextSelectVideo;
