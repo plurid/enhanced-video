@@ -11,10 +11,28 @@ import {
 
 
 
-const TextSelectVideo: React.FC<TextSelectVideoProperties> = () => {
+const TextSelectVideo: React.FC<TextSelectVideoProperties> = (properties) => {
+    const {
+        src,
+        type,
+    } = properties;
+
     return (
         <StyledTextSelectVideo>
-            text select video
+            <video
+                // width={width}
+                // height={height}
+                // style={{...videoStyle}}
+                // ref={video}
+                // onTimeUpdate={this.setVideoCurrentTime}
+                // onLoadedData={this.handleLoadedVideo}
+                // onLoadedMetadata={this.handleLoadedMetadata}
+            >
+                <source
+                    src={src}
+                    type={type}
+                />
+            </video>
         </StyledTextSelectVideo>
     );
 }
