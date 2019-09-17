@@ -19,6 +19,7 @@ import {
     IContext,
 } from '../../data/interfaces';
 
+import Text from '../../components/Text';
 import Settings from '../../components/Settings';
 import Message from '../../components/Message';
 import Spinner from '../../components/Spinner';
@@ -114,11 +115,13 @@ const TextSelectVideo: React.FC<TextSelectVideoProperties> = (properties) => {
                     // onLoadedMetadata={this.handleLoadedMetadata}
                 >
                         <source
-                            src={src + "#t=230"}
+                            src={src + "#t=260"}
                             // src={src}
                             type={type}
                         />
                 </video>
+
+                <Text />
 
                 {showSettingsButton && (
                     <Settings />
