@@ -2,7 +2,7 @@ import TextSelectVideo from './containers/TextSelectVideo';
 
 import {
     TextSelectVideoProperties,
-} from './interfaces';
+} from './data/interfaces';
 
 
 

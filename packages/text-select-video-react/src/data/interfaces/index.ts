@@ -1,3 +1,6 @@
+import themes from '@plurid/apps.utilities.themes';
+
+
 export interface QualitySource {
     quality: string;
     src: string;
@@ -8,15 +11,14 @@ export interface TextSelectVideoProperties {
     src: string;
     type: string;
 
-    theme?: string;
+    theme?: keyof typeof themes;
     controls?: boolean;
-    width?: string;
-    height?: string;
+    height?: number;
     qualitySources?: QualitySource[];
     about?: boolean;
 
     videoStyle?: any;
-    atLoad?: any;
+    // atLoad?: any;
 
     // To be specified when using another API than https://api.plurid.com
     // GraphlQL-based
@@ -25,10 +27,13 @@ export interface TextSelectVideoProperties {
     // To be specified when using as a service provider
     // apiKey obtained from https://depict.plurid.com/api
     apiKey?: string;
-    updateDebounce?: number;
+    userToken?: string;
+    deviewVideoID?: string;
 
-    moreLimit?: number;
-    getTextOnLoad?: boolean;
+    // updateDebounce?: number;
+
+    // moreLimit?: number;
+    // getTextOnLoad?: boolean;
 }
 
 
