@@ -101,6 +101,10 @@ const SettingsMenu: React.FC<any> = () => {
 
     }
 
+    const handleMarkTextTime = () => {
+
+    }
+
     const handleAboutClick = () => {
         window.open(ABOUT_URL, '_blank');
     }
@@ -232,7 +236,7 @@ const SettingsMenu: React.FC<any> = () => {
                 {/* <li>
                     <ButtonItem
                         theme={theme}
-                        atClick={this.markTextTime}
+                        atClick={handleMarkTextTime}
                         icon={textTimescrollView ? MarkTextTimeToggledIcon : MarkTextTimeUntoggledIcon}
                         text="Mark Text Time"
                     />
