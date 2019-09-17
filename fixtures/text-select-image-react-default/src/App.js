@@ -53,10 +53,10 @@ class App extends Component {
                     <TextSelectVideo
                         src={longVideo}
                         type="video/mp4"
-                        // theme="dusk"
+                        height={500}
+                        theme="deview"
                         // src={video}
                         // controls={true}
-                        // height={700}
                         // qualitySources={qualitySources}
                         // getTextOnLoad={true}
                         // apiEndpoint="http://192.168.1.2:3360/graphql"

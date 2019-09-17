@@ -15,6 +15,7 @@ export const StyledTextSelectVideo: any = styled.div`
         return 'hidden';
     }};
 
+    min-height: 50px;
     background-color: black;
 
     video {
@@ -23,11 +24,20 @@ export const StyledTextSelectVideo: any = styled.div`
         outline: none;
         display: block;
         width: 100%;
-        /* height: 600px; */
+        min-height: 50px;
     }
 
     a {
-        color: ${props => props.theme.color};
         text-decoration: none;
     }
+`;
+
+
+export const StyledTextSelectVideoNoRender = styled.div`
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 50px;
+    background-color: black;
+    color: white;
 `;

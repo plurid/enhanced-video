@@ -1,7 +1,8 @@
 import React from 'react';
 
-import themes from './data/themes';
-import { DEFAULT_THEME } from './data/constants';
+
+import themes from '@plurid/apps.utilities.themes';
+import { DEFAULT_THEME } from './data/constants/constants';
 
 
 

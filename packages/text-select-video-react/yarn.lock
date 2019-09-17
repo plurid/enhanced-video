@@ -877,6 +877,11 @@
     "@types/istanbul-reports" "^1.1.1"
     "@types/yargs" "^13.0.0"
 
+"@plurid/apps.utilities.themes@^0.1.12":
+  version "0.1.12"
+  resolved "https://registry.yarnpkg.com/@plurid/apps.utilities.themes/-/apps.utilities.themes-0.1.12.tgz#e72de08cd9bcdf14f5b899eda73cbf4bfa060cd7"
+  integrity sha512-zniDlgxefvqKkuNeOVQM6KUlvQVhUYtijR2SaO4jt+gM9jylGU0CAwMIX57G8k8hnv7XBRwgDRKy8aIju3RciQ==
+
 "@svgr/babel-plugin-add-jsx-attribute@^4.2.0":
   version "4.2.0"
   resolved "https://registry.yarnpkg.com/@svgr/babel-plugin-add-jsx-attribute/-/babel-plugin-add-jsx-attribute-4.2.0.tgz#dadcb6218503532d6884b210e7f3c502caaa44b1"
