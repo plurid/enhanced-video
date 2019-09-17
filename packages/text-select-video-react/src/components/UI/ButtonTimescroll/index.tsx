@@ -34,7 +34,13 @@ class Timescroll extends Component<
     componentDidMount() {
         const {
             videoDuration,
+            loadedVideo,
+            checkAndSetVideoDuration,
         } = this.context;
+
+        if (!loadedVideo) {
+            checkAndSetVideoDuration;
+        }
 
         this.timescrollArea.current.addEventListener('wheel', this.handleWheel, { passive: false});
 
@@ -119,7 +125,7 @@ class Timescroll extends Component<
         const clientX = event.clientX;
 
         const {
-            setVideoTime,
+            handleVideoTime,
             videoDuration,
         } = this.context;
 
@@ -131,7 +137,7 @@ class Timescroll extends Component<
         const timePercentage = (clientX - left)/width * 100;
 
         const videoTime = timePercentage * videoDuration / 100;
-        setVideoTime(videoTime);
+        handleVideoTime(videoTime);
 
         this.setState({
             timePercentage,
@@ -218,7 +224,7 @@ class Timescroll extends Component<
         const {
             videoTime,
             videoDuration,
-            setVideoTime,
+            handleVideoTime,
         } = this.context;
 
         let newVideoTime = videoTime;
@@ -250,7 +256,7 @@ class Timescroll extends Component<
             newVideoTime = videoDuration;
         }
 
-        setVideoTime(newVideoTime);
+        handleVideoTime(newVideoTime);
     }
 
     private handleWheel = (event: any) => {
@@ -266,7 +272,7 @@ class Timescroll extends Component<
         const {
             videoTime,
             videoDuration,
-            setVideoTime,
+            handleVideoTime,
         } = this.context;
 
         const deltaTimeValue = 1;
@@ -288,7 +294,7 @@ class Timescroll extends Component<
             newVideoTime = videoDuration;
         }
 
-        setVideoTime(newVideoTime);
+        handleVideoTime(newVideoTime);
     }
 }
 
