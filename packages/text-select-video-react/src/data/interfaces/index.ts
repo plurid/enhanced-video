@@ -154,9 +154,11 @@ export interface IContext {
     showSettingsMenu: boolean;
     setShowSettingsMenu: Dispatch<SetStateAction<boolean>>;
 
-
     loadedVideo: boolean;
+
     videoDuration: number;
+    checkAndSetVideoDuration: any;
+
     videoDimensions: VideoDimensions;
     videoContainerDimensions: VideoContainerDimensions;
     videoBoxDimensions: VideoBoxDimensions;
@@ -173,6 +175,9 @@ export interface IContext {
     videoPlaybackRate: number;
     setVideoPlaybackRate: any;
     handleVideoPlaybackRate: any;
+
+    videoTime: number;
+    handleVideoTime: any;
 
     editableText: boolean;
     setEditableText: any;

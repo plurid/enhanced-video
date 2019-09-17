@@ -66,6 +66,7 @@ const TextSelectVideo: React.FC<TextSelectVideoProperties> = (properties) => {
 
     const [loadedVideo, setLoadedVideo] = useState(false);
     const [videoDuration, setVideoDuration] = useState(0);
+    const [videoTime, setVideoTime] = useState(0);
     const [videoDimensions, setVideoDimensions] = useState(initialVideoDimensions);
     const [videoContainerDimensions, setVideoContainerDimensions] = useState(initialVideoContainerDimensions);
     const [videoBoxDimensions, setVideoBoxDimensions] = useState(initialVideoBoxDimensions);
@@ -129,8 +130,25 @@ const TextSelectVideo: React.FC<TextSelectVideoProperties> = (properties) => {
         setVideoPlaybackRate(videoPlaybackRate)
     }
 
+    const handleVideoCurrentTime = () => {
+        const videoTime = video.current!.currentTime
+        setVideoTime(videoTime);
+    }
+
+    const handleVideoTime = (videoTime: number) => {
+        video.current!.currentTime = videoTime;
+        setVideoTime(videoTime);
+    }
+
     const selectQualitySource = () => {
 
+    }
+
+    const checkAndSetVideoDuration = () => {
+        if (video.current) {
+            const videoDuration = video.current.duration;
+            setVideoDuration(videoDuration);
+        }
     }
 
     const handleLoadedVideo = async (video: any) => {
@@ -241,7 +259,10 @@ const TextSelectVideo: React.FC<TextSelectVideoProperties> = (properties) => {
         setShowSettingsMenu,
 
         loadedVideo,
+
         videoDuration,
+        checkAndSetVideoDuration,
+
         videoDimensions,
         videoContainerDimensions,
         videoBoxDimensions,
@@ -258,6 +279,9 @@ const TextSelectVideo: React.FC<TextSelectVideoProperties> = (properties) => {
         videoPlaybackRate,
         setVideoPlaybackRate,
         handleVideoPlaybackRate,
+
+        videoTime,
+        handleVideoTime,
 
         editableText,
         setEditableText,
@@ -280,15 +304,14 @@ const TextSelectVideo: React.FC<TextSelectVideoProperties> = (properties) => {
                     height={height}
                     style={videoStyle ? {...videoStyle} : {}}
                     ref={video}
-                    // onTimeUpdate={this.setVideoCurrentTime}
+                    onTimeUpdate={handleVideoCurrentTime}
                     onLoadedData={handleLoadedVideo}
                     onLoadedMetadata={handleLoadedMetadata}
                 >
-                        <source
-                            src={src + "#t=260"}
-                            // src={src}
-                            type={type}
-                        />
+                    <source
+                        src={src}
+                        type={type}
+                    />
                 </video>
 
                 <Text />
