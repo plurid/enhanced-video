@@ -329,6 +329,10 @@ class TextSelectVideo extends Component<
             src: '/determined/at/runtime',
         };
 
+        if (!qualitySources) {
+            return [autoSource];
+        }
+
         return [...qualitySources, autoSource];
     }
 
@@ -336,6 +340,10 @@ class TextSelectVideo extends Component<
         const {
             qualitySources,
         } = this.state;
+
+        if (!qualitySources) {
+            return;
+        }
 
         // set the adequate source
         const { src } = qualitySources![selectedQualitySource];
@@ -904,7 +912,7 @@ class TextSelectVideo extends Component<
                 loading: true,
             });
 
-            const mutation = await this.client
+            const mutation: any = await this.client
                 .mutate({
                     mutation: updateTextSelectVideo,
                     variables: {
