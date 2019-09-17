@@ -55,7 +55,8 @@ const SettingsMenu: React.FC<any> = () => {
 
         videoVolume,
         toggleVideoVolume,
-        setVideoVolume,
+        // setVideoVolume,
+        handleVideoVolume,
 
         videoPlaybackRate,
         setVideoPlaybackRate,
@@ -148,7 +149,7 @@ const SettingsMenu: React.FC<any> = () => {
                         name="Volume"
                         min={0}
                         max={2}
-                        setValue={setVideoVolume}
+                        setValue={handleVideoVolume}
                         value={videoVolume}
                         valueSign=""
                         defaultValue={0.75}

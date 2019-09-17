@@ -72,7 +72,8 @@ const TextSelectVideo: React.FC<TextSelectVideoProperties> = (properties) => {
 
     const [videoPlaying, setVideoPlaying] = useState(false);
 
-    const [videoVolume, setVideoVolume] = useState(0);
+    const [previousVideoVolume, setPreviousVideoVolume] = useState(0);
+    const [videoVolume, setVideoVolume] = useState(1);
     const [videoPlaybackRate, setVideoPlaybackRate] = useState(1);
 
     const [editableText, setEditableText] = useState(false);
@@ -108,7 +109,19 @@ const TextSelectVideo: React.FC<TextSelectVideoProperties> = (properties) => {
     }
 
     const toggleVideoVolume = () => {
+        if (videoVolume === 0) {
+            video.current!.volume = previousVideoVolume / 2;
+            setVideoVolume(previousVideoVolume);
+        } else {
+            video.current!.volume = 0;
+            setPreviousVideoVolume(videoVolume);
+            setVideoVolume(0);
+        }
+    }
 
+    const handleVideoVolume = (volume: number) => {
+        video.current!.volume = videoVolume / 2;
+        setVideoVolume(volume);
     }
 
     const selectQualitySource = () => {
@@ -188,6 +201,10 @@ const TextSelectVideo: React.FC<TextSelectVideoProperties> = (properties) => {
         computeVideoBoxDimensions();
     }, [videoDimensions])
 
+    useEffect(() => {
+        video.current!.volume = videoVolume / 2;
+    }, [loadedVideo])
+
     const selectedTheme: Theme = theme && themes[theme]
         ? themes[theme]
         : themes.plurid;
@@ -230,6 +247,7 @@ const TextSelectVideo: React.FC<TextSelectVideoProperties> = (properties) => {
         videoVolume,
         toggleVideoVolume,
         setVideoVolume,
+        handleVideoVolume,
 
         videoPlaybackRate,
         setVideoPlaybackRate,
