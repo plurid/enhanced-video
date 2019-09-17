@@ -70,6 +70,8 @@ const TextSelectVideo: React.FC<TextSelectVideoProperties> = (properties) => {
     const [videoContainerDimensions, setVideoContainerDimensions] = useState(initialVideoContainerDimensions);
     const [videoBoxDimensions, setVideoBoxDimensions] = useState(initialVideoBoxDimensions);
 
+    const [videoPlaying, setVideoPlaying] = useState(false);
+
     const videoContainer = useRef<HTMLDivElement>(null);
 
     const setMessageTimed = (message: string, time: number) => {
@@ -86,6 +88,15 @@ const TextSelectVideo: React.FC<TextSelectVideoProperties> = (properties) => {
             </StyledTextSelectVideoNoRender>
         );
     }
+
+    const playVideo = () => {
+
+    }
+
+    const pauseVideo = () => {
+
+    }
+
 
     const handleLoadedVideo = async (video: any) => {
         if (atLoad) {
@@ -194,6 +205,10 @@ const TextSelectVideo: React.FC<TextSelectVideoProperties> = (properties) => {
         videoDimensions,
         videoContainerDimensions,
         videoBoxDimensions,
+
+        videoPlaying,
+        playVideo,
+        pauseVideo,
     };
 
     return (

@@ -7,12 +7,11 @@ import {
     StyledSettingsButton,
 } from './styled';
 
-import SettingsIcon from '../../assets/settings-icon';
-
 import Context from '../../services/utilities/context';
 
-import SettingsMenu from './components/SettingsMenu';
+import SettingsIcon from '../../assets/settings-icon';
 
+import SettingsMenu from './components/SettingsMenu';
 
 
 
