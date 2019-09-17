@@ -1,6 +1,5 @@
 import React, {
     useState,
-    useContext,
 } from 'react';
 
 import './styles.css';
@@ -20,8 +19,11 @@ import {
     IContext,
 } from '../../data/interfaces';
 
+import Settings from '../../components/Settings';
 import Message from '../../components/Message';
 import Spinner from '../../components/Spinner';
+
+import themes, { Theme } from '@plurid/apps.utilities.themes';
 
 
 
@@ -46,6 +48,8 @@ const TextSelectVideo: React.FC<TextSelectVideoProperties> = (properties) => {
 
     const [showSpinner, setShowSpinner] = useState(false);
     const [message, setMessage] = useState('');
+    const [showSettingsButton, setShowSettingsButton] = useState(false);
+    const [showSettingsMenu, setShowSettingsMenu] = useState(false);
 
     const setMessageTimed = (message: string, time: number) => {
         setMessage(message);
@@ -62,11 +66,15 @@ const TextSelectVideo: React.FC<TextSelectVideoProperties> = (properties) => {
         );
     }
 
+    const selectedTheme: Theme = theme && themes[theme]
+        ? themes[theme]
+        : themes.plurid;
+
     const context: IContext = {
         src,
         type,
 
-        theme: theme || 'plurid',
+        theme: selectedTheme,
         controls: controls || true,
         height: height || 500,
         qualitySources,
@@ -80,13 +88,23 @@ const TextSelectVideo: React.FC<TextSelectVideoProperties> = (properties) => {
         setMessage,
         setMessageTimed,
         setShowSpinner,
+
+        showSettingsButton,
+        setShowSettingsButton,
+
+        showSettingsMenu,
+        setShowSettingsMenu,
     };
 
     return (
         <Context.Provider
             value={context}
         >
-            <StyledTextSelectVideo>
+            <StyledTextSelectVideo
+                onMouseEnter={() => setShowSettingsButton(true)}
+                onMouseLeave={() => setShowSettingsButton(false)}
+                onMouseMove={() => !showSettingsButton ? setShowSettingsButton(true) : null}
+            >
                 <video
                     height={height}
                     style={videoStyle ? {...videoStyle} : {}}
@@ -101,6 +119,10 @@ const TextSelectVideo: React.FC<TextSelectVideoProperties> = (properties) => {
                             type={type}
                         />
                 </video>
+
+                {showSettingsButton && (
+                    <Settings />
+                )}
 
                 {message && (
                     <Message text={message} />
