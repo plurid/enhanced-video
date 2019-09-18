@@ -8,6 +8,7 @@ import {
     StyledTimeline,
     StyledTimelineArea,
     StyledTimelineViewable,
+    StyledTimelineViewedContainer,
     StyledTimelineViewed,
     StyledTimelineCurrentTime,
 
@@ -116,19 +117,27 @@ const Timeline: React.FC<TimelineProperties> = (properties) => {
             onClick={(event) => setTime(event)}
         >
             <StyledTimelineArea>
-                <StyledTimelineViewed
-                    viewedWidth={viewedWidth}
+                <StyledTimelineViewedContainer
+                    first={first}
+                    last={last}
                     style={{
-                        width: viewedWidth + '%',
+                        width: 100 + '%',
                     }}
                 >
-                    <StyledTimelineCurrentTime
+                    <StyledTimelineViewed
                         viewedWidth={viewedWidth}
-                        currentTimeHours={currentTimeHours}
+                        style={{
+                            width: viewedWidth + '%',
+                        }}
                     >
-                        {currentTimeString}
-                    </StyledTimelineCurrentTime>
-                </StyledTimelineViewed>
+                        <StyledTimelineCurrentTime
+                            viewedWidth={viewedWidth}
+                            currentTimeHours={currentTimeHours}
+                        >
+                            {currentTimeString}
+                        </StyledTimelineCurrentTime>
+                    </StyledTimelineViewed>
+                </StyledTimelineViewedContainer>
 
                 <StyledTimelineViewable
                     first={first}

@@ -28,7 +28,7 @@ export const StyledTimelineViewable: any = styled.div`
     height: 100%;
     background: hsla(220, 5%, 15%, 0.5);
 
-    /* border-top-left-radius: ${(props: any) => {
+    border-top-left-radius: ${(props: any) => {
         if (props.first) {
             return '15px';
         }
@@ -52,9 +52,42 @@ export const StyledTimelineViewable: any = styled.div`
             return '15px';
         }
         return '';
-    }}; */
+    }};
 `;
 
+export const StyledTimelineViewedContainer: any = styled.div`
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    overflow: hidden;
+
+    border-top-left-radius: ${(props: any) => {
+        if (props.first) {
+            return '15px';
+        }
+        return '';
+    }};
+    border-bottom-left-radius: ${(props: any) => {
+        if (props.first) {
+            return '15px';
+        }
+        return '';
+    }};
+
+    border-top-right-radius: ${(props: any) => {
+        if (props.last) {
+            return '15px';
+        }
+        return '';
+    }};
+    border-bottom-right-radius: ${(props: any) => {
+        if (props.last) {
+            return '15px';
+        }
+        return '';
+    }};
+`;
 
 export const StyledTimelineViewed: any = styled.div`
     border-right: 1px solid ${(props: any) => {
@@ -70,7 +103,7 @@ export const StyledTimelineViewed: any = styled.div`
     bottom: 0;
     left: 0;
     z-index: 990;
-    transition: width 1s linear;
+    /* transition: width 1s linear; */
 `;
 
 
