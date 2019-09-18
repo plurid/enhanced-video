@@ -191,6 +191,9 @@ export interface IContext {
 
     showTimescrollTime: boolean;
     setShowTimescrollTime: Dispatch<SetStateAction<boolean>>;
+
+    showTimescrollText: boolean;
+    setShowTimescrollText: Dispatch<SetStateAction<boolean>>;
 }
 
 

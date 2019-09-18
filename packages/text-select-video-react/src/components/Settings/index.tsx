@@ -13,6 +13,7 @@ import SettingsIcon from '../../assets/settings-icon';
 
 import SettingsMenu from './components/SettingsMenu';
 import TimescrollTime from './components/TimescrollTime';
+import TimescrollText from './components/TimescrollText';
 
 
 
@@ -29,6 +30,7 @@ const Settings: React.FC<any> = () => {
         setShowSettingsMenu,
 
         showTimescrollTime,
+        showTimescrollText,
     } = context;
 
     return (
@@ -47,6 +49,10 @@ const Settings: React.FC<any> = () => {
 
             {showTimescrollTime && (
                 <TimescrollTime />
+            )}
+
+            {showTimescrollText && (
+                <TimescrollText />
             )}
         </StyledSettings>
     );
