@@ -10,7 +10,7 @@ import {
 interface IButtonCheckmarkProps {
     checked: boolean;
     text: string;
-    toggle: () => void;
+    toggle: any;
     theme: any;
 }
 

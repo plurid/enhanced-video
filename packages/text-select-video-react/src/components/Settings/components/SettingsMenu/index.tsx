@@ -19,7 +19,6 @@ import MarkTextTimeUntoggledIcon from '../../../../assets/mark-text-time-untoggl
 import MarkTextTimeToggledIcon from '../../../../assets/mark-text-time-toggled-icon';
 import ExtractTextIcon from '../../../../assets/extract-text-icon';
 
-
 import { ABOUT_URL } from '../../../../data/constants/general';
 
 import {
@@ -30,7 +29,6 @@ import ButtonCheckmark from '../../../UI/ButtonCheckmark';
 import ButtonItem from '../../../UI/ButtonItem';
 import ButtonSliderItem from '../../../UI/ButtonSliderItem';
 import ButtonTimescroll from '../../../UI/ButtonTimescroll';
-
 
 
 
@@ -50,12 +48,8 @@ const SettingsMenu: React.FC<any> = () => {
         playVideo,
         pauseVideo,
 
-        // toggleEditable,
-        // toggledEditable,
-
         videoVolume,
         toggleVideoVolume,
-        // setVideoVolume,
         handleVideoVolume,
 
         videoPlaybackRate,
@@ -64,16 +58,14 @@ const SettingsMenu: React.FC<any> = () => {
         editableText,
         setEditableText,
 
-        // timescrollView,
-        // toggleTimescrollView,
-        // textTimescrollView,
-
         qualitySources,
         qualitySource,
         setQualitySource,
 
         showTimescrollTime,
         setShowTimescrollTime,
+        showTimescrollText,
+        setShowTimescrollText,
     } = context;
 
     const VideoVolumeIcon = videoVolume == 0
@@ -106,7 +98,7 @@ const SettingsMenu: React.FC<any> = () => {
     }
 
     const handleMarkTextTime = () => {
-
+        setShowTimescrollText(show => !show);
     }
 
     const handleAboutClick = () => {
@@ -235,14 +227,14 @@ const SettingsMenu: React.FC<any> = () => {
                     />
                 </li>
 
-                {/* <li>
+                <li>
                     <ButtonItem
                         theme={theme}
                         atClick={handleMarkTextTime}
-                        icon={textTimescrollView ? MarkTextTimeToggledIcon : MarkTextTimeUntoggledIcon}
+                        icon={showTimescrollText ? MarkTextTimeToggledIcon : MarkTextTimeUntoggledIcon}
                         text="Mark Text Time"
                     />
-                </li> */}
+                </li>
 
                 <li>
                     <ButtonItem
