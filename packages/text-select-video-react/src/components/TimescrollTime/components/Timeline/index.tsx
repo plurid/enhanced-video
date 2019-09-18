@@ -48,15 +48,14 @@ const Timeline: React.FC<TimelineProperties> = (properties) => {
     } = properties;
 
     const startTimeString = formatTimeString(startTime * 60).format;
-    const endTimeString = formatTimeString(endTime * 60).format;
+    const endTimeString = endTime !== videoDuration
+        ? formatTimeString(endTime * 60).format
+        : formatTimeString(endTime).format;
 
     let viewableWidth = 100;
     let viewedWidth = 0;
     let currentTimeString = '';
     let currentTimeHours = 0;
-
-    console.log(endTime);
-    console.log(videoTime);
 
     if (last) {
         const timeMinutes = Math.floor((videoDuration / 60) - startTime);
