@@ -13,7 +13,6 @@ export const StyledTimeline = styled.div`
 
 
 export const StyledTimelineArea: any = styled.div`
-    background: hsla(220, 5%, 15%, 0.5);
     position: absolute;
     top: 0;
     bottom: 0;
@@ -21,6 +20,13 @@ export const StyledTimelineArea: any = styled.div`
     right: 0;
     pointer-events: none;
     overflow: hidden;
+`;
+
+
+export const StyledTimelineViewable: any = styled.div`
+    position: relative;
+    height: 100%;
+    background: hsla(220, 5%, 15%, 0.5);
 
     border-top-left-radius: ${(props: any) => {
         if (props.first) {
@@ -51,19 +57,20 @@ export const StyledTimelineArea: any = styled.div`
 
 
 export const StyledTimelineViewed: any = styled.div`
-    background: hsla(220, 5%, 5%, 0.6);
-    position: absolute;
-    top: 0;
-    bottom: 0;
-    left: 0;
     border-right: 1px solid ${(props: any) => {
         if (props.viewedWidth !== 100 && props.viewedWidth !== 0) {
             return 'white';
         }
         return 'none';
     }};
-    transition: width 1s linear;
+
+    background: hsla(220, 5%, 5%, 0.6);
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
     z-index: 990;
+    transition: width 1s linear;
 `;
 
 
