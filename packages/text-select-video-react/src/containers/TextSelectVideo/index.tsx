@@ -35,6 +35,9 @@ import Settings from '../../components/Settings';
 import Message from '../../components/Message';
 import Spinner from '../../components/Spinner';
 
+import TimescrollTime from '../../components/TimescrollTime';
+import TimescrollText from '../../components/TimescrollText';
+
 import themes, { Theme } from '@plurid/apps.utilities.themes';
 
 
@@ -62,7 +65,7 @@ const TextSelectVideo: React.FC<TextSelectVideoProperties> = (properties) => {
     const [showSpinner, setShowSpinner] = useState(false);
     const [message, setMessage] = useState('');
 
-    const [showSettingsButton, setShowSettingsButton] = useState(false);
+    const [showSettingsButton, setShowSettingsButton] = useState(true);
     const [showSettingsMenu, setShowSettingsMenu] = useState(false);
 
     const [editableText, setEditableText] = useState(false);
@@ -305,7 +308,7 @@ const TextSelectVideo: React.FC<TextSelectVideoProperties> = (properties) => {
         >
             <StyledTextSelectVideo
                 onMouseEnter={() => setShowSettingsButton(true)}
-                onMouseLeave={() => setShowSettingsButton(false)}
+                // onMouseLeave={() => setShowSettingsButton(false)}
                 onMouseMove={() => !showSettingsButton ? setShowSettingsButton(true) : null}
                 ref={videoContainer}
             >
@@ -327,6 +330,14 @@ const TextSelectVideo: React.FC<TextSelectVideoProperties> = (properties) => {
 
                 {showSettingsButton && (
                     <Settings />
+                )}
+
+                {showTimescrollTime && (
+                    <TimescrollTime />
+                )}
+
+                {showTimescrollText && (
+                    <TimescrollText />
                 )}
 
                 {message && (

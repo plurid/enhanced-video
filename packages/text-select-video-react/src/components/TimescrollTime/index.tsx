@@ -1,11 +1,13 @@
 import React, {
-    useContext
+    useContext,
+    useState,
+    useEffect,
 } from 'react';
 
-import Context from '../../../../services/utilities/context';
+import Context from '../../services/utilities/context';
 
 import {
-    StyledTimescrollText,
+    StyledTimescrollTime,
     StyledTimescrollViewContainer,
     StyledTimescrollTextExtractContainer,
 } from './styled';
@@ -18,15 +20,78 @@ import {
 
 
 
-const TimescrollText: React.FC<any> = (properties) => {
+const TimescrollTime: React.FC<any> = (properties) => {
     const context = useContext(Context);
     if (!context) {
         return (<></>);
     }
 
+    const {
+        videoTime,
+        videoDuration,
+    } = context;
+
+    const [timelines, setTimelines] = useState(<></>);
+
+    const hours = Math.floor(videoDuration / 3600);
+    const minutes = Math.floor((videoDuration - 3600 * hours) / 60);
+    // const seconds = Math.floor(videoDuration - (3600 * hours + 60 * minutes));
+
+    const totalMinutes = hours * 60 + minutes;
+    const total = Math.ceil(totalMinutes / 10);
+    const limit = total === 0 ? 1 : total;
+
+    useEffect(() => {
+        const lines: any[] = [];
+        for (let i = 0; i < limit; i++) {
+            const line = (
+                <div>
+                    {i}
+                </div>
+                // <TimescrollViewLine
+                //     firstLine={i === 0}
+                //     lastLine={i === limit - 1}
+                //     startTime={10 * i}
+                //     endTime={10 * (i + 1)}
+                //     videoTime={videoTime}
+                //     textTimescroll={textTimescroll}
+                //     addTextFramesMode={addTextFramesMode}
+                //     addTextSequenceMode={addTextSequenceMode}
+                //     addingText={addingText}
+                //     toggleAddingText={this.toggleAddingText}
+                //     setTextBeginning={this.setTextBeginning}
+                //     setTextEnding={this.setTextEnding}
+                //     textFrames={textFrames}
+                //     textSequences={textSequences}
+                //     updateTextMark={this.updateTextMark}
+                // />
+            );
+            lines.push(line);
+        }
+
+        setTimelines((
+            <>
+                {
+                    lines.map((line: any) => {
+                        return (
+                            <li
+                                key={Math.random() * 100000}
+                            >
+                                {line}
+                            </li>
+                        );
+                    })
+                }
+            </>
+        ));
+    }, []);
+
     return (
-        <StyledTimescrollText>
-        </StyledTimescrollText>
+        <StyledTimescrollTime>
+            <ul>
+                {timelines}
+            </ul>
+        </StyledTimescrollTime>
     );
 }
 
@@ -436,4 +501,4 @@ const TimescrollText: React.FC<any> = (properties) => {
 //     }
 // }
 
-export default TimescrollText;
+export default TimescrollTime;

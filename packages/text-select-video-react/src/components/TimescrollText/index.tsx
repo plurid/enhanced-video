@@ -2,10 +2,10 @@ import React, {
     useContext
 } from 'react';
 
-import Context from '../../../../services/utilities/context';
+import Context from '../../services/utilities/context';
 
 import {
-    StyledTimescrollTime,
+    StyledTimescrollText,
     StyledTimescrollViewContainer,
     StyledTimescrollTextExtractContainer,
 } from './styled';
@@ -18,15 +18,15 @@ import {
 
 
 
-const TimescrollTime: React.FC<any> = (properties) => {
+const TimescrollText: React.FC<any> = (properties) => {
     const context = useContext(Context);
     if (!context) {
         return (<></>);
     }
 
     return (
-        <StyledTimescrollTime>
-        </StyledTimescrollTime>
+        <StyledTimescrollText>
+        </StyledTimescrollText>
     );
 }
 
@@ -436,4 +436,4 @@ const TimescrollTime: React.FC<any> = (properties) => {
 //     }
 // }
 
-export default TimescrollTime;
+export default TimescrollText;
