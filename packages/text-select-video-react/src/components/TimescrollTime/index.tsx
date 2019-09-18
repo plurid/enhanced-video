@@ -1,7 +1,6 @@
 import React, {
     useContext,
     useRef,
-    useState,
     useEffect,
 } from 'react';
 
@@ -15,6 +14,7 @@ import {
 import Timeline from './components/Timeline';
 
 import { getWheelDirection } from '../../services/utilities/wheelDirection';
+import { range } from '../../services/utilities/array';
 
 
 
@@ -40,11 +40,7 @@ const TimescrollTime: React.FC<any> = () => {
     const totalMinutes = hours * 60 + minutes;
     const total = Math.ceil(totalMinutes / 10);
     const limit = total === 0 ? 1 : total;
-
-    const indexes = [];
-    for (let i = 0; i < limit; i++) {
-        indexes.push(i);
-    }
+    const indexes = range(0, limit);
 
     const handleKeyDown = (event: React.KeyboardEvent) => {
         let newVideoTime = videoTime;
@@ -128,7 +124,6 @@ const TimescrollTime: React.FC<any> = () => {
             tabIndex={0}
             ref={timescroll}
             onKeyDown={handleKeyDown}
-
             style={{
                 width: videoBoxDimensions.width + 'px',
                 height: videoBoxDimensions.height + 'px',
