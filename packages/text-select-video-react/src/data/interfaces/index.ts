@@ -24,18 +24,24 @@ export interface TextSelectVideoProperties {
      */
     atLoad?: any;
 
-    // To be specified when using another API than https://api.plurid.com
-    // GraphlQL-based
+    /**
+     * To be specified when using another API than https://api.plurid.com.
+     * GraphlQL-based.
+     *
+     * Default: https://api.plurid.com.
+     */
     apiEndpoint?: string;
-    // The apiKey contains the domain allowed to make requests
-    // To be specified when using as a service provider
-    // apiKey obtained from https://depict.plurid.com/api
+
+    /**
+     * API key obtained from https://account.plurid.com/depict/api when using
+     * the default apiEndpoint.
+     */
     apiKey?: string;
     userToken?: string;
     deviewVideoID?: string;
 
-    // updateDebounce?: number;
 
+    // updateDebounce?: number;
     // moreLimit?: number;
     // getTextOnLoad?: boolean;
 }

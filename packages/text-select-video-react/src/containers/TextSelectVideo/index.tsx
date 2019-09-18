@@ -61,12 +61,17 @@ const TextSelectVideo: React.FC<TextSelectVideoProperties> = (properties) => {
 
     const [showSpinner, setShowSpinner] = useState(false);
     const [message, setMessage] = useState('');
+
     const [showSettingsButton, setShowSettingsButton] = useState(false);
     const [showSettingsMenu, setShowSettingsMenu] = useState(false);
 
+    const [editableText, setEditableText] = useState(false);
+
     const [loadedVideo, setLoadedVideo] = useState(false);
+
     const [videoDuration, setVideoDuration] = useState(0);
     const [videoTime, setVideoTime] = useState(0);
+
     const [videoDimensions, setVideoDimensions] = useState(initialVideoDimensions);
     const [videoContainerDimensions, setVideoContainerDimensions] = useState(initialVideoContainerDimensions);
     const [videoBoxDimensions, setVideoBoxDimensions] = useState(initialVideoBoxDimensions);
@@ -75,9 +80,8 @@ const TextSelectVideo: React.FC<TextSelectVideoProperties> = (properties) => {
 
     const [previousVideoVolume, setPreviousVideoVolume] = useState(0);
     const [videoVolume, setVideoVolume] = useState(1);
-    const [videoPlaybackRate, setVideoPlaybackRate] = useState(1);
 
-    const [editableText, setEditableText] = useState(false);
+    const [videoPlaybackRate, setVideoPlaybackRate] = useState(1);
 
     const [qualitySource, setQualitySource] = useState('');
 
