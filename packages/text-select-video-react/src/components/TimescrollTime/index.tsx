@@ -35,7 +35,6 @@ const TimescrollTime: React.FC<any> = (properties) => {
 
     const hours = Math.floor(videoDuration / 3600);
     const minutes = Math.floor((videoDuration - 3600 * hours) / 60);
-    // const seconds = Math.floor(videoDuration - (3600 * hours + 60 * minutes));
 
     const totalMinutes = hours * 60 + minutes;
     const total = Math.ceil(totalMinutes / 10);
@@ -71,7 +70,7 @@ const TimescrollTime: React.FC<any> = (properties) => {
                 }
             </ul>
         ));
-    }, []);
+    }, [videoTime]);
 
     return (
         <StyledTimescrollTime>
