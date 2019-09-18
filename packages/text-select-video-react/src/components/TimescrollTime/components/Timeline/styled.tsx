@@ -56,6 +56,14 @@ export const StyledTimelineViewed: any = styled.div`
     top: 0;
     bottom: 0;
     left: 0;
+    border-right: 1px solid ${(props: any) => {
+        if (props.viewedWidth !== 100 && props.viewedWidth !== 0) {
+            return 'white';
+        }
+        return 'none';
+    }};
+    transition: width 1s linear;
+    z-index: 990;
 `;
 
 
@@ -77,10 +85,11 @@ export const StyledTimelineCurrentTime: any = styled.div`
 
 export const StyledTimelineTime = styled.div`
     position: absolute;
-    top: 12px;
+    top: 17px;
     width: 100%;
     display: inline-flex;
     font-size: 10px;
     justify-content: space-between;
-    padding: 4px 10px;
+    padding: 0px 8px;
+    color: #ddd;
 `;
