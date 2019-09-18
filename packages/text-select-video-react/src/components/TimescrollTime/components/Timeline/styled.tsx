@@ -19,6 +19,7 @@ export const StyledTimelineArea: any = styled.div`
     bottom: 0;
     left: 0;
     right: 0;
+    pointer-events: none;
     overflow: hidden;
 
     border-top-left-radius: ${(props: any) => {
@@ -59,7 +60,7 @@ export const StyledTimelineViewed: any = styled.div`
 
 
 export const StyledTimelineCurrentTime: any = styled.div`
-    font-size: 12px;
+    font-size: 11px;
     position: absolute;
     top: 2px;
     right: ${(props: any) => {
@@ -79,7 +80,7 @@ export const StyledTimelineTime = styled.div`
     top: 12px;
     width: 100%;
     display: inline-flex;
-    font-size: 11px;
+    font-size: 10px;
     justify-content: space-between;
-    padding: 3px 10px;
+    padding: 4px 10px;
 `;
