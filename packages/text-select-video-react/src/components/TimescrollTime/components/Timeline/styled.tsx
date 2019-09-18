@@ -55,6 +55,7 @@ export const StyledTimelineViewable: any = styled.div`
     }};
 `;
 
+
 export const StyledTimelineViewedContainer: any = styled.div`
     position: absolute;
     top: 0;
@@ -89,6 +90,7 @@ export const StyledTimelineViewedContainer: any = styled.div`
     }};
 `;
 
+
 export const StyledTimelineViewed: any = styled.div`
     border-right: 1px solid ${(props: any) => {
         if (props.viewedWidth !== 100 && props.viewedWidth !== 0) {
@@ -103,7 +105,6 @@ export const StyledTimelineViewed: any = styled.div`
     bottom: 0;
     left: 0;
     z-index: 990;
-    /* transition: width 1s linear; */
 `;
 
 

@@ -34,14 +34,17 @@ const TimescrollTime: React.FC<any> = () => {
         videoBoxDimensions,
     } = context;
 
-    const [timelines, setTimelines] = useState(<></>);
-
     const hours = Math.floor(videoDuration / 3600);
     const minutes = Math.floor((videoDuration - 3600 * hours) / 60);
 
     const totalMinutes = hours * 60 + minutes;
     const total = Math.ceil(totalMinutes / 10);
     const limit = total === 0 ? 1 : total;
+
+    const indexes = [];
+    for (let i = 0; i < limit; i++) {
+        indexes.push(i);
+    }
 
     const handleKeyDown = (event: React.KeyboardEvent) => {
         let newVideoTime = videoTime;
@@ -113,47 +116,6 @@ const TimescrollTime: React.FC<any> = () => {
     }
 
     useEffect(() => {
-        const timelines: JSX.Element[] = [];
-        for (let i = 0; i < limit; i++) {
-            const first = i === 0;
-            const last = i === limit - 1;
-
-            const startTime = 10 * i;
-            const endTimeAbsolute = 10 * (i + 1);
-            const endTime = videoDuration > endTimeAbsolute * 60
-                ? endTimeAbsolute
-                : videoDuration;
-
-            const timeline = (
-                <Timeline
-                    first={first}
-                    last={last}
-                    startTime={startTime}
-                    endTime={endTime}
-                    videoTime={videoTime}
-                />
-            );
-            timelines.push(timeline);
-        }
-
-        setTimelines((
-            <ul>
-                {
-                    timelines.map(timeline => {
-                        return (
-                            <li
-                                key={Math.random() + ''}
-                            >
-                                {timeline}
-                            </li>
-                        );
-                    })
-                }
-            </ul>
-        ));
-    }, [videoTime]);
-
-    useEffect(() => {
         timescroll.current!.addEventListener('wheel', handleWheel);
 
         return () => {
@@ -175,7 +137,32 @@ const TimescrollTime: React.FC<any> = () => {
             }}
         >
             <StyledTimescrollTimeContainer>
-                {timelines}
+                <ul>
+                    {indexes.map(timelineIndex => {
+                        const first = timelineIndex === 0;
+                        const last = timelineIndex === limit - 1;
+
+                        const startTime = 10 * timelineIndex;
+                        const endTimeAbsolute = 10 * (timelineIndex + 1);
+                        const endTime = videoDuration > endTimeAbsolute * 60
+                            ? endTimeAbsolute
+                            : videoDuration;
+
+                        return (
+                            <li
+                                key={timelineIndex}
+                            >
+                                <Timeline
+                                    first={first}
+                                    last={last}
+                                    startTime={startTime}
+                                    endTime={endTime}
+                                    videoTime={videoTime}
+                                />
+                            </li>
+                        );
+                    })}
+                </ul>
             </StyledTimescrollTimeContainer>
         </StyledTimescrollTime>
     );
