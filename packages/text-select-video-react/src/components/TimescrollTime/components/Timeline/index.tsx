@@ -101,6 +101,7 @@ const Timeline: React.FC<TimelineProperties> = (properties) => {
                 last={last}
             >
                 <StyledTimelineViewed
+                    viewedWidth={viewedWidth}
                     style={{
                         width: viewedWidth + '%',
                     }}
