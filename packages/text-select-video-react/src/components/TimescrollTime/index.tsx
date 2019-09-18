@@ -8,11 +8,11 @@ import Context from '../../services/utilities/context';
 
 import {
     StyledTimescrollTime,
-    StyledTimescrollViewContainer,
-    StyledTimescrollTextExtractContainer,
+    StyledTimescrollTimeContainer,
 } from './styled';
 
-// import Button from '../Button';
+import Timeline from './components/Timeline';
+
 // import TimescrollViewLine from '../TimescrollViewLine';
 
 // import { getWheelDirection } from '../../utils/wheelDirection';
@@ -42,58 +42,47 @@ const TimescrollTime: React.FC<any> = (properties) => {
     const limit = total === 0 ? 1 : total;
 
     useEffect(() => {
-        const lines: any[] = [];
+        const timelines: JSX.Element[] = [];
         for (let i = 0; i < limit; i++) {
-            const line = (
-                <div>
-                    {i}
-                </div>
-                // <TimescrollViewLine
-                //     firstLine={i === 0}
-                //     lastLine={i === limit - 1}
-                //     startTime={10 * i}
-                //     endTime={10 * (i + 1)}
-                //     videoTime={videoTime}
-                //     textTimescroll={textTimescroll}
-                //     addTextFramesMode={addTextFramesMode}
-                //     addTextSequenceMode={addTextSequenceMode}
-                //     addingText={addingText}
-                //     toggleAddingText={this.toggleAddingText}
-                //     setTextBeginning={this.setTextBeginning}
-                //     setTextEnding={this.setTextEnding}
-                //     textFrames={textFrames}
-                //     textSequences={textSequences}
-                //     updateTextMark={this.updateTextMark}
-                // />
+            const timeline = (
+                <Timeline
+                    first={i === 0}
+                    last={i === limit - 1}
+                    startTime={10 * i}
+                    endTime={10 * (i + 1)}
+                    videoTime={videoTime}
+                />
             );
-            lines.push(line);
+            timelines.push(timeline);
         }
 
         setTimelines((
-            <>
+            <ul>
                 {
-                    lines.map((line: any) => {
+                    timelines.map(timeline => {
                         return (
                             <li
-                                key={Math.random() * 100000}
+                                key={Math.random() + ''}
                             >
-                                {line}
+                                {timeline}
                             </li>
                         );
                     })
                 }
-            </>
+            </ul>
         ));
     }, []);
 
     return (
         <StyledTimescrollTime>
-            <ul>
+            <StyledTimescrollTimeContainer>
                 {timelines}
-            </ul>
+            </StyledTimescrollTimeContainer>
         </StyledTimescrollTime>
     );
 }
+
+
 
 // class TimescrollView extends Component<
 //     any, any
@@ -216,70 +205,7 @@ const TimescrollTime: React.FC<any> = (properties) => {
 //                                 );
 //                             })
 //                         }
-
-//                         {/* <li>
-//                             <TimescrollViewLine
-//                                 firstLine={true}
-//                                 lastLine={true}
-//                                 startTime={0}
-//                                 endTime={10}
-//                                 videoTime={videoTime}
-//                                 textTimescroll={textTimescroll}
-//                                 addTextFramesMode={addTextFramesMode}
-//                                 addTextSequenceMode={addTextSequenceMode}
-//                                 addingText={addingText}
-//                                 toggleAddingText={this.toggleAddingText}
-//                                 setTextBeginning={this.setTextBeginning}
-//                                 setTextEnding={this.setTextEnding}
-//                                 textFrames={textFrames}
-//                                 textSequences={textSequences}
-//                                 updateTextMark={this.updateTextMark}
-//                             />
-//                         </li> */}
 //                     </ul>
-
-//                     {textTimescroll && (
-//                         <StyledTimescrollTextExtractContainer
-//                             theme={theme}
-//                         >
-//                             <div>
-//                                 <Button
-//                                     theme={theme}
-//                                     text="Add Text Frames"
-//                                     atClick={this.addTextFrames}
-//                                     pressed={addTextFramesMode}
-//                                 />
-//                             </div>
-//                             <div>
-//                                 <Button
-//                                     theme={theme}
-//                                     text="Add Text Sequence"
-//                                     atClick={this.addTextSequence}
-//                                     pressed={addTextSequenceMode}
-//                                 />
-//                             </div>
-//                             <div>
-//                                 Text Frames: 3
-//                             </div>
-//                             <div>
-//                                 Text Sequence Seconds: 20.5
-//                             </div>
-//                             <div>
-//                                 <Button
-//                                     theme={theme}
-//                                     text="Extract Text Frames"
-//                                     atClick={this.extractFrames}
-//                                 />
-//                             </div>
-//                             <div>
-//                                 <Button
-//                                     theme={theme}
-//                                     text="Extract Text Sequences"
-//                                     atClick={this.extractSequences}
-//                                 />
-//                             </div>
-//                         </StyledTimescrollTextExtractContainer>
-//                     )}
 //                 </StyledTimescrollViewContainer>
 //             </StyledTimescrollView>
 //         );
