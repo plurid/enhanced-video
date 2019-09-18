@@ -1,18 +1,23 @@
 export interface IVideoTextVersion {
     id: string;
-    createdBy: string;
-    computerGenerated: boolean;
-    userGenerated: boolean;
-    ownerGenerated: boolean;
-    adminGenerated: boolean;
+    // createdBy: string;
+    // computerGenerated: boolean;
+    // userGenerated: boolean;
+    // ownerGenerated: boolean;
+    // adminGenerated: boolean;
+
     startTime: number;
     endTime: number;
+
     xCoordPercentage: number;
     yCoordPercentage: number;
+
     perspective: string;
     rotation: string;
     skew: string;
+
     color: string;
+
     fontFamily: string;
     fontSizePercentage: number;
     bold: boolean;
@@ -20,7 +25,9 @@ export interface IVideoTextVersion {
     letterSpacingPercentage: number;
     lineHeight: string | number;
     wordSpacingPercentage: number;
+
     content: string;
+
     link: boolean;
     linkTo: string;
     viewable: boolean;
