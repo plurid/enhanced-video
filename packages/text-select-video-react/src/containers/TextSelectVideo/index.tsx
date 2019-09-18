@@ -85,6 +85,8 @@ const TextSelectVideo: React.FC<TextSelectVideoProperties> = (properties) => {
 
     const [qualitySource, setQualitySource] = useState('');
 
+    const [showTimescrollTime, setShowTimescrollTime] = useState(false);
+
     const videoContainer = useRef<HTMLDivElement>(null);
     const video = useRef<HTMLVideoElement>(null);
 
@@ -261,6 +263,9 @@ const TextSelectVideo: React.FC<TextSelectVideoProperties> = (properties) => {
         showSettingsMenu,
         setShowSettingsMenu,
 
+        editableText,
+        setEditableText,
+
         loadedVideo,
 
         videoDuration,
@@ -284,11 +289,11 @@ const TextSelectVideo: React.FC<TextSelectVideoProperties> = (properties) => {
         videoTime,
         handleVideoTime,
 
-        editableText,
-        setEditableText,
-
         qualitySource,
         setQualitySource,
+
+        showTimescrollTime,
+        setShowTimescrollTime,
     };
 
     return (

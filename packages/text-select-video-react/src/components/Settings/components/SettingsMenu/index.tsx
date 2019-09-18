@@ -59,7 +59,6 @@ const SettingsMenu: React.FC<any> = () => {
         handleVideoVolume,
 
         videoPlaybackRate,
-        setVideoPlaybackRate,
         handleVideoPlaybackRate,
 
         editableText,
@@ -72,6 +71,9 @@ const SettingsMenu: React.FC<any> = () => {
         qualitySources,
         qualitySource,
         setQualitySource,
+
+        showTimescrollTime,
+        setShowTimescrollTime,
     } = context;
 
     const VideoVolumeIcon = videoVolume == 0
@@ -134,10 +136,8 @@ const SettingsMenu: React.FC<any> = () => {
 
                 <li>
                     <ButtonTimescroll
-                        // toggle={toggleTimescrollView}
-                        toggle={() => {}}
-                        // toggled={timescrollView}
-                        toggled={true}
+                        toggle={setShowTimescrollTime}
+                        toggled={showTimescrollTime}
                     />
                 </li>
 
