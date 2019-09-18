@@ -73,7 +73,7 @@ const Timeline: React.FC<TimelineProperties> = (properties) => {
         currentTimeHours = currentVideoTime.hours;
     }
 
-    const setTime = (event: React.MouseEvent<HTMLDivElement, MouseEvent>) => {
+    const setTime = (event: React.MouseEvent) => {
         const {
             handleVideoTime,
         } = context;
@@ -94,7 +94,7 @@ const Timeline: React.FC<TimelineProperties> = (properties) => {
     return (
         <StyledTimeline
             ref={timeline}
-            onClick={(event: React.MouseEvent<HTMLDivElement, MouseEvent>) => setTime(event)}
+            onClick={(event) => setTime(event)}
         >
             <StyledTimelineArea
                 first={first}
