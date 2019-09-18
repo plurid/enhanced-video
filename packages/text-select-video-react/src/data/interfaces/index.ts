@@ -160,6 +160,9 @@ export interface IContext {
     showSettingsMenu: boolean;
     setShowSettingsMenu: Dispatch<SetStateAction<boolean>>;
 
+    editableText: boolean;
+    setEditableText: Dispatch<SetStateAction<boolean>>;
+
     loadedVideo: boolean;
 
     videoDuration: number;
@@ -183,11 +186,11 @@ export interface IContext {
     videoTime: number;
     handleVideoTime: (videoTime: number) => void;
 
-    editableText: boolean;
-    setEditableText: any;
-
     qualitySource: any;
     setQualitySource: any;
+
+    showTimescrollTime: boolean;
+    setShowTimescrollTime: Dispatch<SetStateAction<boolean>>;
 }
 
 

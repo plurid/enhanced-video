@@ -79,7 +79,7 @@ class Timescroll extends Component<
         return (
             <StyledTimescroll>
                 <StyledTimescrollTitle
-                    onClick={toggle}
+                    onClick={() => toggle((show: boolean) => !show)}
                 >
                     <StyledTimescrollTitleIcon
                         theme={theme}

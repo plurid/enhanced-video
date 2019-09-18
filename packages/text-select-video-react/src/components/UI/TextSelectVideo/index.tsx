@@ -221,9 +221,6 @@ class TextSelectVideo extends Component<
                     theme={theme}
                     toggledEditable={toggledEditable}
                     imageWidth={imageWidth}
-                    onMouseEnter={this.toggleSettingsButton}
-                    onMouseLeave={this.toggleSettingsButton}
-                    onMouseMove={this.verifySettingsButton}
                     ref={this.videoContainer}
                 >
                     <video
@@ -231,9 +228,6 @@ class TextSelectVideo extends Component<
                         height={height}
                         style={{...videoStyle}}
                         ref={this.video}
-                        onTimeUpdate={this.setVideoCurrentTime}
-                        onLoadedData={this.handleLoadedVideo}
-                        onLoadedMetadata={this.handleLoadedMetadata}
                     >
                         <source
                             src={videoSrc}
@@ -273,20 +267,6 @@ class TextSelectVideo extends Component<
                 </StyledTextSelectVideo>
             </Context.Provider>
         );
-    }
-
-    private setVideoCurrentTime = () => {
-        const videoTime = this.video.current!.currentTime
-        this.setState({
-            videoTime,
-        });
-    }
-
-    private setVideoTime = (videoTime: number) => {
-        this.video.current!.currentTime = videoTime;
-        this.setState({
-            videoTime,
-        });
     }
 
     private makeQualitySources = (qualitySources: any): any => {
@@ -469,30 +449,6 @@ class TextSelectVideo extends Component<
         this.setState((prevState: any) => ({
             textTimescrollView: !prevState.textTimescrollView,
             timescrollView: false,
-        }));
-    }
-
-    private toggleSettingsButton = () => {
-        this.setState((prevState: any) => ({
-            toggledSettingsButton: !prevState.toggledSettingsButton,
-        }));
-    }
-
-    private verifySettingsButton = () => {
-        const {
-            toggledSettingsButton,
-        } = this.state;
-
-        if (!toggledSettingsButton) {
-            this.setState((prevState: any) => ({
-                toggledSettingsButton: !prevState.toggledSettingsButton,
-            }));
-        }
-    }
-
-    private toggleEditable = () => {
-        this.setState((prevState: any) => ({
-            toggledEditable: !prevState.toggledEditable,
         }));
     }
 
