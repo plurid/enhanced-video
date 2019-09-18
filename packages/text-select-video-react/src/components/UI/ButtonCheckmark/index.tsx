@@ -28,7 +28,7 @@ class ButtonCheckmark extends Component<
 
         return (
             <StyledButtonCheckmark
-                onClick={toggle}
+                onClick={() => toggle((show: boolean) => !show)}
             >
                 <div>
                     {text}
