@@ -28,7 +28,7 @@ export const StyledTimelineViewable: any = styled.div`
     height: 100%;
     background: hsla(220, 5%, 15%, 0.5);
 
-    border-top-left-radius: ${(props: any) => {
+    /* border-top-left-radius: ${(props: any) => {
         if (props.first) {
             return '15px';
         }
@@ -52,7 +52,7 @@ export const StyledTimelineViewable: any = styled.div`
             return '15px';
         }
         return '';
-    }};
+    }}; */
 `;
 
 
@@ -85,7 +85,7 @@ export const StyledTimelineCurrentTime: any = styled.div`
         if (props.viewedWidth < 8 && props.currentTimeHours !== 0) {
             return '-44px';
         }
-        return '2px';
+        return '6px';
     }};
 `;
 

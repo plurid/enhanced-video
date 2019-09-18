@@ -121,7 +121,7 @@ const TimescrollTime: React.FC<any> = (properties) => {
 
             const startTime = 10 * i;
             const endTimeAbsolute = 10 * (i + 1);
-            const endTime = videoDuration > endTimeAbsolute
+            const endTime = videoDuration > endTimeAbsolute * 60
                 ? endTimeAbsolute
                 : videoDuration;
 
