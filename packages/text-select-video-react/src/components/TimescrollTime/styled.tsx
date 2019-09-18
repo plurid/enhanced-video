@@ -5,10 +5,7 @@ import styled from 'styled-components';
 export const StyledTimescrollTime = styled.div`
     text-align: left;
     position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
+    outline: none;
     z-index: 999;
 
     ul {
@@ -19,7 +16,7 @@ export const StyledTimescrollTime = styled.div`
 
     ul li {
         margin: 20px auto;
-        width: 70%;
+        width: 100%;
         user-select: none;
         padding: 0 40px;
     }

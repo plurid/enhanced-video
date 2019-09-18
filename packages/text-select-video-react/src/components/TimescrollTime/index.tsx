@@ -31,6 +31,8 @@ const TimescrollTime: React.FC<any> = (properties) => {
         videoTime,
         videoDuration,
         handleVideoTime,
+
+        videoBoxDimensions,
     } = context;
 
     const [timelines, setTimelines] = useState(<></>);
@@ -156,6 +158,13 @@ const TimescrollTime: React.FC<any> = (properties) => {
             tabIndex={0}
             ref={timescroll}
             onKeyDown={handleKeyDown}
+
+            style={{
+                width: videoBoxDimensions.width + 'px',
+                height: videoBoxDimensions.height + 'px',
+                left: videoBoxDimensions.left + 'px',
+                top: videoBoxDimensions.top + 'px',
+            }}
         >
             <StyledTimescrollTimeContainer>
                 {timelines}
