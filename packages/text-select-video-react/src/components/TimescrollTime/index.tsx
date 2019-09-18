@@ -18,8 +18,7 @@ import { getWheelDirection } from '../../services/utilities/wheelDirection';
 
 
 
-
-const TimescrollTime: React.FC<any> = (properties) => {
+const TimescrollTime: React.FC<any> = () => {
     const context = useContext(Context);
     if (!context) {
         return (<></>);
