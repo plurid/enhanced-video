@@ -7,6 +7,7 @@ import Context from '../../../../services/utilities/context';
 import {
     StyledTimeline,
     StyledTimelineArea,
+    StyledTimelineViewable,
     StyledTimelineViewed,
     StyledTimelineCurrentTime,
 
@@ -14,7 +15,6 @@ import {
 } from './styled';
 
 import { formatTimeString } from '../../../../services/utilities/timeString';
-
 
 
 
@@ -32,6 +32,11 @@ const Timeline: React.FC<TimelineProperties> = (properties) => {
         return (<></>);
     }
 
+    const {
+        videoDuration,
+        handleVideoTime,
+    } = context;
+
     const timeline = useRef<HTMLDivElement>(null);
 
     const {
@@ -45,9 +50,24 @@ const Timeline: React.FC<TimelineProperties> = (properties) => {
     const startTimeString = formatTimeString(startTime * 60).format;
     const endTimeString = formatTimeString(endTime * 60).format;
 
+    let viewableWidth = 100;
     let viewedWidth = 0;
     let currentTimeString = '';
     let currentTimeHours = 0;
+
+    console.log(endTime);
+    console.log(videoTime);
+
+    if (last) {
+        const timeMinutes = Math.floor((videoDuration / 60) - startTime);
+        const timeMinutesPercentage = timeMinutes * 10;
+
+        const timeSeconds = videoDuration - (timeMinutes * 60 + startTime * 60);
+        const timeSecondsPercentage = (timeSeconds * 100 / 60)/10;
+
+        viewableWidth = timeMinutesPercentage + timeSecondsPercentage;
+    }
+
     if (endTime * 60 < videoTime) {
         viewedWidth = 100;
     }
@@ -74,10 +94,6 @@ const Timeline: React.FC<TimelineProperties> = (properties) => {
     }
 
     const setTime = (event: React.MouseEvent) => {
-        const {
-            handleVideoTime,
-        } = context;
-
         const clientX = event.clientX;
 
         const {
@@ -88,7 +104,11 @@ const Timeline: React.FC<TimelineProperties> = (properties) => {
         const timePercentage = (clientX - left) / width * 100;
         const videoTime = (timePercentage * 600 / 100) + startTime * 60;
 
-        handleVideoTime(videoTime);
+        if (videoTime < videoDuration) {
+            handleVideoTime(videoTime);
+        } else {
+            handleVideoTime(videoDuration);
+        }
     }
 
     return (
@@ -96,10 +116,7 @@ const Timeline: React.FC<TimelineProperties> = (properties) => {
             ref={timeline}
             onClick={(event) => setTime(event)}
         >
-            <StyledTimelineArea
-                first={first}
-                last={last}
-            >
+            <StyledTimelineArea>
                 <StyledTimelineViewed
                     viewedWidth={viewedWidth}
                     style={{
@@ -114,15 +131,23 @@ const Timeline: React.FC<TimelineProperties> = (properties) => {
                     </StyledTimelineCurrentTime>
                 </StyledTimelineViewed>
 
-                <StyledTimelineTime>
-                    <div>
-                        {startTimeString}
-                    </div>
+                <StyledTimelineViewable
+                    first={first}
+                    last={last}
+                    style={{
+                        width: viewableWidth + '%',
+                    }}
+                >
+                    <StyledTimelineTime>
+                        <div>
+                            {startTimeString}
+                        </div>
 
-                    <div>
-                        {endTimeString}
-                    </div>
-                </StyledTimelineTime>
+                        <div>
+                            {endTimeString}
+                        </div>
+                    </StyledTimelineTime>
+                </StyledTimelineViewable>
             </StyledTimelineArea>
         </StyledTimeline>
     );

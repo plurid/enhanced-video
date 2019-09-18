@@ -116,12 +116,21 @@ const TimescrollTime: React.FC<any> = (properties) => {
     useEffect(() => {
         const timelines: JSX.Element[] = [];
         for (let i = 0; i < limit; i++) {
+            const first = i === 0;
+            const last = i === limit - 1;
+
+            const startTime = 10 * i;
+            const endTimeAbsolute = 10 * (i + 1);
+            const endTime = videoDuration > endTimeAbsolute
+                ? endTimeAbsolute
+                : videoDuration;
+
             const timeline = (
                 <Timeline
-                    first={i === 0}
-                    last={i === limit - 1}
-                    startTime={10 * i}
-                    endTime={10 * (i + 1)}
+                    first={first}
+                    last={last}
+                    startTime={startTime}
+                    endTime={endTime}
                     videoTime={videoTime}
                 />
             );
