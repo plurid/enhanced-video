@@ -63,10 +63,10 @@ export const StyledTimelineCurrentTime: any = styled.div`
     position: absolute;
     top: 2px;
     right: ${(props: any) => {
-        if (props.viewedWidth < 4 && props.currentTimeHours === 0) {
+        if (props.viewedWidth < 7 && props.currentTimeHours === 0) {
             return '-34px';
         }
-        if (props.viewedWidth < 5 && props.currentTimeHours !== 0) {
+        if (props.viewedWidth < 8 && props.currentTimeHours !== 0) {
             return '-44px';
         }
         return '2px';
