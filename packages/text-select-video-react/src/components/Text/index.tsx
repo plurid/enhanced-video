@@ -6,6 +6,10 @@ import {
     StyledText,
 } from './styled';
 
+import {
+    VideoText,
+} from '../../data/interfaces';
+
 import Context from '../../services/utilities/context';
 
 import TextItem from './components/TextItem';
@@ -33,7 +37,7 @@ const Text: React.FC<any> = () => {
                 top: videoBoxDimensions.top + 'px',
             }}
         >
-            {videoText.map(textItem => {
+            {videoText.map((textItem: VideoText) => {
                 return (
                     <TextItem
                         key={textItem.id}

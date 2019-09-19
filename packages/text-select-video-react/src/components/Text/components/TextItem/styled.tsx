@@ -2,7 +2,7 @@ import styled from 'styled-components';
 
 
 
-export const StyledTextVideo: any = styled.div`
+export const StyledTextItem: any = styled.div`
     z-index: ${(props: any) => {
         if (props.dragMode) {
             return '9999';

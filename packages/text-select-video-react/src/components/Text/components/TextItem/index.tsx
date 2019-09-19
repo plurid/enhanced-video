@@ -7,12 +7,15 @@ import {
 // import Context from '../../../../services/utilities/context';
 // import TextVideoEditor from '../TextEditor';
 // import ButtonMore from '../../../UI/ButtonMore';
-// import {
+import TextEditor from './components/TextEditor';
+
+import {
+    StyledTextItem,
 //     StyledTextVideo,
 //     StyledTextVideoTextContent,
 //     StyledTextVideoTextContentLink,
 //     StyledEditableDiv,
-// } from './styled';
+} from './styled';
 
 // import {
 //     ITextVideoProps,
@@ -40,10 +43,16 @@ const TextItem: React.FC<TextItemProperties> = (properties) => {
         data,
     } = properties;
 
-    return (
-        <div>
+    const textContent = data.versions[0].content;
 
-        </div>
+    return (
+        <StyledTextItem>
+            {textContent}
+
+            <TextEditor
+                data={data}
+            />
+        </StyledTextItem>
     );
 }
 
