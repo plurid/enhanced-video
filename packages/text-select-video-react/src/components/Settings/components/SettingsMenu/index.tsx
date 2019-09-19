@@ -1,6 +1,8 @@
 import React, {
     useContext,
+    useRef,
     useState,
+    useEffect,
 } from 'react';
 
 import Context from '../../../../services/utilities/context';
@@ -23,6 +25,7 @@ import { ABOUT_URL } from '../../../../data/constants/general';
 
 import {
     StyledSettingsMenu,
+    StyledSettingsMenuContainer,
 } from './styled';
 
 import ButtonCheckmark from '../../../UI/ButtonCheckmark';
@@ -38,7 +41,10 @@ const SettingsMenu: React.FC<any> = () => {
         return (<></>);
     }
 
+    const settingsMenu = useRef<HTMLDivElement>(null);
+
     const [menuOpacity, setMenuOpacity] = useState(1);
+    const [menuHeight, setMenuHeight] = useState(0);
 
     const {
         about,
@@ -66,6 +72,8 @@ const SettingsMenu: React.FC<any> = () => {
         setShowTimescrollTime,
         showTimescrollText,
         setShowTimescrollText,
+
+        videoContainerDimensions,
     } = context;
 
     const VideoVolumeIcon = videoVolume == 0
@@ -109,158 +117,181 @@ const SettingsMenu: React.FC<any> = () => {
 
     }
 
+    useEffect(() => {
+        if (settingsMenu.current) {
+            const containerHeight = videoContainerDimensions.height;
+            const menuHeight = settingsMenu.current.offsetHeight;
+
+            console.log(menuHeight);
+
+            if (containerHeight < menuHeight) {
+                console.log(menuHeight);
+                console.log(containerHeight);
+                setMenuHeight(containerHeight - 70);
+            } else {
+                console.log('aa');
+                setMenuHeight(menuHeight);
+            }
+        }
+    }, [])
+
     return (
         <StyledSettingsMenu
+            ref={settingsMenu}
             theme={theme}
+            height={menuHeight}
             style={{
                 opacity: menuOpacity
             }}
         >
-            <ul>
-                <li>
-                    <ButtonItem
-                        theme={theme}
-                        atClick={handlePlayPause}
-                        icon={videoPlaying ? PauseIcon : PlayIcon}
-                        text={videoPlaying ? 'Pause' : 'Play'}
-                    />
-                </li>
-
-                <li>
-                    <ButtonTimescroll
-                        toggle={setShowTimescrollTime}
-                        toggled={showTimescrollTime}
-                    />
-                </li>
-
-                <li>
-                    <ButtonSliderItem
-                        theme={theme}
-                        icon={VideoVolumeIcon}
-                        iconClick={toggleVideoVolume}
-                        type="volume"
-                        name="Volume"
-                        min={0}
-                        max={2}
-                        setValue={handleVideoVolume}
-                        value={videoVolume}
-                        valueSign=""
-                        defaultValue={0.75}
-                        step={0.01}
-                        normalized={true}
-                        toggleMenuOpaque={toggleMenuOpaque}
-                    />
-                </li>
-
-                <li>
-                    <ButtonSliderItem
-                        theme={theme}
-                        type="playback"
-                        name="Playback Rate"
-                        min={0.25}
-                        max={2.25}
-                        setValue={handleVideoPlaybackRate}
-                        value={videoPlaybackRate}
-                        valueSign=""
-                        step={0.01}
-                        normalized={true}
-                        defaultValue={1}
-                        toggleMenuOpaque={toggleMenuOpaque}
-                    />
-                </li>
-
-                {qualitySources && (
-                    <li>
-                        <ButtonSliderItem
-                            theme={theme}
-                            type="quality"
-                            name="Quality"
-                            min={0}
-                            max={qualitySources.length - 1}
-                            setValue={setQualitySource}
-                            value={qualitySource}
-                            valueString={qualitySources[qualitySource].quality}
-                            step={1}
-                            defaultValue={qualitySources.length - 1}
-                            toggleMenuOpaque={toggleMenuOpaque}
-                        />
-                    </li>
-                )}
-
-                <hr />
-
-                <li>
-                    <ButtonCheckmark
-                        theme={theme}
-                        toggle={setEditableText}
-                        text="Edit Text"
-                        checked={editableText}
-                    />
-                </li>
-
-                <li>
-                    <ButtonItem
-                        theme={theme}
-                        atClick={handleAddText}
-                        icon={AddTextIcon}
-                        text="Add Text"
-                    />
-                </li>
-
-                <li>
-                    <ButtonItem
-                        theme={theme}
-                        atClick={handleSaveText}
-                        icon={SaveVideoTextIcon}
-                        text="Save Video Text"
-                    />
-                </li>
-
-                <hr />
-
-                <li>
-                    <ButtonItem
-                        theme={theme}
-                        atClick={handleGetText}
-                        icon={GetTextIcon}
-                        text="Get Text"
-                    />
-                </li>
-
-                <li>
-                    <ButtonItem
-                        theme={theme}
-                        atClick={handleMarkTextTime}
-                        icon={showTimescrollText ? MarkTextTimeToggledIcon : MarkTextTimeUntoggledIcon}
-                        text="Mark Text Time"
-                    />
-                </li>
-
-                <li>
-                    <ButtonItem
-                        theme={theme}
-                        atClick={handleExtractFrame}
-                        icon={ExtractTextIcon}
-                        text="Extract Frame"
-                    />
-                </li>
-
-                {about && (
-                    <hr />
-                )}
-
-                {about && (
+            <StyledSettingsMenuContainer
+                height={menuHeight}
+            >
+                <ul>
                     <li>
                         <ButtonItem
                             theme={theme}
-                            atClick={handleAboutClick}
-                            icon={AboutIcon}
-                            text="About TSV"
+                            atClick={handlePlayPause}
+                            icon={videoPlaying ? PauseIcon : PlayIcon}
+                            text={videoPlaying ? 'Pause' : 'Play'}
                         />
                     </li>
-                )}
-            </ul>
 
+                    <li>
+                        <ButtonTimescroll
+                            toggle={setShowTimescrollTime}
+                            toggled={showTimescrollTime}
+                        />
+                    </li>
+
+                    <li>
+                        <ButtonSliderItem
+                            theme={theme}
+                            icon={VideoVolumeIcon}
+                            iconClick={toggleVideoVolume}
+                            type="volume"
+                            name="Volume"
+                            min={0}
+                            max={2}
+                            setValue={handleVideoVolume}
+                            value={videoVolume}
+                            valueSign=""
+                            defaultValue={0.75}
+                            step={0.01}
+                            normalized={true}
+                            toggleMenuOpaque={toggleMenuOpaque}
+                        />
+                    </li>
+
+                    <li>
+                        <ButtonSliderItem
+                            theme={theme}
+                            type="playback"
+                            name="Playback Rate"
+                            min={0.25}
+                            max={2.25}
+                            setValue={handleVideoPlaybackRate}
+                            value={videoPlaybackRate}
+                            valueSign=""
+                            step={0.01}
+                            normalized={true}
+                            defaultValue={1}
+                            toggleMenuOpaque={toggleMenuOpaque}
+                        />
+                    </li>
+
+                    {qualitySources && (
+                        <li>
+                            <ButtonSliderItem
+                                theme={theme}
+                                type="quality"
+                                name="Quality"
+                                min={0}
+                                max={qualitySources.length - 1}
+                                setValue={setQualitySource}
+                                value={qualitySource}
+                                valueString={qualitySources[qualitySource].quality}
+                                step={1}
+                                defaultValue={qualitySources.length - 1}
+                                toggleMenuOpaque={toggleMenuOpaque}
+                            />
+                        </li>
+                    )}
+
+                    <hr />
+
+                    <li>
+                        <ButtonCheckmark
+                            theme={theme}
+                            toggle={setEditableText}
+                            text="Edit Text"
+                            checked={editableText}
+                        />
+                    </li>
+
+                    <li>
+                        <ButtonItem
+                            theme={theme}
+                            atClick={handleAddText}
+                            icon={AddTextIcon}
+                            text="Add Text"
+                        />
+                    </li>
+
+                    <li>
+                        <ButtonItem
+                            theme={theme}
+                            atClick={handleSaveText}
+                            icon={SaveVideoTextIcon}
+                            text="Save Video Text"
+                        />
+                    </li>
+
+                    <hr />
+
+                    <li>
+                        <ButtonItem
+                            theme={theme}
+                            atClick={handleGetText}
+                            icon={GetTextIcon}
+                            text="Get Text"
+                        />
+                    </li>
+
+                    <li>
+                        <ButtonItem
+                            theme={theme}
+                            atClick={handleMarkTextTime}
+                            icon={showTimescrollText ? MarkTextTimeToggledIcon : MarkTextTimeUntoggledIcon}
+                            text="Mark Text Time"
+                        />
+                    </li>
+
+                    <li>
+                        <ButtonItem
+                            theme={theme}
+                            atClick={handleExtractFrame}
+                            icon={ExtractTextIcon}
+                            text="Extract Frame"
+                        />
+                    </li>
+
+                    {about && (
+                        <hr />
+                    )}
+
+                    {about && (
+                        <li>
+                            <ButtonItem
+                                theme={theme}
+                                atClick={handleAboutClick}
+                                icon={AboutIcon}
+                                text="About TSV"
+                            />
+                        </li>
+                    )}
+                </ul>
+            </StyledSettingsMenuContainer>
         </StyledSettingsMenu>
     );
 }
