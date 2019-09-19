@@ -8,6 +8,8 @@ import {
 
 import Context from '../../services/utilities/context';
 
+import TextItem from './components/TextItem';
+
 
 
 const Text: React.FC<any> = () => {
@@ -18,6 +20,8 @@ const Text: React.FC<any> = () => {
 
     const {
         videoBoxDimensions,
+
+        videoText,
     } = context;
 
     return (
@@ -29,7 +33,14 @@ const Text: React.FC<any> = () => {
                 top: videoBoxDimensions.top + 'px',
             }}
         >
-            {/* render the received text  */}
+            {videoText.map(textItem => {
+                return (
+                    <TextItem
+                        key={textItem.id}
+                        data={textItem}
+                    />
+                );
+            })}
         </StyledText>
     );
 }
