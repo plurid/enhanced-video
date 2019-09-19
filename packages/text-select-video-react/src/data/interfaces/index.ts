@@ -2,7 +2,10 @@ import { Dispatch, SetStateAction } from 'react';
 
 import themes, { Theme } from '@plurid/apps.utilities.themes';
 
-import { VideoText } from './text';
+import {
+    VideoText,
+    VideoTextVersion,
+} from './text';
 
 
 
@@ -225,4 +228,5 @@ export interface VideoBoxDimensions {
 
 export {
     VideoText,
+    VideoTextVersion,
 }

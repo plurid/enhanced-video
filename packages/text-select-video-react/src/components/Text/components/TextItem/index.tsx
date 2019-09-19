@@ -1,7 +1,11 @@
-import React from 'react';
+import React, {
+    useState,
+    useEffect,
+} from 'react';
 
 import {
     VideoText,
+    VideoTextVersion,
 } from '../../../../data/interfaces';
 
 // import Context from '../../../../services/utilities/context';
@@ -32,6 +36,10 @@ import {
 //     getVersionById,
 // } from '../../../../services/utilities/textVideo';
 
+import {
+    getVersionById,
+} from '../../../../services/utilities/videoText';
+
 
 
 interface TextItemProperties {
@@ -43,11 +51,21 @@ const TextItem: React.FC<TextItemProperties> = (properties) => {
         data,
     } = properties;
 
-    const textContent = data.versions[0].content;
+    const [currentVersion, setCurrentVersion] = useState<VideoTextVersion>();
+
+    useEffect(() => {
+        const currentVersion = getVersionById(data);
+
+        if (currentVersion) {
+            setCurrentVersion(currentVersion);
+        }
+    }, [data]);
 
     return (
         <StyledTextItem>
-            {textContent}
+            {currentVersion && (
+                <>{currentVersion.content}</>
+            )}
 
             <TextEditor
                 data={data}

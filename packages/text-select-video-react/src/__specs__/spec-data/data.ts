@@ -1,7 +1,7 @@
 const data = [
     {
-        id: '',
-        currentVersionId: '',
+        id: '1',
+        currentVersionId: 'tsv-text-c2eec1b1-bc3d-451c-bbb0-7c5bad18286e',
         versions: [
             {
                 id: 'tsv-text-c2eec1b1-bc3d-451c-bbb0-7c5bad18286e',

@@ -60,9 +60,6 @@ export default Text;
 
 // import TextVideo from '../TextVideo';
 
-// import {
-//     getVersionById,
-// } from '../../utils/textVideo';
 
 
 
