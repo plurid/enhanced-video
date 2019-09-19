@@ -1,4 +1,4 @@
-export interface TextVersion {
+export interface VideoTextVersion {
     id: string;
     // createdBy: string;
     // computerGenerated: boolean;
@@ -38,7 +38,7 @@ export interface TextVersion {
 export interface VideoText {
     id: string;
     currentVersionId: string;
-    versions: TextVersion[];
+    versions: VideoTextVersion[];
 }
 
 
