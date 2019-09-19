@@ -1,4 +1,9 @@
 import React from 'react';
+
+import {
+    VideoText,
+} from '../../../../data/interfaces';
+
 // import Context from '../../../../services/utilities/context';
 // import TextVideoEditor from '../TextEditor';
 // import ButtonMore from '../../../UI/ButtonMore';
@@ -26,7 +31,14 @@ import React from 'react';
 
 
 
-const TextItem: React.FC<any> = () => {
+interface TextItemProperties {
+    data: VideoText;
+}
+
+const TextItem: React.FC<TextItemProperties> = (properties) => {
+    const {
+        data,
+    } = properties;
 
     return (
         <div>

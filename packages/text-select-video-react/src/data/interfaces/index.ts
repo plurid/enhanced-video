@@ -197,7 +197,7 @@ export interface IContext {
     showTimescrollText: boolean;
     setShowTimescrollText: Dispatch<SetStateAction<boolean>>;
 
-    text: VideoText[];
+    videoText: VideoText[];
 }
 
 

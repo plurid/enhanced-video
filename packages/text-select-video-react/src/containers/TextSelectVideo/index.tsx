@@ -95,7 +95,7 @@ const TextSelectVideo: React.FC<TextSelectVideoProperties> = (properties) => {
     const [showTimescrollTime, setShowTimescrollTime] = useState(false);
     const [showTimescrollText, setShowTimescrollText] = useState(false);
 
-    const [text, setText] = useState<VideoText[]>([]);
+    const [videoText, setVideoText] = useState<VideoText[]>([]);
 
     const videoContainer = useRef<HTMLDivElement>(null);
     const video = useRef<HTMLVideoElement>(null);
@@ -249,7 +249,7 @@ const TextSelectVideo: React.FC<TextSelectVideoProperties> = (properties) => {
     }, [loadedVideo]);
 
     useEffect(() => {
-        setText([...TEST_VIDEO_TEXT_DATA]);
+        setVideoText([...TEST_VIDEO_TEXT_DATA]);
     }, []);
 
     const selectedTheme: Theme = theme && themes[theme]
@@ -315,7 +315,7 @@ const TextSelectVideo: React.FC<TextSelectVideoProperties> = (properties) => {
         showTimescrollText,
         setShowTimescrollText,
 
-        text,
+        videoText,
     };
 
     return (
