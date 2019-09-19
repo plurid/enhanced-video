@@ -2,10 +2,22 @@ import styled from 'styled-components';
 
 
 
-export const StyledSettingsMenu = styled.div`
+export const StyledSettingsMenu: any = styled.div`
+    height: ${(props: any) => {
+        if (props.height) {
+            return props.height + 'px';
+        } else {
+            return 'auto';
+        }
+    }};
+    /* overflow: auto; */
+
     z-index: 9999;
+    border-radius: 10px;
+    margin-top: 10px;
 
     transition: opacity 600ms linear;
+    box-shadow: 0px 0px 5px 1px hsla(220, 10%, 2%, 0.7);
 
     ul {
         background-color: ${props => props.theme.backgroundColorPrimary};
@@ -17,7 +29,7 @@ export const StyledSettingsMenu = styled.div`
                 return backgroundColorPrimary;
             }
         }};
-        box-shadow: 0px 0px 5px 1px hsla(220, 10%, 2%, 0.7);
+        /* box-shadow: 0px 0px 5px 1px hsla(220, 10%, 2%, 0.7); */
 
         min-width: 130px;
         width: 150px;
@@ -27,6 +39,7 @@ export const StyledSettingsMenu = styled.div`
         user-select: none;
         border-radius: 10px;
         padding: 0;
+        margin: 0;
         font-size: 13px;
     }
 
@@ -54,4 +67,17 @@ export const StyledSettingsMenu = styled.div`
         border-top: 1px solid ${props => props.theme.colorSecondary};
         margin: 0;
     }
+`;
+
+
+export const StyledSettingsMenuContainer: any = styled.div`
+    height: ${(props: any) => {
+        if (props.height) {
+            return props.height + 'px';
+        } else {
+            return 'auto';
+        }
+    }};
+    border-radius: 10px;
+    overflow: auto;
 `;

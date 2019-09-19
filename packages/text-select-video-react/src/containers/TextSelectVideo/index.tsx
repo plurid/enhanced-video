@@ -146,6 +146,10 @@ const TextSelectVideo: React.FC<TextSelectVideoProperties> = (properties) => {
     }
 
     const handleVideoTime = (videoTime: number) => {
+        if (videoTime === videoDuration) {
+            pauseVideo();
+        }
+
         video.current!.currentTime = videoTime;
         setVideoTime(videoTime);
     }
