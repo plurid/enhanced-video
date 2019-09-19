@@ -29,6 +29,7 @@ const Text: React.FC<any> = () => {
                 top: videoBoxDimensions.top + 'px',
             }}
         >
+            {/* render the received text  */}
         </StyledText>
     );
 }

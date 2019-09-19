@@ -1,4 +1,4 @@
-export interface IVideoTextVersion {
+export interface TextVersion {
     id: string;
     // createdBy: string;
     // computerGenerated: boolean;
@@ -35,19 +35,19 @@ export interface IVideoTextVersion {
 }
 
 
-export interface IVideoText {
+export interface VideoText {
     id: string;
     currentVersionId: string;
-    versions: IVideoTextVersion[];
+    versions: TextVersion[];
 }
 
 
-export interface ITextSelectVideoData {
-    imageSha: string;
-    imagePath: string;
-    imageSource: string;
-    imageHeight: number;
-    imageWidth: number;
-    imageText: IVideoText[];
+export interface VideoData {
+    videoSha: string;
+    videoPath: string;
+    videoSource: string;
+    videoHeight: number;
+    videoWidth: number;
+    videoText: VideoText[];
     createdBy: string;
 }

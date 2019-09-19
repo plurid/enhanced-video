@@ -2,6 +2,8 @@ import { Dispatch, SetStateAction } from 'react';
 
 import themes, { Theme } from '@plurid/apps.utilities.themes';
 
+import { VideoText } from './text';
+
 
 
 export interface TextSelectVideoProperties {
@@ -194,6 +196,8 @@ export interface IContext {
 
     showTimescrollText: boolean;
     setShowTimescrollText: Dispatch<SetStateAction<boolean>>;
+
+    text: VideoText[];
 }
 
 
@@ -203,14 +207,22 @@ export interface VideoDimensions {
     ratio: number;
 }
 
+
 export interface VideoContainerDimensions {
     width: number;
     height: number;
 }
+
 
 export interface VideoBoxDimensions {
     width: number;
     height: number;
     left: number;
     top: number;
+}
+
+
+
+export {
+    VideoText,
 }

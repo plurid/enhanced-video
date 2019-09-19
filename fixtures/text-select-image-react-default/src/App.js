@@ -54,7 +54,7 @@ class App extends Component {
                         src={longVideo}
                         type="video/mp4"
                         height={600}
-                        theme="deview"
+                        theme="plurid"
                         // src={video}
                         // controls={true}
                         // qualitySources={qualitySources}
