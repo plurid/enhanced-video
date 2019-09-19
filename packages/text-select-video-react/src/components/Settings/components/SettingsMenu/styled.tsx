@@ -10,14 +10,12 @@ export const StyledSettingsMenu: any = styled.div`
             return 'auto';
         }
     }};
-    /* overflow: auto; */
 
-    z-index: 9999;
-    border-radius: 10px;
     margin-top: 10px;
-
+    border-radius: 10px;
     transition: opacity 600ms linear;
-    box-shadow: 0px 0px 5px 1px hsla(220, 10%, 2%, 0.7);
+    z-index: 9999;
+    box-shadow: 0px 0px 5px 1px ${props => props.theme.boxShadowUmbraColor};
 
     ul {
         background-color: ${props => props.theme.backgroundColorPrimary};
@@ -29,7 +27,6 @@ export const StyledSettingsMenu: any = styled.div`
                 return backgroundColorPrimary;
             }
         }};
-        /* box-shadow: 0px 0px 5px 1px hsla(220, 10%, 2%, 0.7); */
 
         min-width: 130px;
         width: 150px;

@@ -105,22 +105,7 @@ export const StyledTimelineViewed: any = styled.div`
     bottom: 0;
     left: 0;
     z-index: 990;
-
-
     transition: border-radius 300ms linear;
-
-    /* border-top-right-radius: ${(props: any) => {
-        if (props.last && props.videoDuration - props.videoTime < 10) {
-            return '15px';
-        }
-        return '';
-    }};
-    border-bottom-right-radius: ${(props: any) => {
-        if (props.last && props.videoDuration - props.videoTime < 10) {
-            return '15px';
-        }
-        return '';
-    }}; */
 `;
 
 
