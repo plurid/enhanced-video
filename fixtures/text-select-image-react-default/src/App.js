@@ -53,7 +53,7 @@ class App extends Component {
                     <TextSelectVideo
                         src={longVideo}
                         type="video/mp4"
-                        height={300}
+                        height={600}
                         theme="light"
                         // src={video}
                         // controls={true}

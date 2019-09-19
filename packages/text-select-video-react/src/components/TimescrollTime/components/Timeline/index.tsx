@@ -126,9 +126,14 @@ const Timeline: React.FC<TimelineProperties> = (properties) => {
                 >
                     <StyledTimelineViewed
                         viewedWidth={viewedWidth}
+                        videoTime={videoTime}
+                        videoDuration={videoDuration}
                         style={{
                             width: viewedWidth + '%',
+                            borderTopRightRadius: last && videoDuration - videoTime < 10 ? '15px' : '0',
+                            borderBottomRightRadius: last && videoDuration - videoTime < 10 ? '15px' : '0',
                         }}
+                        last={last}
                     >
                         <StyledTimelineCurrentTime
                             viewedWidth={viewedWidth}
