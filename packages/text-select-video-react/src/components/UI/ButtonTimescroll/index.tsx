@@ -260,14 +260,18 @@ class Timescroll extends Component<
     }
 
     private handleWheel = (event: any) => {
-        event.preventDefault();
-
         const deltas = {
             deltaX: event.deltaX,
             deltaY: event.deltaY,
         };
 
         const direction = getWheelDirection(deltas);
+
+        if (direction === 'up' || direction === 'down') {
+            return;
+        }
+
+        event.preventDefault();
 
         const {
             videoTime,

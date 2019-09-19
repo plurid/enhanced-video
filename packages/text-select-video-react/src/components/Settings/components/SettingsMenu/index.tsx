@@ -122,14 +122,9 @@ const SettingsMenu: React.FC<any> = () => {
             const containerHeight = videoContainerDimensions.height;
             const menuHeight = settingsMenu.current.offsetHeight;
 
-            console.log(menuHeight);
-
             if (containerHeight < menuHeight) {
-                console.log(menuHeight);
-                console.log(containerHeight);
                 setMenuHeight(containerHeight - 70);
             } else {
-                console.log('aa');
                 setMenuHeight(menuHeight);
             }
         }
