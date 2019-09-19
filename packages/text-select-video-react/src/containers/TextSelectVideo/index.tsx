@@ -28,6 +28,7 @@ import {
     VideoDimensions,
     VideoContainerDimensions,
     VideoBoxDimensions,
+    VideoText,
 } from '../../data/interfaces';
 
 import Text from '../../components/Text';
@@ -39,6 +40,9 @@ import TimescrollTime from '../../components/TimescrollTime';
 import TimescrollText from '../../components/TimescrollText';
 
 import themes, { Theme } from '@plurid/apps.utilities.themes';
+
+// test imports
+import TEST_VIDEO_TEXT_DATA from '../../__specs__/spec-data/data';
 
 
 
@@ -90,6 +94,8 @@ const TextSelectVideo: React.FC<TextSelectVideoProperties> = (properties) => {
 
     const [showTimescrollTime, setShowTimescrollTime] = useState(false);
     const [showTimescrollText, setShowTimescrollText] = useState(false);
+
+    const [text, setText] = useState<VideoText[]>([]);
 
     const videoContainer = useRef<HTMLDivElement>(null);
     const video = useRef<HTMLVideoElement>(null);
@@ -235,12 +241,16 @@ const TextSelectVideo: React.FC<TextSelectVideoProperties> = (properties) => {
 
     useEffect(() => {
         computeVideoBoxDimensions();
-    }, [videoDimensions])
+    }, [videoDimensions]);
 
     useEffect(() => {
         video.current!.volume = videoVolume / 2;
         video.current!.playbackRate = videoPlaybackRate;
-    }, [loadedVideo])
+    }, [loadedVideo]);
+
+    useEffect(() => {
+        setText([...TEST_VIDEO_TEXT_DATA]);
+    }, []);
 
     const selectedTheme: Theme = theme && themes[theme]
         ? themes[theme]
@@ -304,6 +314,8 @@ const TextSelectVideo: React.FC<TextSelectVideoProperties> = (properties) => {
         setShowTimescrollTime,
         showTimescrollText,
         setShowTimescrollText,
+
+        text,
     };
 
     return (
