@@ -14,6 +14,10 @@ import Context from '../../services/utilities/context';
 
 import TextItem from './components/TextItem';
 
+import {
+    getVersionById,
+} from '../../services/utilities/videoText';
+
 
 
 const Text: React.FC<any> = () => {
@@ -23,6 +27,7 @@ const Text: React.FC<any> = () => {
     }
 
     const {
+        videoTime,
         videoBoxDimensions,
 
         videoText,
@@ -38,12 +43,31 @@ const Text: React.FC<any> = () => {
             }}
         >
             {videoText.map((textItem: VideoText) => {
-                return (
-                    <TextItem
-                        key={textItem.id}
-                        data={textItem}
-                    />
-                );
+                const currentVersion = getVersionById(textItem);
+                if (!currentVersion) {
+                    return;
+                }
+
+                const {
+                    startTime,
+                    endTime,
+                    alwaysShow,
+                } = currentVersion;
+
+                if (
+                    (videoTime >= startTime
+                    && videoTime <= endTime)
+                    || alwaysShow
+                ) {
+                // check if the current version of the textItem should be rendered
+                    return (
+                        <TextItem
+                            key={textItem.id}
+                            data={textItem}
+                        />
+                    );
+                }
+                return;
             })}
         </StyledText>
     );
@@ -51,15 +75,6 @@ const Text: React.FC<any> = () => {
 
 
 export default Text;
-
-
-
-// import {
-//     StyledSelectVideo,
-// } from './styled';
-
-// import TextVideo from '../TextVideo';
-
 
 
 

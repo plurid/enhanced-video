@@ -9,7 +9,7 @@ const data = [
                 // editedAt: 1559291724186,
 
                 startTime: 0,
-                endTime: 1,
+                endTime: 10,
 
                 xCoordPercentage: 25.375,
                 yCoordPercentage: 36.069,
