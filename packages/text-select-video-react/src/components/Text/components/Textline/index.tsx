@@ -2,6 +2,7 @@ import React, {
     useContext,
     useState,
     useEffect,
+    useRef,
 } from 'react';
 
 import {
@@ -59,6 +60,8 @@ const Textline: React.FC<TextlineProperties> = (properties) => {
         videoBoxDimensions,
     } = context;
 
+    const timeoutMouseOver = useRef(0);
+
     const [currentVersion, setCurrentVersion] = useState<VideoTextVersionTextline>();
 
     const [textYCoord, setTextYCoord] = useState('0px');
@@ -76,6 +79,19 @@ const Textline: React.FC<TextlineProperties> = (properties) => {
     const [showEditor, setShowEditor] = useState(false);
 
     const [mouseOver, setMouseOver] = useState(false);
+
+    const handleMouseEnter = () => {
+        clearTimeout(timeoutMouseOver.current);
+        setMouseOver(true);
+    }
+
+    const handleMouseLeave = () => {
+        timeoutMouseOver.current = setTimeout(() => {
+            if (mouseOver) {
+                setMouseOver(false)
+            }
+        }, 700);
+    }
 
     useEffect(() => {
         const currentVersion = getVersionById(data);
@@ -134,8 +150,8 @@ const Textline: React.FC<TextlineProperties> = (properties) => {
 
     return (
         <StyledTextItem
-            onMouseEnter={() => setMouseOver(true)}
-            onMouseLeave={() => setMouseOver(false)}
+            onMouseEnter={() => handleMouseEnter()}
+            onMouseLeave={() => handleMouseLeave()}
             style={{
                 top: textYCoord,
                 left: textXCoord,
