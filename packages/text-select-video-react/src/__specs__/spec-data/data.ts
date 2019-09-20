@@ -16,7 +16,7 @@ const data: VideoText[] = [
                 startTime: 0,
                 endTime: 10,
 
-                xCoordPercentage: 25.375,
+                xCoordPercentage: 5.375,
                 yCoordPercentage: 36.069,
 
                 perspective: '',
