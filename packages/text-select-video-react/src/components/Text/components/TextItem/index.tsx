@@ -1,14 +1,16 @@
 import React, {
+    useContext,
     useState,
     useEffect,
 } from 'react';
 
 import {
     VideoText,
-    VideoTextVersion,
+    VideoTextVersionTextline,
 } from '../../../../data/interfaces';
 
-// import Context from '../../../../services/utilities/context';
+import Context from '../../../../services/utilities/context';
+
 // import TextVideoEditor from '../TextEditor';
 // import ButtonMore from '../../../UI/ButtonMore';
 import TextEditor from './components/TextEditor';
@@ -47,22 +49,82 @@ interface TextItemProperties {
 }
 
 const TextItem: React.FC<TextItemProperties> = (properties) => {
+    const context = useContext(Context);
+    if (!context) {
+        return (<></>);
+    }
+
     const {
         data,
     } = properties;
 
-    const [currentVersion, setCurrentVersion] = useState<VideoTextVersion>();
+    const {
+        editableText,
+        videoBoxDimensions,
+    } = context;
+
+    const [currentVersion, setCurrentVersion] = useState<VideoTextVersionTextline>();
+
+    const [textYCoord, setTextYCoord] = useState('0px');
+    const [textXCoord, setTextXCoord] = useState('0px');
+    const [textColor, setTextColor] = useState('transparent');
+
+    const [fontWeight, setFontWeight] = useState('normal');
+    const [fontStyle, setFontStyle] = useState('normal');
+    const [fontSize, setFontSize] = useState('12px');
+    const [fontFamily, setFontFamily] = useState('Arial');
+    const [letterSpacing, setLetterSpacing] = useState('0px');
+    const [wordSpacing, setWordSpacing] = useState('0px');
 
     useEffect(() => {
         const currentVersion = getVersionById(data);
 
-        if (currentVersion) {
+        if (currentVersion && currentVersion.type === 'TEXTLINE') {
             setCurrentVersion(currentVersion);
         }
     }, [data]);
 
+    useEffect(() => {
+        if (currentVersion) {
+            setFontWeight(currentVersion.fontWeight);
+            setFontStyle(currentVersion.fontStyle);
+            setFontFamily(currentVersion.fontFamily);
+            setFontSize(currentVersion.fontSizePercentage * videoBoxDimensions.height / 100 + 'px');
+            setLetterSpacing(currentVersion.letterSpacingPercentage * videoBoxDimensions.width / 100 + 'px');
+            setWordSpacing(currentVersion.wordSpacingPercentage * videoBoxDimensions.width / 100 + 'px');
+        }
+    }, [
+        currentVersion,
+        videoBoxDimensions,
+    ]);
+
+    useEffect(() => {
+        if (currentVersion) {
+            if (editableText) {
+                setTextColor(currentVersion.color);
+            } else {
+                setTextColor('transparent');
+            }
+        }
+    }, [
+        currentVersion,
+        editableText,
+    ]);
+
     return (
-        <StyledTextItem>
+        <StyledTextItem
+            style={{
+                top: textYCoord,
+                left: textXCoord,
+                color: textColor,
+                fontFamily,
+                fontSize,
+                fontWeight,
+                fontStyle,
+                letterSpacing,
+                wordSpacing,
+            }}
+        >
             {currentVersion && (
                 <>{currentVersion.content}</>
             )}

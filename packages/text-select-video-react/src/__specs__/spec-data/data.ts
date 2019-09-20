@@ -1,12 +1,17 @@
-const data = [
+import {
+    VideoText,
+} from '../../data/interfaces/';
+
+
+
+const data: VideoText[] = [
     {
         id: '1',
         currentVersionId: 'tsv-text-c2eec1b1-bc3d-451c-bbb0-7c5bad18286e',
         versions: [
             {
                 id: 'tsv-text-c2eec1b1-bc3d-451c-bbb0-7c5bad18286e',
-                // createdAt: 1559291724185,
-                // editedAt: 1559291724186,
+                type: 'TEXTLINE',
 
                 startTime: 0,
                 endTime: 10,
@@ -18,23 +23,22 @@ const data = [
                 rotation: '',
                 skew: '',
 
+                viewable: false,
+                alwaysShow: false,
+
                 color: 'red',
 
+                fontWeight: 'bold',
+                fontStyle: 'normal',
                 fontFamily: 'Arial',
                 fontSizePercentage: 7.4467,
-                bold: true,
-                italic: false,
                 letterSpacingPercentage: 0.175,
-                lineHeight: 'auto',
                 wordSpacingPercentage: 0,
 
                 content: 'content',
 
                 link: false,
                 linkTo: '',
-
-                viewable: false,
-                alwaysShow: false,
             },
         ],
     },
