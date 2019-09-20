@@ -1,5 +1,7 @@
 import React, {
     useContext,
+    useRef,
+    useEffect,
 } from 'react';
 
 import {
@@ -52,10 +54,11 @@ const TextEditor: React.FC<TextEditorProperties> = (properties) => {
     if (!context) {
         return (<></>);
     }
-
     const {
         theme,
     } = context;
+
+    const editor = useRef<HTMLDivElement>(null);
 
     const {
         data,
@@ -64,6 +67,7 @@ const TextEditor: React.FC<TextEditorProperties> = (properties) => {
     return (
         <StyledTextEditor
             theme={theme}
+            ref={editor}
         >
             editor
         </StyledTextEditor>
