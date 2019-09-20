@@ -12,7 +12,7 @@ import {
 
 import Context from '../../services/utilities/context';
 
-import TextItem from './components/TextItem';
+import Textline from './components/Textline';
 
 import {
     getVersionById,
@@ -64,7 +64,7 @@ const Text: React.FC<any> = () => {
                             break;
                         case 'TEXTLINE':
                             return (
-                                <TextItem
+                                <Textline
                                     key={textItem.id}
                                     data={textItem}
                                 />

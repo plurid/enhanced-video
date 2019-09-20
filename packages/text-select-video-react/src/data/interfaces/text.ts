@@ -34,6 +34,7 @@ export interface VideoTextVersionTextline extends VideoTextVersion {
     fontSizePercentage: number;
     letterSpacingPercentage: number;
     wordSpacingPercentage: number;
+    lineHeightPercentage: number;
 
     content: string;
 
