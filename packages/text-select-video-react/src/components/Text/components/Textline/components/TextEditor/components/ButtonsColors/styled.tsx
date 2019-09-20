@@ -15,7 +15,7 @@ export const StyledTextVideoEditorButtonColors: any = styled.div`
         if (props.selected) {
             return props.theme.backgroundColorSecondary;
         }
-        switch (props.colorPrimary) {
+        switch (props.color) {
             case 'black':
                 return 'black'
             case 'red':
