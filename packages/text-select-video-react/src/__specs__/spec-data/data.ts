@@ -34,6 +34,7 @@ const data: VideoText[] = [
                 fontSizePercentage: 7.4467,
                 letterSpacingPercentage: 0.175,
                 wordSpacingPercentage: 0,
+                lineHeightPercentage: 0,
 
                 content: 'content',
 

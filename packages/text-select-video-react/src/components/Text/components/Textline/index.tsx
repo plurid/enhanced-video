@@ -34,9 +34,6 @@ import {
 //     valueFromPercentage,
 //     percentageFromValue,
 // } from '../../../../services/utilities/percentage';
-// import {
-//     getVersionById,
-// } from '../../../../services/utilities/textVideo';
 
 import {
     getVersionById,
@@ -44,11 +41,11 @@ import {
 
 
 
-interface TextItemProperties {
+interface TextlineProperties {
     data: VideoText;
 }
 
-const TextItem: React.FC<TextItemProperties> = (properties) => {
+const Textline: React.FC<TextlineProperties> = (properties) => {
     const context = useContext(Context);
     if (!context) {
         return (<></>);
@@ -75,6 +72,7 @@ const TextItem: React.FC<TextItemProperties> = (properties) => {
     const [fontFamily, setFontFamily] = useState('Arial');
     const [letterSpacing, setLetterSpacing] = useState('0px');
     const [wordSpacing, setWordSpacing] = useState('0px');
+    const [lineHeight, setLineHeight] = useState('auto');
 
     useEffect(() => {
         const currentVersion = getVersionById(data);
@@ -92,6 +90,12 @@ const TextItem: React.FC<TextItemProperties> = (properties) => {
             setFontSize(currentVersion.fontSizePercentage * videoBoxDimensions.height / 100 + 'px');
             setLetterSpacing(currentVersion.letterSpacingPercentage * videoBoxDimensions.width / 100 + 'px');
             setWordSpacing(currentVersion.wordSpacingPercentage * videoBoxDimensions.width / 100 + 'px');
+
+            if (currentVersion.lineHeightPercentage === 0) {
+                setLineHeight('auto');
+            } else {
+                setLineHeight(currentVersion.lineHeightPercentage * videoBoxDimensions.height / 100 + 'px');
+            }
         }
     }, [
         currentVersion,
@@ -123,6 +127,7 @@ const TextItem: React.FC<TextItemProperties> = (properties) => {
                 fontStyle,
                 letterSpacing,
                 wordSpacing,
+                lineHeight,
             }}
         >
             {currentVersion && (
@@ -137,7 +142,7 @@ const TextItem: React.FC<TextItemProperties> = (properties) => {
 }
 
 
-export default TextItem;
+export default Textline;
 
 
 
