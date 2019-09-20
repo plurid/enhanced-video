@@ -148,35 +148,48 @@ const TextEditor: React.FC<TextEditorProperties> = (properties) => {
                 &nbsp;
             </StyledVerticalDivider>
 
-            {/* <ButtonIncrements
+            <ButtonIncrements
                 theme={theme}
                 type="fontSize"
-                changeValue={this.updateField}
-                value={fontSize}
+                changeValue={() => {}}
+                value={0}
+                // changeValue={this.updateField}
+                // value={fontSize}
                 icon={FontSizeIcon}
-            /> */}
+            />
 
-            {/* <ButtonDropdown
+            <ButtonDropdown
+                theme={theme}
                 type="fontFamily"
                 alterStyle="fontFamily"
-                selected={fontFamily}
+                selected="Arial"
+                // selected={fontFamily}
                 selectables={selectableFonts}
-                changeSelected={this.updateField}
-                toggleEditor={toggleEditor}
-                textDraggable={textDraggable}
-                toggleTextDraggable={toggleTextDraggable}
-                toggleTextSelected={toggleSelected}
-            /> */}
+                changeSelected={() => {}}
+                // changeSelected={this.updateField}
+                toggleEditor={() => {}}
+                textDraggable={false}
+                toggleTextDraggable={() => {}}
+                toggleTextSelected={() => {}}
+                // toggleEditor={toggleEditor}
+                // textDraggable={textDraggable}
+                // toggleTextDraggable={toggleTextDraggable}
+                // toggleTextSelected={toggleSelected}
+            />
 
-            {/* <ButtonInput
+            <ButtonInput
                 theme={theme}
-                toggle={this.updateField.bind(this, 'link')}
-                toggled={link}
+                // toggle={this.updateField.bind(this, 'link')}
+                toggle={() => {}}
+                // toggled={link}
+                toggled={false}
                 icon={LinkIcon}
-                value={linkTo}
+                value=""
+                // value={linkTo}
                 valueType="linkTo"
-                changeValue={this.updateField}
-            /> */}
+                changeValue={() => {}}
+                // changeValue={this.updateField}
+            />
 
             <ButtonToggle
                 theme={theme}
@@ -196,23 +209,27 @@ const TextEditor: React.FC<TextEditorProperties> = (properties) => {
                 icon={ItalicIcon}
             />
 
-            {/* <ButtonIncrements
+            <ButtonIncrements
                 theme={theme}
                 type="letterSpacing"
-                changeValue={this.updateField}
-                value={letterSpacing}
+                changeValue={() => {}}
+                value={0}
+                // changeValue={this.updateField}
+                // value={letterSpacing}
                 icon={LetterSpacingIcon}
                 step={0.1}
-            /> */}
+            />
 
-            {/* <ButtonIncrements
+            <ButtonIncrements
                 theme={theme}
                 type="wordSpacing"
-                changeValue={this.updateField}
-                value={wordSpacing}
+                // changeValue={this.updateField}
+                // value={wordSpacing}
+                changeValue={() => {}}
+                value={0}
                 icon={WordSpacingIcon}
                 step={0.1}
-            /> */}
+            />
 
             <ButtonsColors
                 changeValue={() => {}}

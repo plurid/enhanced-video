@@ -6,9 +6,9 @@ import {
     StyledTextVideoEditorButtonInputGotoLink,
 } from './styled';
 
-import TextVideoEditorButtonToggle from '../TextVideoEditorButtonToggle';
+import TextVideoEditorButtonToggle from '../ButtonToggle';
 
-import GoToLinkIcon from '../../assets/gotolink-icon';
+import GoToLinkIcon from '../../../../../../../../assets/gotolink-icon';
 
 
 
