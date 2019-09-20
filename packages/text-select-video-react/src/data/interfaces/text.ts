@@ -1,10 +1,6 @@
 export interface VideoTextVersion {
     id: string;
-    // createdBy: string;
-    // computerGenerated: boolean;
-    // userGenerated: boolean;
-    // ownerGenerated: boolean;
-    // adminGenerated: boolean;
+    type: 'TEXTAREA' | 'TEXTLINE';
 
     startTime: number;
     endTime: number;
@@ -16,29 +12,40 @@ export interface VideoTextVersion {
     rotation: string;
     skew: string;
 
+    viewable: boolean;
+    alwaysShow: boolean;
+}
+
+
+export interface VideoTextVersionTextarea extends VideoTextVersion {
+    type: 'TEXTAREA';
+    [key: string]: any;
+}
+
+
+export interface VideoTextVersionTextline extends VideoTextVersion {
+    type: 'TEXTLINE';
+
     color: string;
 
+    fontWeight: string;
+    fontStyle: string;
     fontFamily: string;
     fontSizePercentage: number;
-    bold: boolean;
-    italic: boolean;
     letterSpacingPercentage: number;
-    lineHeight: string | number;
     wordSpacingPercentage: number;
 
     content: string;
 
     link: boolean;
     linkTo: string;
-    viewable: boolean;
-    alwaysShow: boolean;
 }
 
 
 export interface VideoText {
     id: string;
     currentVersionId: string;
-    versions: VideoTextVersion[];
+    versions: (VideoTextVersionTextline | VideoTextVersionTextarea)[];
 }
 
 

@@ -59,14 +59,19 @@ const Text: React.FC<any> = () => {
                     && videoTime <= endTime)
                     || alwaysShow
                 ) {
-                // check if the current version of the textItem should be rendered
-                    return (
-                        <TextItem
-                            key={textItem.id}
-                            data={textItem}
-                        />
-                    );
+                    switch (currentVersion.type) {
+                        case 'TEXTAREA':
+                            break;
+                        case 'TEXTLINE':
+                            return (
+                                <TextItem
+                                    key={textItem.id}
+                                    data={textItem}
+                                />
+                            );
+                    }
                 }
+
                 return;
             })}
         </StyledText>
