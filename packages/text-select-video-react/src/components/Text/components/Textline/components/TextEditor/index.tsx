@@ -1,13 +1,13 @@
-import React from 'react';
+import React, {
+    useContext,
+} from 'react';
 
-// import React, { Component } from 'react';
+import {
+    StyledTextEditor,
+    // StyledTextVideoEditorVerticalDivider,
+} from './styled';
 
-// import {
-//     StyledTextVideoEditor,
-//     StyledTextVideoEditorVerticalDivider,
-// } from './styled';
-
-// import Context from '../../context';
+import Context from '../../../../../../services/utilities/context';
 
 // import TextVideoEditorButtonDropdown from '../TextVideoEditorButtonDropdown';
 // import TextVideoEditorButtonIncrements from '../TextVideoEditorButtonIncrements';
@@ -48,14 +48,25 @@ interface TextEditorProperties {
 }
 
 const TextEditor: React.FC<TextEditorProperties> = (properties) => {
+    const context = useContext(Context);
+    if (!context) {
+        return (<></>);
+    }
+
+    const {
+        theme,
+    } = context;
+
     const {
         data,
     } = properties;
 
     return (
-        <div>
-
-        </div>
+        <StyledTextEditor
+            theme={theme}
+        >
+            editor
+        </StyledTextEditor>
     );
 };
 

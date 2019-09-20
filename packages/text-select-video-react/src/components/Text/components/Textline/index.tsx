@@ -11,9 +11,8 @@ import {
 
 import Context from '../../../../services/utilities/context';
 
-// import TextVideoEditor from '../TextEditor';
-// import ButtonMore from '../../../UI/ButtonMore';
 import TextEditor from './components/TextEditor';
+// import ButtonMore from '../../../UI/ButtonMore';
 
 import {
     StyledTextItem,
@@ -74,6 +73,10 @@ const Textline: React.FC<TextlineProperties> = (properties) => {
     const [wordSpacing, setWordSpacing] = useState('0px');
     const [lineHeight, setLineHeight] = useState('auto');
 
+    const [showEditor, setShowEditor] = useState(false);
+
+    const [mouseOver, setMouseOver] = useState(false);
+
     useEffect(() => {
         const currentVersion = getVersionById(data);
 
@@ -84,6 +87,9 @@ const Textline: React.FC<TextlineProperties> = (properties) => {
 
     useEffect(() => {
         if (currentVersion) {
+            setTextXCoord(currentVersion.xCoordPercentage * videoBoxDimensions.width / 100 + 'px');
+            setTextYCoord(currentVersion.yCoordPercentage * videoBoxDimensions.height / 100 + 'px');
+
             setFontWeight(currentVersion.fontWeight);
             setFontStyle(currentVersion.fontStyle);
             setFontFamily(currentVersion.fontFamily);
@@ -115,8 +121,21 @@ const Textline: React.FC<TextlineProperties> = (properties) => {
         editableText,
     ]);
 
+    useEffect(() => {
+        if (editableText && mouseOver) {
+            setShowEditor(true);
+        } else {
+            setShowEditor(false);
+        }
+    }, [
+        editableText,
+        mouseOver,
+    ]);
+
     return (
         <StyledTextItem
+            onMouseEnter={() => setMouseOver(true)}
+            onMouseLeave={() => setMouseOver(false)}
             style={{
                 top: textYCoord,
                 left: textXCoord,
@@ -134,9 +153,11 @@ const Textline: React.FC<TextlineProperties> = (properties) => {
                 <>{currentVersion.content}</>
             )}
 
-            <TextEditor
-                data={data}
-            />
+            {showEditor && (
+                <TextEditor
+                    data={data}
+                />
+            )}
         </StyledTextItem>
     );
 }
