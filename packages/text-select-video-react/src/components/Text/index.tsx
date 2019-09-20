@@ -12,11 +12,16 @@ import {
 
 import Context from '../../services/utilities/context';
 
+import Textarea from './components/Textarea';
 import Textline from './components/Textline';
 
 import {
     getVersionById,
 } from '../../services/utilities/videoText';
+
+import {
+    valueIsBetween,
+} from '../../services/utilities/number';
 
 
 
@@ -54,14 +59,22 @@ const Text: React.FC<any> = () => {
                     alwaysShow,
                 } = currentVersion;
 
-                if (
-                    (videoTime >= startTime
-                    && videoTime <= endTime)
-                    || alwaysShow
-                ) {
+                /**
+                 * FUTURE: to do some kind of caching here
+                 * to check only for a subset of videoTexts which I know
+                 * are near (+/- 20 seconds);
+                 */
+                const textInTimeframe = valueIsBetween(videoTime, startTime, endTime);
+
+                if (textInTimeframe || alwaysShow) {
                     switch (currentVersion.type) {
                         case 'TEXTAREA':
-                            break;
+                            return (
+                                <Textarea
+                                    key={textItem.id}
+                                    data={textItem}
+                                />
+                            );
                         case 'TEXTLINE':
                             return (
                                 <Textline
@@ -80,60 +93,3 @@ const Text: React.FC<any> = () => {
 
 
 export default Text;
-
-
-
-// class SelectVideo extends Component<any, any> {
-//     static contextType = Context;
-
-//     public render() {
-//         // console.log('RENDER SelectVideo');
-//         const {
-//             imageText,
-//         } = this.context;
-//         // console.log('imageText in SelectVideo', imageText);
-
-//         let renderVideoText = (<></>);
-//         if (typeof imageText === 'object' && imageText.length > 0) {
-//             renderVideoText = imageText.map((text: any) => {
-//                 const {
-//                     currentVersionId,
-//                     versions,
-//                 } = text;
-
-//                 const currentVersion = getVersionById(currentVersionId, versions);
-
-//                 if (
-//                     (videoTime >= currentVersion.startTime
-//                     && videoTime <= currentVersion.endTime)
-//                     || currentVersion.alwaysShow
-//                 ) {
-//                     return (
-//                         <TextVideo
-//                             key={currentVersionId}
-//                             text={text}
-//                         />
-//                     );
-//                 } else {
-//                     return null;
-//                 }
-//             });
-//         }
-
-//         return (
-//             <StyledSelectVideo
-//                 style={{
-//                     width: videoBoxWidth + 'px',
-//                     height: videoBoxHeight + 'px',
-//                     left: videoBoxLeft + 'px',
-//                     top: videoBoxTop + 'px',
-//                 }}
-//             >
-//                 {renderVideoText}
-//             </StyledSelectVideo>
-//         );
-//     }
-// }
-
-
-// export default SelectVideo;
