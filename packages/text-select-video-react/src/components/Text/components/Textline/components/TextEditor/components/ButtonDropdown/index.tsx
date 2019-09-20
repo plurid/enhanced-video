@@ -1,7 +1,5 @@
 import React, { Component } from 'react';
 
-import Context from '../../context';
-
 import {
     StyledTextVideoEditorButtonDropdown,
     StyledTextVideoEditorButtonDropdownSelected,
@@ -12,8 +10,6 @@ import {
 
 
 class TextVideoEditorButtonDropdown extends Component<any, any> {
-    static contextType = Context;
-
     dropdown: any;
 
     constructor(props: any) {
@@ -39,7 +35,7 @@ class TextVideoEditorButtonDropdown extends Component<any, any> {
 
         const {
             theme,
-        } = this.context;
+        } = this.props;
 
         return (
             <StyledTextVideoEditorButtonDropdown

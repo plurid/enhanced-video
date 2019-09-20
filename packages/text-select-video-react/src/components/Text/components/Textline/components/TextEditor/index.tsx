@@ -6,37 +6,37 @@ import React, {
 
 import {
     StyledTextEditor,
-    // StyledTextVideoEditorVerticalDivider,
+    StyledVerticalDivider,
 } from './styled';
 
 import Context from '../../../../../../services/utilities/context';
 
-// import TextVideoEditorButtonDropdown from '../TextVideoEditorButtonDropdown';
-// import TextVideoEditorButtonIncrements from '../TextVideoEditorButtonIncrements';
-// import TextVideoEditorButtonTimeIncrements from '../TextVideoEditorButtonTimeIncrements';
-// import TextVideoEditorButtonInput from '../TextVideoEditorButtonInput';
-// import TextVideoEditorButtonToggle from '../TextVideoEditorButtonToggle';
-// import TextVideoEditorButtonsColors from '../TextVideoEditorButtonsColors';
-// import TextVideoEditorButtonClick from '../TextVideoEditorButtonClick';
+import ButtonDropdown from './components/ButtonDropdown';
+import ButtonIncrements from './components/ButtonIncrements';
+import ButtonTimeIncrements from './components/ButtonTimeIncrements';
+import ButtonInput from './components/ButtonInput';
+import ButtonToggle from './components/ButtonToggle';
+import ButtonsColors from './components/ButtonsColors';
+import ButtonClick from './components/ButtonClick';
 
-// import { selectableFonts } from '../../data/fonts';
+import { selectableFonts } from '../../../../../../data/constants/fonts';
 
-// import SelectTextIcon from '../../assets/select-text-icon';
-// import GrabIcon from '../../assets/grab-icon';
-// import ViewableIcon from '../../assets/viewable-icon';
-// import NotViewableIcon from '../../assets/not-viewable-icon';
-// import AlwaysShowOnIcon from '../../assets/always-show-on-icon';
-// import AlwaysShowOffIcon from '../../assets/always-show-off-icon';
-// import StartTimeIcon from '../../assets/start-time-icon';
-// import EndTimeIcon from '../../assets/end-time-icon';
-// import FontSizeIcon from '../../assets/font-size-icon';
-// import LinkIcon from '../../assets/link-icon';
-// import BoldIcon from '../../assets/bold-icon';
-// import ItalicIcon from '../../assets/italic-icon';
-// import LetterSpacingIcon from '../../assets/letter-spacing-icon';
-// import WordSpacingIcon from '../../assets/word-spacing-icon';
-// import DuplicateIcon from '../../assets/duplicate-icon';
-// import DeleteIcon from '../../assets/delete-icon';
+import SelectTextIcon from '../../../../../../assets/select-text-icon';
+import GrabIcon from '../../../../../../assets/grab-icon';
+import ViewableIcon from '../../../../../../assets/viewable-icon';
+import NotViewableIcon from '../../../../../../assets/not-viewable-icon';
+import AlwaysShowOnIcon from '../../../../../../assets/always-show-on-icon';
+import AlwaysShowOffIcon from '../../../../../../assets/always-show-off-icon';
+import StartTimeIcon from '../../../../../../assets/start-time-icon';
+import EndTimeIcon from '../../../../../../assets/end-time-icon';
+import FontSizeIcon from '../../../../../../assets/font-size-icon';
+import LinkIcon from '../../../../../../assets/link-icon';
+import BoldIcon from '../../../../../../assets/bold-icon';
+import ItalicIcon from '../../../../../../assets/italic-icon';
+import LetterSpacingIcon from '../../../../../../assets/letter-spacing-icon';
+import WordSpacingIcon from '../../../../../../assets/word-spacing-icon';
+import DuplicateIcon from '../../../../../../assets/duplicate-icon';
+import DeleteIcon from '../../../../../../assets/delete-icon';
 
 // import {
 //     percentageFromValue,
@@ -56,6 +56,9 @@ const TextEditor: React.FC<TextEditorProperties> = (properties) => {
     }
     const {
         theme,
+
+        editableText,
+        setEditableText,
     } = context;
 
     const editor = useRef<HTMLDivElement>(null);
@@ -69,13 +72,182 @@ const TextEditor: React.FC<TextEditorProperties> = (properties) => {
             theme={theme}
             ref={editor}
         >
-            editor
+            <ButtonToggle
+                theme={theme}
+                toggle={() => setEditableText(show => !show)}
+                toggled={editableText}
+                icon={SelectTextIcon}
+            />
+
+            <ButtonToggle
+                theme={theme}
+                toggle={() => {}}
+                toggled={false}
+                icon={GrabIcon}
+            />
+
+            <ButtonToggle
+                theme={theme}
+                // toggle={toggleTextDraggable}
+                // toggled={textDraggable}
+                toggle={() => {}}
+                toggled={false}
+                icon={GrabIcon}
+            />
+
+            <ButtonToggle
+                theme={theme}
+                // toggle={toggleTextViewable}
+                // toggled={textViewable}
+                toggle={() => {}}
+                toggled={false}
+                icon={ViewableIcon}
+                // icon={textViewable ? ViewableIcon : NotViewableIcon}
+            />
+
+            <StyledVerticalDivider
+                theme={theme}
+            >
+                &nbsp;
+            </StyledVerticalDivider>
+
+            <ButtonToggle
+                theme={theme}
+                toggle={() => {}}
+                toggled={false}
+                icon={AlwaysShowOnIcon}
+                // toggle={toggleTextAlwaysShow}
+                // toggled={textAlwaysShow}
+                // icon={textAlwaysShow ? AlwaysShowOnIcon : AlwaysShowOffIcon}
+            />
+
+            <ButtonTimeIncrements
+                theme={theme}
+                type="startTime"
+                changeValue={() => {}}
+                time={0}
+                // changeValue={this.updateField}
+                // time={startTime}
+                icon={StartTimeIcon}
+            />
+
+            <ButtonTimeIncrements
+                theme={theme}
+                type="endTime"
+                changeValue={() => {}}
+                time={10}
+                // changeValue={this.updateField}
+                // time={endTime}
+                icon={EndTimeIcon}
+                iconAfter={true}
+            />
+
+            <StyledVerticalDivider
+                theme={theme}
+            >
+                &nbsp;
+            </StyledVerticalDivider>
+
+            {/* <ButtonIncrements
+                theme={theme}
+                type="fontSize"
+                changeValue={this.updateField}
+                value={fontSize}
+                icon={FontSizeIcon}
+            /> */}
+
+            {/* <ButtonDropdown
+                type="fontFamily"
+                alterStyle="fontFamily"
+                selected={fontFamily}
+                selectables={selectableFonts}
+                changeSelected={this.updateField}
+                toggleEditor={toggleEditor}
+                textDraggable={textDraggable}
+                toggleTextDraggable={toggleTextDraggable}
+                toggleTextSelected={toggleSelected}
+            /> */}
+
+            {/* <ButtonInput
+                theme={theme}
+                toggle={this.updateField.bind(this, 'link')}
+                toggled={link}
+                icon={LinkIcon}
+                value={linkTo}
+                valueType="linkTo"
+                changeValue={this.updateField}
+            /> */}
+
+            <ButtonToggle
+                theme={theme}
+                toggle={() => {}}
+                toggled={false}
+                // toggle={this.updateField.bind(this, 'bold')}
+                // toggled={bold}
+                icon={BoldIcon}
+            />
+
+            <ButtonToggle
+                theme={theme}
+                toggle={() => {}}
+                toggled={false}
+                // toggle={this.updateField.bind(this, 'italic')}
+                // toggled={italic}
+                icon={ItalicIcon}
+            />
+
+            {/* <ButtonIncrements
+                theme={theme}
+                type="letterSpacing"
+                changeValue={this.updateField}
+                value={letterSpacing}
+                icon={LetterSpacingIcon}
+                step={0.1}
+            /> */}
+
+            {/* <ButtonIncrements
+                theme={theme}
+                type="wordSpacing"
+                changeValue={this.updateField}
+                value={wordSpacing}
+                icon={WordSpacingIcon}
+                step={0.1}
+            /> */}
+
+            <ButtonsColors
+                changeValue={() => {}}
+                color={data.color}
+                // changeValue={this.updateField}
+                // color={color}
+            />
+
+            <StyledVerticalDivider
+                theme={theme}
+            >
+                &nbsp;
+            </StyledVerticalDivider>
+
+            <ButtonClick
+                theme={theme}
+                atClick={() => {}}
+                // atClick={this.duplicate}
+                icon={DuplicateIcon}
+            />
+
+            <ButtonClick
+                theme={theme}
+                atClick={() => {}}
+                // atClick={this.delete}
+                icon={DeleteIcon}
+            />
         </StyledTextEditor>
     );
 };
 
 
 export default TextEditor;
+
+
 
 
 
@@ -143,148 +315,7 @@ export default TextEditor;
 //                 }}
 //                 ref={this.editor}
 //             >
-//                 <TextVideoEditorButtonToggle
-//                     theme={theme}
-//                     toggle={toggleTextEditable}
-//                     toggled={textEditable}
-//                     icon={SelectTextIcon}
-//                 />
 
-//                 <TextVideoEditorButtonToggle
-//                     theme={theme}
-//                     toggle={toggleTextDraggable}
-//                     toggled={textDraggable}
-//                     icon={GrabIcon}
-//                 />
-
-//                 <TextVideoEditorButtonToggle
-//                     theme={theme}
-//                     toggle={toggleTextViewable}
-//                     toggled={textViewable}
-//                     icon={textViewable ? ViewableIcon : NotViewableIcon}
-//                 />
-
-//                 <StyledTextVideoEditorVerticalDivider
-//                     theme={theme}
-//                 >
-//                     &nbsp;
-//                 </StyledTextVideoEditorVerticalDivider>
-
-//                 {/* toggle always show, irrespective of time */}
-//                 <TextVideoEditorButtonToggle
-//                     theme={theme}
-//                     toggle={toggleTextAlwaysShow}
-//                     toggled={textAlwaysShow}
-//                     icon={textAlwaysShow ? AlwaysShowOnIcon : AlwaysShowOffIcon}
-//                 />
-
-//                 <TextVideoEditorButtonTimeIncrements
-//                     theme={theme}
-//                     type="startTime"
-//                     changeValue={this.updateField}
-//                     time={startTime}
-//                     icon={StartTimeIcon}
-//                 />
-
-//                 <TextVideoEditorButtonTimeIncrements
-//                     theme={theme}
-//                     type="endTime"
-//                     changeValue={this.updateField}
-//                     time={endTime}
-//                     icon={EndTimeIcon}
-//                     iconAfter={true}
-//                 />
-
-//                 <StyledTextVideoEditorVerticalDivider
-//                     theme={theme}
-//                 >
-//                     &nbsp;
-//                 </StyledTextVideoEditorVerticalDivider>
-
-//                 <TextVideoEditorButtonIncrements
-//                     theme={theme}
-//                     type="fontSize"
-//                     changeValue={this.updateField}
-//                     value={fontSize}
-//                     icon={FontSizeIcon}
-//                 />
-
-//                 <TextVideoEditorButtonDropdown
-//                     type="fontFamily"
-//                     alterStyle="fontFamily"
-//                     selected={fontFamily}
-//                     selectables={selectableFonts}
-//                     changeSelected={this.updateField}
-//                     toggleEditor={toggleEditor}
-//                     textDraggable={textDraggable}
-//                     toggleTextDraggable={toggleTextDraggable}
-//                     toggleTextSelected={toggleSelected}
-//                 />
-
-//                 <TextVideoEditorButtonInput
-//                     theme={theme}
-//                     toggle={this.updateField.bind(this, 'link')}
-//                     toggled={link}
-//                     icon={LinkIcon}
-//                     value={linkTo}
-//                     valueType="linkTo"
-//                     changeValue={this.updateField}
-//                 />
-
-//                 <TextVideoEditorButtonToggle
-//                     theme={theme}
-//                     toggle={this.updateField.bind(this, 'bold')}
-//                     toggled={bold}
-//                     icon={BoldIcon}
-//                 />
-
-//                 <TextVideoEditorButtonToggle
-//                     theme={theme}
-//                     toggle={this.updateField.bind(this, 'italic')}
-//                     toggled={italic}
-//                     icon={ItalicIcon}
-//                 />
-
-//                 <TextVideoEditorButtonIncrements
-//                     theme={theme}
-//                     type="letterSpacing"
-//                     changeValue={this.updateField}
-//                     value={letterSpacing}
-//                     icon={LetterSpacingIcon}
-//                     step={0.1}
-//                 />
-
-//                 <TextVideoEditorButtonIncrements
-//                     theme={theme}
-//                     type="wordSpacing"
-//                     changeValue={this.updateField}
-//                     value={wordSpacing}
-//                     icon={WordSpacingIcon}
-//                     step={0.1}
-//                 />
-
-//                 <TextVideoEditorButtonsColors
-//                     changeValue={this.updateField}
-//                     color={color}
-//                 />
-
-//                 <StyledTextVideoEditorVerticalDivider
-//                     theme={theme}
-//                 >
-//                     &nbsp;
-//                 </StyledTextVideoEditorVerticalDivider>
-
-//                 <TextVideoEditorButtonClick
-//                     theme={theme}
-//                     atClick={this.duplicate}
-//                     icon={DuplicateIcon}
-//                 />
-
-//                 <TextVideoEditorButtonClick
-//                     theme={theme}
-//                     atClick={this.delete}
-//                     icon={DeleteIcon}
-//                 />
 //             </StyledTextVideoEditor>
 //         );
 //     }
