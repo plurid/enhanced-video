@@ -42,7 +42,7 @@ export const StyledTextEditor: any = styled.div`
 `;
 
 
-export const StyledTextVideoEditorVerticalDivider = styled.div`
+export const StyledVerticalDivider = styled.div`
     background-color: ${props => props.theme.colorSecondary};
     width: 1px;
     height: 100%;

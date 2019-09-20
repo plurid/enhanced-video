@@ -8,8 +8,8 @@ export const StyledTextVideoEditorButtonIncrement = styled.div`
     margin: 5px;
 
     input {
-        background: ${props => props.theme.backgroundColorHover};
-        color: ${props => props.theme.color};
+        background: ${props => props.theme.backgroundColorSecondary};
+        color: ${props => props.theme.colorPrimary};
         height: 20px;
         width: 20px;
         border: none;
@@ -42,7 +42,7 @@ export const StyledTextVideoEditorButtonIncrementIcon = styled.div`
     margin: 5px;
 
     svg {
-        fill: ${props => props.theme.color};
+        fill: ${props => props.theme.colorPrimary};
         height: 14px;
         width: 14px;
     }
@@ -50,7 +50,7 @@ export const StyledTextVideoEditorButtonIncrementIcon = styled.div`
 
 
 export const StyledTextVideoEditorButtonIncrements: any = styled.div`
-    background: ${props => props.theme.backgroundColorHover};
+    background: ${props => props.theme.backgroundColorSecondary};
 
     display: grid;
     grid-template-columns: 1fr;
@@ -66,7 +66,7 @@ export const StyledTextVideoEditorButtonIncrements: any = styled.div`
 
 
 export const StyledTextVideoEditorButtonIncrementButton = styled.div`
-    color: ${props => props.theme.color};
+    color: ${props => props.theme.colorPrimary};
     background-color: ${props => props.theme.backgroundColorSecondary};
 
     width: 12px;
@@ -78,12 +78,12 @@ export const StyledTextVideoEditorButtonIncrementButton = styled.div`
     user-select: none;
 
     :hover {
-        background-color: ${props => props.theme.backgroundColorHover};
+        background-color: ${props => props.theme.backgroundColorPrimary};
     }
 `;
 
 
 export const StyledTextVideoEditorButtonIncrementsInputs = styled.div`
-    background: ${props => props.theme.backgroundColorHover};
+    background: ${props => props.theme.backgroundColorSecondary};
     user-select: none;
 `;

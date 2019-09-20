@@ -155,7 +155,7 @@ const Textline: React.FC<TextlineProperties> = (properties) => {
 
             {showEditor && (
                 <TextEditor
-                    data={data}
+                    data={currentVersion}
                 />
             )}
         </StyledTextItem>

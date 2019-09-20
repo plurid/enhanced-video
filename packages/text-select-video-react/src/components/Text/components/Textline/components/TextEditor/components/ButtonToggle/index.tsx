@@ -12,7 +12,7 @@ interface TextVideoEditorButtonToggleProps {
 }
 
 
-class TextVideoEditorButtonToggle extends Component<
+class ButtonToggle extends Component<
     TextVideoEditorButtonToggleProps, any
 > {
     public render() {
@@ -36,4 +36,4 @@ class TextVideoEditorButtonToggle extends Component<
 }
 
 
-export default TextVideoEditorButtonToggle;
+export default ButtonToggle;
