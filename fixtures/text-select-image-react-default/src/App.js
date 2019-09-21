@@ -3,7 +3,9 @@ import React, { Component } from 'react';
 // import video from './assets/video.mov';
 import longVideo from './assets/long-video.mp4';
 
-import TextSelectVideo from '@plurid/text-select-video-react';
+import TextSelectVideo, {
+    // ACTIONS,
+} from '@plurid/text-select-video-react';
 
 
 
@@ -48,26 +50,36 @@ class App extends Component {
         action: '',
     }
 
-    constructor(props) {
-        super(props);
-    }
-
     componentDidMount() {
-        setTimeout(() => {
-            this.setState({
-                action: 'GET_TEXT',
-            });
-        }, 1000);
-        setTimeout(() => {
-            this.setState({
-                action: 'SAVE_TEXT',
-            });
-        }, 2000);
-        setTimeout(() => {
-            this.setState({
-                action: 'ADD_TEXT',
-            });
-        }, 3000);
+        // setTimeout(() => {
+        //     this.setState({
+        //         action: {
+        //             type: ACTIONS.GET_TEXT,
+        //         },
+        //     });
+        // }, 1000);
+        // setTimeout(() => {
+        //     this.setState({
+        //         action: {
+        //             type: ACTIONS.SAVE_TEXT,
+        //         },
+        //     });
+        // }, 2000);
+        // setTimeout(() => {
+        //     this.setState({
+        //         action: {
+        //             type: ACTIONS.ADD_TEXT,
+        //         },
+        //     });
+        // }, 500);
+        // setTimeout(() => {
+        //     this.setState({
+        //         action: {
+        //             type: ACTIONS.SET_MESSAGE,
+        //             payload: 'message set',
+        //         },
+        //     });
+        // }, 4000);
     }
 
     render () {
