@@ -34,6 +34,8 @@ const Timeline: React.FC<TimelineProperties> = (properties) => {
     }
 
     const {
+        theme,
+
         videoDuration,
         handleVideoTime,
     } = context;
@@ -125,6 +127,7 @@ const Timeline: React.FC<TimelineProperties> = (properties) => {
                     }}
                 >
                     <StyledTimelineViewed
+                        theme={theme}
                         viewedWidth={viewedWidth}
                         videoTime={videoTime}
                         videoDuration={videoDuration}
@@ -136,6 +139,7 @@ const Timeline: React.FC<TimelineProperties> = (properties) => {
                         last={last}
                     >
                         <StyledTimelineCurrentTime
+                            theme={theme}
                             viewedWidth={viewedWidth}
                             currentTimeHours={currentTimeHours}
                         >
@@ -145,13 +149,16 @@ const Timeline: React.FC<TimelineProperties> = (properties) => {
                 </StyledTimelineViewedContainer>
 
                 <StyledTimelineViewable
+                    theme={theme}
                     first={first}
                     last={last}
                     style={{
                         width: viewableWidth + '%',
                     }}
                 >
-                    <StyledTimelineTime>
+                    <StyledTimelineTime
+                        theme={theme}
+                    >
                         <div>
                             {startTimeString}
                         </div>
