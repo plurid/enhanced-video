@@ -51,7 +51,13 @@ export interface TextSelectVideoProperties {
     // updateDebounce?: number;
     // moreLimit?: number;
     // getTextOnLoad?: boolean;
-    action?: string;
+    action?: Action;
+}
+
+
+export interface Action {
+    type: string;
+    payload?: any;
 }
 
 
