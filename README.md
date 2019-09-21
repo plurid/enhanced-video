@@ -1,12 +1,6 @@
 <p align="center">
     <img src="https://raw.githubusercontent.com/plurid/text-select-video/master/about/identity/TSV-logo.png" height="250px">
     <br />
-    <a target="_blank" href="https://www.npmjs.com/package/@plurid/text-select-video-html">
-        <img src="https://img.shields.io/npm/v/@plurid/text-select-video-html.svg?logo=npm&colorB=1380C3&style=for-the-badge" alt="Version">
-    </a>
-    <a target="_blank" href="https://travis-ci.org/plurid/text-select-video-html">
-        <img src="https://img.shields.io/travis/plurid/text-select-video-html.svg?logo=travis&colorB=1380C3&style=for-the-badge" alt="Build Status">
-    </a>
     <a target="_blank" href="https://github.com/plurid/text-select-video/blob/master/LICENSE">
         <img src="https://img.shields.io/badge/license-MIT-blue.svg?colorB=1380C3&style=for-the-badge" alt="License: MIT">
     </a>
@@ -48,3 +42,34 @@ Editing the text.
 <p align="center">
     <img src="https://raw.githubusercontent.com/plurid/text-select-video/master/about/demo/on-edit.png" height="500px">
 </p>
+
+
+## Packages
+
+<a target="_blank" href="https://www.npmjs.com/package/@plurid/text-select-video-html">
+    <img src="https://img.shields.io/npm/v/@plurid/text-select-video-html.svg?logo=npm&colorB=1380C3&style=for-the-badge" alt="Version">
+</a>
+
+[@plurid/text-select-video-html][text-select-video-html] • HTML Custom Elements
+
+[text-select-video-html]: https://github.com/plurid/text-select-video/tree/master/packages/text-select-video-html
+
+
+
+<a target="_blank" href="https://www.npmjs.com/package/@plurid/text-select-video-react">
+    <img src="https://img.shields.io/npm/v/@plurid/text-select-video-react.svg?logo=npm&colorB=1380C3&style=for-the-badge" alt="Version">
+</a>
+
+[@plurid/text-select-video-react][text-select-video-react] • React implementation
+
+[text-select-video-react]: https://github.com/plurid/text-select-video/tree/master/packages/text-select-video-react
+
+
+
+<a target="_blank" href="https://www.npmjs.com/package/@plurid/text-select-video-vue">
+    <img src="https://img.shields.io/npm/v/@plurid/text-select-video-vue.svg?logo=npm&colorB=1380C3&style=for-the-badge" alt="Version">
+</a>
+
+[@plurid/text-select-video-vue][text-select-video-vue] • Vue implementation
+
+[text-select-video-vue]: https://github.com/plurid/text-select-video/tree/master/packages/text-select-video-vue
