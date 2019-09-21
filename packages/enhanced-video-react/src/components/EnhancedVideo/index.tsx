@@ -10,8 +10,8 @@ interface EnhancedVideoProperties {
     type: string;
     theme?: string;
     controls?: boolean;
-    height?: string;
-    qualitySources: any;
+    height?: number;
+    qualitySources?: any;
 }
 
 
@@ -22,18 +22,20 @@ const EnhancedVideo: React.FC<EnhancedVideoProperties> = (properties) => {
         theme,
         controls,
         height,
-        qualitySources,
+        // qualitySources,
     } = properties;
+
+    const _theme = theme || 'plurid';
 
     return (
         <div>
             <TextSelectVideo
                 src={src}
                 type={type}
-                theme={theme || 'dusk'}
+                // theme={_theme}
                 controls={controls || true}
-                height={height || '500'}
-                qualitySources={qualitySources}
+                height={height || 500}
+                // qualitySources={qualitySources}
             />
         </div>
     );
