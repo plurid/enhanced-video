@@ -242,6 +242,8 @@ const TextSelectVideo: React.FC<TextSelectVideoProperties> = function (this: any
     }
 
     const addText = () => {
+        setMessageTimed('Added New Text', 1500);
+
         const newText = createNewText(videoTime);
         const updatedTexts = [...videoText, newText];
         setVideoText(updatedTexts);
