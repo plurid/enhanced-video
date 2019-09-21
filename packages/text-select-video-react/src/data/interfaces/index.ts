@@ -122,6 +122,8 @@ export interface IContext {
     videoText: VideoText[];
 
     addText: () => void;
+    saveText: () => Promise<void>;
+    getText: () => Promise<void>;
 }
 
 

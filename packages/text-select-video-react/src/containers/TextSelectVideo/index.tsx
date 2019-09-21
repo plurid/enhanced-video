@@ -245,6 +245,16 @@ const TextSelectVideo: React.FC<TextSelectVideoProperties> = (properties) => {
         setVideoText(updatedTexts);
     }
 
+    const saveText = async () => {
+        setShowSpinner(true);
+        setMessage('Saving the Video Text');
+    }
+
+    const getText = async () => {
+        setShowSpinner(true);
+        setMessage('Getting the Video Text');
+    }
+
     useEffect(() => {
         computeVideoBoxDimensions();
     }, [videoDimensions]);
@@ -324,6 +334,8 @@ const TextSelectVideo: React.FC<TextSelectVideoProperties> = (properties) => {
         videoText,
 
         addText,
+        saveText,
+        getText,
     };
 
     return (
