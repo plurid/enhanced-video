@@ -17,16 +17,10 @@ import TextEditor from './components/TextEditor';
 
 import {
     StyledTextItem,
-//     StyledTextVideo,
-//     StyledTextVideoTextContent,
-//     StyledTextVideoTextContentLink,
-//     StyledEditableDiv,
+    StyledTextContent,
+    StyledTextContentLink,
+    StyledEditableDiv,
 } from './styled';
-
-// import {
-//     ITextVideoProps,
-//     ITextVideoState,
-// } from './interfaces';
 
 // import { EDITOR_HEIGHT } from '../../../../data/constants/constants';
 
