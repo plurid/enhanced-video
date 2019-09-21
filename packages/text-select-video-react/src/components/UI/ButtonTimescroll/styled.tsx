@@ -35,7 +35,7 @@ export const StyledTimescrollTitleIcon = styled.div`
 
 
 export const StyledTimescrollArea = styled.div`
-    background: hsla(0, 0%, 50%, 0.15);
+    background: ${props => props.theme.backgroundColorTertiary};
     height: 25px;
     width: 100%;
     cursor: pointer;
@@ -45,7 +45,7 @@ export const StyledTimescrollArea = styled.div`
 
 
 export const StyledTimescrollViewed: any = styled.div`
-    background: hsla(0, 0%, 50%, 0.5);
+    background: ${props => props.theme.backgroundColorPrimaryAlpha};
     position: absolute;
     top: 0;
     left: 0;

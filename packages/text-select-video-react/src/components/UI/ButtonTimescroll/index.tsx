@@ -93,12 +93,14 @@ class Timescroll extends Component<
                 </StyledTimescrollTitle>
 
                 <StyledTimescrollArea
+                    theme={theme}
                     tabIndex={0}
                     onClick={this.setTime}
                     ref={this.timescrollArea}
                     onKeyDown={this.handleKeyDown}
                 >
                     <StyledTimescrollViewed
+                        theme={theme}
                         style={{
                             width: timePercentage + '%',
                         }}
