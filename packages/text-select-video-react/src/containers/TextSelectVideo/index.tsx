@@ -23,6 +23,10 @@ import {
 } from '../../data/constants/video';
 
 import {
+    createNewText,
+} from '../../data/constants/initializers';
+
+import {
     TextSelectVideoProperties,
     IContext,
     VideoDimensions,
@@ -236,48 +240,7 @@ const TextSelectVideo: React.FC<TextSelectVideoProperties> = (properties) => {
     }
 
     const addText = () => {
-        const textID = uuid();
-        const versionID = uuid();
-
-        const newVersion: VideoTextVersionTextline = {
-            id: versionID,
-            type: 'TEXTLINE',
-
-            startTime: videoTime,
-            endTime: videoTime + 10,
-
-            xCoordPercentage: 5,
-            yCoordPercentage: 5,
-
-            perspective: '',
-            rotation: '',
-            skew: '',
-
-            viewable: false,
-            alwaysShow: false,
-
-            color: 'white',
-
-            fontWeight: 'normal',
-            fontStyle: 'normal',
-            fontFamily: 'Arial',
-            fontSizePercentage: 5,
-            letterSpacingPercentage: 0,
-            wordSpacingPercentage: 0,
-            lineHeightPercentage: 0,
-
-            content: 'New Text',
-
-            link: false,
-            linkTo: '',
-        };
-
-        const newText: VideoText = {
-            id: textID,
-            currentVersionId: versionID,
-            versions: [newVersion],
-        };
-
+        const newText = createNewText(videoTime);
         const updatedTexts = [...videoText, newText];
         setVideoText(updatedTexts);
     }
