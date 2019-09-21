@@ -33,7 +33,6 @@ import {
     VideoContainerDimensions,
     VideoBoxDimensions,
     VideoText,
-    VideoTextVersionTextline,
 } from '../../data/interfaces';
 
 import Text from '../../components/Text';
@@ -45,8 +44,6 @@ import TimescrollTime from '../../components/TimescrollTime';
 import TimescrollText from '../../components/TimescrollText';
 
 import themes, { Theme } from '@plurid/apps.utilities.themes';
-
-import uuid from '../../services/utilities/uuid';
 
 // test imports
 import TEST_VIDEO_TEXT_DATA from '../../__spec-data__/data';
