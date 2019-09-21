@@ -27,6 +27,8 @@ import {
     createNewText,
 } from '../../data/constants/initializers';
 
+import ACTIONS from '../../data/constants/actions';
+
 import {
     TextSelectVideoProperties,
     IContext,
@@ -268,6 +270,29 @@ const TextSelectVideo: React.FC<TextSelectVideoProperties> = function (this: any
         setVideoText([...TEST_VIDEO_TEXT_DATA]);
     }, []);
 
+    const reducer = (state: any, action: any) => {
+        switch(action.type) {
+            case ACTIONS.ADD_TEXT:
+                addText();
+                return state;
+            case ACTIONS.SAVE_TEXT:
+                saveText();
+                return state;
+            case ACTIONS.GET_TEXT:
+                getText();
+                return state;
+            case ACTIONS.SET_MESSAGE:
+                setMessage(action.payload);
+                return state;
+        }
+    }
+    const [_, dispatch] = useReducer(reducer, {});
+    useEffect(() => {
+        if (action) {
+            dispatch(action);
+        }
+    }, [action]);
+
     const _theme: Theme = theme && themes[theme]
         ? themes[theme]
         : themes.plurid;
@@ -337,24 +362,6 @@ const TextSelectVideo: React.FC<TextSelectVideoProperties> = function (this: any
         saveText,
         getText,
     };
-
-    const reducer = (state: any, action: any) => {
-        switch(action) {
-            case 'ADD_TEXT':
-                addText();
-                return state;
-            case 'SAVE_TEXT':
-                saveText();
-                return state;
-            case 'GET_TEXT':
-                getText();
-                return state;
-        }
-    }
-    const [_, dispatch] = useReducer(reducer, {});
-    useEffect(() => {
-        dispatch(action);
-    }, [action]);
 
     return (
         <Context.Provider
