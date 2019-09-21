@@ -51,6 +51,7 @@ export interface TextSelectVideoProperties {
     // updateDebounce?: number;
     // moreLimit?: number;
     // getTextOnLoad?: boolean;
+    action?: string;
 }
 
 

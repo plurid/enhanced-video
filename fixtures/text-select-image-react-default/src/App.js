@@ -44,6 +44,32 @@ import TextSelectVideo from '@plurid/text-select-video-react';
 
 
 class App extends Component {
+    state = {
+        action: '',
+    }
+
+    constructor(props) {
+        super(props);
+    }
+
+    componentDidMount() {
+        setTimeout(() => {
+            this.setState({
+                action: 'GET_TEXT',
+            });
+        }, 1000);
+        setTimeout(() => {
+            this.setState({
+                action: 'SAVE_TEXT',
+            });
+        }, 2000);
+        setTimeout(() => {
+            this.setState({
+                action: 'ADD_TEXT',
+            });
+        }, 3000);
+    }
+
     render () {
         return (
             <div className="app">
@@ -55,6 +81,7 @@ class App extends Component {
                         type="video/mp4"
                         height={600}
                         theme="plurid"
+                        action={this.state.action}
                         // about={false}
                         // controls={true}
                         // src={video}

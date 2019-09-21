@@ -2,6 +2,7 @@ import React, {
     useState,
     useEffect,
     useRef,
+    useReducer,
 } from 'react';
 
 import './styles.css';
@@ -50,7 +51,7 @@ import TEST_VIDEO_TEXT_DATA from '../../__spec-data__/data';
 
 
 
-const TextSelectVideo: React.FC<TextSelectVideoProperties> = (properties) => {
+const TextSelectVideo: React.FC<TextSelectVideoProperties> = function (this: any, properties) {
     const {
         src,
         type,
@@ -68,6 +69,8 @@ const TextSelectVideo: React.FC<TextSelectVideoProperties> = (properties) => {
 
         videoStyle,
         atLoad,
+
+        action,
     } = properties;
 
     const [showSpinner, setShowSpinner] = useState(false);
@@ -334,6 +337,24 @@ const TextSelectVideo: React.FC<TextSelectVideoProperties> = (properties) => {
         saveText,
         getText,
     };
+
+    const reducer = (state: any, action: any) => {
+        switch(action) {
+            case 'ADD_TEXT':
+                addText();
+                return state;
+            case 'SAVE_TEXT':
+                saveText();
+                return state;
+            case 'GET_TEXT':
+                getText();
+                return state;
+        }
+    }
+    const [_, dispatch] = useReducer(reducer, {});
+    useEffect(() => {
+        dispatch(action);
+    }, [action]);
 
     return (
         <Context.Provider
