@@ -1,6 +1,6 @@
 {
     "name": "@plurid/enhanced-video-react",
-    "version": "0.1.1",
+    "version": "0.1.2",
     "description": "Enhanced Video HTML Element, React implementation",
     "keywords": [
         "enhanced",
@@ -42,7 +42,11 @@
         "build": "yarn clean && yarn lint && yarn spec && yarn build.prod",
         "prepublishOnly": "yarn build"
     },
+    "dependencies": {
+        "@plurid/text-select-video-react": "^0.1.2"
+    },
     "peerDependencies": {
+        "@plurid/apps.utilities.themes": "*",
         "apollo-cache-inmemory": ">=1.6",
         "apollo-client": ">=2.6",
         "apollo-link": ">=1.2",
@@ -57,6 +61,7 @@
     },
     "devDependencies": {
         "@babel/core": "^7.6.0",
+        "@plurid/apps.utilities.themes": "^0.1.12",
         "@svgr/rollup": "^4.3.2",
         "@types/enzyme": "^3.10.3",
         "@types/enzyme-adapter-react-16": "^1.0.5",
@@ -122,8 +127,5 @@
         "collectCoverageFrom": [
             "src/*.{js,ts}"
         ]
-    },
-    "dependencies": {
-        "@plurid/text-select-video-react": "^0.1.1"
     }
 }
