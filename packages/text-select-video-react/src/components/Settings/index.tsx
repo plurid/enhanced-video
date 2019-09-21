@@ -1,49 +1,48 @@
-import React, { Component } from 'react';
-
-import SettingsIcon from '../../assets/settings-icon';
+import React, {
+    useContext,
+} from 'react';
 
 import {
     StyledSettings,
     StyledSettingsButton,
 } from './styled';
 
-import Context from '../../context';
+import Context from '../../services/utilities/context';
 
-import SettingsMenu from '../SettingsMenu';
+import SettingsIcon from '../../assets/settings-icon';
+
+import SettingsMenu from './components/SettingsMenu';
 
 
 
-class Settings extends Component<any, any> {
-    public render() {
-        return (
-            <Context.Consumer>
-                {context => {
-                    const {
-                        theme,
-                        toggleSettings,
-                        toggledSettings,
-                    } = context;
-
-                    return (
-                        <StyledSettings
-                            theme={theme}
-                        >
-                            <StyledSettingsButton
-                                onClick={toggleSettings}
-                            >
-                                {SettingsIcon}
-                            </StyledSettingsButton>
-
-                            {toggledSettings && (
-                                <SettingsMenu
-                                />
-                            )}
-                        </StyledSettings>
-                    )
-                }}
-            </Context.Consumer>
-        );
+const Settings: React.FC<any> = () => {
+    const context = useContext(Context);
+    if (!context) {
+        return (<></>);
     }
+
+    const {
+        theme,
+
+        showSettingsMenu,
+        setShowSettingsMenu,
+    } = context;
+
+    return (
+        <StyledSettings
+            theme={theme}
+        >
+            <StyledSettingsButton
+                onClick={() => setShowSettingsMenu(show => !show)}
+            >
+                {SettingsIcon}
+            </StyledSettingsButton>
+
+            {showSettingsMenu && (
+                <SettingsMenu />
+            )}
+        </StyledSettings>
+    );
 }
 
 
