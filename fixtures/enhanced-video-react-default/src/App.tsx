@@ -1,7 +1,11 @@
 import React from 'react';
 import EnhancedVideo from '@plurid/enhanced-video-react';
 
+<<<<<<< HEAD
 // import video from './assets/video.mov';
+=======
+import video from './assets/video.mov';
+>>>>>>> 681ad7dfec684811a0038022d8771289397b65d5
 import longVideo from './assets/long-video.mp4';
 
 
@@ -51,7 +55,11 @@ const App: React.FC = () => {
                 <EnhancedVideo
                     src={longVideo}
                     type="video/mp4"
+<<<<<<< HEAD
                     theme="light"
+=======
+                    theme="night"
+>>>>>>> 681ad7dfec684811a0038022d8771289397b65d5
                     // qualitySources={qualitySources}
                     // about={false}
                     // apiEndpoint="http://192.168.1.2:33600/graphql"
