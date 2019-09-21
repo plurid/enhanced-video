@@ -354,7 +354,7 @@ const TextSelectVideo: React.FC<TextSelectVideoProperties> = (properties) => {
                     <Text />
                 )}
 
-                {showSettingsButton && loadedVideo && _controls && (
+                {loadedVideo && _controls && showSettingsButton && (
                     <Settings />
                 )}
 
@@ -367,7 +367,9 @@ const TextSelectVideo: React.FC<TextSelectVideoProperties> = (properties) => {
                 )}
 
                 {message && (
-                    <Message text={message} />
+                    <Message
+                        text={message}
+                    />
                 )}
 
                 {showSpinner && (
