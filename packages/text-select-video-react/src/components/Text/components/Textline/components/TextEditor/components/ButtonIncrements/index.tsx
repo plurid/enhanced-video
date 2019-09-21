@@ -59,7 +59,7 @@ class TextVideoEditorButtonIncrements extends Component<any, any> {
 
                 <input
                     type="number"
-                    value={value}
+                    value={value.toFixed(1)}
                     step={stepValue}
                     onChange={this.inputChange}
                 />

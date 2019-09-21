@@ -150,9 +150,8 @@ const TextEditor: React.FC<TextEditorProperties> = (properties) => {
                 theme={theme}
                 type="fontSize"
                 changeValue={() => {}}
-                value={data.fontSizePercentage * videoBoxDimensions.height / 100}
                 // changeValue={this.updateField}
-                // value={fontSize}
+                value={data.fontSizePercentage * videoBoxDimensions.height / 100}
                 icon={FontSizeIcon}
             />
 
