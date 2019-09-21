@@ -15,7 +15,7 @@ import VolumeLowIcon from '../../../../assets/volume-low-icon';
 import VolumeMutedIcon from '../../../../assets/volume-muted-icon';
 import AboutIcon from '../../../../assets/about-icon';
 import AddTextIcon from '../../../../assets/add-text-icon';
-import SaveVideoTextIcon from '../../../../assets/save-image-text-icon';
+import SaveTextIcon from '../../../../assets/save-text-icon';
 import GetTextIcon from '../../../../assets/get-text-icon';
 import MarkTextTimeUntoggledIcon from '../../../../assets/mark-text-time-untoggled-icon';
 import MarkTextTimeToggledIcon from '../../../../assets/mark-text-time-toggled-icon';
@@ -76,6 +76,8 @@ const SettingsMenu: React.FC<any> = () => {
         videoContainerDimensions,
 
         addText,
+        saveText,
+        getText,
     } = context;
 
     const VideoVolumeIcon = videoVolume == 0
@@ -95,12 +97,12 @@ const SettingsMenu: React.FC<any> = () => {
         addText();
     }
 
-    const handleSaveText = () => {
-
+    const handleSaveText = async () => {
+        await saveText();
     }
 
-    const handleGetText = () => {
-
+    const handleGetText = async () => {
+        await getText();
     }
 
     const handleExtractFrame = () => {
@@ -239,8 +241,8 @@ const SettingsMenu: React.FC<any> = () => {
                         <ButtonItem
                             theme={theme}
                             atClick={handleSaveText}
-                            icon={SaveVideoTextIcon}
-                            text="Save Video Text"
+                            icon={SaveTextIcon}
+                            text="Save Text"
                         />
                     </li>
 
@@ -264,14 +266,14 @@ const SettingsMenu: React.FC<any> = () => {
                         />
                     </li>
 
-                    <li>
+                    {/* <li>
                         <ButtonItem
                             theme={theme}
                             atClick={handleExtractFrame}
                             icon={ExtractTextIcon}
                             text="Extract Frame"
                         />
-                    </li>
+                    </li> */}
 
                     {about && (
                         <hr />
