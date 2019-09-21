@@ -91,7 +91,6 @@ export interface IContext {
     loadedVideo: boolean;
 
     videoDuration: number;
-    checkAndSetVideoDuration: any;
 
     videoDimensions: VideoDimensions;
     videoContainerDimensions: VideoContainerDimensions;
