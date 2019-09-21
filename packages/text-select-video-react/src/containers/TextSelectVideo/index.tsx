@@ -49,7 +49,7 @@ import themes, { Theme } from '@plurid/apps.utilities.themes';
 import uuid from '../../services/utilities/uuid';
 
 // test imports
-import TEST_VIDEO_TEXT_DATA from '../../__specs__/spec-data/data';
+import TEST_VIDEO_TEXT_DATA from '../../__spec-data__/data';
 
 
 
