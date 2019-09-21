@@ -74,6 +74,8 @@ const SettingsMenu: React.FC<any> = () => {
         setShowTimescrollText,
 
         videoContainerDimensions,
+
+        addText,
     } = context;
 
     const VideoVolumeIcon = videoVolume == 0
@@ -90,7 +92,7 @@ const SettingsMenu: React.FC<any> = () => {
     }
 
     const handleAddText = () => {
-
+        addText();
     }
 
     const handleSaveText = () => {
