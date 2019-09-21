@@ -1,7 +1,3 @@
-import { IVideoText } from '../../interfaces/image-text';
-
-
-
 export interface ITextVideoProps {
 //     textVideo: IVideoText;
 }

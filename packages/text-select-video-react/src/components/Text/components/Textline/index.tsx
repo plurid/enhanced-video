@@ -169,7 +169,7 @@ const Textline: React.FC<TextlineProperties> = (properties) => {
                 <>{currentVersion.content}</>
             )}
 
-            {showEditor && (
+            {showEditor && currentVersion && (
                 <TextEditor
                     data={currentVersion}
                 />
