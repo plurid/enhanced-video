@@ -26,7 +26,24 @@ export const StyledTimelineArea: any = styled.div`
 export const StyledTimelineViewable: any = styled.div`
     position: relative;
     height: 100%;
-    background: hsla(220, 5%, 15%, 0.5);
+
+    /* background: hsla(220, 5%, 15%, 0.5); */
+    background: ${(props) => props.theme.backgroundColorPrimaryAlpha};
+
+    border-top: 1px solid ${(props) => {
+        if (props.theme.type === 'dark') {
+            return props.theme.backgroundColorBright;
+        } else {
+            return props.theme.backgroundColorDark;
+        }
+    }};
+    border-bottom: 1px solid ${(props) => {
+        if (props.theme.type === 'dark') {
+            return props.theme.backgroundColorBright;
+        } else {
+            return props.theme.backgroundColorDark;
+        }
+    }};
 
     border-top-left-radius: ${(props: any) => {
         if (props.first) {
@@ -92,20 +109,21 @@ export const StyledTimelineViewedContainer: any = styled.div`
 
 
 export const StyledTimelineViewed: any = styled.div`
-    border-right: 1px solid ${(props: any) => {
-        if (props.viewedWidth !== 100 && props.viewedWidth !== 0) {
-            return 'white';
-        }
-        return 'none';
-    }};
-
-    background: hsla(220, 5%, 5%, 0.6);
+    /* background: hsla(220, 5%, 5%, 0.6); */
     position: absolute;
     top: 0;
     bottom: 0;
     left: 0;
     z-index: 990;
     transition: border-radius 300ms linear;
+
+    border-right: 1px solid ${(props: any) => {
+        if (props.viewedWidth !== 100 && props.viewedWidth !== 0) {
+            return props.theme.backgroundColorPrimaryAlpha;
+        }
+        return 'none';
+    }};
+    background: ${(props) => props.theme.backgroundColorPrimaryAlpha};
 `;
 
 
@@ -113,6 +131,8 @@ export const StyledTimelineCurrentTime: any = styled.div`
     font-size: 11px;
     position: absolute;
     top: 2px;
+
+    color: ${(props) => props.theme.colorPrimary};
     right: ${(props: any) => {
         if (props.viewedWidth < 7 && props.currentTimeHours === 0) {
             return '-34px';
@@ -133,5 +153,6 @@ export const StyledTimelineTime = styled.div`
     font-size: 10px;
     justify-content: space-between;
     padding: 0px 8px;
-    color: #ddd;
+
+    color: ${(props) => props.theme.colorPrimary};
 `;
