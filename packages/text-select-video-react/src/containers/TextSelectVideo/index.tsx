@@ -166,13 +166,6 @@ const TextSelectVideo: React.FC<TextSelectVideoProperties> = (properties) => {
     const selectQualitySource = () => {
     }
 
-    const checkAndSetVideoDuration = () => {
-        if (video.current) {
-            const videoDuration = video.current.duration;
-            setVideoDuration(videoDuration);
-        }
-    }
-
     const handleLoadedVideo = async (video: any) => {
         if (atLoad) {
             await atLoad(video);
@@ -337,7 +330,6 @@ const TextSelectVideo: React.FC<TextSelectVideoProperties> = (properties) => {
         loadedVideo,
 
         videoDuration,
-        checkAndSetVideoDuration,
 
         videoDimensions,
         videoContainerDimensions,
@@ -370,8 +362,6 @@ const TextSelectVideo: React.FC<TextSelectVideoProperties> = (properties) => {
         addText,
     };
 
-    // console.log(videoText);
-
     return (
         <Context.Provider
             value={context}
@@ -398,7 +388,7 @@ const TextSelectVideo: React.FC<TextSelectVideoProperties> = (properties) => {
 
                 <Text />
 
-                {showSettingsButton && (
+                {showSettingsButton && loadedVideo && (
                     <Settings />
                 )}
 
