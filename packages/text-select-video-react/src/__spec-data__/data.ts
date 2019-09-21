@@ -1,6 +1,6 @@
 import {
     VideoText,
-} from '../../data/interfaces/';
+} from '../data/interfaces/';
 
 
 
