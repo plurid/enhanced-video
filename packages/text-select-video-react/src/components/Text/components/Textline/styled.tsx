@@ -24,16 +24,16 @@ export const StyledTextItem: any = styled.div`
 `;
 
 
-export const StyledTextVideoTextContent: any = styled.div`
+export const StyledTextContent: any = styled.div`
     color: ${(props: any) => {
-        if (props.viewable || props.toggledEditable) {
+        if (props.viewable || props.editableText) {
             return props.color;
         }
         return 'transparent';
     }};
 
     background: ${(props: any) => {
-        if (props.toggledEditable) {
+        if (props.editableText) {
             return 'hsla(220, 2%, 10%, 0.3)';
         }
 
@@ -70,7 +70,7 @@ export const StyledTextVideoTextContent: any = styled.div`
 `;
 
 
-export const StyledTextVideoTextContentLink: any = styled.a`
+export const StyledTextContentLink: any = styled.a`
     color: ${(props: any) => {
         if (props.viewable) {
             return props.color;
