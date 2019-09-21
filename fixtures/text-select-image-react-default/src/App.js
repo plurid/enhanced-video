@@ -55,6 +55,8 @@ class App extends Component {
                         type="video/mp4"
                         height={600}
                         theme="plurid"
+                        // about={false}
+                        // controls={true}
                         // src={video}
                         // controls={true}
                         // qualitySources={qualitySources}

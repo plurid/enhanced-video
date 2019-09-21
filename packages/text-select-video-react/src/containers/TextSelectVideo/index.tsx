@@ -72,7 +72,7 @@ const TextSelectVideo: React.FC<TextSelectVideoProperties> = (properties) => {
     const [showSpinner, setShowSpinner] = useState(false);
     const [message, setMessage] = useState('');
 
-    const [showSettingsButton, setShowSettingsButton] = useState(true);
+    const [showSettingsButton, setShowSettingsButton] = useState(false);
     const [showSettingsMenu, setShowSettingsMenu] = useState(false);
 
     const [editableText, setEditableText] = useState(false);
@@ -295,19 +295,20 @@ const TextSelectVideo: React.FC<TextSelectVideoProperties> = (properties) => {
         setVideoText([...TEST_VIDEO_TEXT_DATA]);
     }, []);
 
-    const selectedTheme: Theme = theme && themes[theme]
+    const _theme: Theme = theme && themes[theme]
         ? themes[theme]
         : themes.plurid;
+    const _controls = controls === undefined ? true : controls;
 
     const context: IContext = {
         src,
         type,
 
-        theme: selectedTheme,
-        controls: controls || true,
+        theme: _theme,
+        controls: _controls,
         height: height || 500,
         qualitySources,
-        about: about || true,
+        about: about === undefined ? true : about,
 
         apiEndpoint: apiEndpoint || PLURID_DOMAIN_API,
         apiKey,
@@ -368,7 +369,7 @@ const TextSelectVideo: React.FC<TextSelectVideoProperties> = (properties) => {
         >
             <StyledTextSelectVideo
                 onMouseEnter={() => setShowSettingsButton(true)}
-                // onMouseLeave={() => setShowSettingsButton(false)}
+                onMouseLeave={() => setShowSettingsButton(false)}
                 onMouseMove={() => !showSettingsButton ? setShowSettingsButton(true) : null}
                 ref={videoContainer}
             >
@@ -386,9 +387,11 @@ const TextSelectVideo: React.FC<TextSelectVideoProperties> = (properties) => {
                     />
                 </video>
 
-                <Text />
+                {loadedVideo && (
+                    <Text />
+                )}
 
-                {showSettingsButton && loadedVideo && (
+                {showSettingsButton && loadedVideo && _controls && (
                     <Settings />
                 )}
 
