@@ -1,27 +1,18 @@
-import React, { Component } from 'react';
+import React from 'react';
 
 import {
     StyledSpinner,
     StyledLoader
 } from './styled';
 
-import Context from '../../context';
 
 
-
-class Spinner extends Component<any, any> {
-    static contextType = Context;
-
-    public render() {
-        const {
-        } = this.context;
-
-        return (
-            <StyledSpinner>
-                <StyledLoader />
-            </StyledSpinner>
-        );
-    }
+const Spinner: React.FC<any> = () => {
+    return (
+        <StyledSpinner>
+            <StyledLoader />
+        </StyledSpinner>
+    );
 }
 
 

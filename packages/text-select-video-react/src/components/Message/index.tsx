@@ -1,30 +1,25 @@
-import React, { Component } from 'react';
+import React from 'react';
 
 import {
     StyledMessage,
 } from './styled';
 
-import Context from '../../context';
 
 
+interface MessageProperties {
+    text: string;
+}
 
-class Message extends Component<any, any> {
-    static contextType = Context;
+const Message: React.FC<MessageProperties> = (properties) => {
+    const {
+        text,
+    } = properties;
 
-    public render() {
-        const {
-        } = this.context;
-
-        const {
-            text
-        } = this.props;
-
-        return (
-            <StyledMessage>
-                {text}
-            </StyledMessage>
-        );
-    }
+    return (
+        <StyledMessage>
+            {text}
+        </StyledMessage>
+    );
 }
 
 
