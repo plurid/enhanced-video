@@ -29,6 +29,7 @@ import {
     VideoContainerDimensions,
     VideoBoxDimensions,
     VideoText,
+    VideoTextVersionTextline,
 } from '../../data/interfaces';
 
 import Text from '../../components/Text';
@@ -40,6 +41,8 @@ import TimescrollTime from '../../components/TimescrollTime';
 import TimescrollText from '../../components/TimescrollText';
 
 import themes, { Theme } from '@plurid/apps.utilities.themes';
+
+import uuid from '../../services/utilities/uuid';
 
 // test imports
 import TEST_VIDEO_TEXT_DATA from '../../__specs__/spec-data/data';
@@ -239,6 +242,53 @@ const TextSelectVideo: React.FC<TextSelectVideoProperties> = (properties) => {
         setVideoBoxDimensions(videoBoxDimensions);
     }
 
+    const addText = () => {
+        const textID = uuid();
+        const versionID = uuid();
+
+        const newVersion: VideoTextVersionTextline = {
+            id: versionID,
+            type: 'TEXTLINE',
+
+            startTime: videoTime,
+            endTime: videoTime + 10,
+
+            xCoordPercentage: 5,
+            yCoordPercentage: 5,
+
+            perspective: '',
+            rotation: '',
+            skew: '',
+
+            viewable: false,
+            alwaysShow: false,
+
+            color: 'white',
+
+            fontWeight: 'normal',
+            fontStyle: 'normal',
+            fontFamily: 'Arial',
+            fontSizePercentage: 5,
+            letterSpacingPercentage: 0,
+            wordSpacingPercentage: 0,
+            lineHeightPercentage: 0,
+
+            content: 'New Text',
+
+            link: false,
+            linkTo: '',
+        };
+
+        const newText: VideoText = {
+            id: textID,
+            currentVersionId: versionID,
+            versions: [newVersion],
+        };
+
+        const updatedTexts = [...videoText, newText];
+        setVideoText(updatedTexts);
+    }
+
     useEffect(() => {
         computeVideoBoxDimensions();
     }, [videoDimensions]);
@@ -316,7 +366,11 @@ const TextSelectVideo: React.FC<TextSelectVideoProperties> = (properties) => {
         setShowTimescrollText,
 
         videoText,
+
+        addText,
     };
+
+    // console.log(videoText);
 
     return (
         <Context.Provider

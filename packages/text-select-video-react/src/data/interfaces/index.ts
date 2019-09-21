@@ -121,6 +121,8 @@ export interface IContext {
     setShowTimescrollText: Dispatch<SetStateAction<boolean>>;
 
     videoText: VideoText[];
+
+    addText: () => void;
 }
 
 
