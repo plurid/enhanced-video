@@ -111,6 +111,20 @@ export interface IContext {
     playVideo: () => void,
     pauseVideo: () => void,
 
+    loopVideo: boolean;
+    setLoopVideo: Dispatch<SetStateAction<boolean>>;
+    loopVideoStart: number;
+    setLoopVideoStart: Dispatch<SetStateAction<number>>;
+    loopVideoEnd: number;
+    setLoopVideoEnd: Dispatch<SetStateAction<number>>;
+
+    microviewVideo: boolean;
+    setMicroviewVideo: Dispatch<SetStateAction<boolean>>;
+    microviewVideoStart: number;
+    setMicroviewVideoStart: Dispatch<SetStateAction<number>>;
+    microviewVideoEnd: number;
+    setMicroviewVideoEnd: Dispatch<SetStateAction<number>>;
+
     videoVolume: number;
     toggleVideoVolume: () => void;
     handleVideoVolume: (volume: number) => void;
