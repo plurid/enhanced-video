@@ -1163,12 +1163,17 @@
   resolved "https://registry.yarnpkg.com/@nodelib/fs.stat/-/fs.stat-1.1.3.tgz#2b5a3ab3f918cca48a8c754c08168e3f03eba61b"
   integrity sha512-shAmDyaQC4H92APFoIaVDHCx5bStIocgvbwQyxPRrbUY20V1EYTbSDchWbuwlMG3V17cprZhA6+78JfB+3DTPw==
 
-"@plurid/text-select-video-react@*":
-  version "0.1.2"
-  resolved "https://registry.yarnpkg.com/@plurid/text-select-video-react/-/text-select-video-react-0.1.2.tgz#3a34941c68a4dca195053d33578ddc558943d548"
-  integrity sha512-ysAvjAYtYrNOqtUINW3zoys71wiKUuSYTR45zhJXFf2ExyRUIkDiqBhlGsqxPiG/rkOlw1XEN4wEmbPHdmJl4g==
+"@plurid/text-select-video-react@^0.1.3":
+  version "0.1.3"
+  resolved "https://registry.yarnpkg.com/@plurid/text-select-video-react/-/text-select-video-react-0.1.3.tgz#937c4c64341593d1ff2d6ff4577676a49b1db339"
+  integrity sha512-l/ZCmmzeKD5VF1YdUV/d1gaxbMd0tcpa3kn33oVSbs0lfSHmjTWZK117ZuYn6IVTOfyNJuqG9oJZc3L818o39Q==
   dependencies:
     crypto-js "^3.1.9-1"
+
+"@plurid/utilities.themes@^0.1.2":
+  version "0.1.2"
+  resolved "https://registry.yarnpkg.com/@plurid/utilities.themes/-/utilities.themes-0.1.2.tgz#6ab76a71514d03c7a6c3b77f166596b0ba23eb3b"
+  integrity sha512-QNqTXFm6QXkKjqLgm+3gZRnIEH2oyhkAp9Q2AqxNhY3KVcSWA1BJVWR4eUgQKH2zu4ji4VMkQAUsVYbAo6p1yA==
 
 "@svgr/babel-plugin-add-jsx-attribute@^4.2.0":
   version "4.2.0"
@@ -4561,7 +4566,7 @@ graphql-tag@^2.10.1:
   resolved "https://registry.yarnpkg.com/graphql-tag/-/graphql-tag-2.10.1.tgz#10aa41f1cd8fae5373eaf11f1f67260a3cad5e02"
   integrity sha512-jApXqWBzNXQ8jYa/HLkZJaVw9jgwNqZkywa2zfFn16Iv1Zb7ELNHkJaXHR7Quvd5SIGsy6Ny7SUKATgnu05uEg==
 
-graphql@^14.5.6:
+graphql@^14.5.8:
   version "14.5.8"
   resolved "https://registry.yarnpkg.com/graphql/-/graphql-14.5.8.tgz#504f3d3114cb9a0a3f359bbbcf38d9e5bf6a6b3c"
   integrity sha512-MMwmi0zlVLQKLdGiMfWkgQD7dY/TUKt4L+zgJ/aR0Howebod3aNgP5JkgvAULiR2HPVZaP2VEElqtdidHweLkg==
@@ -8271,7 +8276,7 @@ react-dev-utils@^9.0.4:
     strip-ansi "5.2.0"
     text-table "0.2.0"
 
-react-dom@^16.9.0:
+react-dom@^16.10.0:
   version "16.10.0"
   resolved "https://registry.yarnpkg.com/react-dom/-/react-dom-16.10.0.tgz#319356767b5c044f3c016eef28518ef7726dce84"
   integrity sha512-0QJQUFrKG04hB/1lWyUs/FOd1qNseKGRQI+JBRsADIqVAFxYObhZ2zsVQKjt+nVSCmi8KA0sL52RLwwWuXQtOw==
@@ -8291,7 +8296,7 @@ react-is@^16.6.0, react-is@^16.7.0, react-is@^16.8.1, react-is@^16.8.4:
   resolved "https://registry.yarnpkg.com/react-is/-/react-is-16.10.0.tgz#3d6a031e57fff73c3cfa0347feb3e8f40c5141e5"
   integrity sha512-WRki2sBb7MTpYp7FtDEmSeGKX2vamYyq3rc9o7fKUG+/DHVyJu69NnvJsiSwwhh2Tt8XN40MQHkDBEXwyfxncQ==
 
-react-scripts@^3.1.1:
+react-scripts@^3.1.2:
   version "3.1.2"
   resolved "https://registry.yarnpkg.com/react-scripts/-/react-scripts-3.1.2.tgz#40b166d380bfd8b425a41dee96e8e725c82bf9e6"
   integrity sha512-aN9E1jn+Qii45/uLUzS7Hjfd/DXbcaAiRkoMwnJXAXShbpJiP2xwmr7yuVF0kR0cnvt0SI+IPZjsOH8MziSYQQ==
@@ -8352,7 +8357,7 @@ react-scripts@^3.1.1:
   optionalDependencies:
     fsevents "2.0.7"
 
-react@^16.9.0:
+react@^16.10.0:
   version "16.10.0"
   resolved "https://registry.yarnpkg.com/react/-/react-16.10.0.tgz#95c41e8fc1c706e174deef54b663b5ab94c8ee32"
   integrity sha512-lc37bD3j6ZWJRso/a1rrFu6CO1qOf30ZadUDBi1c5RHA1lBSWA8x2MGABB6Oikk+RfmgC+kAT+XegL0eD1ecKg==
@@ -9411,7 +9416,7 @@ style-loader@1.0.0:
     loader-utils "^1.2.3"
     schema-utils "^2.0.1"
 
-styled-components@^4.3.2:
+styled-components@^4.4.0:
   version "4.4.0"
   resolved "https://registry.yarnpkg.com/styled-components/-/styled-components-4.4.0.tgz#4e381e2dab831d0e6ea431c2840a96323e84e21b"
   integrity sha512-xQ6vTI/0zNjZ1BBDRxyjvBddrxhQ3DxjeCdaLM1lSn5FDnkTOQgRkmWvcUiTajqc5nJqKVl+7sUioMqktD0+Zw==
