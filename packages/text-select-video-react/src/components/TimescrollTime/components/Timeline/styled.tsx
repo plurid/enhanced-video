@@ -27,24 +27,13 @@ export const StyledTimelineViewable: any = styled.div`
     position: relative;
     height: 100%;
 
-    background: ${(props) => props.theme.backgroundColorPrimaryAlpha};
+    background: ${(props: any) => {
+        if (props.mouseOver) {
+            return props.theme.backgroundColorTertiary;
+        }
 
-    :hover {
-        border-top: 1px solid ${(props) => {
-            if (props.theme.type === 'dark') {
-                return props.theme.backgroundColorBright;
-            } else {
-                return props.theme.backgroundColorDark;
-            }
-        }};
-        border-bottom: 1px solid ${(props) => {
-            if (props.theme.type === 'dark') {
-                return props.theme.backgroundColorBright;
-            } else {
-                return props.theme.backgroundColorDark;
-            }
-        }};
-    }
+        return  props.theme.backgroundColorPrimaryAlpha;
+    }};
 
     border-top-left-radius: ${(props: any) => {
         if (props.first) {
@@ -118,7 +107,7 @@ export const StyledTimelineViewed: any = styled.div`
     z-index: 990;
     transition: border-radius 300ms linear;
 
-    border-right: 1px solid ${(props: any) => {
+    border-right: 3px solid ${(props: any) => {
         if (props.viewedWidth !== 100 && props.viewedWidth !== 0) {
             return props.theme.backgroundColorPrimaryAlpha;
         }
