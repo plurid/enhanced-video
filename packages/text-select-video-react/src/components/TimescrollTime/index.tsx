@@ -9,9 +9,14 @@ import Context from '../../services/utilities/context';
 import {
     StyledTimescrollTime,
     StyledTimescrollTimeContainer,
+    StyledControls,
+    StyledControlsLI,
 } from './styled';
 
 import Timeline from './components/Timeline';
+
+import LoopIcon from '../../assets/loop-icon';
+import MicroviewIcon from '../../assets/microview-icon';
 
 import { getWheelDirection } from '../../services/utilities/wheelDirection';
 import { range } from '../../services/utilities/array';
@@ -29,6 +34,8 @@ const TimescrollTime: React.FC<any> = () => {
     const {
         loop,
         microview,
+
+        theme,
 
         videoTime,
         videoDuration,
@@ -162,16 +169,30 @@ const TimescrollTime: React.FC<any> = () => {
                     })}
                 </ul>
 
-                {loop && (
-                    <div>
-                        loop
-                    </div>
-                )}
+                {(loop || microview) && (
+                    <StyledControls
+                        theme={theme}
+                    >
+                        <ul>
+                            {loop && (
+                                <StyledControlsLI
+                                    theme={theme}
+                                    active={true}
+                                >
+                                    {LoopIcon}
+                                </StyledControlsLI>
+                            )}
 
-                {microview && (
-                    <div>
-                        microview
-                    </div>
+                            {microview && (
+                                <StyledControlsLI
+                                    theme={theme}
+                                    active={false}
+                                >
+                                    {MicroviewIcon}
+                                </StyledControlsLI>
+                            )}
+                        </ul>
+                    </StyledControls>
                 )}
             </StyledTimescrollTimeContainer>
         </StyledTimescrollTime>
