@@ -26,10 +26,11 @@ export const StyledTimelineArea: any = styled.div`
 export const StyledTimelineViewable: any = styled.div`
     position: relative;
     height: 100%;
+    transition: background-color 200ms ease-in-out;
 
     background: ${(props: any) => {
         if (props.mouseOver) {
-            return props.theme.backgroundColorTertiary;
+            return props.theme.backgroundColorPrimary;
         }
 
         return  props.theme.backgroundColorPrimaryAlpha;
@@ -113,7 +114,13 @@ export const StyledTimelineViewed: any = styled.div`
         }
         return 'none';
     }};
-    background: ${(props) => props.theme.backgroundColorPrimaryAlpha};
+    background: ${(props: any) => {
+        if (props.mouseOver) {
+            return props.theme.backgroundColorTertiary;
+        }
+
+        return props.theme.backgroundColorPrimaryAlpha;
+    }};
 `;
 
 

@@ -136,12 +136,13 @@ const Timeline: React.FC<TimelineProperties> = (properties) => {
                         viewedWidth={viewedWidth}
                         videoTime={videoTime}
                         videoDuration={videoDuration}
+                        last={last}
+                        mouseOver={mouseOver}
                         style={{
                             width: viewedWidth + '%',
                             borderTopRightRadius: last && videoDuration - videoTime < 10 ? '15px' : '0',
                             borderBottomRightRadius: last && videoDuration - videoTime < 10 ? '15px' : '0',
                         }}
-                        last={last}
                     >
                         <StyledTimelineCurrentTime
                             theme={theme}
