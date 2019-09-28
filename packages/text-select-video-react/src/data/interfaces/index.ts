@@ -1,6 +1,6 @@
 import { Dispatch, SetStateAction } from 'react';
 
-import themes, { Theme } from '@plurid/apps.utilities.themes';
+import themes, { Theme } from '@plurid/utilities.themes';
 
 import {
     VideoText,
@@ -20,6 +20,8 @@ export interface TextSelectVideoProperties {
     height?: number;
     qualitySources?: QualitySource[];
     about?: boolean;
+    loop?: boolean;
+    microview?: boolean;
 
     /**
      * Inline styling object for the video.
@@ -76,6 +78,8 @@ export interface IContext {
     height: number;
     qualitySources: any;
     about: boolean;
+    loop: boolean;
+    microview: boolean;
 
     apiEndpoint: string;
     apiKey: string | undefined;

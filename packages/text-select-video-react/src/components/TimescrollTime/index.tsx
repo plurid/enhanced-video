@@ -27,6 +27,9 @@ const TimescrollTime: React.FC<any> = () => {
     const timescroll = useRef<HTMLDivElement>(null);
 
     const {
+        loop,
+        microview,
+
         videoTime,
         videoDuration,
         handleVideoTime,
@@ -158,6 +161,18 @@ const TimescrollTime: React.FC<any> = () => {
                         );
                     })}
                 </ul>
+
+                {loop && (
+                    <div>
+                        loop
+                    </div>
+                )}
+
+                {microview && (
+                    <div>
+                        microview
+                    </div>
+                )}
             </StyledTimescrollTimeContainer>
         </StyledTimescrollTime>
     );
