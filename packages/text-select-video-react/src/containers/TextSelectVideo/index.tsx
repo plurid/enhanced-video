@@ -90,6 +90,14 @@ const TextSelectVideo: React.FC<TextSelectVideoProperties> = (properties) => {
     const [videoDuration, setVideoDuration] = useState(0);
     const [videoTime, setVideoTime] = useState(0);
 
+    const [loopVideo, setLoopVideo] = useState(false);
+    const [loopVideoStart, setLoopVideoStart] = useState(0);
+    const [loopVideoEnd, setLoopVideoEnd] = useState(0);
+
+    const [microviewVideo, setMicroviewVideo] = useState(false);
+    const [microviewVideoStart, setMicroviewVideoStart] = useState(0);
+    const [microviewVideoEnd, setMicroviewVideoEnd] = useState(0);
+
     const [videoDimensions, setVideoDimensions] = useState(initialVideoDimensions);
     const [videoContainerDimensions, setVideoContainerDimensions] = useState(initialVideoContainerDimensions);
     const [videoBoxDimensions, setVideoBoxDimensions] = useState(initialVideoBoxDimensions);
@@ -159,16 +167,37 @@ const TextSelectVideo: React.FC<TextSelectVideoProperties> = (properties) => {
 
     const handleVideoCurrentTime = () => {
         const videoTime = video.current!.currentTime
-        setVideoTime(videoTime);
+
+        if (
+            loopVideo &&
+            (videoTime < loopVideoStart || videoTime > loopVideoEnd)
+        ) {
+            video.current!.currentTime = loopVideoStart;
+            setVideoTime(loopVideoStart);
+        } else {
+            setVideoTime(videoTime);
+        }
     }
 
     const handleVideoTime = (videoTime: number) => {
-        if (videoTime === videoDuration) {
-            pauseVideo();
-        }
-
         video.current!.currentTime = videoTime;
         setVideoTime(videoTime);
+    }
+
+    const handleVideoEnded = () => {
+        if (videoTime === videoDuration) {
+            if (
+                loopVideo &&
+                (loopVideoStart === 0 && loopVideoEnd === videoDuration)
+            ) {
+                video.current!.currentTime = 0;
+                setVideoTime(0);
+                playVideo();
+                return;
+            } else {
+                pauseVideo();
+            }
+        }
     }
 
     const selectQualitySource = () => {
@@ -183,6 +212,9 @@ const TextSelectVideo: React.FC<TextSelectVideoProperties> = (properties) => {
 
         const videoDuration = video.target.duration;
         setVideoDuration(videoDuration);
+
+        setLoopVideoEnd(videoDuration);
+        setMicroviewVideoEnd(videoDuration);
     }
 
     const handleLoadedMetadata = (video: any) => {
@@ -344,6 +376,20 @@ const TextSelectVideo: React.FC<TextSelectVideoProperties> = (properties) => {
         playVideo,
         pauseVideo,
 
+        loopVideo,
+        setLoopVideo,
+        loopVideoStart,
+        setLoopVideoStart,
+        loopVideoEnd,
+        setLoopVideoEnd,
+
+        microviewVideo,
+        setMicroviewVideo,
+        microviewVideoStart,
+        setMicroviewVideoStart,
+        microviewVideoEnd,
+        setMicroviewVideoEnd,
+
         videoVolume,
         toggleVideoVolume,
         handleVideoVolume,
@@ -387,6 +433,7 @@ const TextSelectVideo: React.FC<TextSelectVideoProperties> = (properties) => {
                     onTimeUpdate={handleVideoCurrentTime}
                     onLoadedData={handleLoadedVideo}
                     onLoadedMetadata={handleLoadedMetadata}
+                    onEnded={handleVideoEnded}
                 >
                     <source
                         src={src}

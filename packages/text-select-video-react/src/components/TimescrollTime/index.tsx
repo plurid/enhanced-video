@@ -37,6 +37,12 @@ const TimescrollTime: React.FC<any> = () => {
 
         theme,
 
+        loopVideo,
+        setLoopVideo,
+
+        microviewVideo,
+        setMicroviewVideo,
+
         videoTime,
         videoDuration,
         handleVideoTime,
@@ -177,7 +183,8 @@ const TimescrollTime: React.FC<any> = () => {
                             {loop && (
                                 <StyledControlsLI
                                     theme={theme}
-                                    active={true}
+                                    active={loopVideo}
+                                    onClick={() => setLoopVideo(show => !show)}
                                 >
                                     {LoopIcon}
                                 </StyledControlsLI>
@@ -186,7 +193,8 @@ const TimescrollTime: React.FC<any> = () => {
                             {microview && (
                                 <StyledControlsLI
                                     theme={theme}
-                                    active={false}
+                                    active={microviewVideo}
+                                    onClick={() => setMicroviewVideo(show => !show)}
                                 >
                                     {MicroviewIcon}
                                 </StyledControlsLI>

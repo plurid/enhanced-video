@@ -46,8 +46,13 @@ export const StyledControls: any = styled.div`
         margin: 0;
         font-size: 13px;
         border-radius: 15px;
+        transition: background-color 200ms ease-in-out;
 
         background-color: ${props => props.theme.backgroundColorPrimaryAlpha};
+    }
+
+    ul:hover {
+        background-color: ${props => props.theme.backgroundColorPrimary};
     }
 
     ul li {
@@ -92,8 +97,4 @@ export const StyledControlsLI: any = styled.li`
 
         return 'auto';
     }};
-
-    :hover {
-        background: ${props => props.theme.backgroundColorTertiary};
-    }
 `;
