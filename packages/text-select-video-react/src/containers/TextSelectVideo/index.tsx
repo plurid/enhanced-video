@@ -63,6 +63,8 @@ const TextSelectVideo: React.FC<TextSelectVideoProperties> = (properties) => {
         height,
         qualitySources,
         about,
+        loop,
+        microview,
 
         apiEndpoint,
         apiKey,
@@ -309,6 +311,8 @@ const TextSelectVideo: React.FC<TextSelectVideoProperties> = (properties) => {
         height: height || 500,
         qualitySources,
         about: about === undefined ? true : about,
+        loop: loop === undefined ? false : loop,
+        microview: microview === undefined ? false : microview,
 
         apiEndpoint: apiEndpoint || PLURID_DOMAIN_API,
         apiKey,

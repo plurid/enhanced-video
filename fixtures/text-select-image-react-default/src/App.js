@@ -94,6 +94,8 @@ class App extends Component {
                         height={600}
                         theme="plurid"
                         action={this.state.action}
+                        loop={true}
+                        microview={true}
                         // about={false}
                         // controls={true}
                         // src={video}
