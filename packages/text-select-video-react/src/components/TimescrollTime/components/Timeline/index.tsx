@@ -1,5 +1,6 @@
 import React, {
     useRef,
+    useState,
     useContext,
 } from 'react';
 import Context from '../../../../services/utilities/context';
@@ -39,6 +40,8 @@ const Timeline: React.FC<TimelineProperties> = (properties) => {
         videoDuration,
         handleVideoTime,
     } = context;
+
+    const [mouseOver, setMouseOver] = useState(false);
 
     const timeline = useRef<HTMLDivElement>(null);
 
@@ -116,7 +119,9 @@ const Timeline: React.FC<TimelineProperties> = (properties) => {
     return (
         <StyledTimeline
             ref={timeline}
-            onClick={(event) => setTime(event)}
+            onClick={(event: any) => setTime(event)}
+            onMouseEnter={() => setMouseOver(true)}
+            onMouseLeave={() => setMouseOver(false)}
         >
             <StyledTimelineArea>
                 <StyledTimelineViewedContainer
@@ -155,6 +160,7 @@ const Timeline: React.FC<TimelineProperties> = (properties) => {
                     style={{
                         width: viewableWidth + '%',
                     }}
+                    mouseOver={mouseOver}
                 >
                     <StyledTimelineTime
                         theme={theme}
