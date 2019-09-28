@@ -2,7 +2,7 @@ import styled from 'styled-components';
 
 
 
-export const StyledTimeline = styled.div`
+export const StyledTimeline: any = styled.div`
     text-align: left;
     height: 30px;
     position: relative;
@@ -27,23 +27,24 @@ export const StyledTimelineViewable: any = styled.div`
     position: relative;
     height: 100%;
 
-    /* background: hsla(220, 5%, 15%, 0.5); */
     background: ${(props) => props.theme.backgroundColorPrimaryAlpha};
 
-    border-top: 1px solid ${(props) => {
-        if (props.theme.type === 'dark') {
-            return props.theme.backgroundColorBright;
-        } else {
-            return props.theme.backgroundColorDark;
-        }
-    }};
-    border-bottom: 1px solid ${(props) => {
-        if (props.theme.type === 'dark') {
-            return props.theme.backgroundColorBright;
-        } else {
-            return props.theme.backgroundColorDark;
-        }
-    }};
+    :hover {
+        border-top: 1px solid ${(props) => {
+            if (props.theme.type === 'dark') {
+                return props.theme.backgroundColorBright;
+            } else {
+                return props.theme.backgroundColorDark;
+            }
+        }};
+        border-bottom: 1px solid ${(props) => {
+            if (props.theme.type === 'dark') {
+                return props.theme.backgroundColorBright;
+            } else {
+                return props.theme.backgroundColorDark;
+            }
+        }};
+    }
 
     border-top-left-radius: ${(props: any) => {
         if (props.first) {

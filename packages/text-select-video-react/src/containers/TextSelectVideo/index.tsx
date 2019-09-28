@@ -374,6 +374,7 @@ const TextSelectVideo: React.FC<TextSelectVideoProperties> = (properties) => {
             value={context}
         >
             <StyledTextSelectVideo
+                theme={_theme}
                 onMouseEnter={() => setShowSettingsButton(true)}
                 onMouseLeave={() => setShowSettingsButton(false)}
                 onMouseMove={() => !showSettingsButton ? setShowSettingsButton(true) : null}
