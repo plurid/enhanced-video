@@ -16,7 +16,9 @@ import {
 import Timeline from './components/Timeline';
 
 import LoopIcon from '../../assets/loop-icon';
+import MarkLoopIcon from '../../assets/mark-loop-icon';
 import MicroviewIcon from '../../assets/microview-icon';
+import MarkMicroviewIcon from '../../assets/mark-microview-icon';
 
 import { getWheelDirection } from '../../services/utilities/wheelDirection';
 import { range } from '../../services/utilities/array';
@@ -181,23 +183,43 @@ const TimescrollTime: React.FC<any> = () => {
                     >
                         <ul>
                             {loop && (
-                                <StyledControlsLI
-                                    theme={theme}
-                                    active={loopVideo}
-                                    onClick={() => setLoopVideo(show => !show)}
-                                >
-                                    {LoopIcon}
-                                </StyledControlsLI>
+                                <>
+                                    <StyledControlsLI
+                                        theme={theme}
+                                        active={loopVideo}
+                                        onClick={() => setLoopVideo(show => !show)}
+                                    >
+                                        {MarkLoopIcon}
+                                    </StyledControlsLI>
+
+                                    <StyledControlsLI
+                                        theme={theme}
+                                        active={loopVideo}
+                                        onClick={() => setLoopVideo(show => !show)}
+                                    >
+                                        {LoopIcon}
+                                    </StyledControlsLI>
+                                </>
                             )}
 
                             {microview && (
-                                <StyledControlsLI
-                                    theme={theme}
-                                    active={microviewVideo}
-                                    onClick={() => setMicroviewVideo(show => !show)}
-                                >
-                                    {MicroviewIcon}
-                                </StyledControlsLI>
+                                <>
+                                    <StyledControlsLI
+                                        theme={theme}
+                                        active={microviewVideo}
+                                        onClick={() => setMicroviewVideo(show => !show)}
+                                    >
+                                        {MarkMicroviewIcon}
+                                    </StyledControlsLI>
+
+                                    <StyledControlsLI
+                                        theme={theme}
+                                        active={microviewVideo}
+                                        onClick={() => setMicroviewVideo(show => !show)}
+                                    >
+                                        {MicroviewIcon}
+                                    </StyledControlsLI>
+                                </>
                             )}
                         </ul>
                     </StyledControls>
