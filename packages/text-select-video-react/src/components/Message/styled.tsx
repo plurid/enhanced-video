@@ -18,4 +18,5 @@ export const StyledMessage = styled.div`
     user-select: none;
     pointer-events: none;
     animation: ${translateUp} 400ms ease-in-out forwards;
+    z-index: 9999;
 `;

@@ -313,13 +313,83 @@ const TextSelectVideo: React.FC<TextSelectVideoProperties> = (properties) => {
         computeVideoBoxDimensions();
     }
 
+    const handleKeys = (event: any) => {
+        event.preventDefault();
+
+        // handle space
+        if (event.keyCode === 32) {
+            if (videoPlaying) {
+                setMessageTimed('Pause', 1000);
+                pauseVideo();
+            } else {
+                setMessageTimed('Play', 1000);
+                playVideo();
+            }
+        }
+
+        if (event.key === 'ArrowLeft') {
+            const newTime = videoTime - 5;
+            if (newTime > 0) {
+                handleVideoTime(newTime);
+            } else {
+                handleVideoTime(0);
+            }
+        }
+
+        if (event.key === 'ArrowRight') {
+            const newTime = videoTime + 5;
+            if (newTime < videoDuration) {
+                handleVideoTime(newTime);
+            } else {
+                handleVideoTime(videoDuration);
+            }
+        }
+
+        if (event.key === 'ArrowUp') {
+            const newVolume = videoVolume + 0.1;
+            if (newVolume < 2) {
+                handleVideoVolume(newVolume);
+            } else {
+                handleVideoVolume(2);
+            }
+        }
+
+        if (event.key === 'ArrowDown') {
+            const newVolume = videoVolume - 0.1;
+            if (newVolume > 0) {
+                handleVideoVolume(newVolume);
+            } else {
+                handleVideoVolume(0);
+            }
+        }
+
+        if (event.key === 'm') {
+            if (videoVolume === 0) {
+                setMessageTimed(`Volume`, 1000);
+            } else {
+                setMessageTimed(`Muted`, 1000);
+            }
+            toggleVideoVolume();
+        }
+
+        if (event.key === 't') {
+            setShowTimescrollTime(show => !show);
+        }
+    }
+
     useEffect(() => {
         window.addEventListener('resize', handleWindowResize);
+        videoContainer.current!.addEventListener('keydown', handleKeys);
+
         return () => {
             window.removeEventListener('resize', handleWindowResize);
+            videoContainer.current!.removeEventListener('keydown', handleKeys);
         }
     }, [
         videoDimensions,
+        videoPlaying,
+        videoVolume,
+        videoTime,
     ]);
 
     const reducer = (state: any, action: any) => {
@@ -437,6 +507,7 @@ const TextSelectVideo: React.FC<TextSelectVideoProperties> = (properties) => {
         >
             <StyledTextSelectVideo
                 theme={_theme}
+                tabIndex={0}
                 onMouseEnter={() => setShowSettingsButton(true)}
                 onMouseLeave={() => setShowSettingsButton(false)}
                 onMouseMove={() => !showSettingsButton ? setShowSettingsButton(true) : null}

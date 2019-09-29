@@ -17,6 +17,7 @@ export const StyledTextSelectVideo: any = styled.div`
 
     min-height: 50px;
     background-color: black;
+    outline: none;
 
     video {
         user-select: none;
