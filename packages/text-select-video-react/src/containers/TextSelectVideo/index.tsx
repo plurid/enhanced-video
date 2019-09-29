@@ -238,10 +238,11 @@ const TextSelectVideo: React.FC<TextSelectVideoProperties> = (properties) => {
             height: videoHeight,
             ratio: videoRatio,
         } = videoDimensions;
+        // console.log('videoDimensions', videoDimensions);
 
         const videoContainerWidth = videoContainer.current!.offsetWidth;
         const videoContainerHeight = videoContainer.current!.offsetHeight;
-        // // console.log(videoContainerWidth, videoContainerHeight);
+        // console.log(videoContainerWidth, videoContainerHeight);
 
         let videoBoxWidth = 0;
         let videoBoxHeight = 0;
@@ -264,6 +265,7 @@ const TextSelectVideo: React.FC<TextSelectVideoProperties> = (properties) => {
             width: videoContainerWidth,
             height: videoContainerHeight,
         };
+        // console.log(videoContainerDimensions);
         setVideoContainerDimensions(videoContainerDimensions);
 
         const videoBoxDimensions: VideoBoxDimensions = {
@@ -272,6 +274,7 @@ const TextSelectVideo: React.FC<TextSelectVideoProperties> = (properties) => {
             left: videoBoxLeft,
             top: videoBoxTop,
         };
+        // console.log(videoBoxDimensions);
         setVideoBoxDimensions(videoBoxDimensions);
     }
 
@@ -305,6 +308,19 @@ const TextSelectVideo: React.FC<TextSelectVideoProperties> = (properties) => {
     useEffect(() => {
         setVideoText([...TEST_VIDEO_TEXT_DATA]);
     }, []);
+
+    const handleWindowResize = () => {
+        computeVideoBoxDimensions();
+    }
+
+    useEffect(() => {
+        window.addEventListener('resize', handleWindowResize);
+        return () => {
+            window.removeEventListener('resize', handleWindowResize);
+        }
+    }, [
+        videoDimensions,
+    ]);
 
     const reducer = (state: any, action: any) => {
         switch(action.type) {
