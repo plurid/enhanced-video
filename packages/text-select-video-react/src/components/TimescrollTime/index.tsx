@@ -19,6 +19,8 @@ import LoopIcon from '../../assets/loop-icon';
 import MarkLoopIcon from '../../assets/mark-loop-icon';
 import MicroviewIcon from '../../assets/microview-icon';
 import MarkMicroviewIcon from '../../assets/mark-microview-icon';
+import SceneIcon from '../../assets/scene-icon';
+import MarkSceneIcon from '../../assets/mark-scene-icon';
 
 import { getWheelDirection } from '../../services/utilities/wheelDirection';
 import { range } from '../../services/utilities/array';
@@ -221,6 +223,18 @@ const TimescrollTime: React.FC<any> = () => {
                                     </StyledControlsLI>
                                 </>
                             )}
+
+                            <StyledControlsLI
+                                theme={theme}
+                            >
+                                {MarkSceneIcon}
+                            </StyledControlsLI>
+
+                            <StyledControlsLI
+                                theme={theme}
+                            >
+                                {SceneIcon}
+                            </StyledControlsLI>
                         </ul>
                     </StyledControls>
                 )}
