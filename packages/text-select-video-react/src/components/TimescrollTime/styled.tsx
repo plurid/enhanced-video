@@ -59,17 +59,15 @@ export const StyledControls: any = styled.div`
         margin: 0;
         padding: 0;
         height: 30px;
-        width: 40px;
+        width: auto;
     }
 
     ul li:first-child {
-        border-top-left-radius: 15px;
-        border-bottom-left-radius: 15px;
+        margin-left: 15px;
     }
 
     ul li:last-child {
-        border-top-right-radius: 15px;
-        border-bottom-right-radius: 15px;
+        margin-right: 15px;
     }
 
     svg {
@@ -81,10 +79,8 @@ export const StyledControls: any = styled.div`
 
 
 export const StyledControlsLI: any = styled.li`
-    margin: 0;
-    padding: 0;
     height: 30px;
-    width: 40px;
+    min-width: 35px;
     display: flex;
     align-items: center;
     justify-content: center;
