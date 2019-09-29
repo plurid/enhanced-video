@@ -1,0 +1,47 @@
+<!doctype html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=5.0">
+        <link rel="icon" href="./test-assets/favicon.png">
+        <title>Text Select Video</title>
+        <style>
+            html, body {
+                margin: 0;
+                /* background-color: white */
+                background-color: hsl(220, 2%, 15%);
+                color: white;
+                font-family: Helvetica, sans-serif;
+                font-size: 16px;
+            }
+            .container {
+                width: 800px;
+                margin: 0 auto;
+            }
+        </style>
+        <script src="/build/text-select-video-html.js"></script>
+    </head>
+
+    <body>
+        <div class="container">
+            <text-select-video
+                styling="margin: 200px 0;"
+                controls
+                src="https://firebasestorage.googleapis.com/v0/b/plurid-com.appspot.com/o/video-text.mov?alt=media&token=d31758b1-5bef-4232-b8be-9974fd7e21ea"
+                type="mp4"
+            >
+            </text-select-video>
+        </div>
+
+        <!-- <video width="1080" controls>
+            <source src="https://firebasestorage.googleapis.com/v0/b/plurid-com.appspot.com/o/video-text.mov?alt=media&token=d31758b1-5bef-4232-b8be-9974fd7e21ea" type="video/mp4" />
+            Your browser does not support the video tag.
+        </video> -->
+
+        <script>
+            // document.addEventListener('textselectvideo', (e) => {
+            //     console.log('UPDATED', e.detail)
+            // });
+        </script>
+    </body>
+</html>
