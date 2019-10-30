@@ -1,6 +1,6 @@
 import React from 'react';
 
-import TextSelectVideo from '@plurid/text-select-video-react';
+// import TextSelectVideo from '@plurid/text-select-video-react';
 
 
 
@@ -29,14 +29,14 @@ const EnhancedVideo: React.FC<EnhancedVideoProperties> = (properties) => {
 
     return (
         <div>
-            <TextSelectVideo
+            {/* <TextSelectVideo
                 src={src}
                 type={type}
                 // theme={_theme}
                 controls={controls || true}
                 height={height || 500}
                 // qualitySources={qualitySources}
-            />
+            /> */}
         </div>
     );
 }
