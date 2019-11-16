@@ -46,7 +46,7 @@ import Spinner from '../../components/Spinner';
 import TimescrollTime from '../../components/TimescrollTime';
 import TimescrollText from '../../components/TimescrollText';
 
-import themes, { Theme } from '@plurid/utilities.themes';
+import themes, { Theme } from '@plurid/plurid-themes';
 
 // test imports
 import TEST_VIDEO_TEXT_DATA from '../../__spec-data__/data';
