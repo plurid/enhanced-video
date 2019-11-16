@@ -57,8 +57,8 @@ import TimescrollText from '../../components/TimescrollText';
 
 import Context from '../../services/utilities/context';
 
-// test imports
-import TEST_VIDEO_TEXT_DATA from '../../__spec-data__/data';
+// // test imports
+// import TEST_VIDEO_TEXT_DATA from '../../__spec-data__/data';
 
 
 
@@ -335,9 +335,9 @@ const EnhancedVideo: React.FC<EnhancedVideoProperties> = (properties) => {
         video.current!.playbackRate = videoPlaybackRate;
     }, [loadedVideo]);
 
-    useEffect(() => {
-        setVideoText([...TEST_VIDEO_TEXT_DATA]);
-    }, []);
+    // useEffect(() => {
+    //     setVideoText([...TEST_VIDEO_TEXT_DATA]);
+    // }, []);
 
     const handleWindowResize = () => {
         computeVideoBoxDimensions();
