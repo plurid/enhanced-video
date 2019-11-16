@@ -9,8 +9,11 @@ import {
 interface VideoProperties {
     src: string;
     type: string;
-    height: any;
+
     videoRef: any;
+
+    height: any;
+    videoStyle: any;
 
     atTimeUpdate: any;
     atLoadedData: any;
@@ -22,7 +25,11 @@ const Video: React.FC<VideoProperties> = (properties) => {
     const {
         src,
         type,
+
         videoRef,
+
+        height,
+        videoStyle,
 
         atTimeUpdate,
         atLoadedData,
@@ -33,15 +40,9 @@ const Video: React.FC<VideoProperties> = (properties) => {
     return (
         <StyledVideo>
             <video
-                // height={height}
-                // style={videoStyle ? {...videoStyle} : {}}
-                // ref={video}
-                // onTimeUpdate={handleVideoCurrentTime}
-                // onLoadedData={handleLoadedVideo}
-                // onLoadedMetadata={handleLoadedMetadata}
-                // onEnded={handleVideoEnded}
-                width="100%"
-                height="500"
+                style={videoStyle ? {...videoStyle} : {}}
+
+                height={height}
                 ref={videoRef}
 
                 onTimeUpdate={atTimeUpdate}

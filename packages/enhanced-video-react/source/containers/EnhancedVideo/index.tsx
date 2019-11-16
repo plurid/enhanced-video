@@ -144,7 +144,10 @@ const EnhancedVideo: React.FC<EnhancedVideoProperties> = (properties) => {
 
 
     /** Methods */
-    const setMessageTimed = (message: string, time: number) => {
+    const setMessageTimed = (
+        message: string,
+        time: number,
+    ) => {
         setMessage(message);
         setTimeout(() => {
             setMessage('');
@@ -161,7 +164,6 @@ const EnhancedVideo: React.FC<EnhancedVideoProperties> = (properties) => {
         setVideoPlaying(false);
     }
 
-
     const toggleVideoVolume = () => {
         if (videoVolume === 0) {
             video.current!.volume = previousVideoVolume / 2;
@@ -173,12 +175,16 @@ const EnhancedVideo: React.FC<EnhancedVideoProperties> = (properties) => {
         }
     }
 
-    const handleVideoVolume = (volume: number) => {
+    const handleVideoVolume = (
+        volume: number,
+    ) => {
         video.current!.volume = videoVolume / 2;
         setVideoVolume(volume);
     }
 
-    const handleVideoPlaybackRate = (videoPlaybackRate: number) => {
+    const handleVideoPlaybackRate = (
+        videoPlaybackRate: number,
+    ) => {
         video.current!.playbackRate = videoPlaybackRate;
         setVideoPlaybackRate(videoPlaybackRate)
     }
@@ -197,7 +203,9 @@ const EnhancedVideo: React.FC<EnhancedVideoProperties> = (properties) => {
         }
     }
 
-    const handleVideoTime = (videoTime: number) => {
+    const handleVideoTime = (
+        videoTime: number,
+    ) => {
         video.current!.currentTime = videoTime;
         setVideoTime(videoTime);
     }
@@ -221,7 +229,9 @@ const EnhancedVideo: React.FC<EnhancedVideoProperties> = (properties) => {
     const selectQualitySource = () => {
     }
 
-    const handleLoadedVideo = async (video: any) => {
+    const handleLoadedVideo = async (
+        video: any,
+    ) => {
         if (atLoad) {
             await atLoad(video);
         }
@@ -235,7 +245,9 @@ const EnhancedVideo: React.FC<EnhancedVideoProperties> = (properties) => {
         setMicroviewVideoEnd(videoDuration);
     }
 
-    const handleLoadedMetadata = (video: any) => {
+    const handleLoadedMetadata = (
+        video: any,
+    ) => {
         if (video.target) {
             const width = video.target.videoWidth;
             const height = video.target.videoHeight;
@@ -331,7 +343,9 @@ const EnhancedVideo: React.FC<EnhancedVideoProperties> = (properties) => {
         computeVideoBoxDimensions();
     }
 
-    const handleKeys = (event: any) => {
+    const handleKeys = (
+        event: any,
+    ) => {
         event.preventDefault();
 
         // handle space
@@ -410,7 +424,10 @@ const EnhancedVideo: React.FC<EnhancedVideoProperties> = (properties) => {
         videoTime,
     ]);
 
-    const reducer = (state: any, action: any) => {
+    const reducer = (
+        state: any,
+        action: any,
+    ) => {
         switch(action.type) {
             case ACTIONS.ADD_TEXT:
                 addText();
@@ -545,35 +562,20 @@ const EnhancedVideo: React.FC<EnhancedVideoProperties> = (properties) => {
                 onMouseMove={() => !showSettingsButton ? setShowSettingsButton(true) : null}
                 ref={videoContainer}
             >
-
                 <Video
                     src={src}
                     type={type}
-                    height={height}
+
                     videoRef={video}
+
+                    height={height}
+                    videoStyle={videoStyle}
 
                     atTimeUpdate={handleVideoCurrentTime}
                     atLoadedData={handleLoadedVideo}
                     atLoadedMetadata={handleLoadedMetadata}
                     atEnded={handleVideoEnded}
                 />
-
-
-                    {/* <video
-                        height={height}
-                        style={videoStyle ? {...videoStyle} : {}}
-                        ref={video}
-                        onTimeUpdate={handleVideoCurrentTime}
-                        onLoadedData={handleLoadedVideo}
-                        onLoadedMetadata={handleLoadedMetadata}
-                        onEnded={handleVideoEnded}
-                    >
-                        <source
-                            src={src}
-                            type={type}
-                        />
-                    </video> */}
-
 
                 {loadedVideo && (
                     <Text />
@@ -602,33 +604,6 @@ const EnhancedVideo: React.FC<EnhancedVideoProperties> = (properties) => {
                 )}
             </StyledEnhancedVideo>
         </Context.Provider>
-
-
-        // <StyledEnhancedVideo
-        //     ref={videoContainer}
-        // >
-        //     {/* <TextSelectVideo
-        //         src={src}
-        //         type={type}
-        //         theme={_theme as ThemeTypes}
-        //         controls={false}
-        //         height={height || 500}
-        //         videoStyle={{
-        //             filter: `
-        //                 invert(${invertValue})
-        //                 contrast(${contrastValue}%)
-        //                 hue-rotate(${hueValue}deg)
-        //                 saturate(${saturationValue}%)
-        //                 brightness(${brightnessValue}%)
-        //             `,
-        //         }}
-        //         action={textSelectAction}
-        //     /> */}
-
-        //     {/* {loadedVideo && _controls && showSettingsButton && (
-        //         <Settings />
-        //     )} */}
-        // </StyledEnhancedVideo>
     );
 }
 
