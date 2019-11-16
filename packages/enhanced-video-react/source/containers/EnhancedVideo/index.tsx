@@ -1,18 +1,20 @@
 import React, {
+    useRef,
     useState,
-    // useEffect,
+    useEffect,
 } from 'react';
+
+import themes from '@plurid/plurid-themes';
 
 import {
     StyledEnhancedVideo,
 } from './styled';
 
-// import {
-//     ThemeTypes,
-// } from '../../data/types';
-
-
-import themes from '@plurid/plurid-themes';
+import {
+    initialVideoDimensions,
+    initialVideoContainerDimensions,
+    initialVideoBoxDimensions,
+} from '../../data/constants/video';
 
 import Video from '../../components/Video';
 // import Settings from '../../components/Settings';
@@ -33,19 +35,77 @@ interface EnhancedVideoProperties {
 }
 
 const EnhancedVideo: React.FC<EnhancedVideoProperties> = (properties) => {
+    /** Properties */
     const {
         src,
         type,
+
         theme,
         controls,
         height,
-        // qualitySources,
+        qualitySources,
+        about,
+        loop,
+        microview,
+
+        apiEndpoint,
+        apiKey,
+        userToken,
+        deviewVideoID,
+
+        videoStyle,
+        atLoad,
+
+        action,
     } = properties;
+
+
+
+    /** References */
+    const videoContainer = useRef<HTMLDivElement>(null);
+    const video = useRef<HTMLVideoElement>(null);
+
+
+
+    /** State */
+    const [showSpinner, setShowSpinner] = useState(false);
+    const [message, setMessage] = useState('');
 
     const [showSettingsButton, setShowSettingsButton] = useState(false);
     const [showSettingsMenu, setShowSettingsMenu] = useState(false);
 
-    const [loadedVideo, setLoadedVideo] = useState(true);
+    const [editableText, setEditableText] = useState(false);
+
+    const [loadedVideo, setLoadedVideo] = useState(false);
+
+    const [videoDuration, setVideoDuration] = useState(0);
+    const [videoTime, setVideoTime] = useState(0);
+
+    const [loopVideo, setLoopVideo] = useState(false);
+    const [loopVideoStart, setLoopVideoStart] = useState(0);
+    const [loopVideoEnd, setLoopVideoEnd] = useState(0);
+
+    const [microviewVideo, setMicroviewVideo] = useState(false);
+    const [microviewVideoStart, setMicroviewVideoStart] = useState(0);
+    const [microviewVideoEnd, setMicroviewVideoEnd] = useState(0);
+
+    const [videoDimensions, setVideoDimensions] = useState(initialVideoDimensions);
+    const [videoContainerDimensions, setVideoContainerDimensions] = useState(initialVideoContainerDimensions);
+    const [videoBoxDimensions, setVideoBoxDimensions] = useState(initialVideoBoxDimensions);
+
+    const [videoPlaying, setVideoPlaying] = useState(false);
+
+    const [previousVideoVolume, setPreviousVideoVolume] = useState(0);
+    const [videoVolume, setVideoVolume] = useState(1);
+
+    const [videoPlaybackRate, setVideoPlaybackRate] = useState(1);
+
+    const [qualitySource, setQualitySource] = useState('');
+
+    const [showTimescrollTime, setShowTimescrollTime] = useState(false);
+    const [showTimescrollText, setShowTimescrollText] = useState(false);
+
+    const [videoText, setVideoText] = useState<VideoText[]>([]);
 
     const [invertValue, setInvertValue] = useState(0);
     const [contrastValue, setContrastValue] = useState(100);
@@ -53,18 +113,410 @@ const EnhancedVideo: React.FC<EnhancedVideoProperties> = (properties) => {
     const [saturationValue, setSaturationValue] = useState(100);
     const [brightnessValue, setBrightnessValue] = useState(100);
 
-    const _theme = theme && themes[theme] ? theme : 'plurid';
+
+
+    /** Methods */
+    const setMessageTimed = (message: string, time: number) => {
+        setMessage(message);
+        setTimeout(() => {
+            setMessage('');
+        }, time);
+    }
+
+    if (!src || !type) {
+        return (
+            <StyledTextSelectVideoNoRender>
+                add the src and type properties to display the video
+            </StyledTextSelectVideoNoRender>
+        );
+    }
+
+
+    const playVideo = () => {
+        video.current!.play();
+        setVideoPlaying(true);
+    }
+
+    const pauseVideo = () => {
+        video.current!.pause();
+        setVideoPlaying(false);
+    }
+
+
+    const toggleVideoVolume = () => {
+        if (videoVolume === 0) {
+            video.current!.volume = previousVideoVolume / 2;
+            setVideoVolume(previousVideoVolume);
+        } else {
+            video.current!.volume = 0;
+            setPreviousVideoVolume(videoVolume);
+            setVideoVolume(0);
+        }
+    }
+
+    const handleVideoVolume = (volume: number) => {
+        video.current!.volume = videoVolume / 2;
+        setVideoVolume(volume);
+    }
+
+    const handleVideoPlaybackRate = (videoPlaybackRate: number) => {
+        video.current!.playbackRate = videoPlaybackRate;
+        setVideoPlaybackRate(videoPlaybackRate)
+    }
+
+    const handleVideoCurrentTime = () => {
+        const videoTime = video.current!.currentTime
+
+        if (
+            loopVideo &&
+            (videoTime < loopVideoStart || videoTime > loopVideoEnd)
+        ) {
+            video.current!.currentTime = loopVideoStart;
+            setVideoTime(loopVideoStart);
+        } else {
+            setVideoTime(videoTime);
+        }
+    }
+
+    const handleVideoTime = (videoTime: number) => {
+        video.current!.currentTime = videoTime;
+        setVideoTime(videoTime);
+    }
+
+    const handleVideoEnded = () => {
+        if (videoTime === videoDuration) {
+            if (
+                loopVideo &&
+                (loopVideoStart === 0 && loopVideoEnd === videoDuration)
+            ) {
+                video.current!.currentTime = 0;
+                setVideoTime(0);
+                playVideo();
+                return;
+            } else {
+                pauseVideo();
+            }
+        }
+    }
+
+    const selectQualitySource = () => {
+    }
+
+    const handleLoadedVideo = async (video: any) => {
+        if (atLoad) {
+            await atLoad(video);
+        }
+
+        setLoadedVideo(true);
+
+        const videoDuration = video.target.duration;
+        setVideoDuration(videoDuration);
+
+        setLoopVideoEnd(videoDuration);
+        setMicroviewVideoEnd(videoDuration);
+    }
+
+    const handleLoadedMetadata = (video: any) => {
+        if (video.target) {
+            const width = video.target.videoWidth;
+            const height = video.target.videoHeight;
+            const ratio = width / height;
+
+            const videoDimensions: VideoDimensions = {
+                width,
+                height,
+                ratio,
+            };
+
+            setVideoDimensions(videoDimensions);
+        }
+    }
+
+    const computeVideoBoxDimensions = () => {
+        const {
+            height: videoHeight,
+            ratio: videoRatio,
+        } = videoDimensions;
+        // console.log('videoDimensions', videoDimensions);
+
+        const videoContainerWidth = videoContainer.current!.offsetWidth;
+        const videoContainerHeight = videoContainer.current!.offsetHeight;
+        // console.log(videoContainerWidth, videoContainerHeight);
+
+        let videoBoxWidth = 0;
+        let videoBoxHeight = 0;
+        if (videoHeight > videoContainerHeight) {
+            videoBoxWidth = videoContainerWidth;
+            videoBoxHeight = videoContainerWidth / videoRatio;
+        }
+
+        if (videoBoxHeight > videoContainerHeight) {
+            videoBoxWidth = videoContainerHeight * videoRatio;
+            videoBoxHeight = videoContainerHeight;
+        }
+
+        const videoBoxLeft = (videoContainerWidth - videoBoxWidth) / 2;
+        const videoBoxTop = (videoContainerHeight - videoBoxHeight) / 2;
+        // console.log(videoBoxWidth, videoBoxHeight);
+        // console.log(videoBoxLeft, videoBoxTop);
+
+        const videoContainerDimensions: VideoContainerDimensions = {
+            width: videoContainerWidth,
+            height: videoContainerHeight,
+        };
+        // console.log(videoContainerDimensions);
+        setVideoContainerDimensions(videoContainerDimensions);
+
+        const videoBoxDimensions: VideoBoxDimensions = {
+            width: videoBoxWidth,
+            height: videoBoxHeight,
+            left: videoBoxLeft,
+            top: videoBoxTop,
+        };
+        // console.log(videoBoxDimensions);
+        setVideoBoxDimensions(videoBoxDimensions);
+    }
+
+    const addText = () => {
+        setMessageTimed('Added New Text', 1500);
+
+        const newText = createNewText(videoTime);
+        const updatedTexts = [...videoText, newText];
+        setVideoText(updatedTexts);
+    }
+
+    const saveText = async () => {
+        setShowSpinner(true);
+        setMessage('Saving the Video Text');
+    }
+
+    const getText = async () => {
+        setShowSpinner(true);
+        setMessage('Getting the Video Text');
+    }
+
+    useEffect(() => {
+        computeVideoBoxDimensions();
+    }, [videoDimensions]);
+
+    useEffect(() => {
+        video.current!.volume = videoVolume / 2;
+        video.current!.playbackRate = videoPlaybackRate;
+    }, [loadedVideo]);
+
+    useEffect(() => {
+        setVideoText([...TEST_VIDEO_TEXT_DATA]);
+    }, []);
+
+    const handleWindowResize = () => {
+        computeVideoBoxDimensions();
+    }
+
+    const handleKeys = (event: any) => {
+        event.preventDefault();
+
+        // handle space
+        if (event.keyCode === 32) {
+            if (videoPlaying) {
+                setMessageTimed('Pause', 1000);
+                pauseVideo();
+            } else {
+                setMessageTimed('Play', 1000);
+                playVideo();
+            }
+        }
+
+        if (event.key === 'ArrowLeft') {
+            const newTime = videoTime - 5;
+            if (newTime > 0) {
+                handleVideoTime(newTime);
+            } else {
+                handleVideoTime(0);
+            }
+        }
+
+        if (event.key === 'ArrowRight') {
+            const newTime = videoTime + 5;
+            if (newTime < videoDuration) {
+                handleVideoTime(newTime);
+            } else {
+                handleVideoTime(videoDuration);
+            }
+        }
+
+        if (event.key === 'ArrowUp') {
+            const newVolume = videoVolume + 0.1;
+            if (newVolume < 2) {
+                handleVideoVolume(newVolume);
+            } else {
+                handleVideoVolume(2);
+            }
+        }
+
+        if (event.key === 'ArrowDown') {
+            const newVolume = videoVolume - 0.1;
+            if (newVolume > 0) {
+                handleVideoVolume(newVolume);
+            } else {
+                handleVideoVolume(0);
+            }
+        }
+
+        if (event.key === 'm') {
+            if (videoVolume === 0) {
+                setMessageTimed(`Volume`, 1000);
+            } else {
+                setMessageTimed(`Muted`, 1000);
+            }
+            toggleVideoVolume();
+        }
+
+        if (event.key === 't') {
+            setShowTimescrollTime(show => !show);
+        }
+    }
+
+    useEffect(() => {
+        window.addEventListener('resize', handleWindowResize);
+        videoContainer.current!.addEventListener('keydown', handleKeys);
+
+        return () => {
+            window.removeEventListener('resize', handleWindowResize);
+            videoContainer.current!.removeEventListener('keydown', handleKeys);
+        }
+    }, [
+        videoDimensions,
+        videoPlaying,
+        videoVolume,
+        videoTime,
+    ]);
+
+    const reducer = (state: any, action: any) => {
+        switch(action.type) {
+            case ACTIONS.ADD_TEXT:
+                addText();
+                return state;
+            case ACTIONS.SAVE_TEXT:
+                saveText();
+                return state;
+            case ACTIONS.GET_TEXT:
+                getText();
+                return state;
+            case ACTIONS.SET_MESSAGE:
+                setMessage(action.payload);
+                return state;
+        }
+    };
+    const [_, dispatch] = useReducer(reducer, {});
+    useEffect(() => {
+        if (action) {
+            dispatch(action);
+        }
+    }, [action]);
+
+    const _theme: Theme = theme && themes[theme]
+        ? themes[theme]
+        : themes.plurid;
     const _controls = controls === undefined ? true : controls;
 
-    const [textSelectAction, setTextSelectAction] = useState<any>({});
 
+
+    /** Context */
+    const context: IContext = {
+        src,
+        type,
+
+        theme: _theme,
+        controls: _controls,
+        height: height || 500,
+        qualitySources,
+        about: about === undefined ? true : about,
+        loop: loop === undefined ? false : loop,
+        microview: microview === undefined ? false : microview,
+
+        apiEndpoint: apiEndpoint || PLURID_DOMAIN_API,
+        apiKey,
+        userToken,
+        deviewVideoID,
+
+        setMessage,
+        setMessageTimed,
+        setShowSpinner,
+
+        showSettingsButton,
+        setShowSettingsButton,
+
+        showSettingsMenu,
+        setShowSettingsMenu,
+
+        editableText,
+        setEditableText,
+
+        loadedVideo,
+
+        videoDuration,
+
+        videoDimensions,
+        videoContainerDimensions,
+        videoBoxDimensions,
+
+        videoPlaying,
+        playVideo,
+        pauseVideo,
+
+        loopVideo,
+        setLoopVideo,
+        loopVideoStart,
+        setLoopVideoStart,
+        loopVideoEnd,
+        setLoopVideoEnd,
+
+        microviewVideo,
+        setMicroviewVideo,
+        microviewVideoStart,
+        setMicroviewVideoStart,
+        microviewVideoEnd,
+        setMicroviewVideoEnd,
+
+        videoVolume,
+        toggleVideoVolume,
+        handleVideoVolume,
+
+        videoPlaybackRate,
+        handleVideoPlaybackRate,
+
+        videoTime,
+        handleVideoTime,
+
+        qualitySource,
+        setQualitySource,
+
+        showTimescrollTime,
+        setShowTimescrollTime,
+        showTimescrollText,
+        setShowTimescrollText,
+
+        videoText,
+
+        addText,
+        saveText,
+        getText,
+    };
+
+
+
+    /** Markup */
     return (
-        <StyledEnhancedVideo>
+        <StyledEnhancedVideo
+            ref={videoContainer}
+        >
             <Video
                 src={src}
                 type={type}
                 height={height}
+                videoRef={video}
             />
+
             {/* <TextSelectVideo
                 src={src}
                 type={type}

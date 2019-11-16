@@ -10,12 +10,14 @@ interface VideoProperties {
     src: string;
     type: string;
     height: any;
+    videoRef: any;
 }
 
 const Video: React.FC<VideoProperties> = (properties) => {
     const {
         src,
         type,
+        videoRef,
     } = properties;
 
     return (
@@ -31,6 +33,7 @@ const Video: React.FC<VideoProperties> = (properties) => {
                 width="100%"
                 height="500"
                 controls
+                ref={videoRef}
             >
                 <source
                     src={src}
