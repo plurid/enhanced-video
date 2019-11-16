@@ -51,7 +51,7 @@ const App: React.FC = () => {
                 <EnhancedVideo
                     src={longVideo}
                     type="video/mp4"
-                    theme="light"
+                    theme="dusk"
                     // qualitySources={qualitySources}
                     // about={false}
                     // apiEndpoint="http://192.168.1.2:33600/graphql"
