@@ -11,6 +11,11 @@ interface VideoProperties {
     type: string;
     height: any;
     videoRef: any;
+
+    atTimeUpdate: any;
+    atLoadedData: any;
+    atLoadedMetadata: any;
+    atEnded: any;
 }
 
 const Video: React.FC<VideoProperties> = (properties) => {
@@ -18,6 +23,11 @@ const Video: React.FC<VideoProperties> = (properties) => {
         src,
         type,
         videoRef,
+
+        atTimeUpdate,
+        atLoadedData,
+        atLoadedMetadata,
+        atEnded,
     } = properties;
 
     return (
@@ -33,6 +43,11 @@ const Video: React.FC<VideoProperties> = (properties) => {
                 width="100%"
                 height="500"
                 ref={videoRef}
+
+                onTimeUpdate={atTimeUpdate}
+                onLoadedData={atLoadedData}
+                onLoadedMetadata={atLoadedMetadata}
+                onEnded={atEnded}
             >
                 <source
                     src={src}
