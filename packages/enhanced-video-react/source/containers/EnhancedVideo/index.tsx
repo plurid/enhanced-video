@@ -545,13 +545,13 @@ const EnhancedVideo: React.FC<EnhancedVideoProperties> = (properties) => {
                 onMouseMove={() => !showSettingsButton ? setShowSettingsButton(true) : null}
                 ref={videoContainer}
             >
-                <Video
+                {/* <Video
                     src={src}
                     type={type}
                     height={height}
                     videoRef={video}
-                />
-                {/*
+                /> */}
+
                     <video
                         height={height}
                         style={videoStyle ? {...videoStyle} : {}}
@@ -566,7 +566,7 @@ const EnhancedVideo: React.FC<EnhancedVideoProperties> = (properties) => {
                             type={type}
                         />
                     </video>
-                */}
+
 
                 {loadedVideo && (
                     <Text />

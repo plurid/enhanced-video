@@ -32,7 +32,6 @@ const Video: React.FC<VideoProperties> = (properties) => {
                 // onEnded={handleVideoEnded}
                 width="100%"
                 height="500"
-                controls
                 ref={videoRef}
             >
                 <source
