@@ -1,19 +1,21 @@
 import React, {
     useState,
-    useEffect,
+    // useEffect,
 } from 'react';
 
 import {
     StyledEnhancedVideo,
 } from './styled';
 
-import {
-    ThemeTypes,
-} from '../../data/types';
+// import {
+//     ThemeTypes,
+// } from '../../data/types';
 
-import Settings from '../../components/Settings';
 
 import themes from '@plurid/plurid-themes';
+
+import Video from '../../components/Video';
+import Settings from '../../components/Settings';
 
 // import TextSelectVideo, {
 //     ACTIONS,
@@ -58,6 +60,10 @@ const EnhancedVideo: React.FC<EnhancedVideoProperties> = (properties) => {
 
     return (
         <StyledEnhancedVideo>
+            <Video
+                src={src}
+                type={type}
+            />
             {/* <TextSelectVideo
                 src={src}
                 type={type}
@@ -82,5 +88,6 @@ const EnhancedVideo: React.FC<EnhancedVideoProperties> = (properties) => {
         </StyledEnhancedVideo>
     );
 }
+
 
 export default EnhancedVideo;
