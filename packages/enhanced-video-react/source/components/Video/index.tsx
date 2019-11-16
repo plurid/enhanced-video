@@ -9,6 +9,7 @@ import {
 interface VideoProperties {
     src: string;
     type: string;
+    height: any;
 }
 
 const Video: React.FC<VideoProperties> = (properties) => {
@@ -27,8 +28,9 @@ const Video: React.FC<VideoProperties> = (properties) => {
                 // onLoadedData={handleLoadedVideo}
                 // onLoadedMetadata={handleLoadedMetadata}
                 // onEnded={handleVideoEnded}
-                width="530"
-                height="300"
+                width="100%"
+                height="500"
+                controls
             >
                 <source
                     src={src}
