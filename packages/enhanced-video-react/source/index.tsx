@@ -1,4 +1,4 @@
-import EnhancedVideo from './components/EnhancedVideo';
+import EnhancedVideo from './containers/EnhancedVideo';
 
 
 export default EnhancedVideo;

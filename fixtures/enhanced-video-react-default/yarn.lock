@@ -1073,10 +1073,10 @@
   resolved "https://registry.yarnpkg.com/@nodelib/fs.stat/-/fs.stat-1.1.3.tgz#2b5a3ab3f918cca48a8c754c08168e3f03eba61b"
   integrity sha512-shAmDyaQC4H92APFoIaVDHCx5bStIocgvbwQyxPRrbUY20V1EYTbSDchWbuwlMG3V17cprZhA6+78JfB+3DTPw==
 
-"@plurid/enhanced-video-react@^0.1.3":
-  version "0.1.3"
-  resolved "https://registry.yarnpkg.com/@plurid/enhanced-video-react/-/enhanced-video-react-0.1.3.tgz#3ca8650aa2c606cf34628a07940ab0d2420e5bd6"
-  integrity sha512-h5X71wSP6SDnflzbgVB7UW+zDtL1dyIhoIPhToZQd6u5XJyLWZ1cj7HnByAgUrnsPkToJ5HPVEh8DolN6T7HIg==
+"@plurid/enhanced-video-react@^0.1.4":
+  version "0.1.4"
+  resolved "https://registry.yarnpkg.com/@plurid/enhanced-video-react/-/enhanced-video-react-0.1.4.tgz#3a1c8867c7d676ddde7786b684f7eaffc8e5ea77"
+  integrity sha512-2xhAomhPx+izosAacXvn59uyow7pf0IrHOkMzfXV12inrIWWq0yJVSFdrl7ZwCunE3hvp/uuAhbXg8/+F4cHJg==
 
 "@plurid/plurid-themes@^0.1.0":
   version "0.1.0"

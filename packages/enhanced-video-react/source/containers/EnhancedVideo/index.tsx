@@ -15,7 +15,7 @@ import {
 import themes from '@plurid/plurid-themes';
 
 import Video from '../../components/Video';
-import Settings from '../../components/Settings';
+// import Settings from '../../components/Settings';
 
 // import TextSelectVideo, {
 //     ACTIONS,
@@ -82,9 +82,9 @@ const EnhancedVideo: React.FC<EnhancedVideoProperties> = (properties) => {
                 action={textSelectAction}
             /> */}
 
-            {loadedVideo && _controls && showSettingsButton && (
+            {/* {loadedVideo && _controls && showSettingsButton && (
                 <Settings />
-            )}
+            )} */}
         </StyledEnhancedVideo>
     );
 }
