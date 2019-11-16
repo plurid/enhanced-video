@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 
-import Context from '../../context';
+import Context from '../../../services/utilities/context';
 
 import {
     StyledButtonMoreMenu,
@@ -8,10 +8,10 @@ import {
 
 import ButtonItem from '../ButtonItem';
 
-import CopyIcon from '../../assets/copy-icon';
+import CopyIcon from '../../../assets/icons/copy-icon';
 // import TranslateIcon from '../../assets/translate-icon';
 
-import copyToClipboard from '../../utils/clipboard';
+import copyToClipboard from '../../../services/utilities/clipboard';
 
 
 

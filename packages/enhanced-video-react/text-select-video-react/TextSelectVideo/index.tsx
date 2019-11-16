@@ -4,7 +4,7 @@ import SelectVideo from '../SelectVideo';
 import Settings from '../Settings';
 import Spinner from '../Spinner';
 import Message from '../Message';
-import TimescrollView from '../TimescrollView';
+import TimescrollView from '../../source/components/UI/TimescrollView';
 
 import {
     ITextSelectVideoProps,

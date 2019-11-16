@@ -13,7 +13,7 @@ import {
     MOVE_MARK,
 } from './constants';
 
-import { formatTimeString } from '../../utils/timeString';
+import { formatTimeString } from '../../../services/utilities/timeString';
 
 
 
