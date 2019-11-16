@@ -2,13 +2,28 @@ import React, {
     useRef,
     useState,
     useEffect,
+    useReducer,
 } from 'react';
 
-import themes from '@plurid/plurid-themes';
+import themes, {
+    Theme,
+} from '@plurid/plurid-themes';
 
+import './styles.css';
 import {
     StyledEnhancedVideo,
+    StyledEnhancedVideoNoRender,
 } from './styled';
+
+import {
+    createNewText,
+} from '../../data/constants/initializers';
+
+import ACTIONS from '../../data/constants/actions';
+
+import {
+    PLURID_DOMAIN_API,
+} from '../../data/constants/domains';
 
 import {
     initialVideoDimensions,
@@ -16,23 +31,36 @@ import {
     initialVideoBoxDimensions,
 } from '../../data/constants/video';
 
+import {
+    EnhancedVideoProperties,
+    IContext,
+    VideoDimensions,
+    VideoContainerDimensions,
+    VideoBoxDimensions,
+    VideoText,
+} from '../../data/interfaces';
+
 import Video from '../../components/Video';
 // import Settings from '../../components/Settings';
+
+import Text from '../../components/Text';
+import Settings from '../../components/Settings';
+import Message from '../../components/Message';
+import Spinner from '../../components/Spinner';
+
+import TimescrollTime from '../../components/TimescrollTime';
+import TimescrollText from '../../components/TimescrollText';
 
 // import TextSelectVideo, {
 //     ACTIONS,
 // } from '@plurid/text-select-video-react';
 
+import Context from '../../services/utilities/context';
+
+// test imports
+import TEST_VIDEO_TEXT_DATA from '../../__spec-data__/data';
 
 
-interface EnhancedVideoProperties {
-    src: string;
-    type: string;
-    theme?: string;
-    controls?: boolean;
-    height?: number;
-    qualitySources?: any;
-}
 
 const EnhancedVideo: React.FC<EnhancedVideoProperties> = (properties) => {
     /** Properties */
@@ -122,15 +150,6 @@ const EnhancedVideo: React.FC<EnhancedVideoProperties> = (properties) => {
             setMessage('');
         }, time);
     }
-
-    if (!src || !type) {
-        return (
-            <StyledTextSelectVideoNoRender>
-                add the src and type properties to display the video
-            </StyledTextSelectVideoNoRender>
-        );
-    }
-
 
     const playVideo = () => {
         video.current!.play();
@@ -506,39 +525,103 @@ const EnhancedVideo: React.FC<EnhancedVideoProperties> = (properties) => {
 
 
     /** Markup */
+    if (!src || !type) {
+        return (
+            <StyledEnhancedVideoNoRender>
+                add the src and type properties to display the video
+            </StyledEnhancedVideoNoRender>
+        );
+    }
+
     return (
-        <StyledEnhancedVideo
-            ref={videoContainer}
+        <Context.Provider
+            value={context}
         >
-            <Video
-                src={src}
-                type={type}
-                height={height}
-                videoRef={video}
-            />
+            <StyledEnhancedVideo
+                theme={_theme}
+                tabIndex={0}
+                onMouseEnter={() => setShowSettingsButton(true)}
+                onMouseLeave={() => setShowSettingsButton(false)}
+                onMouseMove={() => !showSettingsButton ? setShowSettingsButton(true) : null}
+                ref={videoContainer}
+            >
+                <Video
+                    src={src}
+                    type={type}
+                    height={height}
+                    videoRef={video}
+                />
+                {/*
+                    <video
+                        height={height}
+                        style={videoStyle ? {...videoStyle} : {}}
+                        ref={video}
+                        onTimeUpdate={handleVideoCurrentTime}
+                        onLoadedData={handleLoadedVideo}
+                        onLoadedMetadata={handleLoadedMetadata}
+                        onEnded={handleVideoEnded}
+                    >
+                        <source
+                            src={src}
+                            type={type}
+                        />
+                    </video>
+                */}
 
-            {/* <TextSelectVideo
-                src={src}
-                type={type}
-                theme={_theme as ThemeTypes}
-                controls={false}
-                height={height || 500}
-                videoStyle={{
-                    filter: `
-                        invert(${invertValue})
-                        contrast(${contrastValue}%)
-                        hue-rotate(${hueValue}deg)
-                        saturate(${saturationValue}%)
-                        brightness(${brightnessValue}%)
-                    `,
-                }}
-                action={textSelectAction}
-            /> */}
+                {loadedVideo && (
+                    <Text />
+                )}
 
-            {/* {loadedVideo && _controls && showSettingsButton && (
-                <Settings />
-            )} */}
-        </StyledEnhancedVideo>
+                {loadedVideo && _controls && showSettingsButton && (
+                    <Settings />
+                )}
+
+                {showTimescrollTime && (
+                    <TimescrollTime />
+                )}
+
+                {showTimescrollText && (
+                    <TimescrollText />
+                )}
+
+                {message && (
+                    <Message
+                        text={message}
+                    />
+                )}
+
+                {showSpinner && (
+                    <Spinner />
+                )}
+            </StyledEnhancedVideo>
+        </Context.Provider>
+
+
+        // <StyledEnhancedVideo
+        //     ref={videoContainer}
+        // >
+        //     {/* <TextSelectVideo
+        //         src={src}
+        //         type={type}
+        //         theme={_theme as ThemeTypes}
+        //         controls={false}
+        //         height={height || 500}
+        //         videoStyle={{
+        //             filter: `
+        //                 invert(${invertValue})
+        //                 contrast(${contrastValue}%)
+        //                 hue-rotate(${hueValue}deg)
+        //                 saturate(${saturationValue}%)
+        //                 brightness(${brightnessValue}%)
+        //             `,
+        //         }}
+        //         action={textSelectAction}
+        //     /> */}
+
+        //     {/* {loadedVideo && _controls && showSettingsButton && (
+        //         <Settings />
+        //     )} */}
+        // </StyledEnhancedVideo>
     );
 }
 
