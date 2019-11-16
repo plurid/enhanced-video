@@ -63,6 +63,7 @@ const EnhancedVideo: React.FC<EnhancedVideoProperties> = (properties) => {
             <Video
                 src={src}
                 type={type}
+                height={height}
             />
             {/* <TextSelectVideo
                 src={src}
