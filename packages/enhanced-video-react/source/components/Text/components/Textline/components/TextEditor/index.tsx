@@ -21,22 +21,22 @@ import ButtonClick from './components/ButtonClick';
 
 import { selectableFonts } from '../../../../../../data/constants/fonts';
 
-import SelectTextIcon from '../../../../../../assets/select-text-icon';
-import GrabIcon from '../../../../../../assets/grab-icon';
-import ViewableIcon from '../../../../../../assets/viewable-icon';
-import NotViewableIcon from '../../../../../../assets/not-viewable-icon';
-import AlwaysShowOnIcon from '../../../../../../assets/always-show-on-icon';
-import AlwaysShowOffIcon from '../../../../../../assets/always-show-off-icon';
-import StartTimeIcon from '../../../../../../assets/start-time-icon';
-import EndTimeIcon from '../../../../../../assets/end-time-icon';
-import FontSizeIcon from '../../../../../../assets/font-size-icon';
-import LinkIcon from '../../../../../../assets/link-icon';
-import BoldIcon from '../../../../../../assets/bold-icon';
-import ItalicIcon from '../../../../../../assets/italic-icon';
-import LetterSpacingIcon from '../../../../../../assets/letter-spacing-icon';
-import WordSpacingIcon from '../../../../../../assets/word-spacing-icon';
-import DuplicateIcon from '../../../../../../assets/duplicate-icon';
-import DeleteIcon from '../../../../../../assets/delete-icon';
+import SelectTextIcon from '../../../../../../assets/icons/select-text-icon';
+import GrabIcon from '../../../../../../assets/icons/grab-icon';
+import ViewableIcon from '../../../../../../assets/icons/viewable-icon';
+import NotViewableIcon from '../../../../../../assets/icons/not-viewable-icon';
+import AlwaysShowOnIcon from '../../../../../../assets/icons/always-show-on-icon';
+import AlwaysShowOffIcon from '../../../../../../assets/icons/always-show-off-icon';
+import StartTimeIcon from '../../../../../../assets/icons/start-time-icon';
+import EndTimeIcon from '../../../../../../assets/icons/end-time-icon';
+import FontSizeIcon from '../../../../../../assets/icons/font-size-icon';
+import LinkIcon from '../../../../../../assets/icons/link-icon';
+import BoldIcon from '../../../../../../assets/icons/bold-icon';
+import ItalicIcon from '../../../../../../assets/icons/italic-icon';
+import LetterSpacingIcon from '../../../../../../assets/icons/letter-spacing-icon';
+import WordSpacingIcon from '../../../../../../assets/icons/word-spacing-icon';
+import DuplicateIcon from '../../../../../../assets/icons/duplicate-icon';
+import DeleteIcon from '../../../../../../assets/icons/delete-icon';
 
 // import {
 //     percentageFromValue,
