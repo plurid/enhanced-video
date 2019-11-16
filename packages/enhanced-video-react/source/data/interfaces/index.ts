@@ -154,6 +154,15 @@ export interface IContext {
     addText: () => void;
     saveText: () => Promise<void>;
     getText: () => Promise<void>;
+
+    expandTextDrawer: boolean;
+    setExpandTextDrawer: Dispatch<SetStateAction<boolean>>;
+    expandColorDrawer: boolean;
+    setExpandColorDrawer: Dispatch<SetStateAction<boolean>>;
+    expandTopologyDrawer: boolean;
+    setExpandTopologyDrawer: Dispatch<SetStateAction<boolean>>;
+    expandVariaDrawer: boolean;
+    setExpandVariaDrawer: Dispatch<SetStateAction<boolean>>;
 }
 
 

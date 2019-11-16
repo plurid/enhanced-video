@@ -1,0 +1,1 @@
+export const SETTINGS_MENU_HEIGHT_DIFFERENCE = 70;
