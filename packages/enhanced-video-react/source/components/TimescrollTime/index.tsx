@@ -15,12 +15,12 @@ import {
 
 import Timeline from './components/Timeline';
 
-import LoopIcon from '../../assets/loop-icon';
-import MarkLoopIcon from '../../assets/mark-loop-icon';
-import MicroviewIcon from '../../assets/microview-icon';
-import MarkMicroviewIcon from '../../assets/mark-microview-icon';
-import SceneIcon from '../../assets/scene-icon';
-import MarkSceneIcon from '../../assets/mark-scene-icon';
+import LoopIcon from '../../assets/icons/loop-icon';
+import MarkLoopIcon from '../../assets/icons/mark-loop-icon';
+import MicroviewIcon from '../../assets/icons/microview-icon';
+import MarkMicroviewIcon from '../../assets/icons/mark-microview-icon';
+import SceneIcon from '../../assets/icons/scene-icon';
+import MarkSceneIcon from '../../assets/icons/mark-scene-icon';
 
 import { getWheelDirection } from '../../services/utilities/wheelDirection';
 import { range } from '../../services/utilities/array';
