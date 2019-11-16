@@ -1,5 +1,5 @@
 import React, { PureComponent } from 'react';
-import Context from '../../context';
+import Context from '../../../services/utilities/context';
 
 import {
     StyledTimescrollViewLine,
@@ -11,7 +11,7 @@ import {
 
 import TextMark from '../TextMark';
 
-import { formatTimeString } from '../../utils/timeString';
+import { formatTimeString } from '../../../services/utilities/timeString';
 
 
 

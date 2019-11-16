@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 
-import Context from '../../context';
+import Context from '../../../services/utilities/context';
 
 import ButtonMoreMenu from '../ButtonMoreMenu';
 
@@ -9,7 +9,7 @@ import {
     StyledMoreButton,
 } from './styled';
 
-import MoreIcon from '../../assets/more-icon';
+import MoreIcon from '../../../assets/icons/more-icon';
 
 
 

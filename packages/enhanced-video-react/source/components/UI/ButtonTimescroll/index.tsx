@@ -13,8 +13,8 @@ import Context from '../../../services/utilities/context';
 
 import { getWheelDirection } from '../../../services/utilities/wheelDirection';
 
-import TimescrollToggled from '../../../assets/timescroll-toggled-icon';
-import TimescrollUntoggled from '../../../assets/timescroll-untoggled-icon';
+import TimescrollToggled from '../../../assets/icons/timescroll-toggled-icon';
+import TimescrollUntoggled from '../../../assets/icons/timescroll-untoggled-icon';
 
 
 

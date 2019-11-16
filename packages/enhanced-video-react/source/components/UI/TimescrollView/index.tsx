@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import Context from '../../context';
+import Context from '../../../services/utilities/context';
 
 import {
     StyledTimescrollView,
@@ -10,7 +10,7 @@ import {
 import Button from '../Button';
 import TimescrollViewLine from '../TimescrollViewLine';
 
-import { getWheelDirection } from '../../utils/wheelDirection';
+import { getWheelDirection } from '../../../services/utilities/wheelDirection';
 
 
 
