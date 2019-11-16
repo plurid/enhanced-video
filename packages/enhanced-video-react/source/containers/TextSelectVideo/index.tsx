@@ -30,7 +30,7 @@ import {
 import ACTIONS from '../../data/constants/actions';
 
 import {
-    TextSelectVideoProperties,
+    // TextSelectVideoProperties,
     IContext,
     VideoDimensions,
     VideoContainerDimensions,
