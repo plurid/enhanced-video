@@ -135,6 +135,11 @@ const EnhancedVideo: React.FC<EnhancedVideoProperties> = (properties) => {
 
     const [videoText, setVideoText] = useState<VideoText[]>([]);
 
+    const [expandTextDrawer, setExpandTextDrawer] = useState(false);
+    const [expandColorDrawer, setExpandColorDrawer] = useState(false);
+    const [expandTopologyDrawer, setExpandTopologyDrawer] = useState(false);
+    const [expandVariaDrawer, setExpandVariaDrawer] = useState(false);
+
     const [invertValue, setInvertValue] = useState(0);
     const [contrastValue, setContrastValue] = useState(100);
     const [hueValue, setHueValue] = useState(0);
@@ -537,6 +542,15 @@ const EnhancedVideo: React.FC<EnhancedVideoProperties> = (properties) => {
         addText,
         saveText,
         getText,
+
+        expandTextDrawer,
+        setExpandTextDrawer,
+        expandColorDrawer,
+        setExpandColorDrawer,
+        expandTopologyDrawer,
+        setExpandTopologyDrawer,
+        expandVariaDrawer,
+        setExpandVariaDrawer,
     };
 
 

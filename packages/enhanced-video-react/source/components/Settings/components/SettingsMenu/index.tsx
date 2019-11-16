@@ -3,6 +3,7 @@ import React, {
     useRef,
     useState,
     useEffect,
+    useLayoutEffect,
 } from 'react';
 
 import Context from '../../../../services/utilities/context';
@@ -33,6 +34,12 @@ import ButtonItem from '../../../UI/ButtonItem';
 import ButtonSliderItem from '../../../UI/ButtonSliderItem';
 import ButtonTimescroll from '../../../UI/ButtonTimescroll';
 
+import Drawer from './components/Drawer';
+
+import {
+    SETTINGS_MENU_HEIGHT_DIFFERENCE,
+} from '../../../../data/constants';
+
 
 
 const SettingsMenu: React.FC<any> = () => {
@@ -42,9 +49,10 @@ const SettingsMenu: React.FC<any> = () => {
     }
 
     const settingsMenu = useRef<HTMLDivElement>(null);
+    const settingsMenuWrapper = useRef<HTMLDivElement>(null);
 
     const [menuOpacity, setMenuOpacity] = useState(1);
-    const [menuHeight, setMenuHeight] = useState(0);
+    const [menuHeight, setMenuHeight] = useState<number | boolean>(false);
 
     const {
         about,
@@ -74,10 +82,20 @@ const SettingsMenu: React.FC<any> = () => {
         setShowTimescrollText,
 
         videoContainerDimensions,
+        videoBoxDimensions,
 
         addText,
         saveText,
         getText,
+
+        expandTextDrawer,
+        setExpandTextDrawer,
+        expandColorDrawer,
+        setExpandColorDrawer,
+        expandTopologyDrawer,
+        setExpandTopologyDrawer,
+        expandVariaDrawer,
+        setExpandVariaDrawer,
     } = context;
 
     const VideoVolumeIcon = videoVolume == 0
@@ -132,7 +150,26 @@ const SettingsMenu: React.FC<any> = () => {
                 setMenuHeight(menuHeight);
             }
         }
-    }, [])
+    }, []);
+
+    useLayoutEffect(() => {
+        if (settingsMenuWrapper.current) {
+            const menuHeight = settingsMenuWrapper.current.getBoundingClientRect().height;
+            const imageHeight = videoBoxDimensions.height;
+
+            if (menuHeight + SETTINGS_MENU_HEIGHT_DIFFERENCE <= imageHeight) {
+                setMenuHeight(false);
+            } else {
+                setMenuHeight(imageHeight - SETTINGS_MENU_HEIGHT_DIFFERENCE);
+            }
+        }
+    }, [
+        settingsMenuWrapper.current,
+        expandTextDrawer,
+        expandColorDrawer,
+        expandTopologyDrawer,
+        expandVariaDrawer,
+    ]);
 
     return (
         <StyledSettingsMenu
@@ -145,6 +182,7 @@ const SettingsMenu: React.FC<any> = () => {
         >
             <StyledSettingsMenuContainer
                 height={menuHeight}
+                ref={settingsMenuWrapper}
             >
                 <ul>
                     <li>
@@ -219,76 +257,111 @@ const SettingsMenu: React.FC<any> = () => {
 
                     <hr />
 
-                    <li>
-                        <ButtonCheckmark
-                            theme={theme}
-                            toggle={setEditableText}
-                            text="Edit Text"
-                            checked={editableText}
-                        />
-                    </li>
+                    <Drawer
+                        title="Text"
+                        expand={expandTextDrawer}
+                        toggleExpand={() => setExpandTextDrawer(expand => !expand)}
+                        theme={theme}
+                    >
+                        <li>
+                            <ButtonCheckmark
+                                theme={theme}
+                                toggle={setEditableText}
+                                text="Edit Text"
+                                checked={editableText}
+                            />
+                        </li>
 
-                    <li>
-                        <ButtonItem
-                            theme={theme}
-                            atClick={handleAddText}
-                            icon={AddTextIcon}
-                            text="Add Text"
-                        />
-                    </li>
-
-                    <li>
-                        <ButtonItem
-                            theme={theme}
-                            atClick={handleSaveText}
-                            icon={SaveTextIcon}
-                            text="Save Text"
-                        />
-                    </li>
-
-                    <hr />
-
-                    <li>
-                        <ButtonItem
-                            theme={theme}
-                            atClick={handleGetText}
-                            icon={GetTextIcon}
-                            text="Get Text"
-                        />
-                    </li>
-
-                    <li>
-                        <ButtonItem
-                            theme={theme}
-                            atClick={handleMarkTextTime}
-                            icon={showTimescrollText ? MarkTextTimeToggledIcon : MarkTextTimeUntoggledIcon}
-                            text="Mark Text Time"
-                        />
-                    </li>
-
-                    {/* <li>
-                        <ButtonItem
-                            theme={theme}
-                            atClick={handleExtractFrame}
-                            icon={ExtractTextIcon}
-                            text="Extract Frame"
-                        />
-                    </li> */}
-
-                    {about && (
-                        <hr />
-                    )}
-
-                    {about && (
                         <li>
                             <ButtonItem
                                 theme={theme}
-                                atClick={handleAboutClick}
-                                icon={AboutIcon}
-                                text="About TSV"
+                                atClick={handleAddText}
+                                icon={AddTextIcon}
+                                text="Add Text"
                             />
                         </li>
-                    )}
+
+                        <li>
+                            <ButtonItem
+                                theme={theme}
+                                atClick={handleSaveText}
+                                icon={SaveTextIcon}
+                                text="Save Text"
+                            />
+                        </li>
+
+                        <hr />
+
+                        <li>
+                            <ButtonItem
+                                theme={theme}
+                                atClick={handleGetText}
+                                icon={GetTextIcon}
+                                text="Get Text"
+                            />
+                        </li>
+
+                        <li>
+                            <ButtonItem
+                                theme={theme}
+                                atClick={handleMarkTextTime}
+                                icon={showTimescrollText ? MarkTextTimeToggledIcon : MarkTextTimeUntoggledIcon}
+                                text="Mark Text Time"
+                            />
+                        </li>
+
+                        {/* <li>
+                            <ButtonItem
+                                theme={theme}
+                                atClick={handleExtractFrame}
+                                icon={ExtractTextIcon}
+                                text="Extract Frame"
+                            />
+                        </li> */}
+                    </Drawer>
+
+
+                    <Drawer
+                        title="Color"
+                        expand={expandColorDrawer}
+                        toggleExpand={() => setExpandColorDrawer(expand => !expand)}
+                        theme={theme}
+                    >
+
+                    </Drawer>
+
+
+                    <Drawer
+                        title="Topology"
+                        expand={expandTopologyDrawer}
+                        toggleExpand={() => setExpandTopologyDrawer(expand => !expand)}
+                        theme={theme}
+                    >
+
+                    </Drawer>
+
+
+                    <Drawer
+                        title="Varia"
+                        expand={expandVariaDrawer}
+                        toggleExpand={() => setExpandVariaDrawer(expand => !expand)}
+                        theme={theme}
+                    >
+                        {about && (
+                            <hr />
+                        )}
+
+                        {about && (
+                            <li>
+                                <ButtonItem
+                                    theme={theme}
+                                    atClick={handleAboutClick}
+                                    icon={AboutIcon}
+                                    text="About eVideo"
+                                />
+                            </li>
+                        )}
+                    </Drawer>
                 </ul>
             </StyledSettingsMenuContainer>
         </StyledSettingsMenu>
