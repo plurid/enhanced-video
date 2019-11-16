@@ -2,6 +2,6 @@ import styled from 'styled-components';
 
 
 
-export const StyledVideo: any = styled.dvi`
+export const StyledVideo: any = styled.div`
 
 `;
