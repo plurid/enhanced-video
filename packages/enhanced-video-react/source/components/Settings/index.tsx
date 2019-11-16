@@ -9,7 +9,7 @@ import {
 
 import Context from '../../services/utilities/context';
 
-import SettingsIcon from '../../assets/settings-icon';
+import SettingsIcon from '../../assets/icons/settings-icon';
 
 import SettingsMenu from './components/SettingsMenu';
 

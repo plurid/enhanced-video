@@ -7,19 +7,19 @@ import React, {
 
 import Context from '../../../../services/utilities/context';
 
-import PlayIcon from '../../../../assets/play-icon';
-import PauseIcon from '../../../../assets/pause-icon';
-import VolumeHighIcon from '../../../../assets/volume-high-icon';
-import VolumeMiddleIcon from '../../../../assets/volume-middle-icon';
-import VolumeLowIcon from '../../../../assets/volume-low-icon';
-import VolumeMutedIcon from '../../../../assets/volume-muted-icon';
-import AboutIcon from '../../../../assets/about-icon';
-import AddTextIcon from '../../../../assets/add-text-icon';
-import SaveTextIcon from '../../../../assets/save-text-icon';
-import GetTextIcon from '../../../../assets/get-text-icon';
-import MarkTextTimeUntoggledIcon from '../../../../assets/mark-text-time-untoggled-icon';
-import MarkTextTimeToggledIcon from '../../../../assets/mark-text-time-toggled-icon';
-import ExtractTextIcon from '../../../../assets/extract-text-icon';
+import PlayIcon from '../../../../assets/icons/play-icon';
+import PauseIcon from '../../../../assets/icons/pause-icon';
+import VolumeHighIcon from '../../../../assets/icons/volume-high-icon';
+import VolumeMiddleIcon from '../../../../assets/icons/volume-middle-icon';
+import VolumeLowIcon from '../../../../assets/icons/volume-low-icon';
+import VolumeMutedIcon from '../../../../assets/icons/volume-muted-icon';
+import AboutIcon from '../../../../assets/icons/about-icon';
+import AddTextIcon from '../../../../assets/icons/add-text-icon';
+import SaveTextIcon from '../../../../assets/icons/save-text-icon';
+import GetTextIcon from '../../../../assets/icons/get-text-icon';
+import MarkTextTimeUntoggledIcon from '../../../../assets/icons/mark-text-time-untoggled-icon';
+import MarkTextTimeToggledIcon from '../../../../assets/icons/mark-text-time-toggled-icon';
+import ExtractTextIcon from '../../../../assets/icons/extract-text-icon';
 
 import { ABOUT_URL } from '../../../../data/constants/general';
 
