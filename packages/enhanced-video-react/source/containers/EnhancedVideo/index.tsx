@@ -446,6 +446,21 @@ const EnhancedVideo: React.FC<EnhancedVideoProperties> = (properties) => {
             case ACTIONS.SET_MESSAGE:
                 setMessage(action.payload);
                 return state;
+            case ACTIONS.PLAY:
+                playVideo();
+                return state;
+            case ACTIONS.PAUSE:
+                pauseVideo();
+                return state;
+            case ACTIONS.TIME:
+                handleVideoTime(action.payload);
+                return state;
+            case ACTIONS.MUTE:
+                toggleVideoVolume();
+                return state;
+            case ACTIONS.VOLUME:
+                handleVideoVolume(action.payload);
+                return state;
         }
     };
     const [_, dispatch] = useReducer(reducer, {});
