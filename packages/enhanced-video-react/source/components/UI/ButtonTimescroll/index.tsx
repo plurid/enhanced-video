@@ -9,7 +9,7 @@ import {
     StyledTimescrollTime,
 } from './styled';
 
-import Context from '../../../services/utilities/context';
+import Context from '../../../services/context';
 
 import { getWheelDirection } from '../../../services/utilities/wheelDirection';
 

@@ -10,7 +10,7 @@ import {
     VideoTextVersionTextline,
 } from '../../../../data/interfaces';
 
-import Context from '../../../../services/utilities/context';
+import Context from '../../../../services/context';
 
 import TextEditor from './components/TextEditor';
 // import ButtonMore from '../../../UI/ButtonMore';

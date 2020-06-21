@@ -9,7 +9,7 @@ import {
     StyledVerticalDivider,
 } from './styled';
 
-import Context from '../../../../../../services/utilities/context';
+import Context from '../../../../../../services/context';
 
 import ButtonDropdown from './components/ButtonDropdown';
 import ButtonIncrements from './components/ButtonIncrements';

@@ -4,7 +4,7 @@ import React, {
     useEffect,
 } from 'react';
 
-import Context from '../../services/utilities/context';
+import Context from '../../services/context';
 
 import {
     StyledTimescrollTime,

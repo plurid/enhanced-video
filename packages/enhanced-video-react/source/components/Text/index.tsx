@@ -10,7 +10,7 @@ import {
     VideoText,
 } from '../../data/interfaces';
 
-import Context from '../../services/utilities/context';
+import Context from '../../services/context';
 
 import Textarea from './components/Textarea';
 import Textline from './components/Textline';

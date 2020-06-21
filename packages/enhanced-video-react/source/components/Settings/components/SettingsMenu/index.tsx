@@ -6,7 +6,7 @@ import React, {
     useLayoutEffect,
 } from 'react';
 
-import Context from '../../../../services/utilities/context';
+import Context from '../../../../services/context';
 
 import PlayIcon from '../../../../assets/icons/play-icon';
 import PauseIcon from '../../../../assets/icons/pause-icon';

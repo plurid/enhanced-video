@@ -11,7 +11,7 @@ import {
     StyledTextSelectVideoNoRender,
 } from './styled';
 
-import Context from '../../services/utilities/context';
+import Context from '../../services/context';
 
 import {
     PLURID_DOMAIN_API,
