@@ -52,6 +52,8 @@ storiesOf(
         'plurid',
     );
 
+    const cover = text('Cover', '');
+
     return (
         <div
             style={{
@@ -64,6 +66,19 @@ storiesOf(
                 type="video/mp4"
 
                 mask={mask}
+                cover={cover}
+                // CoverPlay={() => (
+                //     <div
+                //         style={{
+                //             color: 'white',
+                //             display: 'grid',
+                //             placeContent: 'center',
+                //             height: '100%',
+                //         }}
+                //     >
+                //         play
+                //     </div>
+                // )}
             />
         </div>
     );

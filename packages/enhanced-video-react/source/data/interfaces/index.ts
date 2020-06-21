@@ -65,6 +65,7 @@ export interface EnhancedVideoProperties {
      * Cover image.
      */
     cover?: string;
+    CoverPlay?: React.FC<any>;
 
     // updateDebounce?: number;
     // moreLimit?: number;
@@ -98,6 +99,7 @@ export interface IContext {
     microview: boolean;
 
     cover: string | undefined;
+    CoverPlay: React.FC<any> | undefined;
 
     apiEndpoint: string;
     apiKey: string | undefined;
