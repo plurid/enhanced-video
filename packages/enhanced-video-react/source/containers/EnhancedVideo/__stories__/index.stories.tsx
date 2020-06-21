@@ -47,9 +47,9 @@ storiesOf(
         'Mask',
         {
             'Legacy': 'legacy',
-            'Deview': 'deview',
+            'Plurid': 'plurid',
         },
-        'deview',
+        'plurid',
     );
 
     return (

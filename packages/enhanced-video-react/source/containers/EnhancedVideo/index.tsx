@@ -55,6 +55,9 @@ import TimescrollText from '../../components/TimescrollText';
 //     ACTIONS,
 // } from '@plurid/text-select-video-react';
 
+import LegacyMask from '../Masks/Legacy';
+import PluridMask from '../Masks/Plurid';
+
 import Context from '../../services/utilities/context';
 
 // // test imports
@@ -62,12 +65,15 @@ import Context from '../../services/utilities/context';
 
 
 
-const EnhancedVideo: React.FC<EnhancedVideoProperties> = (properties) => {
-    /** Properties */
+const EnhancedVideo: React.FC<EnhancedVideoProperties> = (
+    properties,
+) => {
+    /** properties */
     const {
         src,
         type,
 
+        mask: maskProperty,
         theme,
         controls,
         height,
@@ -86,6 +92,8 @@ const EnhancedVideo: React.FC<EnhancedVideoProperties> = (properties) => {
 
         action,
     } = properties;
+
+    const mask = maskProperty ?? 'plurid';
 
 
 
@@ -605,6 +613,16 @@ const EnhancedVideo: React.FC<EnhancedVideoProperties> = (properties) => {
                     atLoadedMetadata={handleLoadedMetadata}
                     atEnded={handleVideoEnded}
                 />
+
+
+                {mask === 'legacy' && (
+                    <LegacyMask />
+                )}
+
+                {mask === 'plurid' && (
+                    <PluridMask />
+                )}
+
 
                 {loadedVideo && (
                     <Text />
