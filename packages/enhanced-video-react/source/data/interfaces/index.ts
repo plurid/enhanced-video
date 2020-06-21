@@ -61,6 +61,11 @@ export interface EnhancedVideoProperties {
      */
     mask?: 'legacy' | 'plurid';
 
+    /**
+     * Cover image.
+     */
+    cover?: string;
+
     // updateDebounce?: number;
     // moreLimit?: number;
     // getTextOnLoad?: boolean;
@@ -91,6 +96,8 @@ export interface IContext {
     about: boolean;
     loop: boolean;
     microview: boolean;
+
+    cover: string | undefined;
 
     apiEndpoint: string;
     apiKey: string | undefined;

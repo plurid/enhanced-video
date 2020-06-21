@@ -58,7 +58,7 @@ import TimescrollText from '../../components/TimescrollText';
 import LegacyMask from '../Masks/Legacy';
 import PluridMask from '../Masks/Plurid';
 
-import Context from '../../services/utilities/context';
+import Context from '../../services/context';
 
 // // test imports
 // import TEST_VIDEO_TEXT_DATA from '../../__spec-data__/data';
@@ -74,6 +74,7 @@ const EnhancedVideo: React.FC<EnhancedVideoProperties> = (
         type,
 
         mask: maskProperty,
+        cover,
         theme,
         controls,
         height,
@@ -498,6 +499,8 @@ const EnhancedVideo: React.FC<EnhancedVideoProperties> = (
         loop: loop === undefined ? false : loop,
         microview: microview === undefined ? false : microview,
 
+        cover,
+
         apiEndpoint: apiEndpoint || PLURID_DOMAIN_API,
         apiKey,
         userToken,
@@ -624,7 +627,7 @@ const EnhancedVideo: React.FC<EnhancedVideoProperties> = (
                 )}
 
 
-                {loadedVideo && (
+                {/* {loadedVideo && (
                     <Text />
                 )}
 
@@ -648,7 +651,7 @@ const EnhancedVideo: React.FC<EnhancedVideoProperties> = (
 
                 {showSpinner && (
                     <Spinner />
-                )}
+                )} */}
             </StyledEnhancedVideo>
         </Context.Provider>
     );
