@@ -43,6 +43,9 @@ import {
 import Video from '../../components/Video';
 // import Settings from '../../components/Settings';
 
+import Cover from '../../components/Cover';
+import CoverPlay from '../../components/CoverPlay';
+
 import Text from '../../components/Text';
 import Settings from '../../components/Settings';
 import Message from '../../components/Message';
@@ -75,6 +78,8 @@ const EnhancedVideo: React.FC<EnhancedVideoProperties> = (
 
         mask: maskProperty,
         cover,
+        CoverPlay: CoverPlayProperty,
+
         theme,
         controls,
         height,
@@ -500,6 +505,7 @@ const EnhancedVideo: React.FC<EnhancedVideoProperties> = (
         microview: microview === undefined ? false : microview,
 
         cover,
+        CoverPlay: CoverPlayProperty || CoverPlay,
 
         apiEndpoint: apiEndpoint || PLURID_DOMAIN_API,
         apiKey,
@@ -617,6 +623,7 @@ const EnhancedVideo: React.FC<EnhancedVideoProperties> = (
                     atEnded={handleVideoEnded}
                 />
 
+                <Cover />
 
                 {mask === 'legacy' && (
                     <LegacyMask />

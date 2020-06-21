@@ -4,6 +4,7 @@ import React, {
 
 import {
     StyledCover,
+    StyledCoverPlay,
 } from './styled';
 
 import Context from '../../services/context';
@@ -20,25 +21,54 @@ const Cover: React.FC<any> = () => {
 
     const {
         cover,
+        CoverPlay,
         videoTime,
-    } = context;
 
-    if (!cover) {
-        return (<></>);
-    }
+        playVideo,
+    } = context;
 
     if (videoTime !== 0) {
         return (<></>);
     }
 
+    const coverPlay = CoverPlay
+        ? (
+            <StyledCoverPlay
+                onClick={() => {
+                    playVideo();
+                }}
+            >
+                <CoverPlay />
+            </StyledCoverPlay>
+        ) : (
+            <></>
+        );
 
+    if (!cover && CoverPlay) {
+        return (
+            <>
+                {coverPlay}
+            </>
+        );
+    }
+
+    if (!cover) {
+        return (<></>);
+    }
+
+
+    /** render */
     return (
-        <StyledCover>
-            <img
-                src={cover}
-                alt="enhanced video cover"
-            />
-        </StyledCover>
+        <>
+            <StyledCover>
+                <img
+                    src={cover}
+                    alt="enhanced video cover"
+                />
+            </StyledCover>
+
+            {coverPlay}
+        </>
     );
 }
 

@@ -3,4 +3,29 @@ import styled from 'styled-components';
 
 
 export const StyledCover = styled.div`
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    cursor: pointer;
+    z-index: 9997;
+
+    img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        z-index: 9998;
+    }
+`;
+
+
+export const StyledCoverPlay = styled.div`
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    cursor: pointer;
+    z-index: 9999;
 `;
