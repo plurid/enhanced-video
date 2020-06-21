@@ -49,7 +49,7 @@ storiesOf(
             'Legacy': 'legacy',
             'Plurid': 'plurid',
         },
-        'plurid',
+        'legacy',
     );
 
     const cover = text('Cover', '');
