@@ -59,7 +59,7 @@ export interface EnhancedVideoProperties {
      *
      * Default: `'deview'`.
      */
-    interface?: 'legacy' | 'deview';
+    mask?: 'legacy' | 'deview';
 
     // updateDebounce?: number;
     // moreLimit?: number;

@@ -43,6 +43,14 @@ storiesOf(
 .add('basic', () => {
     // const theme = select(themeLabel, themeOptions, defaultThemeValue);
 
+    const mask = select(
+        'Mask',
+        {
+            'Legacy': 'legacy',
+            'Deview': 'deview',
+        },
+        'deview',
+    );
 
     return (
         <div
@@ -54,6 +62,8 @@ storiesOf(
             <EnhancedVideo
                 src="/assets/video.mov"
                 type="video/mp4"
+
+                mask={mask}
             />
         </div>
     );
