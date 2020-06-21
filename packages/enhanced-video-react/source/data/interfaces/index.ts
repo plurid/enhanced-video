@@ -54,6 +54,12 @@ export interface EnhancedVideoProperties {
     userToken?: string;
     deviewVideoID?: string;
 
+    /**
+     * Render the interface using the `'legacy'` or the `'deview'` concepts.
+     *
+     * Default: `'deview'`.
+     */
+    interface?: 'legacy' | 'deview';
 
     // updateDebounce?: number;
     // moreLimit?: number;

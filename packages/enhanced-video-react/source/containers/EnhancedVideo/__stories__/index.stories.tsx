@@ -53,7 +53,7 @@ storiesOf(
         >
             <EnhancedVideo
                 src="/assets/video.mov"
-                type="mov"
+                type="video/mp4"
             />
         </div>
     );
