@@ -67,6 +67,11 @@ export interface EnhancedVideoProperties {
     cover?: string;
     CoverPlay?: React.FC<any>;
 
+    /**
+     * Color used to accentuate features.
+     */
+    accent?: string;
+
     // updateDebounce?: number;
     // moreLimit?: number;
     // getTextOnLoad?: boolean;
@@ -100,6 +105,8 @@ export interface IContext {
 
     cover: string | undefined;
     CoverPlay: React.FC<any> | undefined;
+
+    accent?: string;
 
     apiEndpoint: string;
     apiKey: string | undefined;

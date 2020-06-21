@@ -80,6 +80,8 @@ const EnhancedVideo: React.FC<EnhancedVideoProperties> = (
         cover,
         CoverPlay: CoverPlayProperty,
 
+        accent,
+
         theme,
         controls,
         height,
@@ -503,6 +505,7 @@ const EnhancedVideo: React.FC<EnhancedVideoProperties> = (
         about: about === undefined ? true : about,
         loop: loop === undefined ? false : loop,
         microview: microview === undefined ? false : microview,
+        accent,
 
         cover,
         CoverPlay: CoverPlayProperty || CoverPlay,
