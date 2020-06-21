@@ -55,11 +55,11 @@ export interface EnhancedVideoProperties {
     deviewVideoID?: string;
 
     /**
-     * Render the interface using the `'legacy'` or the `'deview'` concepts.
+     * Render the interface using the `'legacy'` or the `'plurid'` concepts.
      *
-     * Default: `'deview'`.
+     * Default: `'plurid'`.
      */
-    mask?: 'legacy' | 'deview';
+    mask?: 'legacy' | 'plurid';
 
     // updateDebounce?: number;
     // moreLimit?: number;
