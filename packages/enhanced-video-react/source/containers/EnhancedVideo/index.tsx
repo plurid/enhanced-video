@@ -662,12 +662,11 @@ const EnhancedVideo: React.FC<EnhancedVideoProperties> = (
                     <PluridMask />
                 )}
 
-
-                {/* {loadedVideo && (
+                {loadedVideo && (
                     <Text />
                 )}
 
-                {loadedVideo && _controls && showSettingsButton && (
+                {/* {loadedVideo && _controls && showSettingsButton && (
                     <Settings />
                 )}
 
