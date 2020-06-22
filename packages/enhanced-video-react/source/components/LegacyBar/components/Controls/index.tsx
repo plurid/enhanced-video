@@ -51,13 +51,18 @@ const LegacyControls: React.FC<any> = () => {
     } = context;
 
 
+    /** computed */
     const durationTimeString = formatTimeString(videoDuration);
     const {
         hours: durationTimeHours,
         format: durationTimeFormat,
     } = durationTimeString;
 
-    const currentTimeFormat = formatTimeString(videoTime, true, durationTimeHours).format;
+    const currentTimeFormat = formatTimeString(
+        videoTime,
+        true,
+        durationTimeHours,
+    ).format;
 
 
     /** render */
