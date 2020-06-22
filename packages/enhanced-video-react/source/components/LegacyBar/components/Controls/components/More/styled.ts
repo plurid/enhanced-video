@@ -39,7 +39,36 @@ export const StyledLegacyMoreMenu = styled.div`
     position: absolute;
     width: 150px;
     height: 200px;
+    overflow: scroll;
     top: calc(-200px - 0.3rem);
     right: 0;
     background-color: hsla(0, 0%, 30%, 0.3);
+
+    ul {
+        min-width: 130px;
+        width: 150px;
+        display: flex;
+        flex-direction: column;
+        list-style: none;
+        user-select: none;
+        border-radius: 10px;
+        padding: 0;
+        margin: 0;
+        font-size: 13px;
+    }
+
+    ul li {
+        min-height: 32px;
+        color: ${props => props.theme.colorPrimary};
+    }
+
+    ul li:hover {
+        background-color: ${props => props.theme.backgroundColorSecondary};
+    }
+
+    hr {
+        border: none;
+        border-top: 1px solid ${props => props.theme.colorSecondary};
+        margin: 0;
+    }
 `;

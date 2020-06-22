@@ -34,7 +34,7 @@ import ButtonItem from '../../../UI/ButtonItem';
 import ButtonSliderItem from '../../../UI/ButtonSliderItem';
 import ButtonTimescroll from '../../../UI/ButtonTimescroll';
 
-import Drawer from './components/Drawer';
+import Drawer from '../../../Drawer';
 
 import {
     SETTINGS_MENU_HEIGHT_DIFFERENCE,

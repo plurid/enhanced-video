@@ -13,6 +13,11 @@ import {
     StyledLegacyMoreMenu,
 } from './styled';
 
+import DrawerText from '../../../../../Drawers/Text';
+import DrawerColor from '../../../../../Drawers/Color';
+import DrawerTopology from '../../../../../Drawers/Topology';
+import DrawerVaria from '../../../../../Drawers/Varia';
+
 import Context from '../../../../../../services/context';
 
 
@@ -47,7 +52,18 @@ const LegacyMore: React.FC<any> = () => {
             </StyledLegacyMoreIcon>
 
             {showMenu && (
-                <StyledLegacyMoreMenu>
+                <StyledLegacyMoreMenu
+                    theme={theme}
+                >
+                    <ul>
+                        <DrawerText />
+
+                        <DrawerColor />
+
+                        <DrawerTopology />
+
+                        <DrawerVaria />
+                    </ul>
                 </StyledLegacyMoreMenu>
             )}
         </StyledLegacyMoreContainer>
