@@ -23,21 +23,48 @@ const LegacyTimeline: React.FC<any> = () => {
     const {
         videoTime,
         videoDuration,
+
+        handleVideoTime,
     } = context;
 
 
     /** references */
-    const timeline = useRef(null);
+    const timeline = useRef<HTMLDivElement>(null);
 
 
     /** computed */
     const width = videoTime / videoDuration * 100;
 
 
+    /** handlers */
+    const setTime = (event: React.MouseEvent) => {
+        if (!timeline.current) {
+            return;
+        }
+
+        const clientX = event.clientX;
+
+        const {
+            width,
+            left,
+        } = timeline.current.getBoundingClientRect();
+
+        const timePercentage = (clientX - left) / width * 100;
+        const videoTime = timePercentage * videoDuration / 100;
+
+        if (videoTime < videoDuration) {
+            handleVideoTime(videoTime);
+        } else {
+            handleVideoTime(videoDuration);
+        }
+    }
+
+
     /** render */
     return (
         <StyledLegacyTimeline
             ref={timeline}
+            onClick={setTime}
         >
             <StyledCurrentTime
                 style={{
