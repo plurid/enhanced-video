@@ -21,9 +21,16 @@ const LegacyBar: React.FC<any> = () => {
         return (<></>);
     }
 
+    const {
+        mouseOver,
+    } = context;
+
+
     /** render */
     return (
-        <StyledLegacyBar>
+        <StyledLegacyBar
+            show={mouseOver}
+        >
             <LegacyTimeline />
 
             <LegacyControls />

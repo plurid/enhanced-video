@@ -113,6 +113,8 @@ export interface IContext {
     userToken: string | undefined;
     deviewVideoID: string | undefined;
 
+    mouseOver: boolean;
+
     setMessage: Dispatch<SetStateAction<string>>;
     setMessageTimed: (message: string, time: number) => void;
     setShowSpinner: Dispatch<SetStateAction<boolean>>;

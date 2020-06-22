@@ -112,6 +112,8 @@ const EnhancedVideo: React.FC<EnhancedVideoProperties> = (
 
 
     /** State */
+    const [mouseOver, setMouseOver] = useState(false);
+
     const [showSpinner, setShowSpinner] = useState(false);
     const [message, setMessage] = useState('');
 
@@ -515,6 +517,8 @@ const EnhancedVideo: React.FC<EnhancedVideoProperties> = (
         userToken,
         deviewVideoID,
 
+        mouseOver,
+
         setMessage,
         setMessageTimed,
         setShowSpinner,
@@ -606,8 +610,14 @@ const EnhancedVideo: React.FC<EnhancedVideoProperties> = (
             <StyledEnhancedVideo
                 theme={_theme}
                 tabIndex={0}
-                onMouseEnter={() => setShowSettingsButton(true)}
-                onMouseLeave={() => setShowSettingsButton(false)}
+                onMouseEnter={() => {
+                    setMouseOver(true);
+                    setShowSettingsButton(true);
+                }}
+                onMouseLeave={() => {
+                    setMouseOver(false);
+                    setShowSettingsButton(false)
+                }}
                 onMouseMove={() => !showSettingsButton ? setShowSettingsButton(true) : null}
                 ref={videoContainer}
             >
