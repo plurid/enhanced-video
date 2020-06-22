@@ -3,7 +3,7 @@ export const formatTimeString = (time: number): any => {
     const minutes = Math.floor((time - 3600 * hours) / 60);
     const seconds = Math.floor(time - (3600 * hours + 60 * minutes));
 
-    let hoursString = hours + '';
+    const hoursString = hours + '';
     let minutesString = '';
     let secondsString = '';
 
