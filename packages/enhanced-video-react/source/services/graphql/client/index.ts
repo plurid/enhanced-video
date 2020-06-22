@@ -1,32 +1,28 @@
+import fetch from 'cross-fetch';
+
 import { ApolloClient } from 'apollo-client';
+import { createHttpLink } from 'apollo-link-http';
 import { InMemoryCache } from 'apollo-cache-inmemory';
-import { HttpLink } from 'apollo-link-http';
-import { onError } from 'apollo-link-error';
-import { ApolloLink } from 'apollo-link';
 
 
 
-const apolloClient = (uri: string) => {
+const client = (
+    uri: string,
+) => {
+    const cache = new InMemoryCache();
+    const link = createHttpLink({
+        uri,
+        credentials: 'include',
+        fetch,
+    });
+
     const client = new ApolloClient({
-        link: ApolloLink.from([
-            onError(({ graphQLErrors, networkError }) => {
-                if (graphQLErrors)
-                    graphQLErrors.map(({ message, locations, path }) =>
-                    console.log(
-                        `[GraphQL error]: Message: ${message}, Location: ${locations}, Path: ${path}`,
-                    ),
-                    );
-                if (networkError) console.log(`[Network error]: ${networkError}`);
-            }),
-            new HttpLink({
-                uri,
-            })
-        ]),
-        cache: new InMemoryCache(),
+        link,
+        cache,
     });
 
     return client;
-};
+}
 
 
-export default apolloClient;
+export default client;
