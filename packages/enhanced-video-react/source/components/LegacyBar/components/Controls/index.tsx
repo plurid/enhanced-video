@@ -2,9 +2,10 @@ import React, {
     useContext,
 } from 'react';
 
-// import {
-
-// } from '@plurid/plurid-icons-react';
+import {
+    PluridIconFrame,
+    PluridIconMore,
+} from '@plurid/plurid-icons-react';
 
 import {
     StyledLegacyControls,
@@ -18,8 +19,13 @@ import {
     StyledMore,
 } from './styled';
 
-import playIcon from '../../../../assets/icons/play-icon';
-import pauseIcon from '../../../../assets/icons/pause-icon';
+import PlayIcon from '../../../../assets/icons/play-icon';
+import PauseIcon from '../../../../assets/icons/pause-icon';
+
+import VolumeHighIcon from '../../../../assets/icons/volume-high-icon';
+import VolumeMiddleIcon from '../../../../assets/icons/volume-middle-icon';
+import VolumeLowIcon from '../../../../assets/icons/volume-low-icon';
+import VolumeMutedIcon from '../../../../assets/icons/volume-muted-icon';
 
 import {
     formatTimeString,
@@ -42,6 +48,8 @@ const LegacyControls: React.FC<any> = () => {
         videoDuration,
         videoTime,
 
+        videoVolume,
+
         playVideo,
         pauseVideo,
     } = context;
@@ -49,6 +57,15 @@ const LegacyControls: React.FC<any> = () => {
 
     const durationTimeFormat = formatTimeString(videoDuration).format;
     const currentTimeFormat = formatTimeString(videoTime).format;
+
+
+    const VideoVolumeIcon = videoVolume == 0
+        ? VolumeMutedIcon
+        : videoVolume < 0.7
+            ? VolumeLowIcon
+            : videoVolume < 1.3
+                ? VolumeMiddleIcon
+                : VolumeHighIcon;
 
 
     /** render */
@@ -66,9 +83,9 @@ const LegacyControls: React.FC<any> = () => {
                 >
                     {videoPlaying
                     ? (
-                        <>{pauseIcon}</>
+                        <>{PauseIcon}</>
                     ) : (
-                        <>{playIcon}</>
+                        <>{PlayIcon}</>
                     )}
                 </StyledPlay>
 
@@ -77,17 +94,17 @@ const LegacyControls: React.FC<any> = () => {
                 </StyledTime>
 
                 <StyledVolume>
-                    volume
+                    {VideoVolumeIcon}
                 </StyledVolume>
             </StyledLegacyControlsLeft>
 
             <StyledLegacyControlsRight>
                 <StyledFullscreen>
-                    full screen
+                    <PluridIconFrame />
                 </StyledFullscreen>
 
                 <StyledMore>
-                    more
+                    <PluridIconMore />
                 </StyledMore>
             </StyledLegacyControlsRight>
         </StyledLegacyControls>
