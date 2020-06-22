@@ -62,7 +62,8 @@ storiesOf(
             }}
         >
             <EnhancedVideo
-                src="/assets/video.mov"
+                // src="/assets/video.mov"
+                src="/assets/long-video.mp4"
                 type="video/mp4"
 
                 mask={mask}
