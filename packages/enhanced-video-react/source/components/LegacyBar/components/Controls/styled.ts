@@ -19,35 +19,53 @@ export const StyledLegacyControls = styled.div`
 
 export const StyledLegacyControlsLeft = styled.div`
     display: flex;
+    align-items: center;
+    height: 100%;
 `;
 
 
 export const StyledLegacyControlsRight = styled.div`
     display: flex;
+    align-items: center;
+    height: 100%;
 `;
 
 
 export const StyledPlay = styled.div`
     padding: 0 0.6rem;
     cursor: pointer;
+    display: flex;
+    align-items: center;
+    height: 100%;
 `;
 
 
 export const StyledTime = styled.div`
     padding: 0 0.6rem;
+    user-select: none;
+    pointer-events: none;
 `;
 
 
 export const StyledVolume = styled.div`
     padding: 0 0.6rem;
+    display: flex;
+    align-items: center;
+    height: 100%;
 `;
 
 
 export const StyledFullscreen = styled.div`
     padding: 0 0.6rem;
+    display: flex;
+    align-items: center;
+    height: 100%;
 `;
 
 
 export const StyledMore = styled.div`
     padding: 0 0.6rem;
+    display: flex;
+    align-items: center;
+    height: 100%;
 `;
