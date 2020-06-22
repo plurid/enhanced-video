@@ -151,7 +151,7 @@ const TextEditor: React.FC<TextEditorProperties> = (properties) => {
                 type="fontSize"
                 changeValue={() => {}}
                 // changeValue={this.updateField}
-                value={data.fontSizePercentage * videoBoxDimensions.height / 100}
+                value={data.fontSizePercent * videoBoxDimensions.height / 100}
                 icon={FontSizeIcon}
             />
 
@@ -206,7 +206,7 @@ const TextEditor: React.FC<TextEditorProperties> = (properties) => {
                 type="letterSpacing"
                 changeValue={() => {}}
                 // changeValue={this.updateField}
-                value={data.letterSpacingPercentage * videoBoxDimensions.width / 100}
+                value={data.letterSpacingPercent * videoBoxDimensions.width / 100}
                 icon={LetterSpacingIcon}
                 step={0.1}
             />
@@ -216,7 +216,7 @@ const TextEditor: React.FC<TextEditorProperties> = (properties) => {
                 type="wordSpacing"
                 changeValue={() => {}}
                 // changeValue={this.updateField}
-                value={data.wordSpacingPercentage * videoBoxDimensions.width / 100}
+                value={data.wordSpacingPercent * videoBoxDimensions.width / 100}
                 icon={WordSpacingIcon}
                 step={0.1}
             />

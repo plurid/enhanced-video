@@ -5,12 +5,15 @@ export interface VideoTextVersion {
     startTime: number;
     endTime: number;
 
-    xCoordPercentage: number;
-    yCoordPercentage: number;
+    xPercent: number;
+    yPercent: number;
 
-    perspective: string;
-    rotation: string;
-    skew: string;
+    perspective: number;
+    xRotation: number;
+    yRotation: number;
+    zRotation: number;
+    xSkew: number;
+    ySkew: number;
 
     viewable: boolean;
     alwaysShow: boolean;
@@ -31,10 +34,10 @@ export interface VideoTextVersionTextline extends VideoTextVersion {
     fontWeight: string;
     fontStyle: string;
     fontFamily: string;
-    fontSizePercentage: number;
-    letterSpacingPercentage: number;
-    wordSpacingPercentage: number;
-    lineHeightPercentage: number;
+    fontSizePercent: number;
+    letterSpacingPercent: number;
+    wordSpacingPercent: number;
+    lineHeightPercent: number;
 
     content: string;
 
