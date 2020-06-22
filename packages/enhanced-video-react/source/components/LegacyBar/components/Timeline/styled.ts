@@ -10,11 +10,22 @@ export const StyledLegacyTimeline = styled.div`
 `;
 
 
-export const StyledCurrentTime = styled.div`
+export const StyledCurrentTime: any = styled.div`
     position: absolute;
     top: 0;
     left: 0;
     bottom: 0;
     pointer-events: none;
-    background: white;
+
+    background-color: ${
+        ({
+            accent,
+        }: any) => {
+            if (accent) {
+                return accent;
+            }
+
+            return 'white';
+        }
+    };
 `;

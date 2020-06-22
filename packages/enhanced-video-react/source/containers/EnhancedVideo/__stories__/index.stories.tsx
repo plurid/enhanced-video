@@ -52,7 +52,21 @@ storiesOf(
         'legacy',
     );
 
+    const legacyToolbarControls = select(
+        'Legacy Toolbar Controls',
+        {
+            'ALL': 'ALL',
+            'PLAY_PAUSE': 'PLAY_PAUSE',
+            'TIME': 'TIME',
+            'VOLUME': 'VOLUME',
+            'FULLSCREEN': 'FULLSCREEN',
+            'MORE': 'MORE',
+        },
+        'ALL',
+    );
+
     const cover = text('Cover', '');
+    const accent = text('Accent', '');
 
     return (
         <div
@@ -80,6 +94,9 @@ storiesOf(
                 //         play
                 //     </div>
                 // )}
+                accent={accent}
+
+                legacyToolbarControls={[legacyToolbarControls]}
             />
         </div>
     );

@@ -72,6 +72,14 @@ export interface EnhancedVideoProperties {
      */
     accent?: string;
 
+    /**
+     * Set the available features for the legacy toolbar.
+     * `'ALL' | 'PLAY_PAUSE' | 'TIME' | 'VOLUME' | 'FULLSCREEN' | 'MENU'`
+     *
+     * Default `['ALL']`.
+     */
+    legacyToolbarControls?: LegacyToolbarControls[];
+
     // updateDebounce?: number;
     // moreLimit?: number;
     // getTextOnLoad?: boolean;
@@ -83,6 +91,15 @@ export interface Action {
     type: string;
     payload?: any;
 }
+
+
+export type LegacyToolbarControls =
+    | 'ALL'
+    | 'PLAY_PAUSE'
+    | 'TIME'
+    | 'VOLUME'
+    | 'FULLSCREEN'
+    | 'MORE';
 
 
 export interface QualitySource {
@@ -107,6 +124,7 @@ export interface IContext {
     CoverPlay: React.FC<any> | undefined;
 
     accent?: string;
+    legacyToolbarControls: LegacyToolbarControls[];
 
     apiEndpoint: string;
     apiKey: string | undefined;

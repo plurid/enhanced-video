@@ -1,4 +1,6 @@
-import React from 'react';
+import React, {
+    useState,
+} from 'react';
 
 import {
     Theme,
@@ -22,6 +24,7 @@ export interface SliderProperties {
     min?: number;
     max?: number;
     step?: number;
+    accent?: string;
 }
 
 const Slider: React.FC<SliderProperties> = (
@@ -38,13 +41,22 @@ const Slider: React.FC<SliderProperties> = (
         min,
         max,
         step,
+        accent,
     } = properties;
+
+
+    /** state */
+    const [mouseOver, setMouseOver] = useState(false);
 
 
     /** render */
     return (
         <StyledSlider
             theme={theme}
+            hovered={mouseOver}
+            accent={accent}
+            onMouseEnter={() => setMouseOver(true)}
+            onMouseLeave={() => setMouseOver(false)}
         >
             <input
                 type="range"
