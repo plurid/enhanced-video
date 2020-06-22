@@ -53,6 +53,8 @@ const LegacyControls: React.FC<any> = () => {
 
         playVideo,
         pauseVideo,
+
+        toggleFullscreen,
     } = context;
 
 
@@ -98,7 +100,9 @@ const LegacyControls: React.FC<any> = () => {
             </StyledLegacyControlsLeft>
 
             <StyledLegacyControlsRight>
-                <StyledFullscreen>
+                <StyledFullscreen
+                    onClick={() => toggleFullscreen()}
+                >
                     <PluridIconFrame />
                 </StyledFullscreen>
 

@@ -104,14 +104,12 @@ const EnhancedVideo: React.FC<EnhancedVideoProperties> = (
     const mask = maskProperty ?? 'plurid';
 
 
-
-    /** References */
+    /** references */
     const videoContainer = useRef<HTMLDivElement>(null);
     const video = useRef<HTMLVideoElement>(null);
 
 
-
-    /** State */
+    /** state */
     const [mouseOver, setMouseOver] = useState(false);
 
     const [showSpinner, setShowSpinner] = useState(false);
@@ -165,8 +163,7 @@ const EnhancedVideo: React.FC<EnhancedVideoProperties> = (
     const [brightnessValue, setBrightnessValue] = useState(100);
 
 
-
-    /** Methods */
+    /** handlers */
     const setMessageTimed = (
         message: string,
         time: number,
@@ -349,6 +346,19 @@ const EnhancedVideo: React.FC<EnhancedVideoProperties> = (
         setMessage('Getting the Video Text');
     }
 
+    const toggleFullscreen = () => {
+        if (videoContainer.current) {
+            if (document.fullscreen) {
+                document.exitFullscreen();
+                return;
+            }
+
+            videoContainer.current.requestFullscreen();
+        }
+    }
+
+
+    /** effects */
     useEffect(() => {
         computeVideoBoxDimensions();
     }, [videoDimensions]);
@@ -518,6 +528,8 @@ const EnhancedVideo: React.FC<EnhancedVideoProperties> = (
         deviewVideoID,
 
         mouseOver,
+
+        toggleFullscreen,
 
         setMessage,
         setMessageTimed,

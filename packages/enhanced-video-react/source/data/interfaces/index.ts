@@ -115,6 +115,8 @@ export interface IContext {
 
     mouseOver: boolean;
 
+    toggleFullscreen: () => void;
+
     setMessage: Dispatch<SetStateAction<string>>;
     setMessageTimed: (message: string, time: number) => void;
     setShowSpinner: Dispatch<SetStateAction<boolean>>;
