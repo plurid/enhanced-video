@@ -2,6 +2,10 @@ import React, {
     useContext,
 } from 'react';
 
+// import {
+
+// } from '@plurid/plurid-icons-react';
+
 import {
     StyledLegacyControls,
     StyledLegacyControlsLeft,
@@ -17,6 +21,10 @@ import {
 import playIcon from '../../../../assets/icons/play-icon';
 import pauseIcon from '../../../../assets/icons/pause-icon';
 
+import {
+    formatTimeString,
+} from '../../../../services/utilities/time';
+
 import Context from '../../../../services/context';
 
 
@@ -31,9 +39,16 @@ const LegacyControls: React.FC<any> = () => {
 
     const {
         videoPlaying,
+        videoDuration,
+        videoTime,
+
         playVideo,
         pauseVideo,
     } = context;
+
+
+    const durationTimeFormat = formatTimeString(videoDuration).format;
+    const currentTimeFormat = formatTimeString(videoTime).format;
 
 
     /** render */
@@ -58,7 +73,7 @@ const LegacyControls: React.FC<any> = () => {
                 </StyledPlay>
 
                 <StyledTime>
-                    time
+                    {currentTimeFormat} / {durationTimeFormat}
                 </StyledTime>
 
                 <StyledVolume>
