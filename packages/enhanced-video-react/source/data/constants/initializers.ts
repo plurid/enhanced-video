@@ -20,12 +20,15 @@ export const createNewText = (
         startTime: videoTime,
         endTime: videoTime + 10,
 
-        xCoordPercentage: 5,
-        yCoordPercentage: 5,
+        xPercent: 5,
+        yPercent: 5,
 
-        perspective: '',
-        rotation: '',
-        skew: '',
+        perspective: 0,
+        xRotation: 0,
+        yRotation: 0,
+        zRotation: 0,
+        xSkew: 0,
+        ySkew: 0,
 
         viewable: false,
         alwaysShow: false,
@@ -35,10 +38,10 @@ export const createNewText = (
         fontWeight: 'normal',
         fontStyle: 'normal',
         fontFamily: 'Arial',
-        fontSizePercentage: 5,
-        letterSpacingPercentage: 0,
-        wordSpacingPercentage: 0,
-        lineHeightPercentage: 0,
+        fontSizePercent: 5,
+        letterSpacingPercent: 0,
+        wordSpacingPercent: 0,
+        lineHeightPercent: 0,
 
         content: 'New Text',
 

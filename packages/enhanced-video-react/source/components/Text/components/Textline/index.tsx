@@ -97,20 +97,20 @@ const Textline: React.FC<TextlineProperties> = (properties) => {
 
     useEffect(() => {
         if (currentVersion) {
-            setTextXCoord(currentVersion.xCoordPercentage * videoBoxDimensions.width / 100 + 'px');
-            setTextYCoord(currentVersion.yCoordPercentage * videoBoxDimensions.height / 100 + 'px');
+            setTextXCoord(currentVersion.xPercent * videoBoxDimensions.width / 100 + 'px');
+            setTextYCoord(currentVersion.yPercent * videoBoxDimensions.height / 100 + 'px');
 
             setFontWeight(currentVersion.fontWeight);
             setFontStyle(currentVersion.fontStyle);
             setFontFamily(currentVersion.fontFamily);
-            setFontSize(currentVersion.fontSizePercentage * videoBoxDimensions.height / 100 + 'px');
-            setLetterSpacing(currentVersion.letterSpacingPercentage * videoBoxDimensions.width / 100 + 'px');
-            setWordSpacing(currentVersion.wordSpacingPercentage * videoBoxDimensions.width / 100 + 'px');
+            setFontSize(currentVersion.fontSizePercent * videoBoxDimensions.height / 100 + 'px');
+            setLetterSpacing(currentVersion.letterSpacingPercent * videoBoxDimensions.width / 100 + 'px');
+            setWordSpacing(currentVersion.wordSpacingPercent * videoBoxDimensions.width / 100 + 'px');
 
-            if (currentVersion.lineHeightPercentage === 0) {
+            if (currentVersion.lineHeightPercent === 0) {
                 setLineHeight('auto');
             } else {
-                setLineHeight(currentVersion.lineHeightPercentage * videoBoxDimensions.height / 100 + 'px');
+                setLineHeight(currentVersion.lineHeightPercent * videoBoxDimensions.height / 100 + 'px');
             }
         }
     }, [
