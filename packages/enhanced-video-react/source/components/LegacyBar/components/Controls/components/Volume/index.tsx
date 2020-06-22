@@ -14,6 +14,8 @@ import VolumeMiddleIcon from '../../../../../../assets/icons/volume-middle-icon'
 import VolumeLowIcon from '../../../../../../assets/icons/volume-low-icon';
 import VolumeMutedIcon from '../../../../../../assets/icons/volume-muted-icon';
 
+import Slider from '../../../../../Slider';
+
 import Context from '../../../../../../services/context';
 
 
@@ -27,7 +29,10 @@ const LegacyVolume: React.FC<any> = () => {
     }
 
     const {
+        theme,
+
         videoVolume,
+        handleVideoVolume,
     } = context;
 
     const VideoVolumeIcon = videoVolume == 0
@@ -55,7 +60,17 @@ const LegacyVolume: React.FC<any> = () => {
 
             {showSlider && (
                 <StyledVolumeSlider>
-                    slider
+                    <Slider
+                        value={videoVolume * 100}
+                        atChange={(event) => {
+                            const value = (parseInt(event.target.value) || 0) / 100;
+                            handleVideoVolume(value);
+                        }}
+                        theme={theme}
+                        min={0}
+                        max={200}
+                        step={1}
+                    />
                 </StyledVolumeSlider>
             )}
         </StyledLegacyVolume>
