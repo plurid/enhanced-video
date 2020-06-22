@@ -4,7 +4,6 @@ import React, {
 
 import {
     PluridIconFrame,
-    PluridIconMore,
 } from '@plurid/plurid-icons-react';
 
 import {
@@ -15,13 +14,13 @@ import {
     StyledPlay,
     StyledTime,
     StyledFullscreen,
-    StyledMore,
 } from './styled';
 
 import PlayIcon from '../../../../assets/icons/play-icon';
 import PauseIcon from '../../../../assets/icons/pause-icon';
 
-import Volume from './components/Volume';
+import LegacyVolume from './components/Volume';
+import LegacyMore from './components/More';
 
 import {
     formatTimeString,
@@ -90,7 +89,7 @@ const LegacyControls: React.FC<any> = () => {
                     {currentTimeFormat} / {durationTimeFormat}
                 </StyledTime>
 
-                <Volume />
+                <LegacyVolume />
             </StyledLegacyControlsLeft>
 
             <StyledLegacyControlsRight>
@@ -100,9 +99,7 @@ const LegacyControls: React.FC<any> = () => {
                     <PluridIconFrame />
                 </StyledFullscreen>
 
-                <StyledMore>
-                    <PluridIconMore />
-                </StyledMore>
+                <LegacyMore />
             </StyledLegacyControlsRight>
         </StyledLegacyControls>
     );

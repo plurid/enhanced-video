@@ -62,16 +62,3 @@ export const StyledFullscreen = styled.div`
         background: hsla(0, 0%, 30%, 0.3);
     }
 `;
-
-
-export const StyledMore = styled.div`
-    padding: 0 0.6rem;
-    cursor: pointer;
-    display: flex;
-    align-items: center;
-    height: 100%;
-
-    :hover {
-        background: hsla(0, 0%, 30%, 0.3);
-    }
-`;
