@@ -7,7 +7,8 @@ export const StyledButtonItem = styled.div`
     align-items: center;
     padding: 7px 10px;
     cursor: pointer;
-    height: 32px;
+    /* height: 32px; */
+    height: 20px;
 `;
 
 export const StyledButtonItemIcon = styled.div`

@@ -654,16 +654,16 @@ const EnhancedVideo: React.FC<EnhancedVideoProperties> = (
 
                 <Cover />
 
+                {loadedVideo && (
+                    <Text />
+                )}
+
                 {mask === 'legacy' && (
                     <LegacyMask />
                 )}
 
                 {mask === 'plurid' && (
                     <PluridMask />
-                )}
-
-                {loadedVideo && (
-                    <Text />
                 )}
 
                 {/* {loadedVideo && _controls && showSettingsButton && (

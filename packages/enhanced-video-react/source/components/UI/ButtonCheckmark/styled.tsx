@@ -8,7 +8,8 @@ export const StyledButtonCheckmark = styled.div`
     align-items: center;
     justify-content: space-between;
     padding: 7px 10px;
-    height: 32px;
+    /* height: 32px; */
+    height: 20px;
 `;
 
 export const StyledButtonCheckmarkCheckbox: any = styled.div`
