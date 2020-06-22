@@ -2,7 +2,11 @@ import styled from 'styled-components';
 
 
 
-export const StyledLegacyBar = styled.div`
+export interface IStyledLegacyBar {
+    show: boolean;
+}
+
+export const StyledLegacyBar = styled.div<IStyledLegacyBar>`
     position: absolute;
     bottom: 0;
     left: 0;
@@ -10,6 +14,19 @@ export const StyledLegacyBar = styled.div`
     height: 2.5rem;
     background: hsla(0, 0%, 10%, 0.3);
     color: white;
+    transition: transform 150ms linear;
+
+    transform: ${
+        ({
+            show,
+        }: IStyledLegacyBar) => {
+            if (show) {
+                return 'initial';
+            }
+
+            return 'translateY(2.2rem)';
+        }
+    };
 
     display: grid;
     grid-template-columns: 1fr;
