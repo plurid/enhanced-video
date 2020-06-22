@@ -22,6 +22,7 @@ const LegacyBar: React.FC<any> = () => {
     }
 
     const {
+        videoTime,
         mouseOver,
     } = context;
 
@@ -29,7 +30,7 @@ const LegacyBar: React.FC<any> = () => {
     /** render */
     return (
         <StyledLegacyBar
-            show={mouseOver}
+            show={mouseOver && videoTime !== 0}
         >
             <LegacyTimeline />
 
