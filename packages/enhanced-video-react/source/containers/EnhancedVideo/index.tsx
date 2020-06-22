@@ -38,6 +38,7 @@ import {
     VideoContainerDimensions,
     VideoBoxDimensions,
     VideoText,
+    LegacyToolbarControls,
 } from '../../data/interfaces';
 
 import Video from '../../components/Video';
@@ -81,6 +82,7 @@ const EnhancedVideo: React.FC<EnhancedVideoProperties> = (
         CoverPlay: CoverPlayProperty,
 
         accent,
+        legacyToolbarControls: legacyToolbarControlsProperty,
 
         theme,
         controls,
@@ -102,6 +104,7 @@ const EnhancedVideo: React.FC<EnhancedVideoProperties> = (
     } = properties;
 
     const mask = maskProperty ?? 'plurid';
+    const legacyToolbarControls: LegacyToolbarControls[] = legacyToolbarControlsProperty || ['ALL'];
 
 
     /** references */
@@ -518,6 +521,7 @@ const EnhancedVideo: React.FC<EnhancedVideoProperties> = (
         loop: loop === undefined ? false : loop,
         microview: microview === undefined ? false : microview,
         accent,
+        legacyToolbarControls,
 
         cover,
         CoverPlay: CoverPlayProperty || CoverPlay,

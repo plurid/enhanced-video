@@ -10,12 +10,24 @@ export const StyledLegacyMoreContainer = styled.div`
 `;
 
 
-export const StyledLegacyMoreIcon = styled.div`
+export const StyledLegacyMoreIcon: any = styled.div`
     padding: 0 0.6rem;
     cursor: pointer;
     display: flex;
     align-items: center;
     height: 100%;
+
+    background-color: ${
+        ({
+            active,
+        }: any) => {
+            if (active) {
+                return 'hsla(0, 0%, 30%, 0.3)';
+            }
+
+            return 'initial';
+        }
+    };
 
     :hover {
         background: hsla(0, 0%, 30%, 0.3);

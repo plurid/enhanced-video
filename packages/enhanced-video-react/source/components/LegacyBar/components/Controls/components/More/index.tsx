@@ -38,6 +38,7 @@ const LegacyMore: React.FC<any> = () => {
     return (
         <StyledLegacyMoreContainer>
             <StyledLegacyMoreIcon
+                active={showMenu}
                 onClick={() => {
                     setShowMenu(show => !show);
                 }}

@@ -47,6 +47,8 @@ const LegacyControls: React.FC<any> = () => {
         pauseVideo,
 
         toggleFullscreen,
+
+        legacyToolbarControls,
     } = context;
 
 
@@ -68,38 +70,53 @@ const LegacyControls: React.FC<any> = () => {
     return (
         <StyledLegacyControls>
             <StyledLegacyControlsLeft>
-                <StyledPlay
-                    onClick={() => {
-                        if (videoPlaying) {
-                            pauseVideo();
-                        } else {
-                            playVideo();
-                        }
-                    }}
-                >
-                    {videoPlaying
-                    ? (
-                        <>{PauseIcon}</>
-                    ) : (
-                        <>{PlayIcon}</>
-                    )}
-                </StyledPlay>
+                {(legacyToolbarControls.includes('ALL') || legacyToolbarControls.includes('PLAY_PAUSE'))
+                && (
+                    <StyledPlay
+                        onClick={() => {
+                            if (videoPlaying) {
+                                pauseVideo();
+                            } else {
+                                playVideo();
+                            }
+                        }}
+                    >
+                        {videoPlaying
+                        ? (
+                            <>{PauseIcon}</>
+                        ) : (
+                            <>{PlayIcon}</>
+                        )}
+                    </StyledPlay>
+                )}
 
-                <StyledTime>
-                    {currentTimeFormat} / {durationTimeFormat}
-                </StyledTime>
+                {(legacyToolbarControls.includes('ALL') || legacyToolbarControls.includes('TIME'))
+                && (
+                    <StyledTime>
+                        {currentTimeFormat} / {durationTimeFormat}
+                    </StyledTime>
+                )}
 
-                <LegacyVolume />
+                {(legacyToolbarControls.includes('ALL') || legacyToolbarControls.includes('VOLUME'))
+                && (
+                    <LegacyVolume />
+                )}
             </StyledLegacyControlsLeft>
 
             <StyledLegacyControlsRight>
-                <StyledFullscreen
-                    onClick={() => toggleFullscreen()}
-                >
-                    <PluridIconFrame />
-                </StyledFullscreen>
+                {(legacyToolbarControls.includes('ALL') || legacyToolbarControls.includes('FULLSCREEN'))
+                && (
+                    <StyledFullscreen
+                        onClick={() => toggleFullscreen()}
+                    >
+                        <PluridIconFrame />
+                    </StyledFullscreen>
+                )}
 
-                <LegacyMore />
+                {(legacyToolbarControls.includes('ALL') || legacyToolbarControls.includes('MORE'))
+                && (
+                    <LegacyMore />
+                )}
             </StyledLegacyControlsRight>
         </StyledLegacyControls>
     );

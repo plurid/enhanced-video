@@ -25,6 +25,8 @@ const LegacyTimeline: React.FC<any> = () => {
         videoDuration,
 
         handleVideoTime,
+
+        accent,
     } = context;
 
 
@@ -67,6 +69,7 @@ const LegacyTimeline: React.FC<any> = () => {
             onClick={setTime}
         >
             <StyledCurrentTime
+                accent={accent}
                 style={{
                     width: width + '%',
                 }}

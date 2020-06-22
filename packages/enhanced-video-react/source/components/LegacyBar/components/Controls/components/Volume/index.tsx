@@ -33,8 +33,12 @@ const LegacyVolume: React.FC<any> = () => {
 
         videoVolume,
         handleVideoVolume,
+
+        accent,
     } = context;
 
+
+    /** computed */
     const VideoVolumeIcon = videoVolume == 0
         ? VolumeMutedIcon
         : videoVolume < 0.7
@@ -70,6 +74,7 @@ const LegacyVolume: React.FC<any> = () => {
                         min={0}
                         max={200}
                         step={1}
+                        accent={accent}
                     />
                 </StyledVolumeSlider>
             )}
