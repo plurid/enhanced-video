@@ -14,7 +14,6 @@ import {
 
     StyledPlay,
     StyledTime,
-    StyledVolume,
     StyledFullscreen,
     StyledMore,
 } from './styled';
@@ -26,6 +25,8 @@ import VolumeHighIcon from '../../../../assets/icons/volume-high-icon';
 import VolumeMiddleIcon from '../../../../assets/icons/volume-middle-icon';
 import VolumeLowIcon from '../../../../assets/icons/volume-low-icon';
 import VolumeMutedIcon from '../../../../assets/icons/volume-muted-icon';
+
+import Volume from './components/Volume';
 
 import {
     formatTimeString,
@@ -93,9 +94,7 @@ const LegacyControls: React.FC<any> = () => {
                     {currentTimeFormat} / {durationTimeFormat}
                 </StyledTime>
 
-                <StyledVolume>
-                    {VideoVolumeIcon}
-                </StyledVolume>
+                <Volume />
             </StyledLegacyControlsLeft>
 
             <StyledLegacyControlsRight>

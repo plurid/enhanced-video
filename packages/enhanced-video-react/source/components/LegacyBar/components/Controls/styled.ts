@@ -37,6 +37,10 @@ export const StyledPlay = styled.div`
     display: flex;
     align-items: center;
     height: 100%;
+
+    :hover {
+        background: hsla(0, 0%, 30%, 0.3);
+    }
 `;
 
 
@@ -47,25 +51,27 @@ export const StyledTime = styled.div`
 `;
 
 
-export const StyledVolume = styled.div`
-    padding: 0 0.6rem;
-    display: flex;
-    align-items: center;
-    height: 100%;
-`;
-
-
 export const StyledFullscreen = styled.div`
     padding: 0 0.6rem;
+    cursor: pointer;
     display: flex;
     align-items: center;
     height: 100%;
+
+    :hover {
+        background: hsla(0, 0%, 30%, 0.3);
+    }
 `;
 
 
 export const StyledMore = styled.div`
     padding: 0 0.6rem;
+    cursor: pointer;
     display: flex;
     align-items: center;
     height: 100%;
+
+    :hover {
+        background: hsla(0, 0%, 30%, 0.3);
+    }
 `;
