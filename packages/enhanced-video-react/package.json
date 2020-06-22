@@ -8,7 +8,7 @@
         "html",
         "react"
     ],
-    "author": "Jan Cavel <caveljan@plurid.com> (https://plurid.com)",
+    "author": "ly3xqhl8g9 <ly3xqhl8g9@plurid.com> (https://plurid.com)",
     "license": "MIT",
     "repository": {
         "type": "git",
@@ -52,9 +52,8 @@
         "@plurid/plurid-ui-react": ">=0",
         "apollo-cache-inmemory": ">=1.6",
         "apollo-client": ">=2.6",
-        "apollo-link": ">=1.2",
-        "apollo-link-error": ">=1.1",
         "apollo-link-http": ">=1.5",
+        "cross-fetch": ">=3",
         "graphql": ">=14",
         "graphql-tag": ">=2.10",
         "react": ">=16",
@@ -86,15 +85,13 @@
         "@types/styled-components": "^5.1.0",
         "@typescript-eslint/eslint-plugin": "^3.4.0",
         "@typescript-eslint/parser": "^3.4.0",
-        "apollo-cache": "^1.3.5",
         "apollo-cache-inmemory": "^1.6.6",
         "apollo-client": "^2.6.10",
-        "apollo-link": "^1.2.14",
-        "apollo-link-error": "^1.1.13",
         "apollo-link-http": "^1.5.17",
         "apollo-utilities": "^1.3.4",
         "awesome-typescript-loader": "^5.2.1",
         "babel-loader": "^8.1.0",
+        "cross-fetch": "^3.0.5",
         "enzyme": "^3.11.0",
         "enzyme-adapter-react-16": "^1.15.2",
         "eslint": "^7.3.0",
@@ -116,33 +113,5 @@
         "styled-components": "^5.1.1",
         "ts-jest": "^26.1.1",
         "typescript": "^3.9.5"
-    },
-    "jest": {
-        "transform": {
-            ".(ts|tsx)": "ts-jest"
-        },
-        "testEnvironment": "node",
-        "testRegex": "(/__specs__/.*|\\.(test|spec))\\.(ts|tsx|js)$",
-        "moduleFileExtensions": [
-            "ts",
-            "tsx",
-            "js"
-        ],
-        "collectCoverage": false,
-        "coveragePathIgnorePatterns": [
-            "/node_modules/",
-            "/distribution/"
-        ],
-        "coverageThreshold": {
-            "global": {
-                "branches": 90,
-                "functions": 95,
-                "lines": 95,
-                "statements": 95
-            }
-        },
-        "collectCoverageFrom": [
-            "source/*.{js,ts}"
-        ]
     }
 }
