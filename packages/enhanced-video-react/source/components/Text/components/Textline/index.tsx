@@ -578,6 +578,7 @@ const Textline: React.FC<TextlineProperties> = (
                     setDraggable={setDraggable}
 
                     positions={editorPositions}
+                    fullWidth={editorFullWidth}
                 />
             )}
         </StyledTextItem>

@@ -104,6 +104,7 @@ const EnhancedVideo: React.FC<EnhancedVideoProperties> = (
         mask: maskProperty,
         cover,
         CoverPlay: CoverPlayProperty,
+        transparentUI: transparentUIProperty,
 
         accent,
         legacyToolbarControls: legacyToolbarControlsProperty,
@@ -135,6 +136,8 @@ const EnhancedVideo: React.FC<EnhancedVideoProperties> = (
     const generator = generatorProperty ?? false;
     const development = developmentProperty ?? false;
     const silent = silentProperty ?? false;
+
+    const transparentUI = transparentUIProperty ?? true;
 
     const settingsDrawers = settingsDrawersProperty || ['ALL'];
     const textDrawer = textDrawerProperty || ['ALL'];
@@ -850,6 +853,8 @@ const EnhancedVideo: React.FC<EnhancedVideoProperties> = (
 
         cover,
         CoverPlay: CoverPlayProperty || CoverPlay,
+
+        transparentUI,
 
         apiEndpoint,
         apiKey,
