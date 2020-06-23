@@ -204,6 +204,8 @@ const Textline: React.FC<TextlineProperties> = (
         event: React.SyntheticEvent<HTMLDivElement>,
     ) => {
         const value = event.currentTarget.innerText;
+        console.log(value);
+
         if (value !== '') {
             updateVersionContent(data.id, value);
         } else {
@@ -525,8 +527,8 @@ const Textline: React.FC<TextlineProperties> = (
                     draggingMode={dragging}
                     editableText={editableText}
                     revealedText={revealedText}
-                    viewable={currentVersion && currentVersion.viewable}
-                    color={currentVersion && currentVersion.color}
+                    viewable={currentVersion.viewable}
+                    color={currentVersion.color}
                     style={{
                         transform: `rotateX(${rotationX}) rotateY(${rotationY}) rotateZ(${rotationZ}) skew(${skewX}, ${skewY})`,
                     }}
@@ -545,7 +547,7 @@ const Textline: React.FC<TextlineProperties> = (
                                 toggledEditable={editableText}
                                 contentEditable={editable}
                                 suppressContentEditableWarning={true}
-                                onInput={(event: React.SyntheticEvent<HTMLDivElement>) => handleChange(event)}
+                                onInput={handleChange}
                             >
                                 {textValue}
                             </StyledEditableDiv>
@@ -555,7 +557,7 @@ const Textline: React.FC<TextlineProperties> = (
                             toggledEditable={editableText}
                             contentEditable={editable}
                             suppressContentEditableWarning={true}
-                            onInput={(event: React.SyntheticEvent<HTMLDivElement>) => handleChange(event)}
+                            onInput={handleChange}
                         >
                             {textValue}
                         </StyledEditableDiv>
