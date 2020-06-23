@@ -6,21 +6,26 @@ import React, {
 } from 'react';
 
 import {
-    VideoText,
-    VideoTextVersionTextline,
-} from '../../../../data/interfaces';
-
-import Context from '../../../../services/context';
-
-import TextEditor from './components/TextEditor';
-// import ButtonMore from '../../../UI/ButtonMore';
-
-import {
     StyledTextItem,
     StyledTextContent,
     StyledTextContentLink,
     StyledEditableDiv,
 } from './styled';
+
+import TextEditor from './components/TextEditor';
+
+import {
+    VideoText,
+    VideoTextVersionTextline,
+} from '../../../../data/interfaces';
+
+import {
+    getVersionById,
+} from '../../../../services/utilities/videoText';
+
+import Context from '../../../../services/context';
+
+// import ButtonMore from '../../../UI/ButtonMore';
 
 // import { EDITOR_HEIGHT } from '../../../../data/constants/constants';
 
@@ -29,33 +34,38 @@ import {
 //     percentageFromValue,
 // } from '../../../../services/utilities/percentage';
 
-import {
-    getVersionById,
-} from '../../../../services/utilities/videoText';
 
 
-
-interface TextlineProperties {
+export interface TextlineProperties {
     data: VideoText;
 }
 
-const Textline: React.FC<TextlineProperties> = (properties) => {
+const Textline: React.FC<TextlineProperties> = (
+    properties,
+) => {
+    /** context */
     const context = useContext(Context);
     if (!context) {
         return (<></>);
     }
 
     const {
-        data,
-    } = properties;
-
-    const {
         editableText,
         videoBoxDimensions,
     } = context;
 
+
+    /** properties */
+    const {
+        data,
+    } = properties;
+
+
+    /** references */
     const timeoutMouseOver = useRef(0);
 
+
+    /** state */
     const [currentVersion, setCurrentVersion] = useState<VideoTextVersionTextline>();
 
     const [textYCoord, setTextYCoord] = useState('0px');
@@ -74,6 +84,8 @@ const Textline: React.FC<TextlineProperties> = (properties) => {
 
     const [mouseOver, setMouseOver] = useState(false);
 
+
+    /** handlers */
     const handleMouseEnter = () => {
         clearTimeout(timeoutMouseOver.current);
         setMouseOver(true);
@@ -87,6 +99,8 @@ const Textline: React.FC<TextlineProperties> = (properties) => {
         }, 700);
     }
 
+
+    /** effects */
     useEffect(() => {
         const currentVersion = getVersionById(data);
 
@@ -142,6 +156,8 @@ const Textline: React.FC<TextlineProperties> = (properties) => {
         mouseOver,
     ]);
 
+
+    /** render */
     return (
         <StyledTextItem
             onMouseEnter={() => handleMouseEnter()}
