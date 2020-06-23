@@ -17,3 +17,8 @@ export const StyledDrawerTitle = styled.div`
         background-color: ${props => props.theme.backgroundColorSecondary};
     }
 `;
+
+
+export const StyledDrawerExpansion = styled.div`
+    background-color: hsla(0, 0%, 10%, 0.3);
+`;

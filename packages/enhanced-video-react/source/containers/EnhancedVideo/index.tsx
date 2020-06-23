@@ -23,7 +23,12 @@ import ACTIONS from '../../data/constants/actions';
 
 import {
     PLURID_DOMAIN_API,
+    ABOUT_URL,
 } from '../../data/constants/domains';
+
+import {
+    COLOR_VALUES_DEFAULTS,
+} from '../../data/constants/colors';
 
 import {
     initialVideoDimensions,
@@ -91,6 +96,8 @@ const EnhancedVideo: React.FC<EnhancedVideoProperties> = (
 
         accent,
         legacyToolbarControls: legacyToolbarControlsProperty,
+
+        initialColors,
 
         theme,
         controls,
@@ -177,11 +184,14 @@ const EnhancedVideo: React.FC<EnhancedVideoProperties> = (
     const [expandTopologyDrawer, setExpandTopologyDrawer] = useState(false);
     const [expandVariaDrawer, setExpandVariaDrawer] = useState(false);
 
-    const [invertValue, setInvertValue] = useState(0);
-    const [contrastValue, setContrastValue] = useState(100);
-    const [hueValue, setHueValue] = useState(0);
-    const [saturationValue, setSaturationValue] = useState(100);
-    const [brightnessValue, setBrightnessValue] = useState(100);
+    const [videoColorsInvert, setVideoColorsInvert] = useState(!!initialColors?.invert || !!COLOR_VALUES_DEFAULTS.Invert);
+    const [videoColorsContrast, setVideoColorsContrast] = useState(initialColors?.contrast || COLOR_VALUES_DEFAULTS.Contrast);
+    const [videoColorsHue, setVideoColorsHue] = useState(initialColors?.hue || COLOR_VALUES_DEFAULTS.Hue);
+    const [videoColorsSaturation, setVideoColorsSaturation] = useState(initialColors?.saturation || COLOR_VALUES_DEFAULTS.Saturation);
+    const [videoColorsBrightness, setVideoColorsBrightness] = useState(initialColors?.brightness || COLOR_VALUES_DEFAULTS.Brightness);
+
+    const [flipVertical, setFlipVertical] = useState(false);
+    const [flipHorizontal, setFlipHorizontal] = useState(false);
 
 
     /** handlers */
@@ -378,6 +388,10 @@ const EnhancedVideo: React.FC<EnhancedVideoProperties> = (
         }
     }
 
+    const viewAbout = () => {
+        window.open(ABOUT_URL, '_blank');
+    }
+
 
     /** effects */
     useEffect(() => {
@@ -560,6 +574,7 @@ const EnhancedVideo: React.FC<EnhancedVideoProperties> = (
         mouseOver,
 
         toggleFullscreen,
+        viewAbout,
 
         setMessage,
         setMessageTimed,
@@ -623,6 +638,22 @@ const EnhancedVideo: React.FC<EnhancedVideoProperties> = (
         addText,
         saveText,
         getText,
+
+        videoColorsInvert,
+        setVideoColorsInvert,
+        videoColorsContrast,
+        setVideoColorsContrast,
+        videoColorsHue,
+        setVideoColorsHue,
+        videoColorsSaturation,
+        setVideoColorsSaturation,
+        videoColorsBrightness,
+        setVideoColorsBrightness,
+
+        flipVertical,
+        setFlipVertical,
+        flipHorizontal,
+        setFlipHorizontal,
 
         expandTextDrawer,
         setExpandTextDrawer,
