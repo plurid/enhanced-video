@@ -75,8 +75,10 @@ const TextEditor: React.FC<TextEditorProperties> = (
     const {
         theme,
 
-        editableText,
-        setEditableText,
+        toggleVersionViewable,
+
+        duplicateTextItem,
+        deleteTextItem,
 
         videoBoxDimensions,
     } = context;
@@ -123,16 +125,6 @@ const TextEditor: React.FC<TextEditorProperties> = (
                 }}
                 toggled={draggable}
                 icon={GrabIcon}
-            />
-
-            <ButtonToggle
-                theme={theme}
-                // toggle={toggleTextViewable}
-                // toggled={textViewable}
-                toggle={() => {}}
-                toggled={false}
-                icon={ViewableIcon}
-                // icon={textViewable ? ViewableIcon : NotViewableIcon}
             />
 
             <StyledVerticalDivider
@@ -263,17 +255,23 @@ const TextEditor: React.FC<TextEditorProperties> = (
                 &nbsp;
             </StyledVerticalDivider>
 
+
+            <ButtonToggle
+                theme={theme}
+                toggle={() => toggleVersionViewable(data.id)}
+                toggled={data.viewable}
+                icon={data.viewable ? ViewableIcon : NotViewableIcon}
+            />
+
             <ButtonClick
                 theme={theme}
-                atClick={() => {}}
-                // atClick={this.duplicate}
+                atClick={() => duplicateTextItem(data.id)}
                 icon={DuplicateIcon}
             />
 
             <ButtonClick
                 theme={theme}
-                atClick={() => {}}
-                // atClick={this.delete}
+                atClick={() => deleteTextItem(data.id)}
                 icon={DeleteIcon}
             />
         </StyledTextEditor>
