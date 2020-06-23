@@ -2,7 +2,7 @@ import styled from 'styled-components';
 
 
 
-export const StyledTextVideoEditorButtonInput = styled.div`
+export const StyledButtonInput = styled.div`
     position: relative;
     height: 100%;
     width: 32px;
@@ -16,19 +16,40 @@ export const StyledTextVideoEditorButtonInput = styled.div`
 `;
 
 
-export const StyledTextVideoEditorButtonInputContainer = styled.div`
-    position: absolute;
+export const StyledButtonInputContainer: any = styled.div`
     display: flex;
     flex-direction: row;
     align-items: center;
-    background: ${props => props.theme.backgroundColorSecondary};
-    top: 34px;
-    left: 0;
+
+    background: ${
+        ({
+            theme,
+            transparentUI,
+        }: any) => {
+            if (transparentUI) {
+                return theme.backgroundColorSecondaryAlpha;
+            }
+            return theme.backgroundColorSecondary;
+        }
+    };
+    box-shadow: ${
+        ({
+            theme,
+        }: any) => theme.boxShadowUmbra
+    };
+
+    :hover {
+        background: ${
+            ({
+                theme,
+            }: any) => theme.backgroundColorSecondary
+        };
+    }
 
     input {
         width: 110px;
         border: none;
-        background: ${props => props.theme.backgroundColorSecondary};
+        background: transparent;
         color: ${props => props.theme.colorPrimary};
         text-align: left;
         outline: none;
@@ -38,10 +59,11 @@ export const StyledTextVideoEditorButtonInputContainer = styled.div`
 `;
 
 
-export const StyledTextVideoEditorButtonInputGotoLink = styled.div`
+export const StyledButtonInputGotoLink = styled.div`
+    display: grid;
     height: 14px;
     width: 14px;
-    padding-right: 20px;
+    padding: 0 6px;
     cursor: pointer;
     user-select: none;
 
