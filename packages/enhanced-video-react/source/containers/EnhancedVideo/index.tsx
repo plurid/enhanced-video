@@ -830,7 +830,7 @@ const EnhancedVideo: React.FC<EnhancedVideoProperties> = (
         apiEndpoint,
         apiKey,
         userToken,
-        deviewVideoID,
+        videoID,
 
         mouseOver,
 

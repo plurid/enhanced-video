@@ -166,7 +166,7 @@ export interface IContext {
     apiEndpoint: string;
     apiKey: string | undefined;
     userToken: string | undefined;
-    deviewVideoID: string | undefined;
+    videoID: string | undefined;
 
     mouseOver: boolean;
 
