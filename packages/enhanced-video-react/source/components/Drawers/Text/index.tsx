@@ -41,6 +41,9 @@ const DrawerText: React.FC<any> = (
         editableText,
         setEditableText,
 
+        revealedText,
+        setRevealedText,
+
         showTimescrollText,
 
         expandTextDrawer,
@@ -114,7 +117,7 @@ const DrawerText: React.FC<any> = (
                 </>
             )}
 
-            {/* {(textDrawer.includes('ALL') || textDrawer.includes('REVEAL_TEXT'))
+            {(textDrawer.includes('ALL') || textDrawer.includes('REVEAL_TEXT'))
             && (
                 <li>
                     <ButtonCheckmark
@@ -124,7 +127,7 @@ const DrawerText: React.FC<any> = (
                         checked={revealedText}
                     />
                 </li>
-            )} */}
+            )}
 
             {(textDrawer.includes('ALL') || textDrawer.includes('GET_TEXT'))
             && (
