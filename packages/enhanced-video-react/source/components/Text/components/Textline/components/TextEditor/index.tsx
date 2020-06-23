@@ -306,7 +306,7 @@ const TextEditor: React.FC<TextEditorProperties> = (
                 toggled={currentVersion.link.active}
                 icon={LinkIcon}
                 value={currentVersion.link.to}
-                valueType="linkTo"
+                valueType="link.to"
                 changeValue={updateField}
             />
 
