@@ -292,6 +292,7 @@ const TextEditor: React.FC<TextEditorProperties> = (
 
                 <ButtonTimeIncrements
                     theme={theme}
+                    transparentUI={transparentUI}
                     type="time.start"
                     changeValue={updateField}
                     time={currentVersion.time.start}
@@ -300,6 +301,7 @@ const TextEditor: React.FC<TextEditorProperties> = (
 
                 <ButtonTimeIncrements
                     theme={theme}
+                    transparentUI={transparentUI}
                     type="time.end"
                     changeValue={updateField}
                     time={currentVersion.time.end}

@@ -2,15 +2,20 @@ import styled from 'styled-components';
 
 
 
-export const StyledTextVideoEditorButtonIncrement = styled.div`
+export const StyledTextVideoEditorButtonIncrement: any = styled.div`
     display: flex;
     align-items: center;
     margin: 5px;
 
     input {
-        background: ${props => props.theme.backgroundColorSecondary};
+        background: ${(props: any) => {
+            if (props.transparentUI) {
+                return props.theme.backgroundColorSecondaryAlpha;
+            }
+            return props.theme.backgroundColorSecondary;
+        }};
         color: ${props => props.theme.colorPrimary};
-        height: 20px;
+        height: 24px;
         width: 20px;
         border: none;
         text-align: center;
@@ -36,7 +41,7 @@ export const StyledTextVideoEditorButtonIncrement = styled.div`
 `;
 
 
-export const StyledTextVideoEditorButtonIncrementIcon = styled.div`
+export const StyledTextVideoEditorButtonIncrementIcon: any = styled.div`
     display: flex;
     align-items: center;
     margin: 5px;
@@ -50,7 +55,12 @@ export const StyledTextVideoEditorButtonIncrementIcon = styled.div`
 
 
 export const StyledTextVideoEditorButtonIncrements: any = styled.div`
-    background: ${props => props.theme.backgroundColorSecondary};
+    background: ${(props: any) => {
+        if (props.transparentUI) {
+            return props.theme.backgroundColorSecondaryAlpha;
+        }
+        return props.theme.backgroundColorSecondary;
+    }};
 
     display: grid;
     grid-template-columns: 1fr;
@@ -60,14 +70,19 @@ export const StyledTextVideoEditorButtonIncrements: any = styled.div`
     justify-content: center;
     align-items: space-between;
     grid-row-gap: 2px;
-    height: 20px;
+    height: 24px;
     user-select: none;
 `;
 
 
-export const StyledTextVideoEditorButtonIncrementButton = styled.div`
+export const StyledTextVideoEditorButtonIncrementButton: any = styled.div`
     color: ${props => props.theme.colorPrimary};
-    background-color: ${props => props.theme.backgroundColorSecondary};
+    background: ${(props: any) => {
+        if (props.transparentUI) {
+            return props.theme.backgroundColorSecondaryAlpha;
+        }
+        return props.theme.backgroundColorSecondary;
+    }};
 
     width: 12px;
     height: 9px;
@@ -83,7 +98,13 @@ export const StyledTextVideoEditorButtonIncrementButton = styled.div`
 `;
 
 
-export const StyledTextVideoEditorButtonIncrementsInputs = styled.div`
-    background: ${props => props.theme.backgroundColorSecondary};
+export const StyledTextVideoEditorButtonIncrementsInputs: any = styled.div`
+    background: ${(props: any) => {
+        if (props.transparentUI) {
+            return props.theme.backgroundColorSecondaryAlpha;
+        }
+        return props.theme.backgroundColorSecondary;
+    }};
+
     user-select: none;
 `;
