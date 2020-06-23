@@ -9,13 +9,13 @@ export const StyledCover = styled.div`
     right: 0;
     bottom: 0;
     cursor: pointer;
-    z-index: 9997;
+    z-index: 97;
 
     img {
         width: 100%;
         height: 100%;
         object-fit: cover;
-        z-index: 9998;
+        z-index: 98;
     }
 `;
 
@@ -27,5 +27,5 @@ export const StyledCoverPlay = styled.div`
     right: 0;
     bottom: 0;
     cursor: pointer;
-    z-index: 9999;
+    z-index: 99;
 `;
