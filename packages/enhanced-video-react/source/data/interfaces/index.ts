@@ -32,6 +32,8 @@ export interface EnhancedVideoProperties {
     development?: boolean;
     silent?: boolean;
 
+    initialColors?: VideoColorsData;
+
     /**
      * Inline styling object for the video.
      */
@@ -169,6 +171,7 @@ export interface IContext {
     mouseOver: boolean;
 
     toggleFullscreen: () => void;
+    viewAbout: () => void;
 
     setMessage: Dispatch<SetStateAction<string>>;
     setMessageTimed: (message: string, time: number) => void;
@@ -234,6 +237,22 @@ export interface IContext {
     saveText: () => Promise<void>;
     getText: () => Promise<void>;
 
+    videoColorsInvert: boolean;
+    setVideoColorsInvert: Dispatch<SetStateAction<boolean>>;
+    videoColorsContrast: number;
+    setVideoColorsContrast: Dispatch<SetStateAction<number>>;
+    videoColorsHue: number;
+    setVideoColorsHue: Dispatch<SetStateAction<number>>;
+    videoColorsSaturation: number;
+    setVideoColorsSaturation: Dispatch<SetStateAction<number>>;
+    videoColorsBrightness: number;
+    setVideoColorsBrightness: Dispatch<SetStateAction<number>>;
+
+    flipVertical: boolean;
+    setFlipVertical: Dispatch<SetStateAction<boolean>>;
+    flipHorizontal: boolean;
+    setFlipHorizontal: Dispatch<SetStateAction<boolean>>;
+
     expandTextDrawer: boolean;
     setExpandTextDrawer: Dispatch<SetStateAction<boolean>>;
     expandColorDrawer: boolean;
@@ -286,6 +305,14 @@ export type VariaDrawer =
     | 'VIEW_FULLSCREEN';
 
 
+export interface VideoColorsData {
+    invert: number;
+    contrast: number;
+    hue: number;
+    saturation: number;
+    brightness: number;
+}
+
 
 
 export {
@@ -294,9 +321,6 @@ export {
     VideoTextVersionTextarea,
     VideoTextVersionTextline,
 }
-
-
-
 
 
 
@@ -366,3 +390,10 @@ export {
 //     loadedVideo: boolean;
 // }
 
+
+export interface Slider {
+    type: string;
+    min?: number;
+    max?: number;
+    valueSign?: string;
+}

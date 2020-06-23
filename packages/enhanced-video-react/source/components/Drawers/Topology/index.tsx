@@ -7,6 +7,8 @@ import {
 
 import Drawer from '../../Drawer';
 
+import ButtonCheckmark from '../../UI/ButtonCheckmark';
+
 import Context from '../../../services/context';
 
 
@@ -26,6 +28,12 @@ const DrawerTopology: React.FC<any> = (
 
         expandTopologyDrawer,
         setExpandTopologyDrawer,
+
+        flipVertical,
+        setFlipVertical,
+
+        flipHorizontal,
+        setFlipHorizontal,
     } = context;
 
 
@@ -40,7 +48,25 @@ const DrawerTopology: React.FC<any> = (
             toggleExpand={() => setExpandTopologyDrawer(expand => !expand)}
             theme={theme}
         >
-            topology
+            <ul>
+                <li>
+                    <ButtonCheckmark
+                        theme={theme}
+                        toggle={() => setFlipVertical(flip => !flip)}
+                        text="Flip Vertical"
+                        checked={flipVertical}
+                    />
+                </li>
+
+                <li>
+                    <ButtonCheckmark
+                        theme={theme}
+                        toggle={() => setFlipHorizontal(flip => !flip)}
+                        text="Flip Horizontal"
+                        checked={flipHorizontal}
+                    />
+                </li>
+            </ul>
         </Drawer>
     );
 }

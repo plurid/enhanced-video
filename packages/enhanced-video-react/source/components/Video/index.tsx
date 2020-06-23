@@ -1,12 +1,18 @@
-import React from 'react';
+import React, {
+    useContext,
+    useState,
+    useEffect,
+} from 'react';
 
 import {
     StyledVideo,
 } from './styled';
 
+import Context from '../../services/context';
 
 
-interface VideoProperties {
+
+export interface VideoProperties {
     src: string;
     type: string;
 
@@ -21,7 +27,29 @@ interface VideoProperties {
     atEnded: any;
 }
 
-const Video: React.FC<VideoProperties> = (properties) => {
+const Video: React.FC<VideoProperties> = (
+    properties,
+) => {
+    /** context */
+    const context = useContext(Context);
+
+    if (!context) {
+        return (<></>);
+    }
+
+    const {
+        videoColorsInvert,
+        videoColorsContrast,
+        videoColorsHue,
+        videoColorsSaturation,
+        videoColorsBrightness,
+
+        flipVertical,
+        flipHorizontal,
+    } = context;
+
+
+    /** properties */
     const {
         src,
         type,
@@ -37,10 +65,50 @@ const Video: React.FC<VideoProperties> = (properties) => {
         atEnded,
     } = properties;
 
+
+    /** state */
+    const [filter, setFilter] = useState('');
+    const [transform, setTransform] = useState('');
+
+
+    /** effect */
+    /** Handle colors. */
+    useEffect(() => {
+        const filter = `
+            invert(${videoColorsInvert ? 1 : 0})
+            contrast(${videoColorsContrast}%)
+            hue-rotate(${videoColorsHue}deg)
+            saturate(${videoColorsSaturation}%)
+            brightness(${videoColorsBrightness}%)
+        `;
+        setFilter(filter);
+    }, [
+        videoColorsInvert,
+        videoColorsContrast,
+        videoColorsHue,
+        videoColorsSaturation,
+        videoColorsBrightness,
+    ]);
+
+    /** Handle flip. */
+    useEffect(() => {
+        const transform = `${flipVertical ? 'scaleX(-1)': ''} ${flipHorizontal ? 'scaleY(-1' : ''}`;
+        setTransform(transform);
+    }, [
+        flipVertical,
+        flipHorizontal,
+    ]);
+
+
+    /** render */
     return (
         <StyledVideo>
             <video
-                style={videoStyle ? {...videoStyle} : {}}
+                style={{
+                    ...videoStyle,
+                    filter,
+                    transform,
+                }}
 
                 height={height}
                 ref={videoRef}

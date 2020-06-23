@@ -74,8 +74,6 @@ storiesOf(
         {
             'ALL': 'ALL',
             'VIEW_FULLSCREEN': 'VIEW_FULLSCREEN',
-            'SHARE_IMAGE': 'SHARE_IMAGE',
-            'DOWNLOAD_IMAGE': 'DOWNLOAD_IMAGE',
         },
         'ALL',
     );

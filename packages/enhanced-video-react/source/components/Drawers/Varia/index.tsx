@@ -3,9 +3,16 @@ import React, {
 } from 'react';
 
 import {
-} from './styled';
+    PluridIconFrame,
+    PluridIconInfo,
+} from '@plurid/plurid-icons-react';
+
+// import {
+// } from './styled';
 
 import Drawer from '../../Drawer';
+
+import ButtonItem from '../../UI/ButtonItem';
 
 import Context from '../../../services/context';
 
@@ -26,6 +33,13 @@ const DrawerVaria: React.FC<any> = (
 
         expandVariaDrawer,
         setExpandVariaDrawer,
+
+        variaDrawer,
+
+        toggleFullscreen,
+
+        about,
+        viewAbout,
     } = context;
 
 
@@ -40,7 +54,38 @@ const DrawerVaria: React.FC<any> = (
             toggleExpand={() => setExpandVariaDrawer(expand => !expand)}
             theme={theme}
         >
-            varia
+            <ul>
+                {(variaDrawer.includes('ALL') || variaDrawer.includes('VIEW_FULLSCREEN'))
+                && (
+                    <li>
+                        <ButtonItem
+                            theme={theme}
+                            atClick={toggleFullscreen}
+                            icon={(
+                                <PluridIconFrame />
+                            )}
+                            text="View Fullscreen"
+                        />
+                    </li>
+                )}
+
+                {about && (
+                    <>
+                        <hr />
+
+                        <li>
+                            <ButtonItem
+                                theme={theme}
+                                atClick={viewAbout}
+                                icon={(
+                                    <PluridIconInfo />
+                                )}
+                                text="About eVideo"
+                            />
+                        </li>
+                    </>
+                )}
+            </ul>
         </Drawer>
     );
 }
