@@ -110,61 +110,61 @@ const TextEditor: React.FC<TextEditorProperties> = (
         value: number | string | boolean,
     ) => {
         switch (type) {
-            case 'fontSize':
+            case 'font.size':
                 if (typeof value === 'number') {
                     const fontSizePercentage = percentageFromValue(value, videoBoxDimensions.height);
-                    updateTextItemField(textItem.id, 'fontSizePercent', fontSizePercentage);
+                    updateTextItemField(textItem.id, 'font.size', fontSizePercentage);
                 }
                 break;
-            case 'fontFamily':
-                updateTextItemField(textItem.id, 'fontFamily', value);
+            case 'font.family':
+                updateTextItemField(textItem.id, 'font.family', value);
                 break;
-            case 'letterSpacing':
+            case 'font.letterSpacing':
                 if (typeof value === 'number') {
                     const letterSpacingPercentage = percentageFromValue(value, videoBoxDimensions.width);
-                    updateTextItemField(textItem.id, 'letterSpacingPercent', letterSpacingPercentage);
+                    updateTextItemField(textItem.id, 'font.letterSpacing', letterSpacingPercentage);
                 }
                 break;
-            case 'wordSpacing':
+            case 'font.wordSpacing':
                 if (typeof value === 'number') {
                     const wordSpacingPercentage = percentageFromValue(value, videoBoxDimensions.width);
-                    updateTextItemField(textItem.id, 'wordSpacingPercent', wordSpacingPercentage);
+                    updateTextItemField(textItem.id, 'font.wordSpacing', wordSpacingPercentage);
                 }
                 break;
-            case 'linkTo':
-                updateTextItemField(textItem.id, 'linkTo', value);
+            case 'link.to':
+                updateTextItemField(textItem.id, 'link.to', value);
                 break;
             case 'color':
                 updateTextItemField(textItem.id, 'color', value);
                 break;
-            case 'perspective':
+            case 'transform.perspective':
                 if (typeof value === 'number') {
-                    updateTextItemField(textItem.id, 'perspective', value - 1);
+                    updateTextItemField(textItem.id, 'transform.perspective', value - 1);
                 }
                 break;
-            case 'xRotation':
+            case 'transform.rx':
                 if (typeof value === 'number') {
-                    updateTextItemField(textItem.id, 'xRotation', value - 1);
+                    updateTextItemField(textItem.id, 'transform.rx', value - 1);
                 }
                 break;
-            case 'yRotation':
+            case 'transform.ry':
                 if (typeof value === 'number') {
-                    updateTextItemField(textItem.id, 'yRotation', value - 1);
+                    updateTextItemField(textItem.id, 'transform.ry', value - 1);
                 }
                 break;
-            case 'zRotation':
+            case 'transform.rz':
                 if (typeof value === 'number') {
-                    updateTextItemField(textItem.id, 'zRotation', value - 1);
+                    updateTextItemField(textItem.id, 'transform.rz', value - 1);
                 }
                 break;
-            case 'xSkew':
+            case 'transform.sx':
                 if (typeof value === 'number') {
-                    updateTextItemField(textItem.id, 'xSkew', value - 1);
+                    updateTextItemField(textItem.id, 'transform.sx', value - 1);
                 }
                 break;
-            case 'ySkew':
+            case 'transform.sy':
                 if (typeof value === 'number') {
-                    updateTextItemField(textItem.id, 'ySkew', value - 1);
+                    updateTextItemField(textItem.id, 'transform.sy', value - 1);
                 }
                 break;
         }
