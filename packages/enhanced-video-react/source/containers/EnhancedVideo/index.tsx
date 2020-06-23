@@ -475,10 +475,11 @@ const EnhancedVideo: React.FC<EnhancedVideoProperties> = (
     const handleKeys = (
         event: any,
     ) => {
-        event.preventDefault();
+        let handled = false;
 
         // handle space
         if (event.keyCode === 32) {
+            handled = true;
             if (videoPlaying) {
                 setMessageTimed('Pause', 1000);
                 pauseVideo();
@@ -490,6 +491,7 @@ const EnhancedVideo: React.FC<EnhancedVideoProperties> = (
 
         if (event.key === 'ArrowLeft') {
             const newTime = videoTime - 5;
+            handled = true;
             if (newTime > 0) {
                 handleVideoTime(newTime);
             } else {
@@ -499,6 +501,7 @@ const EnhancedVideo: React.FC<EnhancedVideoProperties> = (
 
         if (event.key === 'ArrowRight') {
             const newTime = videoTime + 5;
+            handled = true;
             if (newTime < videoDuration) {
                 handleVideoTime(newTime);
             } else {
@@ -508,6 +511,7 @@ const EnhancedVideo: React.FC<EnhancedVideoProperties> = (
 
         if (event.key === 'ArrowUp') {
             const newVolume = videoVolume + 0.1;
+            handled = true;
             if (newVolume < 2) {
                 handleVideoVolume(newVolume);
             } else {
@@ -517,6 +521,7 @@ const EnhancedVideo: React.FC<EnhancedVideoProperties> = (
 
         if (event.key === 'ArrowDown') {
             const newVolume = videoVolume - 0.1;
+            handled = true;
             if (newVolume > 0) {
                 handleVideoVolume(newVolume);
             } else {
@@ -525,6 +530,7 @@ const EnhancedVideo: React.FC<EnhancedVideoProperties> = (
         }
 
         if (event.key === 'm') {
+            handled = true;
             if (videoVolume === 0) {
                 setMessageTimed(`Volume`, 1000);
             } else {
@@ -534,7 +540,12 @@ const EnhancedVideo: React.FC<EnhancedVideoProperties> = (
         }
 
         if (event.key === 't') {
+            handled = true;
             setShowTimescrollTime(show => !show);
+        }
+
+        if (handled) {
+            event.preventDefault();
         }
     }
 

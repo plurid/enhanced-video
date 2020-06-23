@@ -107,13 +107,15 @@ storiesOf(
         <div
             style={{
                 padding: '4rem',
-                width: '800px',
+                // width: '800px',
             }}
         >
             <EnhancedVideo
                 // src="/assets/video.mov"
                 src="/assets/long-video.mp4"
                 type="video/mp4"
+
+                height={700}
 
                 mask={mask}
                 cover={cover}
