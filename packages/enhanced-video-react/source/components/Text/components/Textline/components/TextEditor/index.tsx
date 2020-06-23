@@ -44,13 +44,15 @@ import DeleteIcon from '../../../../../../assets/icons/delete-icon';
 // } from '../../utils/percentage';
 
 import {
+    VideoText,
     VideoTextVersionTextline,
 } from '../../../../../../data/interfaces';
 
 
 
 export interface TextEditorProperties {
-    data: VideoTextVersionTextline;
+    textItem: VideoText;
+    currentVersion: VideoTextVersionTextline;
 
     editable: boolean;
     setEditable: React.Dispatch<React.SetStateAction<boolean>>;
@@ -86,7 +88,8 @@ const TextEditor: React.FC<TextEditorProperties> = (
 
     /** properties */
     const {
-        data,
+        textItem,
+        currentVersion,
 
         editable,
         setEditable,
@@ -148,7 +151,7 @@ const TextEditor: React.FC<TextEditorProperties> = (
                 type="startTime"
                 changeValue={() => {}}
                 // changeValue={this.updateField}
-                time={data.startTime}
+                time={currentVersion.startTime}
                 icon={StartTimeIcon}
             />
 
@@ -157,7 +160,7 @@ const TextEditor: React.FC<TextEditorProperties> = (
                 type="endTime"
                 changeValue={() => {}}
                 // changeValue={this.updateField}
-                time={data.endTime}
+                time={currentVersion.endTime}
                 icon={EndTimeIcon}
                 iconAfter={true}
             />
@@ -173,7 +176,7 @@ const TextEditor: React.FC<TextEditorProperties> = (
                 type="fontSize"
                 changeValue={() => {}}
                 // changeValue={this.updateField}
-                value={data.fontSizePercent * videoBoxDimensions.height / 100}
+                value={currentVersion.fontSizePercent * videoBoxDimensions.height / 100}
                 icon={FontSizeIcon}
             />
 
@@ -181,7 +184,7 @@ const TextEditor: React.FC<TextEditorProperties> = (
                 theme={theme}
                 type="fontFamily"
                 alterStyle="fontFamily"
-                selected={data.fontFamily}
+                selected={currentVersion.fontFamily}
                 selectables={selectableFonts}
                 changeSelected={() => {}}
                 // changeSelected={this.updateField}
@@ -199,9 +202,9 @@ const TextEditor: React.FC<TextEditorProperties> = (
                 theme={theme}
                 toggle={() => {}}
                 // toggle={this.updateField.bind(this, 'link')}
-                toggled={data.link}
+                toggled={currentVersion.link}
                 icon={LinkIcon}
-                value={data.linkTo}
+                value={currentVersion.linkTo}
                 valueType="linkTo"
                 changeValue={() => {}}
                 // changeValue={this.updateField}
@@ -211,7 +214,7 @@ const TextEditor: React.FC<TextEditorProperties> = (
                 theme={theme}
                 toggle={() => {}}
                 // toggle={this.updateField.bind(this, 'bold')}
-                toggled={data.fontWeight === 'bold'}
+                toggled={currentVersion.fontWeight === 'bold'}
                 icon={BoldIcon}
             />
 
@@ -219,7 +222,7 @@ const TextEditor: React.FC<TextEditorProperties> = (
                 theme={theme}
                 toggle={() => {}}
                 // toggle={this.updateField.bind(this, 'italic')}
-                toggled={data.fontStyle === 'italic'}
+                toggled={currentVersion.fontStyle === 'italic'}
                 icon={ItalicIcon}
             />
 
@@ -228,7 +231,7 @@ const TextEditor: React.FC<TextEditorProperties> = (
                 type="letterSpacing"
                 changeValue={() => {}}
                 // changeValue={this.updateField}
-                value={data.letterSpacingPercent * videoBoxDimensions.width / 100}
+                value={currentVersion.letterSpacingPercent * videoBoxDimensions.width / 100}
                 icon={LetterSpacingIcon}
                 step={0.1}
             />
@@ -238,7 +241,7 @@ const TextEditor: React.FC<TextEditorProperties> = (
                 type="wordSpacing"
                 changeValue={() => {}}
                 // changeValue={this.updateField}
-                value={data.wordSpacingPercent * videoBoxDimensions.width / 100}
+                value={currentVersion.wordSpacingPercent * videoBoxDimensions.width / 100}
                 icon={WordSpacingIcon}
                 step={0.1}
             />
@@ -246,7 +249,7 @@ const TextEditor: React.FC<TextEditorProperties> = (
             <ButtonsColors
                 changeValue={() => {}}
                 // changeValue={this.updateField}
-                color={data.color}
+                color={currentVersion.color}
             />
 
             <StyledVerticalDivider
@@ -258,20 +261,20 @@ const TextEditor: React.FC<TextEditorProperties> = (
 
             <ButtonToggle
                 theme={theme}
-                toggle={() => toggleVersionViewable(data.id)}
-                toggled={data.viewable}
-                icon={data.viewable ? ViewableIcon : NotViewableIcon}
+                toggle={() => toggleVersionViewable(textItem.id)}
+                toggled={currentVersion.viewable}
+                icon={currentVersion.viewable ? ViewableIcon : NotViewableIcon}
             />
 
             <ButtonClick
                 theme={theme}
-                atClick={() => duplicateTextItem(data.id)}
+                atClick={() => duplicateTextItem(textItem.id)}
                 icon={DuplicateIcon}
             />
 
             <ButtonClick
                 theme={theme}
-                atClick={() => deleteTextItem(data.id)}
+                atClick={() => deleteTextItem(textItem.id)}
                 icon={DeleteIcon}
             />
         </StyledTextEditor>
