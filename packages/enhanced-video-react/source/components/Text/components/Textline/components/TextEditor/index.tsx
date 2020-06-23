@@ -190,6 +190,26 @@ const TextEditor: React.FC<TextEditorProperties> = (
     }
 
 
+    /** effects */
+    /** Toggle editable. */
+    useEffect(() => {
+        if (editable) {
+            setDraggable(false);
+        }
+    }, [
+        editable,
+    ]);
+
+    /** Toggle draggable. */
+    useEffect(() => {
+        if (draggable) {
+            setEditable(false);
+        }
+    }, [
+        draggable,
+    ]);
+
+
     /** render */
     return (
         <StyledTextEditor
@@ -198,20 +218,14 @@ const TextEditor: React.FC<TextEditorProperties> = (
         >
             <ButtonToggle
                 theme={theme}
-                toggle={() => {
-                    if (draggable) { setDraggable(false) }
-                    setEditable(editable => !editable)
-                }}
+                toggle={() => setEditable(editable => !editable)}
                 toggled={editable}
                 icon={SelectTextIcon}
             />
 
             <ButtonToggle
                 theme={theme}
-                toggle={() => {
-                    if (editable) { setEditable(false) }
-                    setDraggable(draggable => !draggable)
-                }}
+                toggle={() => setDraggable(draggable => !draggable)}
                 toggled={draggable}
                 icon={GrabIcon}
             />

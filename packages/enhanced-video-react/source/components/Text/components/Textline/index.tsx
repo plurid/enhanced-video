@@ -204,7 +204,6 @@ const Textline: React.FC<TextlineProperties> = (
         event: React.SyntheticEvent<HTMLDivElement>,
     ) => {
         const value = event.currentTarget.innerText;
-        console.log(value);
 
         if (value !== '') {
             updateVersionContent(data.id, value);
