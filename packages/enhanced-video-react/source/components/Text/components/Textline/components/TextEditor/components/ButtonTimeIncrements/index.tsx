@@ -24,6 +24,7 @@ class TextVideoEditorButtonTimeIncrements extends Component<any, any> {
             type,
             step,
             theme,
+            transparentUI,
             iconAfter,
         } = this.props;
 
@@ -47,14 +48,17 @@ class TextVideoEditorButtonTimeIncrements extends Component<any, any> {
         return (
             <StyledTextVideoEditorButtonIncrement
                 theme={theme}
+                transparentUI={transparentUI}
             >
                 {!iconAfter && Icon}
 
                 <StyledTextVideoEditorButtonIncrements
                     theme={theme}
+                    transparentUI={transparentUI}
                 >
                     <StyledTextVideoEditorButtonIncrementButton
                         theme={theme}
+                        transparentUI={transparentUI}
                         onClick={changeValue.bind(this, type, this.round(time + stepValue))}
                     >
                         {UP_ARROW}
@@ -62,6 +66,7 @@ class TextVideoEditorButtonTimeIncrements extends Component<any, any> {
 
                     <StyledTextVideoEditorButtonIncrementButton
                         theme={theme}
+                        transparentUI={transparentUI}
                         onClick={changeValue.bind(this, type, this.round(time - stepValue))}
                     >
                         {DOWN_ARROW}
@@ -70,6 +75,7 @@ class TextVideoEditorButtonTimeIncrements extends Component<any, any> {
 
                 <StyledTextVideoEditorButtonIncrementsInputs
                     theme={theme}
+                    transparentUI={transparentUI}
                 >
                     <input
                         type="number"
