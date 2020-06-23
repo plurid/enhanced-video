@@ -38,6 +38,11 @@ import {
 } from '../../data/constants/video';
 
 import {
+    getVersionById,
+    updateVersion,
+} from '../../services/utilities/videoText';
+
+import {
     EnhancedVideoProperties,
     IContext,
     VideoDimensions,
@@ -397,6 +402,79 @@ const EnhancedVideo: React.FC<EnhancedVideoProperties> = (
         setMessage('Getting the Video Text');
     }
 
+    const updateTextCoordinates = (
+        versionID: string,
+        coordinates: any,
+    ) => {
+        const updatedVideoText = videoText.map(text => {
+            if (text.id === versionID) {
+                const currentVersion = getVersionById(text);
+                if (currentVersion) {
+                    const updatedVersion = { ...currentVersion };
+                    updatedVersion.xPercent = coordinates.x;
+                    updatedVersion.yPercent = coordinates.y;
+                    const updatedText = updateVersion(text, updatedVersion);
+                    return { ...updatedText };
+                }
+
+                return { ...text };
+            }
+
+            return { ...text };
+        });
+
+        setVideoText([...updatedVideoText]);
+    }
+
+    const updateTextItemField = (
+        versionID: string,
+        type: string,
+        value: number | string | boolean,
+    ) => {
+        const updatedVideoText = videoText.map(text => {
+            if (text.id === versionID) {
+                const currentVersion = getVersionById(text);
+                if (currentVersion) {
+                    const updatedVersion = { ...currentVersion };
+                    (updatedVersion as any)[type] = value;
+                    const updatedText = updateVersion(text, updatedVersion);
+                    return { ...updatedText };
+                }
+
+                return { ...text };
+            }
+
+            return { ...text };
+        });
+
+        setVideoText([...updatedVideoText]);
+    }
+
+    const updateVersionContent = (
+        versionID: string,
+        value: string,
+    ) => {
+        const updatedVideoText = videoText.map(text => {
+            if (text.id === versionID) {
+                const currentVersion = getVersionById(text);
+                if (currentVersion) {
+                    const updatedVersion = { ...currentVersion };
+                    updatedVersion.content = value;
+                    const updatedText = updateVersion(text, updatedVersion);
+                    return { ...updatedText };
+                }
+
+                return { ...text };
+            }
+
+            return { ...text };
+        });
+
+        setVideoText([...updatedVideoText]);
+    }
+
+
+
 
     /** COLORS */
     const toggleDefaultColors = () => {
@@ -726,6 +804,10 @@ const EnhancedVideo: React.FC<EnhancedVideoProperties> = (
         addText,
         saveText,
         getText,
+
+        updateTextCoordinates,
+        updateTextItemField,
+        updateVersionContent,
 
         defaultColorsToggled,
         toggleDefaultColors,

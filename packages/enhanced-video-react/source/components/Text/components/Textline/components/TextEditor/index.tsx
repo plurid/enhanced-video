@@ -48,17 +48,28 @@ import {
 } from '../../../../../../data/interfaces';
 
 
-interface TextEditorProperties {
+
+export interface TextEditorProperties {
     data: VideoTextVersionTextline;
+
+    draggable: boolean;
+    setDraggable: React.Dispatch<React.SetStateAction<boolean>>;
+    positions: {
+        x: number;
+        y: number;
+    };
 }
 
-
-
-const TextEditor: React.FC<TextEditorProperties> = (properties) => {
+const TextEditor: React.FC<TextEditorProperties> = (
+    properties,
+) => {
+    /** context */
     const context = useContext(Context);
+
     if (!context) {
         return (<></>);
     }
+
     const {
         theme,
 
@@ -68,12 +79,23 @@ const TextEditor: React.FC<TextEditorProperties> = (properties) => {
         videoBoxDimensions,
     } = context;
 
-    const editor = useRef<HTMLDivElement>(null);
 
+    /** properties */
     const {
         data,
+
+        draggable,
+        setDraggable,
+
+        positions,
     } = properties;
 
+
+    /** references */
+    const editor = useRef<HTMLDivElement>(null);
+
+
+    /** render */
     return (
         <StyledTextEditor
             theme={theme}
@@ -88,10 +110,11 @@ const TextEditor: React.FC<TextEditorProperties> = (properties) => {
 
             <ButtonToggle
                 theme={theme}
-                // toggle={toggleTextDraggable}
-                // toggled={textDraggable}
-                toggle={() => {}}
-                toggled={false}
+                toggle={() => {
+                    // if (editableText) { setEditableText(false) }
+                    setDraggable(draggable => !draggable)
+                }}
+                toggled={draggable}
                 icon={GrabIcon}
             />
 
