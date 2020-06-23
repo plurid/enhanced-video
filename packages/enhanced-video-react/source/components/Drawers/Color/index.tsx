@@ -3,7 +3,8 @@ import React, {
 } from 'react';
 
 import {
-} from './styled';
+    PluridIconRotate,
+} from '@plurid/plurid-icons-react';
 
 import {
     colorsSliders,
@@ -13,7 +14,9 @@ import {
 
 import Drawer from '../../Drawer';
 
+import ButtonCheckmark from '../../UI/ButtonCheckmark';
 import SliderItem from '../../UI/SliderItem';
+import ButtonItem from '../../UI/ButtonItem';
 
 import Context from '../../../services/context';
 
@@ -32,6 +35,13 @@ const DrawerColor: React.FC<any> = (
     const {
         theme,
 
+        videoColorsInvert,
+        setVideoColorsInvert,
+
+        defaultColorsToggled,
+        toggleDefaultColors,
+        resetToDefaultColors,
+
         expandColorDrawer,
         setExpandColorDrawer,
     } = context;
@@ -49,14 +59,14 @@ const DrawerColor: React.FC<any> = (
             theme={theme}
         >
             <ul>
-                {/* <li>
+                <li>
                     <ButtonCheckmark
                         theme={theme}
-                        toggle={() => setImageColorsInvert(invert => !invert)}
+                        toggle={() => setVideoColorsInvert(invert => !invert)}
                         text="Invert Colors"
-                        checked={imageColorsInvert}
+                        checked={videoColorsInvert}
                     />
-                </li> */}
+                </li>
 
                 {
                     colorsSliders.map(slider => {
@@ -91,23 +101,25 @@ const DrawerColor: React.FC<any> = (
                     })
                 }
 
-                {/* <li>
+                <li>
                     <ButtonCheckmark
                         theme={theme}
-                        toggle={() => toggleDefaults()}
+                        toggle={() => toggleDefaultColors()}
                         text="Toggle Defaults"
-                        checked={defaultsToggled}
+                        checked={defaultColorsToggled}
                     />
-                </li> */}
+                </li>
 
-                {/* <li>
+                <li>
                     <ButtonItem
                         theme={theme}
-                        atClick={resetToDefaults}
-                        icon={ResetIcon}
+                        atClick={resetToDefaultColors}
+                        icon={(
+                            <PluridIconRotate />
+                        )}
                         text="Reset to Defaults"
                     />
-                </li> */}
+                </li>
             </ul>
         </Drawer>
     );

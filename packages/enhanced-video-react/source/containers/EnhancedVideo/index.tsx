@@ -22,13 +22,14 @@ import {
 import ACTIONS from '../../data/constants/actions';
 
 import {
+    COLOR_VALUES_DEFAULTS,
+    initialPreviousVideoColors,
+} from '../../data/constants/colors';
+
+import {
     PLURID_DOMAIN_API,
     ABOUT_URL,
 } from '../../data/constants/domains';
-
-import {
-    COLOR_VALUES_DEFAULTS,
-} from '../../data/constants/colors';
 
 import {
     initialVideoDimensions,
@@ -184,11 +185,15 @@ const EnhancedVideo: React.FC<EnhancedVideoProperties> = (
     const [expandTopologyDrawer, setExpandTopologyDrawer] = useState(false);
     const [expandVariaDrawer, setExpandVariaDrawer] = useState(false);
 
+    const [defaultColorsToggled, setDefaultColorsToggled] = useState(false);
+
     const [videoColorsInvert, setVideoColorsInvert] = useState(!!initialColors?.invert || !!COLOR_VALUES_DEFAULTS.Invert);
     const [videoColorsContrast, setVideoColorsContrast] = useState(initialColors?.contrast || COLOR_VALUES_DEFAULTS.Contrast);
     const [videoColorsHue, setVideoColorsHue] = useState(initialColors?.hue || COLOR_VALUES_DEFAULTS.Hue);
     const [videoColorsSaturation, setVideoColorsSaturation] = useState(initialColors?.saturation || COLOR_VALUES_DEFAULTS.Saturation);
     const [videoColorsBrightness, setVideoColorsBrightness] = useState(initialColors?.brightness || COLOR_VALUES_DEFAULTS.Brightness);
+
+    const [previousVideoColors, setPreviousVideoColors] = useState(initialPreviousVideoColors);
 
     const [flipVertical, setFlipVertical] = useState(false);
     const [flipHorizontal, setFlipHorizontal] = useState(false);
@@ -205,6 +210,8 @@ const EnhancedVideo: React.FC<EnhancedVideoProperties> = (
         }, time);
     }
 
+
+    /** VIDEO */
     const playVideo = () => {
         video.current!.play();
         setVideoPlaying(true);
@@ -359,6 +366,8 @@ const EnhancedVideo: React.FC<EnhancedVideoProperties> = (
         setVideoBoxDimensions(videoBoxDimensions);
     }
 
+
+    /** TEXT */
     const addText = () => {
         setMessageTimed('Added New Text', 1500);
 
@@ -377,6 +386,46 @@ const EnhancedVideo: React.FC<EnhancedVideoProperties> = (
         setMessage('Getting the Video Text');
     }
 
+
+    /** COLORS */
+    const toggleDefaultColors = () => {
+        if (defaultColorsToggled) {
+            setVideoColorsInvert(!!previousVideoColors.invert);
+            setVideoColorsContrast(previousVideoColors.contrast);
+            setVideoColorsHue(previousVideoColors.hue);
+            setVideoColorsSaturation(previousVideoColors.saturation);
+            setVideoColorsBrightness(previousVideoColors.brightness);
+
+            setDefaultColorsToggled(false);
+        } else {
+            const previousColorValues = {
+                invert: videoColorsInvert ? 1 : 0,
+                contrast: videoColorsContrast,
+                hue: videoColorsHue,
+                saturation: videoColorsSaturation,
+                brightness: videoColorsBrightness,
+            };
+
+            setPreviousVideoColors(previousColorValues);
+            resetToDefaultColors();
+            setDefaultColorsToggled(true);
+        }
+    }
+
+    const resetToDefaultColors = () => {
+        setVideoColorsInvert(!!COLOR_VALUES_DEFAULTS.Invert);
+        setVideoColorsContrast(COLOR_VALUES_DEFAULTS.Contrast);
+        setVideoColorsHue(COLOR_VALUES_DEFAULTS.Hue);
+        setVideoColorsSaturation(COLOR_VALUES_DEFAULTS.Saturation);
+        setVideoColorsBrightness(COLOR_VALUES_DEFAULTS.Brightness);
+
+        if (defaultColorsToggled) {
+            setDefaultColorsToggled(false);
+        }
+    }
+
+
+    /** VARIA */
     const toggleFullscreen = () => {
         if (videoContainer.current) {
             if (document.fullscreen) {
@@ -391,6 +440,7 @@ const EnhancedVideo: React.FC<EnhancedVideoProperties> = (
     const viewAbout = () => {
         window.open(ABOUT_URL, '_blank');
     }
+
 
 
     /** effects */
@@ -639,6 +689,10 @@ const EnhancedVideo: React.FC<EnhancedVideoProperties> = (
         saveText,
         getText,
 
+        defaultColorsToggled,
+        toggleDefaultColors,
+        resetToDefaultColors,
+
         videoColorsInvert,
         setVideoColorsInvert,
         videoColorsContrast,
@@ -667,7 +721,7 @@ const EnhancedVideo: React.FC<EnhancedVideoProperties> = (
 
 
 
-    /** Markup */
+    /** render */
     if (!src || !type) {
         return (
             <StyledEnhancedVideoNoRender>
