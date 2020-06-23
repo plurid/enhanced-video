@@ -28,6 +28,10 @@ export interface EnhancedVideoProperties {
     loop?: boolean;
     microview?: boolean;
 
+    generator?: boolean;
+    development?: boolean;
+    silent?: boolean;
+
     /**
      * Inline styling object for the video.
      */
@@ -84,6 +88,29 @@ export interface EnhancedVideoProperties {
     // moreLimit?: number;
     // getTextOnLoad?: boolean;
     action?: Action;
+
+    /**
+     * Specify which drawers to be available in the Settings Menu.
+     *
+     * Default: `['ALL']`.
+     */
+    settingsDrawers?: SettingsDrawer[];
+
+    /**
+     * Specify which actions to be available in the Text Drawer of the Settings Menu.
+     * `('ALL' | 'REVEAL_TEXT' | 'GET_TEXT' | 'EXTRACT_TEXT')[]`
+     *
+     * Default: `['ALL']`.
+     */
+    textDrawer?: TextDrawer[];
+
+    /**
+     * Specify which actions to be available in the Varia Drawer of the Settings Menu.
+     * `('ALL' | 'REVEAL_TEXT' | 'GET_TEXT' | 'EXTRACT_TEXT')[]`
+     *
+     * Default: `['ALL']`.
+     */
+    variaDrawer?: VariaDrawer[];
 }
 
 
@@ -120,8 +147,16 @@ export interface IContext {
     loop: boolean;
     microview: boolean;
 
+    generator: boolean;
+    development: boolean;
+    silent: boolean;
+
     cover: string | undefined;
     CoverPlay: React.FC<any> | undefined;
+
+    settingsDrawers: SettingsDrawer[];
+    textDrawer: TextDrawer[];
+    variaDrawer: VariaDrawer[];
 
     accent?: string;
     legacyToolbarControls: LegacyToolbarControls[];
@@ -232,12 +267,37 @@ export interface VideoBoxDimensions {
 
 
 
+export type SettingsDrawer =
+    | 'ALL'
+    | 'TEXT'
+    | 'COLOR'
+    | 'TOPOLOGY'
+    | 'VARIA';
+
+export type TextDrawer =
+    | 'ALL'
+    | 'REVEAL_TEXT'
+    | 'GET_TEXT'
+    | 'EXTRACT_TEXT'
+    | 'TRANSVIEW_TEXT';
+
+export type VariaDrawer =
+    | 'ALL'
+    | 'VIEW_FULLSCREEN';
+
+
+
+
 export {
     VideoText,
     VideoTextVersion,
     VideoTextVersionTextarea,
     VideoTextVersionTextline,
 }
+
+
+
+
 
 
 

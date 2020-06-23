@@ -43,6 +43,43 @@ storiesOf(
 .add('basic', () => {
     // const theme = select(themeLabel, themeOptions, defaultThemeValue);
 
+    const generator = boolean('Generator', true);
+    const development = boolean('Development', true);
+    const silent = boolean('Silent', false);
+
+    const settingsDrawers = select(
+        'Settings Drawers',
+        {
+            'ALL': 'ALL',
+            'TEXT': 'TEXT',
+            'TOPOLOGY': 'TOPOLOGY',
+            'VARIA': 'VARIA',
+            'COLOR': 'COLOR',
+        },
+        'ALL',
+    );
+    const textDrawer = select(
+        'Text Drawer',
+        {
+            'ALL': 'ALL',
+            'REVEAL_TEXT': 'REVEAL_TEXT',
+            'GET_TEXT': 'GET_TEXT',
+            'EXTRACT_TEXT': 'EXTRACT_TEXT',
+            'TRANSVIEW_TEXT': 'TRANSVIEW_TEXT',
+        },
+        'ALL',
+    );
+    const variaDrawer = select(
+        'Varia Drawer',
+        {
+            'ALL': 'ALL',
+            'VIEW_FULLSCREEN': 'VIEW_FULLSCREEN',
+            'SHARE_IMAGE': 'SHARE_IMAGE',
+            'DOWNLOAD_IMAGE': 'DOWNLOAD_IMAGE',
+        },
+        'ALL',
+    );
+
     const mask = select(
         'Mask',
         {
@@ -95,6 +132,14 @@ storiesOf(
                 //     </div>
                 // )}
                 accent={accent}
+
+                generator={generator}
+                development={development}
+                silent={silent}
+
+                settingsDrawers={[settingsDrawers]}
+                textDrawer={[textDrawer]}
+                variaDrawer={[variaDrawer]}
 
                 legacyToolbarControls={[legacyToolbarControls]}
             />

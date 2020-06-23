@@ -32,6 +32,8 @@ const LegacyMore: React.FC<any> = () => {
 
     const {
         theme,
+
+        settingsDrawers,
     } = context;
 
 
@@ -56,13 +58,25 @@ const LegacyMore: React.FC<any> = () => {
                     theme={theme}
                 >
                     <ul>
-                        <DrawerText />
+                        {(settingsDrawers.includes('ALL') || settingsDrawers.includes('TEXT'))
+                        && (
+                            <DrawerText />
+                        )}
 
-                        <DrawerColor />
+                        {(settingsDrawers.includes('ALL') || settingsDrawers.includes('COLOR'))
+                        && (
+                            <DrawerColor />
+                        )}
 
-                        <DrawerTopology />
+                        {(settingsDrawers.includes('ALL') || settingsDrawers.includes('TOPOLOGY'))
+                        && (
+                            <DrawerTopology />
+                        )}
 
-                        <DrawerVaria />
+                        {(settingsDrawers.includes('ALL') || settingsDrawers.includes('VARIA'))
+                        && (
+                            <DrawerVaria />
+                        )}
                     </ul>
                 </StyledLegacyMoreMenu>
             )}
