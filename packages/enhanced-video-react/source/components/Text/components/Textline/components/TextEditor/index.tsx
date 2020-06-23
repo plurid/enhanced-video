@@ -248,7 +248,7 @@ const TextEditor: React.FC<TextEditorProperties> = (
 
             <ButtonTimeIncrements
                 theme={theme}
-                type="startTime"
+                type="time.start"
                 changeValue={updateField}
                 time={currentVersion.time.start}
                 icon={StartTimeIcon}
@@ -256,7 +256,7 @@ const TextEditor: React.FC<TextEditorProperties> = (
 
             <ButtonTimeIncrements
                 theme={theme}
-                type="endTime"
+                type="time.end"
                 changeValue={updateField}
                 time={currentVersion.time.end}
                 icon={EndTimeIcon}
@@ -271,7 +271,7 @@ const TextEditor: React.FC<TextEditorProperties> = (
 
             <ButtonIncrements
                 theme={theme}
-                type="fontSize"
+                type="font.size"
                 changeValue={updateField}
                 value={currentVersion.font.size * videoBoxDimensions.height / 100}
                 icon={FontSizeIcon}
@@ -279,8 +279,8 @@ const TextEditor: React.FC<TextEditorProperties> = (
 
             <ButtonDropdown
                 theme={theme}
-                type="fontFamily"
-                alterStyle="fontFamily"
+                type="font.family"
+                alterStyle="font.family"
                 selected={currentVersion.font.family}
                 selectables={selectableFonts}
                 changeSelected={updateField}
@@ -296,8 +296,7 @@ const TextEditor: React.FC<TextEditorProperties> = (
 
             <ButtonInput
                 theme={theme}
-                toggle={() => {}}
-                // toggle={this.updateField.bind(this, 'link')}
+                toggle={() => toggleTextFormat('link.active', true)}
                 toggled={currentVersion.link.active}
                 icon={LinkIcon}
                 value={currentVersion.link.to}
@@ -307,21 +306,21 @@ const TextEditor: React.FC<TextEditorProperties> = (
 
             <ButtonToggle
                 theme={theme}
-                toggle={() => toggleTextFormat('fontWeight', 'bold')}
+                toggle={() => toggleTextFormat('font.weight', 'bold')}
                 toggled={currentVersion.font.weight === 'bold'}
                 icon={BoldIcon}
             />
 
             <ButtonToggle
                 theme={theme}
-                toggle={() => toggleTextFormat('fontStyle', 'italic')}
+                toggle={() => toggleTextFormat('font.style', 'italic')}
                 toggled={currentVersion.font.style === 'italic'}
                 icon={ItalicIcon}
             />
 
             <ButtonIncrements
                 theme={theme}
-                type="letterSpacing"
+                type="font.letterSpacing"
                 changeValue={updateField}
                 value={currentVersion.font.letterSpacing * videoBoxDimensions.width / 100}
                 icon={LetterSpacingIcon}
@@ -330,7 +329,7 @@ const TextEditor: React.FC<TextEditorProperties> = (
 
             <ButtonIncrements
                 theme={theme}
-                type="wordSpacing"
+                type="font.wordSpacing"
                 changeValue={updateField}
                 value={currentVersion.font.wordSpacing * videoBoxDimensions.width / 100}
                 icon={WordSpacingIcon}
