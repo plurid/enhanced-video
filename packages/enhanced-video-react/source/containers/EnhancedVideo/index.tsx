@@ -9,6 +9,10 @@ import themes, {
     Theme,
 } from '@plurid/plurid-themes';
 
+import {
+    uuid,
+} from '@plurid/plurid-functions';
+
 import './styles.css';
 import {
     StyledEnhancedVideo,
@@ -203,6 +207,8 @@ const EnhancedVideo: React.FC<EnhancedVideoProperties> = (
     const [expandVariaDrawer, setExpandVariaDrawer] = useState(false);
 
     const [defaultColorsToggled, setDefaultColorsToggled] = useState(false);
+
+    const [deletedTexts, setDeletedTexts] = useState<string[]>([]);
 
     const [videoColorsInvert, setVideoColorsInvert] = useState(!!initialColors?.invert || !!COLOR_VALUES_DEFAULTS.Invert);
     const [videoColorsContrast, setVideoColorsContrast] = useState(initialColors?.contrast || COLOR_VALUES_DEFAULTS.Contrast);
@@ -474,7 +480,68 @@ const EnhancedVideo: React.FC<EnhancedVideoProperties> = (
         setVideoText([...updatedVideoText]);
     }
 
+    const toggleVersionViewable = (
+        versionID: string,
+    ) => {
+        const updatedVideoText = videoText.map(text => {
+            if (text.id === versionID) {
+                const currentVersion = getVersionById(text);
+                if (currentVersion) {
+                    const updatedVersion = { ...currentVersion };
+                    updatedVersion.viewable = !currentVersion.viewable;
+                    const updatedText = updateVersion(text, updatedVersion);
+                    return updatedText;
+                }
+            }
 
+            return text;
+        });
+
+        setVideoText(updatedVideoText);
+    }
+
+    const duplicateTextItem = (
+        versionID: string,
+    ) => {
+        const imgText = videoText.find(imgText => imgText.id === versionID);
+
+        if (imgText) {
+            const currentVersion = getVersionById(imgText);
+            if (currentVersion) {
+                const version = { ...currentVersion };
+                const currentVersionId = uuid.generate();
+                version.id = currentVersionId;
+                version.yPercent = currentVersion.yPercent < 85
+                    ? currentVersion.yPercent + 10
+                    : currentVersion.yPercent - 10;
+
+                const id = uuid.generate();
+                const updatedImgText: VideoText = {
+                    id,
+                    currentVersionId,
+                    versions: [version],
+                };
+
+                const updatedVideoText = [...videoText, updatedImgText];
+                setVideoText(updatedVideoText);
+            }
+        }
+    }
+
+    const deleteTextItem = (
+        textID: string,
+    ) => {
+        const updatedVideoText = videoText.filter(text => {
+            if (text.id === textID) {
+                setDeletedTexts(deletedTexts => [...deletedTexts, textID]);
+                return false;
+            }
+
+            return text;
+        });
+
+        setVideoText(updatedVideoText);
+    }
 
 
     /** COLORS */
@@ -811,6 +878,9 @@ const EnhancedVideo: React.FC<EnhancedVideoProperties> = (
         updateTextCoordinates,
         updateTextItemField,
         updateVersionContent,
+        toggleVersionViewable,
+        duplicateTextItem,
+        deleteTextItem,
 
         defaultColorsToggled,
         toggleDefaultColors,
