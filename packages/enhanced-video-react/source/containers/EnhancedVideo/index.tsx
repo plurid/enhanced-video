@@ -100,15 +100,15 @@ const EnhancedVideo: React.FC<EnhancedVideoProperties> = (
 
         initialColors,
 
-        theme,
-        controls,
-        height,
+        theme: themeProperty,
+        controls: controlsProperty,
+        height: heightProperty,
         qualitySources,
-        about,
-        loop,
-        microview,
+        about: aboutProperty,
+        loop: loopProperty,
+        microview: microviewProperty,
 
-        apiEndpoint,
+        apiEndpoint: apiEndpointProperty,
         apiKey,
         userToken,
         deviewVideoID,
@@ -129,6 +129,17 @@ const EnhancedVideo: React.FC<EnhancedVideoProperties> = (
     const settingsDrawers = settingsDrawersProperty || ['ALL'];
     const textDrawer = textDrawerProperty || ['ALL'];
     const variaDrawer = variaDrawerProperty || ['ALL'];
+
+    const theme: Theme = themeProperty && themes[themeProperty]
+        ? themes[themeProperty]
+        : themes.plurid;
+    const controls = controlsProperty ?? true;
+    const height = heightProperty || 500;
+    const about = aboutProperty ?? true;
+    const loop = loopProperty ?? false;
+    const microview = microviewProperty ?? false;
+
+    const apiEndpoint = apiEndpointProperty || PLURID_DOMAIN_API;
 
 
 
@@ -583,10 +594,26 @@ const EnhancedVideo: React.FC<EnhancedVideoProperties> = (
         }
     }, [action]);
 
-    const _theme: Theme = theme && themes[theme]
-        ? themes[theme]
-        : themes.plurid;
-    const _controls = controls === undefined ? true : controls;
+    /** Handle toggled colors default */
+    useEffect(() => {
+        if (defaultColorsToggled) {
+            if (
+                videoColorsInvert !== false
+                || videoColorsContrast !== COLOR_VALUES_DEFAULTS.Contrast
+                || videoColorsHue !== COLOR_VALUES_DEFAULTS.Hue
+                || videoColorsSaturation !== COLOR_VALUES_DEFAULTS.Saturation
+                || videoColorsBrightness !== COLOR_VALUES_DEFAULTS.Brightness
+            ) {
+                setDefaultColorsToggled(false);
+            }
+        }
+    }, [
+        videoColorsInvert,
+        videoColorsContrast,
+        videoColorsHue,
+        videoColorsSaturation,
+        videoColorsBrightness,
+    ]);
 
 
 
@@ -595,13 +622,13 @@ const EnhancedVideo: React.FC<EnhancedVideoProperties> = (
         src,
         type,
 
-        theme: _theme,
-        controls: _controls,
-        height: height || 500,
+        theme,
+        controls,
+        height,
         qualitySources,
-        about: about === undefined ? true : about,
-        loop: loop === undefined ? false : loop,
-        microview: microview === undefined ? false : microview,
+        about,
+        loop,
+        microview,
         accent,
         legacyToolbarControls,
 
@@ -616,7 +643,7 @@ const EnhancedVideo: React.FC<EnhancedVideoProperties> = (
         cover,
         CoverPlay: CoverPlayProperty || CoverPlay,
 
-        apiEndpoint: apiEndpoint || PLURID_DOMAIN_API,
+        apiEndpoint,
         apiKey,
         userToken,
         deviewVideoID,
@@ -735,7 +762,7 @@ const EnhancedVideo: React.FC<EnhancedVideoProperties> = (
             value={context}
         >
             <StyledEnhancedVideo
-                theme={_theme}
+                theme={theme}
                 tabIndex={0}
                 onMouseEnter={() => {
                     setMouseOver(true);
