@@ -17,36 +17,66 @@ export const createNewText = (
         id: versionID,
         type: 'TEXTLINE',
 
-        startTime: videoTime,
-        endTime: videoTime + 10,
+        time: {
+            start: videoTime,
+            end: videoTime + 10,
+        },
+        // startTime: videoTime,
+        // endTime: videoTime + 10,
 
-        xPercent: 5,
-        yPercent: 5,
+        position: {
+            x: 5,
+            y: 5,
+        },
+        // xPercent: 5,
+        // yPercent: 5,
 
-        perspective: 0,
-        xRotation: 0,
-        yRotation: 0,
-        zRotation: 0,
-        xSkew: 0,
-        ySkew: 0,
+        transform: {
+            perspective: 0,
+            rx: 0,
+            ry: 0,
+            rz: 0,
+            sx: 0,
+            sy: 0,
+        },
+
+        // perspective: 0,
+        // xRotation: 0,
+        // yRotation: 0,
+        // zRotation: 0,
+        // xSkew: 0,
+        // ySkew: 0,
 
         viewable: false,
         alwaysShow: false,
 
         color: 'white',
 
-        fontWeight: 'normal',
-        fontStyle: 'normal',
-        fontFamily: 'Arial',
-        fontSizePercent: 5,
-        letterSpacingPercent: 0,
-        wordSpacingPercent: 0,
-        lineHeightPercent: 0,
+        font: {
+            weight: 'normal',
+            style: 'normal',
+            family: 'Arial',
+            size: 4.5,
+            letterSpacing: 0,
+            wordSpacing: 0,
+            lineHeight: 0,
+        },
+        // fontWeight: 'normal',
+        // fontStyle: 'normal',
+        // fontFamily: 'Arial',
+        // fontSizePercent: 5,
+        // letterSpacingPercent: 0,
+        // wordSpacingPercent: 0,
+        // lineHeightPercent: 0,
 
         content: 'New Text',
 
-        link: false,
-        linkTo: '',
+        link: {
+            active: false,
+            to: '',
+        },
+        // link: false,
+        // linkTo: '',
     };
 
     const newText: VideoText = {

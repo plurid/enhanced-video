@@ -11,6 +11,7 @@ import themes, {
 
 import {
     uuid,
+    objects,
 } from '@plurid/plurid-functions';
 
 import './styles.css';
@@ -420,8 +421,8 @@ const EnhancedVideo: React.FC<EnhancedVideoProperties> = (
                 const currentVersion = getVersionById(text);
                 if (currentVersion) {
                     const updatedVersion = { ...currentVersion };
-                    updatedVersion.xPercent = coordinates.x;
-                    updatedVersion.yPercent = coordinates.y;
+                    updatedVersion.position.x = coordinates.x;
+                    updatedVersion.position.y = coordinates.y;
                     const updatedText = updateVersion(text, updatedVersion);
                     return { ...updatedText };
                 }
@@ -443,21 +444,41 @@ const EnhancedVideo: React.FC<EnhancedVideoProperties> = (
         const updatedVideoText = videoText.map(text => {
             if (text.id === versionID) {
                 const currentVersion = getVersionById(text);
+
                 if (currentVersion) {
-                    const updatedVersion = { ...currentVersion };
-                    (updatedVersion as any)[type] = value;
+                    const updatedVersion = objects.updateNested(
+                        currentVersion,
+                        type,
+                        value,
+                    );
+
+                    if (!updatedVersion) {
+                        return {
+                            ...text,
+                        };
+                    }
+
                     const updatedText = updateVersion(text, updatedVersion);
-                    return { ...updatedText };
+                    return {
+                        ...updatedText,
+                    };
                 }
 
-                return { ...text };
+                return {
+                    ...text,
+                };
             }
 
-            return { ...text };
+            return {
+                ...text,
+            };
         });
 
-        setVideoText([...updatedVideoText]);
+        setVideoText([
+            ...updatedVideoText,
+        ]);
     }
+
 
     const updateVersionContent = (
         versionID: string,
@@ -513,9 +534,9 @@ const EnhancedVideo: React.FC<EnhancedVideoProperties> = (
                 const version = { ...currentVersion };
                 const currentVersionId = uuid.generate();
                 version.id = currentVersionId;
-                version.yPercent = currentVersion.yPercent < 85
-                    ? currentVersion.yPercent + 10
-                    : currentVersion.yPercent - 10;
+                version.position.y = currentVersion.position.y < 85
+                    ? currentVersion.position.y + 10
+                    : currentVersion.position.y - 10;
 
                 const id = uuid.generate();
                 const updatedImgText: VideoText = {
@@ -524,7 +545,10 @@ const EnhancedVideo: React.FC<EnhancedVideoProperties> = (
                     versions: [version],
                 };
 
-                const updatedVideoText = [...videoText, updatedImgText];
+                const updatedVideoText = [
+                    ...videoText,
+                    updatedImgText,
+                ];
                 setVideoText(updatedVideoText);
             }
         }
