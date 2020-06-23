@@ -51,6 +51,8 @@ const DrawerText: React.FC<any> = (
 
         setShowTimescrollText,
 
+        downloadText,
+
         addText,
         saveText,
         getText,
@@ -159,16 +161,16 @@ const DrawerText: React.FC<any> = (
                 />
             </li> */}
 
-            {/* {development && (
+            {development && (
                 <li>
                     <ButtonItem
                         theme={theme}
                         atClick={downloadText}
-                        icon={SaveIcon}
+                        icon={SaveTextIcon}
                         text="Download Text"
                     />
                 </li>
-            )} */}
+            )}
         </Drawer>
     );
 }
