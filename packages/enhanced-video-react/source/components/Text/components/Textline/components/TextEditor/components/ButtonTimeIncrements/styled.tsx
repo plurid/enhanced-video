@@ -8,12 +8,13 @@ export const StyledTextVideoEditorButtonIncrement: any = styled.div`
     margin: 5px;
 
     input {
-        background: ${(props: any) => {
+        background: transparent;
+        /* background: ${(props: any) => {
             if (props.transparentUI) {
                 return props.theme.backgroundColorSecondaryAlpha;
             }
             return props.theme.backgroundColorSecondary;
-        }};
+        }}; */
         color: ${props => props.theme.colorPrimary};
         height: 24px;
         width: 20px;
@@ -62,14 +63,11 @@ export const StyledTextVideoEditorButtonIncrements: any = styled.div`
         return props.theme.backgroundColorSecondary;
     }};
 
-    display: grid;
-    grid-template-columns: 1fr;
-    grid-template-rows: 1fr 1fr;
+    display: flex;
+    flex-direction: column;
     font-size: 6px;
     justify-items: center;
-    justify-content: center;
-    align-items: space-between;
-    grid-row-gap: 2px;
+    justify-content: space-between;
     height: 24px;
     user-select: none;
 `;
