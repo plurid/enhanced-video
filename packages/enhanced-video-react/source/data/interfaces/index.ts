@@ -58,7 +58,7 @@ export interface EnhancedVideoProperties {
      */
     apiKey?: string;
     userToken?: string;
-    deviewVideoID?: string;
+    videoID?: string;
 
     /**
      * Render the interface using the `'legacy'` or the `'plurid'` concepts.
@@ -260,6 +260,7 @@ export interface IContext {
     deleteTextItem: (
         versionID: string,
     ) => void;
+    downloadText: () => void;
 
     defaultColorsToggled: boolean;
     toggleDefaultColors: () => void;

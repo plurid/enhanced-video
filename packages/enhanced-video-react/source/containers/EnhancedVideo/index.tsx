@@ -120,7 +120,7 @@ const EnhancedVideo: React.FC<EnhancedVideoProperties> = (
         apiEndpoint: apiEndpointProperty,
         apiKey,
         userToken,
-        deviewVideoID,
+        videoID,
 
         videoStyle,
         atLoad,
@@ -220,6 +220,8 @@ const EnhancedVideo: React.FC<EnhancedVideoProperties> = (
 
     const [flipVertical, setFlipVertical] = useState(false);
     const [flipHorizontal, setFlipHorizontal] = useState(false);
+
+    const [databaseVideoID, setDatabaseVideoID] = useState('');
 
 
     /** handlers */
@@ -543,6 +545,26 @@ const EnhancedVideo: React.FC<EnhancedVideoProperties> = (
         setVideoText(updatedVideoText);
     }
 
+    const downloadText = () => {
+        const stringifiedText = JSON.stringify(videoText, null, 4);
+
+        const videoName = videoID || databaseVideoID || 'eit-' + src;
+        const filename = videoName + '.json';
+
+        const element = document.createElement('a');
+        element.setAttribute(
+            'href',
+            'data:text/plain;charset=utf-8,' + encodeURIComponent(stringifiedText),
+        );
+        element.setAttribute('download', filename);
+
+        element.style.display = 'none';
+        document.body.appendChild(element);
+
+        element.click();
+
+        document.body.removeChild(element);
+    }
 
     /** COLORS */
     const toggleDefaultColors = () => {
@@ -886,6 +908,7 @@ const EnhancedVideo: React.FC<EnhancedVideoProperties> = (
         toggleVersionViewable,
         duplicateTextItem,
         deleteTextItem,
+        downloadText,
 
         defaultColorsToggled,
         toggleDefaultColors,
