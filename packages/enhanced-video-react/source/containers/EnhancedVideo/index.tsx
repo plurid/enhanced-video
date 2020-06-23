@@ -191,7 +191,7 @@ const EnhancedVideo: React.FC<EnhancedVideoProperties> = (
     const [videoPlaying, setVideoPlaying] = useState(false);
 
     const [previousVideoVolume, setPreviousVideoVolume] = useState(0);
-    const [videoVolume, setVideoVolume] = useState(1);
+    const [videoVolume, setVideoVolume] = useState(2);
 
     const [videoPlaybackRate, setVideoPlaybackRate] = useState(1);
 
