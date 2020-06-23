@@ -38,10 +38,10 @@ import WordSpacingIcon from '../../../../../../assets/icons/word-spacing-icon';
 import DuplicateIcon from '../../../../../../assets/icons/duplicate-icon';
 import DeleteIcon from '../../../../../../assets/icons/delete-icon';
 
-// import {
-//     percentageFromValue,
-//     valueFromPercentage,
-// } from '../../utils/percentage';
+import {
+    valueFromPercentage,
+    percentageFromValue,
+} from '../../../../../../services/utilities/percentage';
 
 import {
     VideoText,
@@ -77,8 +77,8 @@ const TextEditor: React.FC<TextEditorProperties> = (
     const {
         theme,
 
+        updateTextItemField,
         toggleVersionViewable,
-
         duplicateTextItem,
         deleteTextItem,
 
@@ -102,6 +102,92 @@ const TextEditor: React.FC<TextEditorProperties> = (
 
     /** references */
     const editor = useRef<HTMLDivElement>(null);
+
+
+    /** handlers */
+    const updateField = (
+        type: string,
+        value: number | string | boolean,
+    ) => {
+        switch (type) {
+            case 'fontSize':
+                if (typeof value === 'number') {
+                    const fontSizePercentage = percentageFromValue(value, videoBoxDimensions.height);
+                    updateTextItemField(textItem.id, 'fontSizePercent', fontSizePercentage);
+                }
+                break;
+            case 'fontFamily':
+                updateTextItemField(textItem.id, 'fontFamily', value);
+                break;
+            case 'letterSpacing':
+                if (typeof value === 'number') {
+                    const letterSpacingPercentage = percentageFromValue(value, videoBoxDimensions.width);
+                    updateTextItemField(textItem.id, 'letterSpacingPercent', letterSpacingPercentage);
+                }
+                break;
+            case 'wordSpacing':
+                if (typeof value === 'number') {
+                    const wordSpacingPercentage = percentageFromValue(value, videoBoxDimensions.width);
+                    updateTextItemField(textItem.id, 'wordSpacingPercent', wordSpacingPercentage);
+                }
+                break;
+            case 'linkTo':
+                updateTextItemField(textItem.id, 'linkTo', value);
+                break;
+            case 'color':
+                updateTextItemField(textItem.id, 'color', value);
+                break;
+            case 'perspective':
+                if (typeof value === 'number') {
+                    updateTextItemField(textItem.id, 'perspective', value - 1);
+                }
+                break;
+            case 'xRotation':
+                if (typeof value === 'number') {
+                    updateTextItemField(textItem.id, 'xRotation', value - 1);
+                }
+                break;
+            case 'yRotation':
+                if (typeof value === 'number') {
+                    updateTextItemField(textItem.id, 'yRotation', value - 1);
+                }
+                break;
+            case 'zRotation':
+                if (typeof value === 'number') {
+                    updateTextItemField(textItem.id, 'zRotation', value - 1);
+                }
+                break;
+            case 'xSkew':
+                if (typeof value === 'number') {
+                    updateTextItemField(textItem.id, 'xSkew', value - 1);
+                }
+                break;
+            case 'ySkew':
+                if (typeof value === 'number') {
+                    updateTextItemField(textItem.id, 'ySkew', value - 1);
+                }
+                break;
+        }
+    }
+
+    const toggleTextFormat = (
+        type: string,
+        checkValue: string | boolean,
+    ) => {
+        if (typeof checkValue === 'boolean') {
+            if ((currentVersion as any)[type as any]) {
+                updateTextItemField(textItem.id, type, false);
+            } else {
+                updateTextItemField(textItem.id, type, true);
+            }
+        } else {
+            if ((currentVersion as any)[type as any] === checkValue) {
+                updateTextItemField(textItem.id, type, 'normal');
+            } else {
+                updateTextItemField(textItem.id, type, checkValue);
+            }
+        }
+    }
 
 
     /** render */
@@ -149,8 +235,7 @@ const TextEditor: React.FC<TextEditorProperties> = (
             <ButtonTimeIncrements
                 theme={theme}
                 type="startTime"
-                changeValue={() => {}}
-                // changeValue={this.updateField}
+                changeValue={updateField}
                 time={currentVersion.startTime}
                 icon={StartTimeIcon}
             />
@@ -158,8 +243,7 @@ const TextEditor: React.FC<TextEditorProperties> = (
             <ButtonTimeIncrements
                 theme={theme}
                 type="endTime"
-                changeValue={() => {}}
-                // changeValue={this.updateField}
+                changeValue={updateField}
                 time={currentVersion.endTime}
                 icon={EndTimeIcon}
                 iconAfter={true}
@@ -174,8 +258,7 @@ const TextEditor: React.FC<TextEditorProperties> = (
             <ButtonIncrements
                 theme={theme}
                 type="fontSize"
-                changeValue={() => {}}
-                // changeValue={this.updateField}
+                changeValue={updateField}
                 value={currentVersion.fontSizePercent * videoBoxDimensions.height / 100}
                 icon={FontSizeIcon}
             />
@@ -186,8 +269,7 @@ const TextEditor: React.FC<TextEditorProperties> = (
                 alterStyle="fontFamily"
                 selected={currentVersion.fontFamily}
                 selectables={selectableFonts}
-                changeSelected={() => {}}
-                // changeSelected={this.updateField}
+                changeSelected={updateField}
                 toggleEditor={() => {}}
                 textDraggable={false}
                 toggleTextDraggable={() => {}}
@@ -206,22 +288,19 @@ const TextEditor: React.FC<TextEditorProperties> = (
                 icon={LinkIcon}
                 value={currentVersion.linkTo}
                 valueType="linkTo"
-                changeValue={() => {}}
-                // changeValue={this.updateField}
+                changeValue={updateField}
             />
 
             <ButtonToggle
                 theme={theme}
-                toggle={() => {}}
-                // toggle={this.updateField.bind(this, 'bold')}
+                toggle={() => toggleTextFormat('fontWeight', 'bold')}
                 toggled={currentVersion.fontWeight === 'bold'}
                 icon={BoldIcon}
             />
 
             <ButtonToggle
                 theme={theme}
-                toggle={() => {}}
-                // toggle={this.updateField.bind(this, 'italic')}
+                toggle={() => toggleTextFormat('fontStyle', 'italic')}
                 toggled={currentVersion.fontStyle === 'italic'}
                 icon={ItalicIcon}
             />
@@ -229,8 +308,7 @@ const TextEditor: React.FC<TextEditorProperties> = (
             <ButtonIncrements
                 theme={theme}
                 type="letterSpacing"
-                changeValue={() => {}}
-                // changeValue={this.updateField}
+                changeValue={updateField}
                 value={currentVersion.letterSpacingPercent * videoBoxDimensions.width / 100}
                 icon={LetterSpacingIcon}
                 step={0.1}
@@ -239,16 +317,15 @@ const TextEditor: React.FC<TextEditorProperties> = (
             <ButtonIncrements
                 theme={theme}
                 type="wordSpacing"
-                changeValue={() => {}}
-                // changeValue={this.updateField}
+                changeValue={updateField}
                 value={currentVersion.wordSpacingPercent * videoBoxDimensions.width / 100}
                 icon={WordSpacingIcon}
                 step={0.1}
             />
 
             <ButtonsColors
-                changeValue={() => {}}
-                // changeValue={this.updateField}
+                theme={theme}
+                changeValue={updateField}
                 color={currentVersion.color}
             />
 
