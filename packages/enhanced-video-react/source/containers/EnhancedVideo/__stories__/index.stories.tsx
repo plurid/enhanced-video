@@ -36,7 +36,7 @@ import EnhancedVideo from '../';
 // const defaultThemeValue = 'plurid';
 
 storiesOf(
-    'EnhancedImage',
+    'EnhancedVideo',
     module,
 )
 .addDecorator(withKnobs)
