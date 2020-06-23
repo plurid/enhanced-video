@@ -26,6 +26,14 @@ export const COLOR_VALUES_DEFAULTS = {
 };
 
 
+export const initialPreviousVideoColors = {
+    invert: 0,
+    contrast: 100,
+    hue: 0,
+    saturation: 100,
+    brightness: 100,
+};
+
 
 export const colorsSliders: Slider[] = [
     {

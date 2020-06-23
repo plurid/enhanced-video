@@ -237,6 +237,10 @@ export interface IContext {
     saveText: () => Promise<void>;
     getText: () => Promise<void>;
 
+    defaultColorsToggled: boolean;
+    toggleDefaultColors: () => void;
+    resetToDefaultColors: () => void;
+
     videoColorsInvert: boolean;
     setVideoColorsInvert: Dispatch<SetStateAction<boolean>>;
     videoColorsContrast: number;
