@@ -621,6 +621,10 @@ const EnhancedVideo: React.FC<EnhancedVideoProperties> = (
     const handleKeys = (
         event: any,
     ) => {
+        if (editableText) {
+            return;
+        }
+
         let handled = false;
 
         // handle space
@@ -704,6 +708,7 @@ const EnhancedVideo: React.FC<EnhancedVideoProperties> = (
             videoContainer.current!.removeEventListener('keydown', handleKeys);
         }
     }, [
+        editableText,
         videoDimensions,
         videoPlaying,
         videoVolume,
