@@ -46,8 +46,7 @@ export const StyledPlay = styled.div`
 
 export const StyledTime = styled.div`
     padding: 0 0.6rem;
-    user-select: none;
-    pointer-events: none;
+    user-select: text;
 `;
 
 
