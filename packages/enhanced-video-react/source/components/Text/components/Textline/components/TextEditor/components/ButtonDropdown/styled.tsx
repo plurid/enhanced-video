@@ -2,37 +2,53 @@ import styled from 'styled-components';
 
 
 
-export const StyledTextVideoEditorButtonDropdown = styled.div`
+export const StyledButtonDropdown = styled.div`
     display: grid;
     place-content: center;
     position: relative;
 `;
 
 
-export const StyledTextVideoEditorButtonDropdownSelected = styled.div`
+export const StyledButtonDropdownSelected: any = styled.div`
     input {
-        width: 110px;
-        border: none;
-        background: ${props => props.theme.backgroundColorSecondary};
+        background: ${(props: any) => {
+            if (props.transparentUI) {
+                return props.theme.backgroundColorSecondaryAlpha;
+            }
+            return props.theme.backgroundColorSecondary;
+        }};
         color: ${props => props.theme.colorPrimary};
+
+        width: 110px;
+        height: 18px;
+        border: none;
         text-align: left;
         outline: none;
         padding: 3px 6px;
     }
+
+    input:hover {
+        background: ${(props: any) => {
+            return props.theme.backgroundColorSecondary;
+        }};
+    }
 `;
 
 
-export const StyledTextVideoEditorButtonDropdownList: any = styled.div`
-    position: absolute;
-    top: 27px;
-    left: 0;
-    right: 0;
+export const StyledButtonDropdownList: any = styled.div`
+    width: 122px;
     display: grid;
     align-content: flex-start;
     max-height: 100px;
     overflow-y: auto;
     overflow-x: hidden;
     scroll-snap-type: y mandatory;
+
+    box-shadow: ${
+        ({
+            theme,
+        }: any) => theme.boxShadowUmbra
+    };
 
     ul {
         margin: 0;
@@ -42,31 +58,43 @@ export const StyledTextVideoEditorButtonDropdownList: any = styled.div`
 `;
 
 
-export const StyledTextVideoEditorButtonDropdownListItem: any = styled.li`
+export const StyledButtonDropdownListItem: any = styled.li`
     cursor: pointer;
     padding: 4px 6px;
     font-size: 11px;
     scroll-snap-align: start;
     height: 20px;
+    display: flex;
+    align-items: center;
 
     font-family: ${(props: any) => props.fontFamily};
     background: ${(props: any) => {
         const {
             index,
             cursor,
-            filtered,
-            selected,
             theme,
+            transparentUI,
         } = props;
-
-        // console.log(index, cursor);
 
         if (index === cursor) {
             return theme.backgroundColorPrimary;
         }
 
+        if (transparentUI) {
+            return theme.backgroundColorSecondaryAlpha;
+        }
+
         return theme.backgroundColorSecondary;
     }};
+    color: ${
+        ({
+            theme,
+        }: any) => theme.colorPrimary
+    };
+    letter-spacing: 0;
+    word-spacing: 0;
+    font-weight: normal;
+    font-style: normal;
 
     :hover {
         background: ${props => props.theme.backgroundColorPrimary};

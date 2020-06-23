@@ -1,6 +1,7 @@
 import React, {
     useContext,
     useRef,
+    useState,
     useEffect,
 } from 'react';
 
@@ -11,6 +12,7 @@ import {
 import {
     StyledTextEditor,
     StyledVerticalDivider,
+    StyledOutside,
 } from './styled';
 
 import Context from '../../../../../../services/context';
@@ -113,6 +115,13 @@ const TextEditor: React.FC<TextEditorProperties> = (
     const editor = useRef<HTMLDivElement>(null);
 
 
+    /** state */
+    const [outside, setOutside] = useState(<></>);
+    const [outsideTopBased, setOutsideTopBased] = useState(false);
+    const [outsideLeft, setOutsideLeft] = useState(100);
+    const [transformSlider, setTransformSlider] = useState('');
+
+
     /** handlers */
     const updateField = (
         type: string,
@@ -200,6 +209,22 @@ const TextEditor: React.FC<TextEditorProperties> = (
         }
     }
 
+    const renderOutside = (
+        outside: JSX.Element,
+        left: number = 0,
+    ) => {
+        setOutside(outside);
+
+        const itemLeft = positions.x + left;
+        const editorScrollLeft = editor.current
+            ? editor.current.scrollLeft
+            : 0;
+
+        const outsideLeft = itemLeft - editorScrollLeft;
+
+        setOutsideLeft(outsideLeft);
+    }
+
 
     /** effects */
     /** Toggle editable. */
@@ -223,172 +248,185 @@ const TextEditor: React.FC<TextEditorProperties> = (
 
     /** render */
     return (
-        <StyledTextEditor
-            theme={theme}
-            ref={editor}
-            transparentUI={transparentUI}
-            videoBoxDimensions={videoBoxDimensions}
-            fullWidth={fullWidth}
-            style={{
-                left: positions.x + 'px',
-                top: positions.y + 'px',
-            }}
-        >
-            <ButtonToggle
+        <>
+            <StyledTextEditor
                 theme={theme}
-                toggle={() => setEditable(editable => !editable)}
-                toggled={editable}
-                icon={SelectTextIcon}
-            />
-
-            <ButtonToggle
-                theme={theme}
-                toggle={() => setDraggable(draggable => !draggable)}
-                toggled={draggable}
-                icon={GrabIcon}
-            />
-
-            <StyledVerticalDivider
-                theme={theme}
-            >
-                &nbsp;
-            </StyledVerticalDivider>
-
-            <ButtonToggle
-                theme={theme}
-                toggle={() => {}}
-                toggled={false}
-                icon={AlwaysShowOnIcon}
-                // toggle={toggleTextAlwaysShow}
-                // toggled={textAlwaysShow}
-                // icon={textAlwaysShow ? AlwaysShowOnIcon : AlwaysShowOffIcon}
-            />
-
-            <ButtonTimeIncrements
-                theme={theme}
-                type="time.start"
-                changeValue={updateField}
-                time={currentVersion.time.start}
-                icon={StartTimeIcon}
-            />
-
-            <ButtonTimeIncrements
-                theme={theme}
-                type="time.end"
-                changeValue={updateField}
-                time={currentVersion.time.end}
-                icon={EndTimeIcon}
-                iconAfter={true}
-            />
-
-            <StyledVerticalDivider
-                theme={theme}
-            >
-                &nbsp;
-            </StyledVerticalDivider>
-
-            <ButtonIncrements
-                theme={theme}
+                ref={editor}
                 transparentUI={transparentUI}
-                type="font.size"
-                changeValue={updateField}
-                value={currentVersion.font.size * videoBoxDimensions.height / 100}
-                icon={FontSizeIcon}
-            />
-
-            <ButtonDropdown
-                theme={theme}
-                type="font.family"
-                alterStyle="font.family"
-                selected={currentVersion.font.family}
-                selectables={selectableFonts}
-                changeSelected={updateField}
-                toggleEditor={() => {}}
-                textDraggable={false}
-                toggleTextDraggable={() => {}}
-                toggleTextSelected={() => {}}
-                // toggleEditor={toggleEditor}
-                // textDraggable={textDraggable}
-                // toggleTextDraggable={toggleTextDraggable}
-                // toggleTextSelected={toggleSelected}
-            />
-
-            <ButtonInput
-                theme={theme}
-                toggle={() => toggleTextFormat('link.active', true)}
-                toggled={currentVersion.link.active}
-                icon={LinkIcon}
-                value={currentVersion.link.to}
-                valueType="link.to"
-                changeValue={updateField}
-            />
-
-            <ButtonToggle
-                theme={theme}
-                toggle={() => toggleTextFormat('font.weight', 'bold')}
-                toggled={currentVersion.font.weight === 'bold'}
-                icon={BoldIcon}
-            />
-
-            <ButtonToggle
-                theme={theme}
-                toggle={() => toggleTextFormat('font.style', 'italic')}
-                toggled={currentVersion.font.style === 'italic'}
-                icon={ItalicIcon}
-            />
-
-            <ButtonIncrements
-                theme={theme}
-                transparentUI={transparentUI}
-                type="font.letterSpacing"
-                changeValue={updateField}
-                value={currentVersion.font.letterSpacing * videoBoxDimensions.width / 100}
-                icon={LetterSpacingIcon}
-                step={0.1}
-            />
-
-            <ButtonIncrements
-                theme={theme}
-                transparentUI={transparentUI}
-                type="font.wordSpacing"
-                changeValue={updateField}
-                value={currentVersion.font.wordSpacing * videoBoxDimensions.width / 100}
-                icon={WordSpacingIcon}
-                step={0.1}
-            />
-
-            <ButtonsColors
-                theme={theme}
-                changeValue={updateField}
-                color={currentVersion.color}
-            />
-
-            <StyledVerticalDivider
-                theme={theme}
+                videoBoxDimensions={videoBoxDimensions}
+                fullWidth={fullWidth}
+                style={{
+                    left: positions.x + 'px',
+                    top: positions.y + 'px',
+                }}
             >
-                &nbsp;
-            </StyledVerticalDivider>
+                <ButtonToggle
+                    theme={theme}
+                    toggle={() => setEditable(editable => !editable)}
+                    toggled={editable}
+                    icon={SelectTextIcon}
+                />
+
+                <ButtonToggle
+                    theme={theme}
+                    toggle={() => setDraggable(draggable => !draggable)}
+                    toggled={draggable}
+                    icon={GrabIcon}
+                />
+
+                <StyledVerticalDivider
+                    theme={theme}
+                >
+                    &nbsp;
+                </StyledVerticalDivider>
+
+                <ButtonToggle
+                    theme={theme}
+                    toggle={() => {}}
+                    toggled={false}
+                    icon={AlwaysShowOnIcon}
+                    // toggle={toggleTextAlwaysShow}
+                    // toggled={textAlwaysShow}
+                    // icon={textAlwaysShow ? AlwaysShowOnIcon : AlwaysShowOffIcon}
+                />
+
+                <ButtonTimeIncrements
+                    theme={theme}
+                    type="time.start"
+                    changeValue={updateField}
+                    time={currentVersion.time.start}
+                    icon={StartTimeIcon}
+                />
+
+                <ButtonTimeIncrements
+                    theme={theme}
+                    type="time.end"
+                    changeValue={updateField}
+                    time={currentVersion.time.end}
+                    icon={EndTimeIcon}
+                    iconAfter={true}
+                />
+
+                <StyledVerticalDivider
+                    theme={theme}
+                >
+                    &nbsp;
+                </StyledVerticalDivider>
+
+                <ButtonIncrements
+                    theme={theme}
+                    transparentUI={transparentUI}
+                    type="font.size"
+                    changeValue={updateField}
+                    value={currentVersion.font.size * videoBoxDimensions.height / 100}
+                    icon={FontSizeIcon}
+                />
+
+                <ButtonDropdown
+                    theme={theme}
+                    transparentUI={transparentUI}
+                    type="font.family"
+                    alterStyle="font.family"
+                    selected={currentVersion.font.family}
+                    selectables={selectableFonts}
+                    changeSelected={updateField}
+                    toggleEditor={() => {}}
+                    textDraggable={false}
+                    toggleTextDraggable={() => {}}
+                    toggleTextSelected={() => {}}
+                    renderOutside={renderOutside}
+                />
+
+                <ButtonInput
+                    theme={theme}
+                    transparentUI={transparentUI}
+                    toggle={() => toggleTextFormat('link.active', true)}
+                    toggled={currentVersion.link.active}
+                    icon={LinkIcon}
+                    value={currentVersion.link.to}
+                    valueType="link.to"
+                    changeValue={updateField}
+                    renderOutside={renderOutside}
+                />
+
+                <ButtonToggle
+                    theme={theme}
+                    toggle={() => toggleTextFormat('font.weight', 'bold')}
+                    toggled={currentVersion.font.weight === 'bold'}
+                    icon={BoldIcon}
+                />
+
+                <ButtonToggle
+                    theme={theme}
+                    toggle={() => toggleTextFormat('font.style', 'italic')}
+                    toggled={currentVersion.font.style === 'italic'}
+                    icon={ItalicIcon}
+                />
+
+                <ButtonIncrements
+                    theme={theme}
+                    transparentUI={transparentUI}
+                    type="font.letterSpacing"
+                    changeValue={updateField}
+                    value={currentVersion.font.letterSpacing * videoBoxDimensions.width / 100}
+                    icon={LetterSpacingIcon}
+                    step={0.1}
+                />
+
+                <ButtonIncrements
+                    theme={theme}
+                    transparentUI={transparentUI}
+                    type="font.wordSpacing"
+                    changeValue={updateField}
+                    value={currentVersion.font.wordSpacing * videoBoxDimensions.width / 100}
+                    icon={WordSpacingIcon}
+                    step={0.1}
+                />
+
+                <ButtonsColors
+                    theme={theme}
+                    changeValue={updateField}
+                    color={currentVersion.color}
+                />
+
+                <StyledVerticalDivider
+                    theme={theme}
+                >
+                    &nbsp;
+                </StyledVerticalDivider>
 
 
-            <ButtonToggle
-                theme={theme}
-                toggle={() => toggleVersionViewable(textItem.id)}
-                toggled={currentVersion.viewable}
-                icon={currentVersion.viewable ? ViewableIcon : NotViewableIcon}
-            />
+                <ButtonToggle
+                    theme={theme}
+                    toggle={() => toggleVersionViewable(textItem.id)}
+                    toggled={currentVersion.viewable}
+                    icon={currentVersion.viewable ? ViewableIcon : NotViewableIcon}
+                />
 
-            <ButtonClick
-                theme={theme}
-                atClick={() => duplicateTextItem(textItem.id)}
-                icon={DuplicateIcon}
-            />
+                <ButtonClick
+                    theme={theme}
+                    atClick={() => duplicateTextItem(textItem.id)}
+                    icon={DuplicateIcon}
+                />
 
-            <ButtonClick
-                theme={theme}
-                atClick={() => deleteTextItem(textItem.id)}
-                icon={DeleteIcon}
-            />
-        </StyledTextEditor>
+                <ButtonClick
+                    theme={theme}
+                    atClick={() => deleteTextItem(textItem.id)}
+                    icon={DeleteIcon}
+                />
+            </StyledTextEditor>
+
+            <StyledOutside
+                style={{
+                    left: outsideLeft + 'px',
+                    top: outsideTopBased
+                        ? '0'
+                        : (positions.y + 34) + 'px',
+                }}
+            >
+                {outside}
+            </StyledOutside>
+        </>
     );
 };
 
