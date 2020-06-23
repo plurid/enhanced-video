@@ -1,5 +1,7 @@
 import React, {
     useContext,
+    useState,
+    useEffect,
 } from 'react';
 
 import {
@@ -26,6 +28,7 @@ import {
 
 
 const Text: React.FC<any> = () => {
+    /** context */
     const context = useContext(Context);
     if (!context) {
         return (<></>);
@@ -36,8 +39,27 @@ const Text: React.FC<any> = () => {
         videoBoxDimensions,
 
         videoText,
+
+        flipVertical,
+        flipHorizontal,
     } = context;
 
+
+    /** state */
+    const [transform, setTransform] = useState('');
+
+
+    /** effects */
+    useEffect(() => {
+        const transform = `${flipVertical ? 'scaleX(-1)': ''} ${flipHorizontal ? 'scaleY(-1' : ''}`;
+        setTransform(transform);
+    }, [
+        flipVertical,
+        flipHorizontal,
+    ]);
+
+
+    /** render */
     return (
         <StyledText
             style={{
@@ -45,10 +67,12 @@ const Text: React.FC<any> = () => {
                 height: videoBoxDimensions.height + 'px',
                 left: videoBoxDimensions.left + 'px',
                 top: videoBoxDimensions.top + 'px',
+                transform,
             }}
         >
             {videoText.map((textItem: VideoText) => {
                 const currentVersion = getVersionById(textItem);
+
                 if (!currentVersion) {
                     return;
                 }
@@ -80,12 +104,15 @@ const Text: React.FC<any> = () => {
                                 <Textline
                                     key={textItem.id}
                                     data={textItem}
+                                    currentVersion={currentVersion}
                                 />
                             );
+                        default:
+                            return;
                     }
                 }
 
-                return;
+                return
             })}
         </StyledText>
     );

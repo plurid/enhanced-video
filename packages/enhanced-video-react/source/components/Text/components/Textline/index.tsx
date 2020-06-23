@@ -20,10 +20,6 @@ import {
 } from '../../../../data/interfaces';
 
 import {
-    getVersionById,
-} from '../../../../services/utilities/videoText';
-
-import {
     percentageFromValue,
 } from '../../../../services/utilities/percentage';
 
@@ -42,6 +38,7 @@ import Context from '../../../../services/context';
 
 export interface TextlineProperties {
     data: VideoText;
+    currentVersion: VideoTextVersionTextline;
 }
 
 const Textline: React.FC<TextlineProperties> = (
@@ -65,6 +62,7 @@ const Textline: React.FC<TextlineProperties> = (
     /** properties */
     const {
         data,
+        currentVersion,
     } = properties;
 
 
@@ -74,8 +72,6 @@ const Textline: React.FC<TextlineProperties> = (
 
 
     /** state */
-    const [currentVersion, setCurrentVersion] = useState<VideoTextVersionTextline>();
-
     const [textYCoord, setTextYCoord] = useState('0px');
     const [textXCoord, setTextXCoord] = useState('0px');
     const [textColor, setTextColor] = useState('transparent');
@@ -99,7 +95,7 @@ const Textline: React.FC<TextlineProperties> = (
 
     const [mouseOver, setMouseOver] = useState(false);
 
-    const [textValue, _] = useState('text');
+    const [textValue, _] = useState(currentVersion.content);
 
     const [editable, setEditable] = useState(false);
     const [draggable, setDraggable] = useState(false);
@@ -327,19 +323,7 @@ const Textline: React.FC<TextlineProperties> = (
     }
 
 
-
-
     /** effects */
-    useEffect(() => {
-        const currentVersion = getVersionById(data);
-
-        if (currentVersion && currentVersion.type === 'TEXTLINE') {
-            setCurrentVersion(currentVersion);
-        }
-    }, [
-        data,
-    ]);
-
     /**
      * Compute format.
      */
@@ -584,7 +568,8 @@ const Textline: React.FC<TextlineProperties> = (
             && !dragging
             && (
                 <TextEditor
-                    data={currentVersion}
+                    textItem={data}
+                    currentVersion={currentVersion}
 
                     editable={editable}
                     setEditable={setEditable}
