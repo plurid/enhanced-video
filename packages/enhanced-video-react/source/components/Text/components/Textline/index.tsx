@@ -336,12 +336,24 @@ const Textline: React.FC<TextlineProperties> = (
         if (currentVersion && currentVersion.type === 'TEXTLINE') {
             setCurrentVersion(currentVersion);
         }
-    }, [data]);
+    }, [
+        data,
+    ]);
 
+    /**
+     * Compute format.
+     */
     useEffect(() => {
         if (currentVersion) {
             setTextXCoord(currentVersion.xPercent * videoBoxDimensions.width / 100 + 'px');
             setTextYCoord(currentVersion.yPercent * videoBoxDimensions.height / 100 + 'px');
+
+            setPerspective(currentVersion.perspective + 'px');
+            setRotationX(currentVersion.xRotation + 'deg');
+            setRotationY(currentVersion.yRotation + 'deg');
+            setRotationZ(currentVersion.zRotation + 'deg');
+            setSkewX(currentVersion.xSkew + 'deg');
+            setSkewY(currentVersion.ySkew + 'deg');
 
             setFontWeight(currentVersion.fontWeight);
             setFontStyle(currentVersion.fontStyle);
@@ -361,9 +373,14 @@ const Textline: React.FC<TextlineProperties> = (
         videoBoxDimensions,
     ]);
 
+    /**
+     * Handle text color.
+     */
     useEffect(() => {
         if (currentVersion) {
             if (editableText) {
+                setTextColor(currentVersion.color);
+            } else if (currentVersion.viewable) {
                 setTextColor(currentVersion.color);
             } else {
                 setTextColor('transparent');
@@ -374,6 +391,9 @@ const Textline: React.FC<TextlineProperties> = (
         editableText,
     ]);
 
+    /**
+     * Handle showEditor
+     */
     useEffect(() => {
         if (editableText && mouseOver) {
             setShowEditor(true);
@@ -384,7 +404,6 @@ const Textline: React.FC<TextlineProperties> = (
         editableText,
         mouseOver,
     ]);
-
 
     /**
      * Handle dragging (mouseup).
@@ -481,9 +500,19 @@ const Textline: React.FC<TextlineProperties> = (
         mouseOver,
     ]);
 
+    /**
+     * Handle loaded.
+     */
+    useEffect(() => {
+        setLoaded(true);
+    }, []);
 
 
     /** render */
+    if (!loaded) {
+        return (<></>);
+    }
+
     return (
         <StyledTextItem
             tabIndex={0}
