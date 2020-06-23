@@ -33,6 +33,11 @@ const DrawerText: React.FC<any> = (
     const {
         theme,
 
+        generator,
+        development,
+
+        textDrawer,
+
         editableText,
         setEditableText,
 
@@ -76,43 +81,62 @@ const DrawerText: React.FC<any> = (
             toggleExpand={() => setExpandTextDrawer(expand => !expand)}
             theme={theme}
         >
-            <li>
-                <ButtonCheckmark
-                    theme={theme}
-                    toggle={setEditableText}
-                    text="Edit Text"
-                    checked={editableText}
-                />
-            </li>
+            {generator && (
+                <>
+                    <li>
+                        <ButtonCheckmark
+                            theme={theme}
+                            toggle={setEditableText}
+                            text="Edit Text"
+                            checked={editableText}
+                        />
+                    </li>
 
-            <li>
-                <ButtonItem
-                    theme={theme}
-                    atClick={handleAddText}
-                    icon={AddTextIcon}
-                    text="Add Text"
-                />
-            </li>
+                    <li>
+                        <ButtonItem
+                            theme={theme}
+                            atClick={handleAddText}
+                            icon={AddTextIcon}
+                            text="Add Text"
+                        />
+                    </li>
 
-            <li>
-                <ButtonItem
-                    theme={theme}
-                    atClick={handleSaveText}
-                    icon={SaveTextIcon}
-                    text="Save Text"
-                />
-            </li>
+                    <li>
+                        <ButtonItem
+                            theme={theme}
+                            atClick={handleSaveText}
+                            icon={SaveTextIcon}
+                            text="Save Text"
+                        />
+                    </li>
 
-            <hr />
+                    <hr />
+                </>
+            )}
 
-            <li>
-                <ButtonItem
-                    theme={theme}
-                    atClick={handleGetText}
-                    icon={GetTextIcon}
-                    text="Get Text"
-                />
-            </li>
+            {/* {(textDrawer.includes('ALL') || textDrawer.includes('REVEAL_TEXT'))
+            && (
+                <li>
+                    <ButtonCheckmark
+                        theme={theme}
+                        toggle={() => setRevealedText(show => !show)}
+                        text="Reveal Text"
+                        checked={revealedText}
+                    />
+                </li>
+            )} */}
+
+            {(textDrawer.includes('ALL') || textDrawer.includes('GET_TEXT'))
+            && (
+                <li>
+                    <ButtonItem
+                        theme={theme}
+                        atClick={handleGetText}
+                        icon={GetTextIcon}
+                        text="Get Text"
+                    />
+                </li>
+            )}
 
             <li>
                 <ButtonItem
@@ -131,6 +155,17 @@ const DrawerText: React.FC<any> = (
                     text="Extract Frame"
                 />
             </li> */}
+
+            {/* {development && (
+                <li>
+                    <ButtonItem
+                        theme={theme}
+                        atClick={downloadText}
+                        icon={SaveIcon}
+                        text="Download Text"
+                    />
+                </li>
+            )} */}
         </Drawer>
     );
 }

@@ -77,6 +77,14 @@ const EnhancedVideo: React.FC<EnhancedVideoProperties> = (
         src,
         type,
 
+        generator: generatorProperty,
+        development: developmentProperty,
+        silent: silentProperty,
+
+        settingsDrawers: settingsDrawersProperty,
+        textDrawer: textDrawerProperty,
+        variaDrawer: variaDrawerProperty,
+
         mask: maskProperty,
         cover,
         CoverPlay: CoverPlayProperty,
@@ -106,10 +114,20 @@ const EnhancedVideo: React.FC<EnhancedVideoProperties> = (
     const mask = maskProperty ?? 'plurid';
     const legacyToolbarControls: LegacyToolbarControls[] = legacyToolbarControlsProperty || ['ALL'];
 
+    const generator = generatorProperty ?? false;
+    const development = developmentProperty ?? false;
+    const silent = silentProperty ?? false;
+
+    const settingsDrawers = settingsDrawersProperty || ['ALL'];
+    const textDrawer = textDrawerProperty || ['ALL'];
+    const variaDrawer = variaDrawerProperty || ['ALL'];
+
+
 
     /** references */
     const videoContainer = useRef<HTMLDivElement>(null);
     const video = useRef<HTMLVideoElement>(null);
+
 
 
     /** state */
@@ -508,7 +526,7 @@ const EnhancedVideo: React.FC<EnhancedVideoProperties> = (
 
 
 
-    /** Context */
+    /** context */
     const context: IContext = {
         src,
         type,
@@ -522,6 +540,14 @@ const EnhancedVideo: React.FC<EnhancedVideoProperties> = (
         microview: microview === undefined ? false : microview,
         accent,
         legacyToolbarControls,
+
+        generator,
+        development,
+        silent,
+
+        settingsDrawers,
+        textDrawer,
+        variaDrawer,
 
         cover,
         CoverPlay: CoverPlayProperty || CoverPlay,
