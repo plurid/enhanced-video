@@ -330,27 +330,27 @@ const Textline: React.FC<TextlineProperties> = (
      */
     useEffect(() => {
         if (currentVersion) {
-            setTextXCoord(currentVersion.xPercent * videoBoxDimensions.width / 100 + 'px');
-            setTextYCoord(currentVersion.yPercent * videoBoxDimensions.height / 100 + 'px');
+            setTextXCoord(currentVersion.position.x * videoBoxDimensions.width / 100 + 'px');
+            setTextYCoord(currentVersion.position.y * videoBoxDimensions.height / 100 + 'px');
 
-            setPerspective(currentVersion.perspective + 'px');
-            setRotationX(currentVersion.xRotation + 'deg');
-            setRotationY(currentVersion.yRotation + 'deg');
-            setRotationZ(currentVersion.zRotation + 'deg');
-            setSkewX(currentVersion.xSkew + 'deg');
-            setSkewY(currentVersion.ySkew + 'deg');
+            setPerspective(currentVersion.transform.perspective + 'px');
+            setRotationX(currentVersion.transform.rx + 'deg');
+            setRotationY(currentVersion.transform.ry + 'deg');
+            setRotationZ(currentVersion.transform.rz + 'deg');
+            setSkewX(currentVersion.transform.sx + 'deg');
+            setSkewY(currentVersion.transform.sy + 'deg');
 
-            setFontWeight(currentVersion.fontWeight);
-            setFontStyle(currentVersion.fontStyle);
-            setFontFamily(currentVersion.fontFamily);
-            setFontSize(currentVersion.fontSizePercent * videoBoxDimensions.height / 100 + 'px');
-            setLetterSpacing(currentVersion.letterSpacingPercent * videoBoxDimensions.width / 100 + 'px');
-            setWordSpacing(currentVersion.wordSpacingPercent * videoBoxDimensions.width / 100 + 'px');
+            setFontWeight(currentVersion.font.weight);
+            setFontStyle(currentVersion.font.style);
+            setFontFamily(currentVersion.font.family);
+            setFontSize(currentVersion.font.size * videoBoxDimensions.height / 100 + 'px');
+            setLetterSpacing(currentVersion.font.letterSpacing * videoBoxDimensions.width / 100 + 'px');
+            setWordSpacing(currentVersion.font.wordSpacing * videoBoxDimensions.width / 100 + 'px');
 
-            if (currentVersion.lineHeightPercent === 0) {
+            if (currentVersion.font.lineHeight === 0) {
                 setLineHeight('auto');
             } else {
-                setLineHeight(currentVersion.lineHeightPercent * videoBoxDimensions.height / 100 + 'px');
+                setLineHeight(currentVersion.font.lineHeight * videoBoxDimensions.height / 100 + 'px');
             }
         }
     }, [
@@ -533,11 +533,11 @@ const Textline: React.FC<TextlineProperties> = (
                     }}
                 >
                     {currentVersion
-                    && currentVersion.link
+                    && currentVersion.link.active
                     && !editableText
                     ? (
                         <StyledTextContentLink
-                            href={currentVersion.linkTo}
+                            href={currentVersion.link.to}
                             target="_blank"
                             viewable={currentVersion.viewable}
                             color={currentVersion.color}

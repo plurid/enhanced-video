@@ -250,7 +250,7 @@ const TextEditor: React.FC<TextEditorProperties> = (
                 theme={theme}
                 type="startTime"
                 changeValue={updateField}
-                time={currentVersion.startTime}
+                time={currentVersion.time.start}
                 icon={StartTimeIcon}
             />
 
@@ -258,7 +258,7 @@ const TextEditor: React.FC<TextEditorProperties> = (
                 theme={theme}
                 type="endTime"
                 changeValue={updateField}
-                time={currentVersion.endTime}
+                time={currentVersion.time.end}
                 icon={EndTimeIcon}
                 iconAfter={true}
             />
@@ -273,7 +273,7 @@ const TextEditor: React.FC<TextEditorProperties> = (
                 theme={theme}
                 type="fontSize"
                 changeValue={updateField}
-                value={currentVersion.fontSizePercent * videoBoxDimensions.height / 100}
+                value={currentVersion.font.size * videoBoxDimensions.height / 100}
                 icon={FontSizeIcon}
             />
 
@@ -281,7 +281,7 @@ const TextEditor: React.FC<TextEditorProperties> = (
                 theme={theme}
                 type="fontFamily"
                 alterStyle="fontFamily"
-                selected={currentVersion.fontFamily}
+                selected={currentVersion.font.family}
                 selectables={selectableFonts}
                 changeSelected={updateField}
                 toggleEditor={() => {}}
@@ -298,9 +298,9 @@ const TextEditor: React.FC<TextEditorProperties> = (
                 theme={theme}
                 toggle={() => {}}
                 // toggle={this.updateField.bind(this, 'link')}
-                toggled={currentVersion.link}
+                toggled={currentVersion.link.active}
                 icon={LinkIcon}
-                value={currentVersion.linkTo}
+                value={currentVersion.link.to}
                 valueType="linkTo"
                 changeValue={updateField}
             />
@@ -308,14 +308,14 @@ const TextEditor: React.FC<TextEditorProperties> = (
             <ButtonToggle
                 theme={theme}
                 toggle={() => toggleTextFormat('fontWeight', 'bold')}
-                toggled={currentVersion.fontWeight === 'bold'}
+                toggled={currentVersion.font.weight === 'bold'}
                 icon={BoldIcon}
             />
 
             <ButtonToggle
                 theme={theme}
                 toggle={() => toggleTextFormat('fontStyle', 'italic')}
-                toggled={currentVersion.fontStyle === 'italic'}
+                toggled={currentVersion.font.style === 'italic'}
                 icon={ItalicIcon}
             />
 
@@ -323,7 +323,7 @@ const TextEditor: React.FC<TextEditorProperties> = (
                 theme={theme}
                 type="letterSpacing"
                 changeValue={updateField}
-                value={currentVersion.letterSpacingPercent * videoBoxDimensions.width / 100}
+                value={currentVersion.font.letterSpacing * videoBoxDimensions.width / 100}
                 icon={LetterSpacingIcon}
                 step={0.1}
             />
@@ -332,7 +332,7 @@ const TextEditor: React.FC<TextEditorProperties> = (
                 theme={theme}
                 type="wordSpacing"
                 changeValue={updateField}
-                value={currentVersion.wordSpacingPercent * videoBoxDimensions.width / 100}
+                value={currentVersion.font.wordSpacing * videoBoxDimensions.width / 100}
                 icon={WordSpacingIcon}
                 step={0.1}
             />

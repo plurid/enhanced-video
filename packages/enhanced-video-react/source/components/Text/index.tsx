@@ -78,8 +78,7 @@ const Text: React.FC<any> = () => {
                 }
 
                 const {
-                    startTime,
-                    endTime,
+                    time,
                     alwaysShow,
                 } = currentVersion;
 
@@ -88,7 +87,7 @@ const Text: React.FC<any> = () => {
                  * to check only for a subset of videoTexts which I know
                  * are near (+/- 20 seconds);
                  */
-                const textInTimeframe = valueIsBetween(videoTime, startTime, endTime);
+                const textInTimeframe = valueIsBetween(videoTime, time.start, time.end);
 
                 if (textInTimeframe || alwaysShow) {
                     switch (currentVersion.type) {
