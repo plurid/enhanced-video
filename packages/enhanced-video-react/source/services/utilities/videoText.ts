@@ -6,7 +6,9 @@ import {
 
 
 
-export const getVersionById = (videoText: VideoText) => {
+export const getVersionById = (
+    videoText: VideoText,
+) => {
     const {
         currentVersionId,
         versions,
@@ -18,22 +20,25 @@ export const getVersionById = (videoText: VideoText) => {
 }
 
 
-// export const updateVersion = (imageText: any, version: any) => {
-//     const {
-//         currentVersionId,
-//         versions,
-//     } = imageText;
+export const updateVersion = (
+    videoText: any,
+    version: any,
+) => {
+    const {
+        currentVersionId,
+        versions,
+    } = videoText;
 
-//     imageText.versions = versions.map((imgTxt: any) => {
-//         if (imgTxt.id === currentVersionId) {
-//             const updatedVersion = {...imgTxt, ...version};
-//             return updatedVersion;
-//         }
-//         return imgTxt;
-//     });
+    videoText.versions = versions.map((vTxt: any) => {
+        if (vTxt.id === currentVersionId) {
+            const updatedVersion = {...vTxt, ...version};
+            return updatedVersion;
+        }
+        return vTxt;
+    });
 
-//     return imageText;
-// }
+    return videoText;
+}
 
 
 // export const pushNewVersion = (imageText: any, version: any) => {

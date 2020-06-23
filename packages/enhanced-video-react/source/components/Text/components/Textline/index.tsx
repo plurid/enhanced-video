@@ -23,6 +23,10 @@ import {
     getVersionById,
 } from '../../../../services/utilities/videoText';
 
+import {
+    percentageFromValue,
+} from '../../../../services/utilities/percentage';
+
 import Context from '../../../../services/context';
 
 // import ButtonMore from '../../../UI/ButtonMore';
@@ -52,6 +56,8 @@ const Textline: React.FC<TextlineProperties> = (
     const {
         editableText,
         videoBoxDimensions,
+        updateTextCoordinates,
+        updateVersionContent,
     } = context;
 
 
@@ -63,6 +69,7 @@ const Textline: React.FC<TextlineProperties> = (
 
     /** references */
     const timeoutMouseOver = useRef(0);
+    const textItem = useRef<HTMLDivElement>();
 
 
     /** state */
@@ -71,6 +78,13 @@ const Textline: React.FC<TextlineProperties> = (
     const [textYCoord, setTextYCoord] = useState('0px');
     const [textXCoord, setTextXCoord] = useState('0px');
     const [textColor, setTextColor] = useState('transparent');
+
+    const [perspective, setPerspective] = useState('0px');
+    const [rotationX, setRotationX] = useState('0deg');
+    const [rotationY, setRotationY] = useState('0deg');
+    const [rotationZ, setRotationZ] = useState('0deg');
+    const [skewX, setSkewX] = useState('0deg');
+    const [skewY, setSkewY] = useState('0deg');
 
     const [fontWeight, setFontWeight] = useState('normal');
     const [fontStyle, setFontStyle] = useState('normal');
@@ -83,6 +97,27 @@ const Textline: React.FC<TextlineProperties> = (
     const [showEditor, setShowEditor] = useState(false);
 
     const [mouseOver, setMouseOver] = useState(false);
+
+    const [textValue, _] = useState('text');
+
+    const [editable, setEditable] = useState(false);
+    const [draggable, setDraggable] = useState(false);
+    const [dragging, setDragging] = useState(false);
+
+    const [positions, setPositions] = useState({
+        x: 0,
+        y: 0,
+    });
+
+    const [editorPositions, setEditorPositions] = useState({
+        x: -17,
+        y: -34,
+    });
+    const [editorExpandFormat, setEditorExpandFormat] = useState(false);
+    const [editorWidth, setEditorWidth] = useState(0);
+    const [editorFullWidth, setEditorFullWidth] = useState(false);
+
+    const [loaded, setLoaded] = useState(false);
 
 
     /** handlers */
@@ -98,6 +133,87 @@ const Textline: React.FC<TextlineProperties> = (
             }
         }, 700);
     }
+
+    const handleMouseDown = (
+        event: MouseEvent,
+    ) => {
+        if (draggable) {
+            setDragging(true);
+
+            const pageX = event.pageX;
+            const pageY = event.pageY;
+
+            const positions = {
+                x: pageX,
+                y: pageY,
+            };
+            setPositions(positions);
+        }
+    }
+
+    const handleEditorPosition = () => {
+        if (textItem.current) {
+            const {
+                offsetLeft,
+                offsetTop,
+                offsetHeight,
+            } = textItem.current;
+
+            // Do not let editor to go to the right
+            // or keep it within the video
+            // if the editor has the width greater than the video
+            let editorXCoord = (offsetLeft + editorWidth) > videoBoxDimensions.width
+                ? editorWidth < videoBoxDimensions.width
+                    ? -1 * (offsetLeft + editorWidth - videoBoxDimensions.width)
+                    : (-offsetLeft + 10)
+                : -17;
+
+            // Do not let editor to go to the left.
+            if (offsetLeft < 17) {
+                editorXCoord = offsetLeft * -1;
+            }
+
+            if (editorWidth === 0) {
+                editorXCoord = - offsetLeft;
+            }
+
+            if (
+                (editorWidth > videoBoxDimensions.width)
+                || (editorWidth + 30 > videoBoxDimensions.width)
+            ) {
+                setEditorFullWidth(true);
+            } else {
+                setEditorFullWidth(false);
+            }
+
+            if (!editorExpandFormat) {
+                setEditorFullWidth(false);
+            }
+
+            // Do not let editor to go to over the top.
+            const editorYCoord = offsetTop < 34
+                ? offsetHeight
+                : -34;
+
+            const editorPositions = {
+                x: editorXCoord,
+                y: editorYCoord,
+            }
+            setEditorPositions(editorPositions);
+        }
+    }
+
+    const handleChange = (
+        event: React.SyntheticEvent<HTMLDivElement>,
+    ) => {
+        const value = event.currentTarget.innerText;
+        if (value !== '') {
+            updateVersionContent(data.id, value);
+        } else {
+            updateVersionContent(data.id, 'New Text');
+        }
+    }
+
 
 
     /** effects */
@@ -157,11 +273,110 @@ const Textline: React.FC<TextlineProperties> = (
     ]);
 
 
+    /**
+     * Handle dragging (mouseup).
+     */
+    useEffect(() => {
+        const handleMouseUp = () => {
+            if (draggable) {
+                setDragging(false);
+            }
+        }
+
+        window.addEventListener('mouseup', handleMouseUp);
+
+        return () => {
+            window.removeEventListener('mouseup', handleMouseUp);
+        }
+    }, [
+        dragging,
+        draggable,
+    ]);
+
+    /**
+     * Handle dragging (movemove).
+     */
+    useEffect(() => {
+        const handleMouseMove = (
+            event: any,
+        ) => {
+            if (!dragging) {
+                return;
+            }
+
+            event.preventDefault();
+
+            if (textItem.current) {
+                const { offsetLeft, offsetTop } = textItem.current;
+
+                const pageX = event.pageX;
+                const pageY = event.pageY;
+
+                const differenceX = pageX - positions.x;
+                const differenceY = pageY - positions.y;
+
+                const updatedPositions = {
+                    x: pageX,
+                    y: pageY,
+                };
+                setPositions(updatedPositions);
+
+                const textXCoordinate = offsetLeft + differenceX;
+                const textYCoordinate = offsetTop + differenceY;
+                const textXCoord = textXCoordinate + 'px';
+                const textYCoord = textYCoordinate + 'px';
+                setTextXCoord(textXCoord);
+                setTextYCoord(textYCoord);
+
+                const xCoordPercentage = percentageFromValue(
+                    textXCoordinate,
+                    videoBoxDimensions.width
+                );
+                const yCoordPercentage = percentageFromValue(
+                    textYCoordinate,
+                    videoBoxDimensions.height
+                );
+                const coordinatesPercentage = {
+                    x: xCoordPercentage,
+                    y: yCoordPercentage,
+                };
+                updateTextCoordinates(data.id, coordinatesPercentage);
+            }
+        }
+
+        window.addEventListener('mousemove', handleMouseMove);
+
+        return () => {
+            window.removeEventListener('mousemove', handleMouseMove);
+        }
+    }, [
+        dragging,
+        draggable,
+        positions,
+        textXCoord,
+        textYCoord,
+    ]);
+
+    /**
+     * Handle editorWidth.
+     */
+    useEffect(() => {
+        handleEditorPosition();
+    }, [
+        editorWidth,
+        dragging,
+        mouseOver,
+    ]);
+
+
+
     /** render */
     return (
         <StyledTextItem
+            tabIndex={0}
             onMouseEnter={() => handleMouseEnter()}
             onMouseLeave={() => handleMouseLeave()}
+            ref={textItem}
             style={{
                 top: textYCoord,
                 left: textXCoord,
@@ -176,12 +391,65 @@ const Textline: React.FC<TextlineProperties> = (
             }}
         >
             {currentVersion && (
-                <>{currentVersion.content}</>
+                <StyledTextContent
+                    onMouseDown={(event: MouseEvent) => handleMouseDown(event)}
+                    dragMode={draggable}
+                    draggingMode={dragging}
+                    editableText={editableText}
+                    // revealedText={revealedText}
+                    viewable={currentVersion && currentVersion.viewable}
+                    color={currentVersion && currentVersion.color}
+                    style={{
+                        transform: `rotateX(${rotationX}) rotateY(${rotationY}) rotateZ(${rotationZ}) skew(${skewX}, ${skewY})`,
+                    }}
+                >
+                    {currentVersion
+                    && currentVersion.link
+                    && !editableText
+                    ? (
+                        <StyledTextContentLink
+                            href={currentVersion.linkTo}
+                            target="_blank"
+                            viewable={currentVersion.viewable}
+                            color={currentVersion.color}
+                        >
+                            <StyledEditableDiv
+                                toggledEditable={editableText}
+                                contentEditable={editable}
+                                suppressContentEditableWarning={true}
+                                onInput={(event: React.SyntheticEvent<HTMLDivElement>) => handleChange(event)}
+                            >
+                                {textValue}
+                            </StyledEditableDiv>
+                        </StyledTextContentLink>
+                    ) : (
+                        <StyledEditableDiv
+                            toggledEditable={editableText}
+                            contentEditable={editable}
+                            suppressContentEditableWarning={true}
+                            onInput={(event: React.SyntheticEvent<HTMLDivElement>) => handleChange(event)}
+                        >
+                            {textValue}
+                        </StyledEditableDiv>
+                    )}
+                </StyledTextContent>
             )}
 
-            {showEditor && currentVersion && (
+
+            {/* {currentVersion && (
+                <>{currentVersion.content}</>
+            )} */}
+
+            {showEditor
+            && currentVersion
+            && (
                 <TextEditor
                     data={currentVersion}
+
+                    draggable={draggable}
+                    setDraggable={setDraggable}
+
+                    positions={editorPositions}
                 />
             )}
         </StyledTextItem>

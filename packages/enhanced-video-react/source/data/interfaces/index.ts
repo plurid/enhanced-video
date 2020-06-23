@@ -236,6 +236,20 @@ export interface IContext {
     addText: () => void;
     saveText: () => Promise<void>;
     getText: () => Promise<void>;
+    updateTextCoordinates: (
+        versionID: string,
+        coordinates: any,
+    ) => void;
+    updateTextItemField: (
+        versionID: string,
+        type: string,
+        value: number | string | boolean,
+    ) => void;
+    updateVersionContent: (
+        versionID: string,
+        value: string,
+    ) => void;
+
 
     defaultColorsToggled: boolean;
     toggleDefaultColors: () => void;
