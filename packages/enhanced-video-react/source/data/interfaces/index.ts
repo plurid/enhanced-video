@@ -185,6 +185,8 @@ export interface IContext {
 
     editableText: boolean;
     setEditableText: Dispatch<SetStateAction<boolean>>;
+    revealedText: boolean;
+    setRevealedText: Dispatch<SetStateAction<boolean>>;
 
     loadedVideo: boolean;
 

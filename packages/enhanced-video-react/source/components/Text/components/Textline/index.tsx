@@ -55,6 +55,7 @@ const Textline: React.FC<TextlineProperties> = (
 
     const {
         editableText,
+        revealedText,
         videoBoxDimensions,
         updateTextCoordinates,
         updateVersionContent,
@@ -213,6 +214,121 @@ const Textline: React.FC<TextlineProperties> = (
             updateVersionContent(data.id, 'New Text');
         }
     }
+
+    const handleKeyDown = (
+        event: KeyboardEvent,
+    ) => {
+        handleShortcuts(event);
+        handleArrows(event);
+    }
+
+    const handleShortcuts = (
+        event: KeyboardEvent,
+    ) => {
+        const {
+            editableText,
+            setEditableText,
+
+            // duplicateTextItem,
+            // deleteTextItem,
+        } = context;
+
+        const {
+            key,
+            altKey,
+        } = event;
+
+        if (key === '†' && altKey) {
+            setEditableText(show => !show);
+        }
+
+        if (editableText) {
+            return;
+        }
+
+        switch(key) {
+            case 't':
+                setEditableText(show => !show);
+                break;
+            case 'g':
+                setDraggable(drag => !drag);
+                break;
+            case 'v':
+                // setVersionViewable();
+                break;
+            case 'd':
+                // duplicateTextItem(data.id);
+                break;
+            case 'x':
+                // deleteTextItem(data.id);
+                break;
+        }
+    }
+
+    const handleArrows = (
+        event: KeyboardEvent,
+    ) => {
+        if (!draggable) {
+            return;
+        }
+
+        event.preventDefault();
+
+        if (event.shiftKey) {
+            moveWithArrows(event, 10);
+        } else {
+            moveWithArrows(event);
+        }
+    }
+
+    const moveWithArrows = (
+        event: KeyboardEvent,
+        step: number = 1,
+    ) => {
+        const {
+            key,
+        } = event;
+
+        switch(key) {
+            case 'ArrowLeft': {
+                const xPosition = positions.x - step;
+                const newPositions = {
+                    x: xPosition,
+                    y: positions.y,
+                };
+                setPositions(newPositions);
+                break;
+            }
+            case 'ArrowRight': {
+                const xPosition = positions.x + step;
+                const newPositions = {
+                    x: xPosition,
+                    y: positions.y,
+                };
+                setPositions(newPositions);
+                break;
+            }
+            case 'ArrowUp': {
+                const yPosition = positions.y - step;
+                const newPositions = {
+                    x: positions.x,
+                    y: yPosition,
+                };
+                setPositions(newPositions);
+                break;
+            }
+            case 'ArrowDown': {
+                const yPosition = positions.y + step;
+                const newPositions = {
+                    x: positions.x,
+                    y: yPosition,
+                };
+                setPositions(newPositions);
+                break;
+            }
+        }
+    }
+
 
 
 
@@ -376,6 +492,7 @@ const Textline: React.FC<TextlineProperties> = (
             tabIndex={0}
             onMouseEnter={() => handleMouseEnter()}
             onMouseLeave={() => handleMouseLeave()}
+            onKeyDown={handleKeyDown}
             ref={textItem}
             style={{
                 top: textYCoord,
@@ -388,6 +505,7 @@ const Textline: React.FC<TextlineProperties> = (
                 letterSpacing,
                 wordSpacing,
                 lineHeight,
+                perspective,
             }}
         >
             {currentVersion && (
@@ -396,7 +514,7 @@ const Textline: React.FC<TextlineProperties> = (
                     dragMode={draggable}
                     draggingMode={dragging}
                     editableText={editableText}
-                    // revealedText={revealedText}
+                    revealedText={revealedText}
                     viewable={currentVersion && currentVersion.viewable}
                     color={currentVersion && currentVersion.color}
                     style={{
@@ -435,17 +553,15 @@ const Textline: React.FC<TextlineProperties> = (
                 </StyledTextContent>
             )}
 
-
-            {/* {currentVersion && (
-                <>{currentVersion.content}</>
-            )} */}
-
             {showEditor
             && currentVersion
+            && !dragging
             && (
                 <TextEditor
                     data={currentVersion}
 
+                    editable={editable}
+                    setEditable={setEditable}
                     draggable={draggable}
                     setDraggable={setDraggable}
 

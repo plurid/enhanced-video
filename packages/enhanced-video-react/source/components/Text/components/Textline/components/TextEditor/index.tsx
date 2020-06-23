@@ -52,6 +52,8 @@ import {
 export interface TextEditorProperties {
     data: VideoTextVersionTextline;
 
+    editable: boolean;
+    setEditable: React.Dispatch<React.SetStateAction<boolean>>;
     draggable: boolean;
     setDraggable: React.Dispatch<React.SetStateAction<boolean>>;
     positions: {
@@ -84,6 +86,8 @@ const TextEditor: React.FC<TextEditorProperties> = (
     const {
         data,
 
+        editable,
+        setEditable,
         draggable,
         setDraggable,
 
@@ -103,15 +107,18 @@ const TextEditor: React.FC<TextEditorProperties> = (
         >
             <ButtonToggle
                 theme={theme}
-                toggle={() => setEditableText(show => !show)}
-                toggled={editableText}
+                toggle={() => {
+                    if (draggable) { setDraggable(false) }
+                    setEditable(editable => !editable)
+                }}
+                toggled={editable}
                 icon={SelectTextIcon}
             />
 
             <ButtonToggle
                 theme={theme}
                 toggle={() => {
-                    // if (editableText) { setEditableText(false) }
+                    if (editable) { setEditable(false) }
                     setDraggable(draggable => !draggable)
                 }}
                 toggled={draggable}

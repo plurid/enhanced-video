@@ -164,6 +164,7 @@ const EnhancedVideo: React.FC<EnhancedVideoProperties> = (
     const [showSettingsMenu, setShowSettingsMenu] = useState(false);
 
     const [editableText, setEditableText] = useState(false);
+    const [revealedText, setRevealedText] = useState(false);
 
     const [loadedVideo, setLoadedVideo] = useState(false);
 
@@ -754,6 +755,8 @@ const EnhancedVideo: React.FC<EnhancedVideoProperties> = (
 
         editableText,
         setEditableText,
+        revealedText,
+        setRevealedText,
 
         loadedVideo,
 
