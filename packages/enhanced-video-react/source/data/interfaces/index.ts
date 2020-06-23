@@ -67,6 +67,8 @@ export interface EnhancedVideoProperties {
      */
     mask?: 'legacy' | 'plurid';
 
+    transparentUI?: boolean;
+
     /**
      * Cover image.
      */
@@ -155,6 +157,8 @@ export interface IContext {
 
     cover: string | undefined;
     CoverPlay: React.FC<any> | undefined;
+
+    transparentUI: boolean;
 
     settingsDrawers: SettingsDrawer[];
     textDrawer: TextDrawer[];

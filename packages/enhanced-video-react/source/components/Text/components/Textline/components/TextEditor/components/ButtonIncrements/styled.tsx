@@ -2,21 +2,33 @@ import styled from 'styled-components';
 
 
 
-export const StyledTextVideoEditorButtonIncrement = styled.div`
+export const StyledButtonIncrement: any = styled.div`
     display: flex;
     align-items: center;
     margin: 5px;
+    user-select: none;
 
     input {
-        background: ${props => props.theme.backgroundColorSecondary};
+        background: ${(props: any) => {
+            if (props.transparentUI) {
+                return props.theme.backgroundColorSecondaryAlpha;
+            }
+            return props.theme.backgroundColorSecondary;
+        }};
         color: ${props => props.theme.colorPrimary};
-        height: 20px;
+        height: 18px;
         width: 30px;
         border: none;
         text-align: center;
         outline: none;
         padding: 3px;
         margin-right: 4px;
+    }
+
+    input:hover {
+        background: ${(props: any) => {
+            return props.theme.backgroundColorSecondary;
+        }};
     }
 
     input[type=number]::-webkit-inner-spin-button,
@@ -31,7 +43,7 @@ export const StyledTextVideoEditorButtonIncrement = styled.div`
 `;
 
 
-export const StyledTextVideoEditorButtonIncrementIcon = styled.div`
+export const StyledButtonIncrementIcon: any = styled.div`
     display: flex;
     align-items: center;
     margin: 5px;
@@ -44,25 +56,32 @@ export const StyledTextVideoEditorButtonIncrementIcon = styled.div`
 `;
 
 
-export const StyledTextVideoEditorButtonIncrements: any = styled.div`
-    background: ${props => props.theme.backgroundColorSecondary};
+export const StyledButtonIncrements: any = styled.div`
+    background: ${(props: any) => {
+        if (props.transparentUI) {
+            return props.theme.backgroundColorSecondaryAlpha;
+        }
+        return props.theme.backgroundColorSecondary;
+    }};
 
-    display: grid;
-    grid-template-columns: 1fr;
-    grid-template-rows: 1fr 1fr;
+    display: flex;
+    flex-direction: column;
     font-size: 6px;
     justify-items: center;
-    justify-content: center;
-    align-items: space-between;
-    grid-row-gap: 2px;
-    height: 20px;
+    justify-content: space-between;
+    height: 24px;
     user-select: none;
 `;
 
 
-export const StyledTextVideoEditorButtonIncrementButton = styled.div`
+export const StyledButtonIncrementButton: any = styled.div`
     color: ${props => props.theme.colorPrimary};
-    background-color: ${props => props.theme.backgroundColorSecondary};
+    background: ${(props: any) => {
+        if (props.transparentUI) {
+            return props.theme.backgroundColorSecondaryAlpha;
+        }
+        return props.theme.backgroundColorSecondary;
+    }};
 
     width: 12px;
     height: 9px;
@@ -78,7 +97,7 @@ export const StyledTextVideoEditorButtonIncrementButton = styled.div`
 `;
 
 
-export const StyledTextVideoEditorButtonIncrementsUnit = styled.div`
+export const StyledButtonIncrementsUnit: any = styled.div`
     font-size: 12px;
     user-select: none;
 `;

@@ -66,6 +66,8 @@ export interface TextEditorProperties {
         x: number;
         y: number;
     };
+
+    fullWidth: boolean;
 }
 
 const TextEditor: React.FC<TextEditorProperties> = (
@@ -86,6 +88,8 @@ const TextEditor: React.FC<TextEditorProperties> = (
         duplicateTextItem,
         deleteTextItem,
 
+        transparentUI,
+
         videoBoxDimensions,
     } = context;
 
@@ -101,6 +105,7 @@ const TextEditor: React.FC<TextEditorProperties> = (
         setDraggable,
 
         positions,
+        fullWidth,
     } = properties;
 
 
@@ -221,6 +226,13 @@ const TextEditor: React.FC<TextEditorProperties> = (
         <StyledTextEditor
             theme={theme}
             ref={editor}
+            transparentUI={transparentUI}
+            videoBoxDimensions={videoBoxDimensions}
+            fullWidth={fullWidth}
+            style={{
+                left: positions.x + 'px',
+                top: positions.y + 'px',
+            }}
         >
             <ButtonToggle
                 theme={theme}
@@ -277,6 +289,7 @@ const TextEditor: React.FC<TextEditorProperties> = (
 
             <ButtonIncrements
                 theme={theme}
+                transparentUI={transparentUI}
                 type="font.size"
                 changeValue={updateField}
                 value={currentVersion.font.size * videoBoxDimensions.height / 100}
@@ -326,6 +339,7 @@ const TextEditor: React.FC<TextEditorProperties> = (
 
             <ButtonIncrements
                 theme={theme}
+                transparentUI={transparentUI}
                 type="font.letterSpacing"
                 changeValue={updateField}
                 value={currentVersion.font.letterSpacing * videoBoxDimensions.width / 100}
@@ -335,6 +349,7 @@ const TextEditor: React.FC<TextEditorProperties> = (
 
             <ButtonIncrements
                 theme={theme}
+                transparentUI={transparentUI}
                 type="font.wordSpacing"
                 changeValue={updateField}
                 value={currentVersion.font.wordSpacing * videoBoxDimensions.width / 100}
