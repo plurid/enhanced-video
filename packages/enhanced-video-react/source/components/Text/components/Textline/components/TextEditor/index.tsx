@@ -128,6 +128,16 @@ const TextEditor: React.FC<TextEditorProperties> = (
         value: number | string | boolean,
     ) => {
         switch (type) {
+            case 'time.start':
+                if (typeof value === 'number') {
+                    updateTextItemField(textItem.id, 'time.start', value);
+                }
+                break;
+            case 'time.end':
+                if (typeof value === 'number') {
+                    updateTextItemField(textItem.id, 'time.end', value);
+                }
+                break;
             case 'font.size':
                 if (typeof value === 'number') {
                     const fontSizePercentage = percentageFromValue(value, videoBoxDimensions.height);
@@ -282,12 +292,9 @@ const TextEditor: React.FC<TextEditorProperties> = (
 
                 <ButtonToggle
                     theme={theme}
-                    toggle={() => {}}
-                    toggled={false}
-                    icon={AlwaysShowOnIcon}
-                    // toggle={toggleTextAlwaysShow}
-                    // toggled={textAlwaysShow}
-                    // icon={textAlwaysShow ? AlwaysShowOnIcon : AlwaysShowOffIcon}
+                    toggle={() => toggleTextFormat('alwaysShow', true)}
+                    toggled={currentVersion.alwaysShow}
+                    icon={currentVersion.alwaysShow ? AlwaysShowOnIcon : AlwaysShowOffIcon}
                 />
 
                 <ButtonTimeIncrements
