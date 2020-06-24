@@ -111,6 +111,8 @@ const EnhancedVideo: React.FC<EnhancedVideoProperties> = (
 
         initialColors,
 
+        preloadedData,
+
         theme: themeProperty,
         controls: controlsProperty,
         height: heightProperty,
@@ -826,6 +828,19 @@ const EnhancedVideo: React.FC<EnhancedVideoProperties> = (
         videoColorsHue,
         videoColorsSaturation,
         videoColorsBrightness,
+    ]);
+
+    /** Handle preloaded data. */
+    useEffect(() => {
+        if (preloadedData) {
+            const {
+                videoText,
+            } = preloadedData;
+
+            setVideoText(videoText);
+        }
+    }, [
+        preloadedData,
     ]);
 
 

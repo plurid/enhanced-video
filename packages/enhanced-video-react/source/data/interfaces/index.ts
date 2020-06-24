@@ -35,6 +35,11 @@ export interface EnhancedVideoProperties {
     initialColors?: VideoColorsData;
 
     /**
+     * Load video data from outside the component.
+     */
+    preloadedData?: PreloadedData;
+
+    /**
      * Inline styling object for the video.
      */
     videoStyle?: any;
@@ -432,4 +437,10 @@ export interface Slider {
     min?: number;
     max?: number;
     valueSign?: string;
+}
+
+
+export interface PreloadedData {
+    videoText: VideoText[];
+    videoID: string;
 }

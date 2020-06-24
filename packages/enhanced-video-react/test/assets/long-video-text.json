@@ -1,0 +1,45 @@
+[
+    {
+        "id": "1b97e11a35f944f58ca83d19f4f59ed1",
+        "currentVersionId": "a31a8ac83d2145bab482cdd14e3b5ad1",
+        "versions": [
+            {
+                "id": "a31a8ac83d2145bab482cdd14e3b5ad1",
+                "type": "TEXTLINE",
+                "time": {
+                    "start": 1.049078,
+                    "end": 11.049078
+                },
+                "position": {
+                    "x": 23.062500000000004,
+                    "y": 42.142857142857146
+                },
+                "transform": {
+                    "perspective": 0,
+                    "rx": 0,
+                    "ry": 0,
+                    "rz": 0,
+                    "sx": 0,
+                    "sy": 0
+                },
+                "viewable": false,
+                "alwaysShow": false,
+                "color": "white",
+                "font": {
+                    "weight": "normal",
+                    "style": "normal",
+                    "family": "Bookman",
+                    "size": 10.357142857142865,
+                    "letterSpacing": 0,
+                    "wordSpacing": 0,
+                    "lineHeight": 0
+                },
+                "content": "Stanford",
+                "link": {
+                    "active": false,
+                    "to": ""
+                }
+            }
+        ]
+    }
+]
