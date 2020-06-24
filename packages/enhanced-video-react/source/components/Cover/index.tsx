@@ -24,6 +24,9 @@ const Cover: React.FC<any> = () => {
         CoverPlay,
         videoTime,
 
+        initialPlay,
+        setInitialPlay,
+
         playVideo,
     } = context;
 
@@ -31,10 +34,15 @@ const Cover: React.FC<any> = () => {
         return (<></>);
     }
 
+    if (initialPlay) {
+        return (<></>);
+    }
+
     const coverPlay = CoverPlay
         ? (
             <StyledCoverPlay
                 onClick={() => {
+                    setInitialPlay(true);
                     playVideo();
                 }}
             >

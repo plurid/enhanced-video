@@ -171,6 +171,8 @@ const EnhancedVideo: React.FC<EnhancedVideoProperties> = (
     const [showSettingsButton, setShowSettingsButton] = useState(false);
     const [showSettingsMenu, setShowSettingsMenu] = useState(false);
 
+    const [initialPlay, setInitialPlay] = useState(false);
+
     const [editableText, setEditableText] = useState(false);
     const [revealedText, setRevealedText] = useState(false);
 
@@ -872,6 +874,9 @@ const EnhancedVideo: React.FC<EnhancedVideoProperties> = (
 
         showSettingsButton,
         setShowSettingsButton,
+
+        initialPlay,
+        setInitialPlay,
 
         showSettingsMenu,
         setShowSettingsMenu,

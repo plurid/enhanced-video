@@ -187,6 +187,9 @@ export interface IContext {
     showSettingsMenu: boolean;
     setShowSettingsMenu: Dispatch<SetStateAction<boolean>>;
 
+    initialPlay: boolean;
+    setInitialPlay: Dispatch<SetStateAction<boolean>>;
+
     editableText: boolean;
     setEditableText: Dispatch<SetStateAction<boolean>>;
     revealedText: boolean;
