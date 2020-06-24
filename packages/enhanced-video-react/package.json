@@ -1,6 +1,6 @@
 {
     "name": "@plurid/enhanced-video-react",
-    "version": "0.1.8",
+    "version": "0.1.9",
     "description": "Enhanced Video HTML Element, React implementation",
     "keywords": [
         "enhanced",
@@ -97,7 +97,7 @@
         "eslint": "^7.3.1",
         "graphql": "^15.1.0",
         "graphql-tag": "^2.10.3",
-        "jest": "^26.0.1",
+        "jest": "^26.1.0",
         "react": "^16.13.1",
         "react-apollo": "^3.1.5",
         "react-docgen-typescript-loader": "^3.7.2",
