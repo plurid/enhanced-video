@@ -96,6 +96,7 @@ const EnhancedVideo: React.FC<EnhancedVideoProperties> = (
         generator: generatorProperty,
         development: developmentProperty,
         silent: silentProperty,
+        playsInline: playsInlineProperty,
 
         settingsDrawers: settingsDrawersProperty,
         textDrawer: textDrawerProperty,
@@ -138,6 +139,7 @@ const EnhancedVideo: React.FC<EnhancedVideoProperties> = (
     const generator = generatorProperty ?? false;
     const development = developmentProperty ?? false;
     const silent = silentProperty ?? false;
+    const playsInline = playsInlineProperty ?? true;
 
     const transparentUI = transparentUIProperty ?? true;
 
@@ -863,6 +865,7 @@ const EnhancedVideo: React.FC<EnhancedVideoProperties> = (
         generator,
         development,
         silent,
+        playsInline,
 
         settingsDrawers,
         textDrawer,

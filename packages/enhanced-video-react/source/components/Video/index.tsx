@@ -38,6 +38,8 @@ const Video: React.FC<VideoProperties> = (
     }
 
     const {
+        playsInline,
+
         videoColorsInvert,
         videoColorsContrast,
         videoColorsHue,
@@ -118,6 +120,8 @@ const Video: React.FC<VideoProperties> = (
                 onLoadedData={atLoadedData}
                 onLoadedMetadata={atLoadedMetadata}
                 onEnded={atEnded}
+
+                playsInline={playsInline}
             >
                 <source
                     src={src}

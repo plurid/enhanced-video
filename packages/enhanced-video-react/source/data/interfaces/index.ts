@@ -28,6 +28,13 @@ export interface EnhancedVideoProperties {
     loop?: boolean;
     microview?: boolean;
 
+    /**
+     * Play inline.
+     *
+     * Default: `true`.
+     */
+    playsInline?: boolean;
+
     generator?: boolean;
     development?: boolean;
     silent?: boolean;
@@ -159,6 +166,8 @@ export interface IContext {
     generator: boolean;
     development: boolean;
     silent: boolean;
+
+    playsInline: boolean;
 
     cover: string | undefined;
     CoverPlay: React.FC<any> | undefined;
