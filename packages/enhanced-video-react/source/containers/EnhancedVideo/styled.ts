@@ -16,6 +16,7 @@ export const StyledEnhancedVideo: any = styled.div`
     }};
 
     min-height: 50px;
+    height: 100%;
     background-color: black;
     outline: none;
 

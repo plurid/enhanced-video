@@ -18,6 +18,10 @@ import {
 
 import EnhancedVideo from '../';
 
+import {
+    PreloadedData,
+} from '../../../data/interfaces';
+
 
 
 // const actions = {
@@ -103,10 +107,37 @@ storiesOf(
     const cover = text('Cover', '');
     const accent = text('Accent', '');
 
+
+    /** state */
+    const [preloadedData, setPreloadedData] = useState<PreloadedData | undefined>(undefined);
+
+
+    useEffect(() => {
+        const loadData = async () => {
+            try {
+                const response = await fetch('/assets/long-video-text.json');
+                const body = await response.json();
+                const preloadedData: PreloadedData = {
+                    videoText: body,
+                    videoID: 'one',
+                };
+
+                setPreloadedData(preloadedData);
+            } catch (error) {
+                return;
+            }
+        }
+
+        loadData();
+    }, []);
+
+
+    /** render */
     return (
         <div
             style={{
                 padding: '4rem',
+                height: '500px',
                 // width: '800px',
             }}
         >
@@ -115,7 +146,8 @@ storiesOf(
                 src="/assets/long-video.mp4"
                 type="video/mp4"
 
-                height={700}
+                // height={700}
+                preloadedData={preloadedData}
 
                 mask={mask}
                 cover={cover}

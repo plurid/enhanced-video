@@ -102,7 +102,9 @@ const Video: React.FC<VideoProperties> = (
 
     /** render */
     return (
-        <StyledVideo>
+        <StyledVideo
+            // height={height}
+        >
             <video
                 style={{
                     ...videoStyle,
@@ -110,7 +112,6 @@ const Video: React.FC<VideoProperties> = (
                     transform,
                 }}
 
-                height={height}
                 ref={videoRef}
 
                 onTimeUpdate={atTimeUpdate}
