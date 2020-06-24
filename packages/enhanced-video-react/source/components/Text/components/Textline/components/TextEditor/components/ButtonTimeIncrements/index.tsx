@@ -38,7 +38,6 @@ class TextVideoEditorButtonTimeIncrements extends Component<any, any> {
             </StyledTextVideoEditorButtonIncrementIcon>
         )
 
-        // console.log('AA', time);
         const {
             hours,
             minutes,
@@ -130,20 +129,15 @@ class TextVideoEditorButtonTimeIncrements extends Component<any, any> {
         switch(kind) {
             case 'hours':
                 newTime = val * 3600 + minutes * 60 + seconds;
-                // console.log('hours', value, newTime);
                 break;
             case 'minutes':
                 newTime = hours * 3600 + val * 60 + seconds;
-                // console.log('minutes', value, newTime);
                 break;
             case 'seconds':
                 newTime = hours * 3600 + minutes * 60 + val;
-                // console.log('seconds', value, newTime);
                 break;
         }
 
-        // console.log(newTime);
-        // console.log(value);
         changeValue(type, newTime);
     }
 
