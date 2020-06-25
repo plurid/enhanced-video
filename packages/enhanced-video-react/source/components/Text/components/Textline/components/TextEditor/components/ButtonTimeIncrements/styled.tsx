@@ -23,6 +23,7 @@ export const StyledTextVideoEditorButtonIncrement: any = styled.div`
         outline: none;
         padding: 0;
         margin: 0;
+        user-select: all;
     }
 
     /* input:last-child {
@@ -37,7 +38,7 @@ export const StyledTextVideoEditorButtonIncrement: any = styled.div`
     }
 
     input[type=number] {
-        -moz-appearance:textfield;
+        -moz-appearance: textfield;
     }
 `;
 
