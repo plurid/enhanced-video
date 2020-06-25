@@ -422,16 +422,17 @@ const EnhancedVideo: React.FC<EnhancedVideoProperties> = (
     }
 
     const updateTextCoordinates = (
-        versionID: string,
+        textID: string,
         coordinates: any,
     ) => {
         const updatedVideoText = videoText.map(text => {
-            if (text.id === versionID) {
+            if (text.id === textID) {
                 const currentVersion = getVersionById(text);
                 if (currentVersion) {
                     const updatedVersion = { ...currentVersion };
                     updatedVersion.position.x = coordinates.x;
                     updatedVersion.position.y = coordinates.y;
+
                     const updatedText = updateVersion(text, updatedVersion);
                     return { ...updatedText };
                 }
@@ -442,7 +443,9 @@ const EnhancedVideo: React.FC<EnhancedVideoProperties> = (
             return { ...text };
         });
 
-        setVideoText([...updatedVideoText]);
+        setVideoText([
+            ...updatedVideoText,
+        ]);
     }
 
     const updateTextItemField = (
@@ -535,12 +538,30 @@ const EnhancedVideo: React.FC<EnhancedVideoProperties> = (
     const duplicateTextItem = (
         versionID: string,
     ) => {
-        const imgText = videoText.find(imgText => imgText.id === versionID);
+        const vText = videoText.find(vText => vText.id === versionID);
 
-        if (imgText) {
-            const currentVersion = getVersionById(imgText);
-            if (currentVersion) {
-                const version = { ...currentVersion };
+        if (vText) {
+            const currentVersion = getVersionById(vText);
+            if (currentVersion && currentVersion.type === 'TEXTLINE') {
+                const version = {
+                    ...currentVersion,
+                    time: {
+                        ...currentVersion.time,
+                    },
+                    position: {
+                        ...currentVersion.position,
+                    },
+                    transform: {
+                        ...currentVersion.transform,
+                    },
+                    font: {
+                        ...currentVersion.font,
+                    },
+                    link: {
+                        ...currentVersion.link,
+                    },
+                };
+
                 const currentVersionId = uuid.generate();
                 version.id = currentVersionId;
                 version.position.y = currentVersion.position.y < 85
@@ -548,17 +569,19 @@ const EnhancedVideo: React.FC<EnhancedVideoProperties> = (
                     : currentVersion.position.y - 10;
 
                 const id = uuid.generate();
-                const updatedImgText: VideoText = {
+                const updatedVideoText: VideoText = {
                     id,
                     currentVersionId,
-                    versions: [version],
+                    versions: [{
+                        ...version,
+                    }],
                 };
 
-                const updatedVideoText = [
+                const updatedVideoTexts = [
                     ...videoText,
-                    updatedImgText,
+                    updatedVideoText,
                 ];
-                setVideoText(updatedVideoText);
+                setVideoText(updatedVideoTexts);
             }
         }
     }
