@@ -1016,6 +1016,8 @@ const EnhancedVideo: React.FC<EnhancedVideoProperties> = (
     };
 
 
+    console.log(videoText);
+
 
     /** render */
     if (!src || !type) {

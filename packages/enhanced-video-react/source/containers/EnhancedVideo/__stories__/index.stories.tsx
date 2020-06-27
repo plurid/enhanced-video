@@ -137,7 +137,7 @@ storiesOf(
         <div
             style={{
                 padding: '4rem',
-                height: '500px',
+                // height: '500px',
                 // width: '800px',
             }}
         >

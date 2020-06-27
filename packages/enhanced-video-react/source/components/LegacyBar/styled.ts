@@ -15,6 +15,7 @@ export const StyledLegacyBar = styled.div<IStyledLegacyBar>`
     background: hsla(0, 0%, 10%, 0.3);
     color: white;
     transition: transform 150ms linear;
+    z-index: 99;
 
     transform: ${
         ({

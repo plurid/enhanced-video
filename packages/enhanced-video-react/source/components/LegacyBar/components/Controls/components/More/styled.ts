@@ -44,6 +44,12 @@ export const StyledLegacyMoreMenu = styled.div`
     right: 0;
     background-color: hsla(0, 0%, 30%, 0.3);
 
+    -ms-overflow-style: none;  /* Internet Explorer 10+ */
+    scrollbar-width: none;  /* Firefox */
+    ::-webkit-scrollbar {
+        display: none;  /* Safari and Chrome */
+    }
+
     ul {
         min-width: 130px;
         width: 150px;
