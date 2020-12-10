@@ -109,7 +109,6 @@
         "regenerator-runtime": "^0.13.7",
         "rollup": "^2.34.2",
         "rollup-plugin-peer-deps-external": "^2.2.4",
-        "rollup-plugin-postcss": "^4.0.0",
         "rollup-plugin-typescript2": "^0.29.0",
         "styled-components": "^5.2.1",
         "ts-jest": "^26.4.4",
