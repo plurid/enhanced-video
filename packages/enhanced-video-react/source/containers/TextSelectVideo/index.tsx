@@ -49,7 +49,7 @@ import TimescrollText from '../../components/TimescrollText';
 import themes, { Theme } from '@plurid/plurid-themes';
 
 // test imports
-import TEST_VIDEO_TEXT_DATA from '../../__spec-data__/data';
+import TEST_VIDEO_TEXT_DATA from '../../__test-data__/data';
 
 
 

@@ -1,6 +1,7 @@
 <p align="center">
     <img src="https://raw.githubusercontent.com/plurid/enhanced-video/master/about/identity/enhanced-video-logo.png" height="250px">
     <br />
+    <br />
     <a target="_blank" href="https://www.npmjs.com/package/enhanced-video-react">
         <img src="https://img.shields.io/npm/v/enhanced-video-react.svg?logo=npm&colorB=1380C3&style=for-the-badge" alt="Version">
     </a>
