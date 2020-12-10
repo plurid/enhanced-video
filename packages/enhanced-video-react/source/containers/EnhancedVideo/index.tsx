@@ -16,6 +16,7 @@ import {
 
 // import './styles.css';
 import {
+    StyledGlobal,
     StyledEnhancedVideo,
     StyledEnhancedVideoNoRender,
 } from './styled';
@@ -1029,6 +1030,8 @@ const EnhancedVideo: React.FC<EnhancedVideoProperties> = (
         <Context.Provider
             value={context}
         >
+            <StyledGlobal />
+
             <StyledEnhancedVideo
                 theme={theme}
                 tabIndex={0}

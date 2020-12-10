@@ -1,5 +1,12 @@
-import styled from 'styled-components';
+import styled, {
+    createGlobalStyle,
+} from 'styled-components';
 
+
+
+export const StyledGlobal = createGlobalStyle`
+    @import url('https://fonts.googleapis.com/css?family=Ubuntu&display=swap');
+`;
 
 
 export const StyledEnhancedVideo: any = styled.div`
