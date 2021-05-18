@@ -1,5 +1,7 @@
 <p align="center">
-    <img src="https://raw.githubusercontent.com/plurid/enhanced-video/master/about/identity/enhanced-video-logo.png" height="250px">
+    <a target="_blank" href="https://deview.plurid.com">
+        <img src="https://raw.githubusercontent.com/plurid/enhanced-video/master/about/identity/enhanced-video-logo.png" height="250px">
+    </a>
     <br />
     <br />
     <a target="_blank" href="https://github.com/plurid/enhanced-video/blob/master/LICENSE">
