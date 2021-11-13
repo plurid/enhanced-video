@@ -372,14 +372,18 @@ const EnhancedVideo: React.FC<EnhancedVideoProperties> = (
     }
 
     const computeVideoBoxDimensions = () => {
+        if (!videoContainer.current) {
+            return;
+        }
+
         const {
             height: videoHeight,
             ratio: videoRatio,
         } = videoDimensions;
         // console.log('videoDimensions', videoDimensions);
 
-        const videoContainerWidth = videoContainer.current!.offsetWidth;
-        const videoContainerHeight = videoContainer.current!.offsetHeight;
+        const videoContainerWidth = videoContainer.current.offsetWidth;
+        const videoContainerHeight = videoContainer.current.offsetHeight;
         // console.log(videoContainerWidth, videoContainerHeight);
 
         let videoBoxWidth = 0;
@@ -800,7 +804,7 @@ const EnhancedVideo: React.FC<EnhancedVideoProperties> = (
         }
 
         window.addEventListener('resize', handleWindowResize);
-        videoContainer.current!.addEventListener('keydown', handleKeys);
+        videoContainer.current.addEventListener('keydown', handleKeys);
 
         return () => {
             if (!videoContainer.current) {
@@ -808,7 +812,7 @@ const EnhancedVideo: React.FC<EnhancedVideoProperties> = (
             }
 
             window.removeEventListener('resize', handleWindowResize);
-            videoContainer.current!.removeEventListener('keydown', handleKeys);
+            videoContainer.current.removeEventListener('keydown', handleKeys);
         }
     }, [
         editableText,
