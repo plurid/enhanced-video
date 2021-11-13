@@ -67,7 +67,7 @@ const Textline: React.FC<TextlineProperties> = (
 
 
     /** references */
-    const timeoutMouseOver = useRef(0);
+    const timeoutMouseOver = useRef<NodeJS.Timeout | null>(null);
     const textItem = useRef<HTMLDivElement>();
 
 
@@ -119,7 +119,11 @@ const Textline: React.FC<TextlineProperties> = (
 
     /** handlers */
     const handleMouseEnter = () => {
-        clearTimeout(timeoutMouseOver.current);
+        if (timeoutMouseOver.current) {
+            clearTimeout(timeoutMouseOver.current);
+            timeoutMouseOver.current = null;
+        }
+
         setMouseOver(true);
     }
 
