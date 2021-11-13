@@ -1,95 +1,105 @@
-import React, {
-    useRef,
-    useState,
-    useEffect,
-    useReducer,
-} from 'react';
+// #region imports
+    // #region libraries
+    import React, {
+        useRef,
+        useState,
+        useEffect,
+        useReducer,
+    } from 'react';
 
-import themes, {
-    Theme,
-} from '@plurid/plurid-themes';
+    import themes, {
+        Theme,
+    } from '@plurid/plurid-themes';
 
-import {
-    uuid,
-    objects,
-} from '@plurid/plurid-functions';
-
-// import './styles.css';
-import {
-    StyledGlobal,
-    StyledEnhancedVideo,
-    StyledEnhancedVideoNoRender,
-} from './styled';
-
-import {
-    createNewText,
-} from '../../data/constants/initializers';
-
-import ACTIONS from '../../data/constants/actions';
-
-import {
-    COLOR_VALUES_DEFAULTS,
-    initialPreviousVideoColors,
-} from '../../data/constants/colors';
-
-import {
-    PLURID_DOMAIN_API,
-    ABOUT_URL,
-} from '../../data/constants/domains';
-
-import {
-    initialVideoDimensions,
-    initialVideoContainerDimensions,
-    initialVideoBoxDimensions,
-} from '../../data/constants/video';
-
-import {
-    getVersionById,
-    updateVersion,
-} from '../../services/utilities/videoText';
-
-import {
-    EnhancedVideoProperties,
-    IContext,
-    VideoDimensions,
-    VideoContainerDimensions,
-    VideoBoxDimensions,
-    VideoText,
-    LegacyToolbarControls,
-} from '../../data/interfaces';
-
-import Video from '../../components/Video';
-// import Settings from '../../components/Settings';
-
-import Cover from '../../components/Cover';
-import CoverPlay from '../../components/CoverPlay';
-
-import Text from '../../components/Text';
-import Settings from '../../components/Settings';
-import Message from '../../components/Message';
-import Spinner from '../../components/Spinner';
-
-import TimescrollTime from '../../components/TimescrollTime';
-import TimescrollText from '../../components/TimescrollText';
-
-// import TextSelectVideo, {
-//     ACTIONS,
-// } from '@plurid/text-select-video-react';
-
-import LegacyMask from '../Masks/Legacy';
-import PluridMask from '../Masks/Plurid';
-
-import Context from '../../services/context';
-
-// // test imports
-// import TEST_VIDEO_TEXT_DATA from '../../__spec-data__/data';
+    import {
+        uuid,
+        objects,
+    } from '@plurid/plurid-functions';
+    // #endregion libraries
 
 
+    // #region external
+    import {
+        createNewText,
+    } from '../../data/constants/initializers';
 
+    import ACTIONS from '../../data/constants/actions';
+
+    import {
+        COLOR_VALUES_DEFAULTS,
+        initialPreviousVideoColors,
+    } from '../../data/constants/colors';
+
+    import {
+        PLURID_DOMAIN_API,
+        ABOUT_URL,
+    } from '../../data/constants/domains';
+
+    import {
+        initialVideoDimensions,
+        initialVideoContainerDimensions,
+        initialVideoBoxDimensions,
+    } from '../../data/constants/video';
+
+    import {
+        getVersionById,
+        updateVersion,
+    } from '../../services/utilities/videoText';
+
+    import {
+        EnhancedVideoProperties,
+        IContext,
+        VideoDimensions,
+        VideoContainerDimensions,
+        VideoBoxDimensions,
+        VideoText,
+        LegacyToolbarControls,
+    } from '../../data/interfaces';
+
+    import Video from '../../components/Video';
+    // import Settings from '../../components/Settings';
+
+    import Cover from '../../components/Cover';
+    import CoverPlay from '../../components/CoverPlay';
+
+    import Text from '../../components/Text';
+    import Settings from '../../components/Settings';
+    import Message from '../../components/Message';
+    import Spinner from '../../components/Spinner';
+
+    import TimescrollTime from '../../components/TimescrollTime';
+    import TimescrollText from '../../components/TimescrollText';
+
+    // import TextSelectVideo, {
+    //     ACTIONS,
+    // } from '@plurid/text-select-video-react';
+
+    import LegacyMask from '../Masks/Legacy';
+    import PluridMask from '../Masks/Plurid';
+
+    import Context from '../../services/context';
+
+    // // test imports
+    // import TEST_VIDEO_TEXT_DATA from '../../__spec-data__/data';
+    // #endregion external
+
+
+    // #region internal
+    // import './styles.css';
+    import {
+        StyledEnhancedVideo,
+        StyledEnhancedVideoNoRender,
+    } from './styled';
+    // #endregion internal
+// #endregion imports
+
+
+
+// #region module
 const EnhancedVideo: React.FC<EnhancedVideoProperties> = (
     properties,
 ) => {
-    /** properties */
+    // #region properties
     const {
         src,
         type,
@@ -158,16 +168,18 @@ const EnhancedVideo: React.FC<EnhancedVideoProperties> = (
     const microview = microviewProperty ?? false;
 
     const apiEndpoint = apiEndpointProperty || PLURID_DOMAIN_API;
+    // #endregion properties
 
 
 
-    /** references */
+    // #region references
     const videoContainer = useRef<HTMLDivElement>(null);
     const video = useRef<HTMLVideoElement>(null);
+    // #endregion references
 
 
 
-    /** state */
+    // #region state
     const [mouseOver, setMouseOver] = useState(false);
 
     const [showSpinner, setShowSpinner] = useState(false);
@@ -233,9 +245,11 @@ const EnhancedVideo: React.FC<EnhancedVideoProperties> = (
     const [flipHorizontal, setFlipHorizontal] = useState(false);
 
     const [databaseVideoID, setDatabaseVideoID] = useState('');
+    // #endregion state
 
 
-    /** handlers */
+
+    // #region handlers
     const setMessageTimed = (
         message: string,
         time: number,
@@ -676,9 +690,11 @@ const EnhancedVideo: React.FC<EnhancedVideoProperties> = (
     const viewAbout = () => {
         window.open(ABOUT_URL, '_blank');
     }
+    // #endregion handlers
 
 
 
+    // #region effects
     /** effects */
     useEffect(() => {
         computeVideoBoxDimensions();
@@ -876,10 +892,11 @@ const EnhancedVideo: React.FC<EnhancedVideoProperties> = (
     }, [
         preloadedData,
     ]);
+    // #endregion effects
 
 
 
-    /** context */
+    // #region context
     const context: IContext = {
         src,
         type,
@@ -1023,9 +1040,11 @@ const EnhancedVideo: React.FC<EnhancedVideoProperties> = (
         expandVariaDrawer,
         setExpandVariaDrawer,
     };
+    // #endregion context
 
 
-    /** render */
+
+    // #region render
     if (!src || !type) {
         return (
             <StyledEnhancedVideoNoRender>
@@ -1038,8 +1057,6 @@ const EnhancedVideo: React.FC<EnhancedVideoProperties> = (
         <Context.Provider
             value={context}
         >
-            <StyledGlobal />
-
             <StyledEnhancedVideo
                 theme={theme}
                 tabIndex={0}
@@ -1107,7 +1124,12 @@ const EnhancedVideo: React.FC<EnhancedVideoProperties> = (
             </StyledEnhancedVideo>
         </Context.Provider>
     );
+    // #endregion render
 }
+// #endregion module
 
 
+
+// #region exports
 export default EnhancedVideo;
+// #endregion exports
