@@ -1,15 +1,26 @@
-import typescript from 'rollup-plugin-typescript2';
-import commonjs from '@rollup/plugin-commonjs';
-import depsExternal from 'rollup-plugin-peer-deps-external';
-import resolve from '@rollup/plugin-node-resolve';
-import url from '@rollup/plugin-url';
-import replace from '@rollup/plugin-replace';
+// #region imports
+    // #region libraries
+    import typescript from 'rollup-plugin-typescript2';
+    import commonjs from '@rollup/plugin-commonjs';
+    import depsExternal from 'rollup-plugin-peer-deps-external';
+    import resolve from '@rollup/plugin-node-resolve';
+    import url from '@rollup/plugin-url';
+    import replace from '@rollup/plugin-replace';
+    import {
+        terser,
+    } from 'rollup-plugin-terser';
+    // #endregion libraries
 
-import pkg from '../package.json';
+
+    // #region external
+    import pkg from '../package.json';
+    // #endregion external
+// #endregion imports
 
 
 
-export default {
+// #region module
+const build = {
     input: 'source/index.tsx',
     output: [
         {
@@ -39,5 +50,20 @@ export default {
             clean: true,
         }),
         commonjs(),
+        terser({
+            mangle: false,
+            compress: false,
+            format: {
+                beautify: true,
+                comments: false,
+            },
+        }),
     ],
-}
+};
+// #endregion module
+
+
+
+// #region exports
+export default build;
+// #endregion exports
