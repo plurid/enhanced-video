@@ -779,10 +779,18 @@ const EnhancedVideo: React.FC<EnhancedVideoProperties> = (
     }
 
     useEffect(() => {
+        if (!videoContainer.current) {
+            return;
+        }
+
         window.addEventListener('resize', handleWindowResize);
         videoContainer.current!.addEventListener('keydown', handleKeys);
 
         return () => {
+            if (!videoContainer.current) {
+                return;
+            }
+
             window.removeEventListener('resize', handleWindowResize);
             videoContainer.current!.removeEventListener('keydown', handleKeys);
         }
