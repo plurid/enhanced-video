@@ -110,8 +110,8 @@ const Video: React.FC<VideoProperties> = (
             <video
                 style={{
                     ...videoStyle,
-                    filter,
-                    transform,
+                    filter: filter ? filter : undefined,
+                    transform: transform ? transform : undefined,
                 }}
 
                 ref={videoRef}

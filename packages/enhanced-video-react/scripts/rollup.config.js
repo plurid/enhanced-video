@@ -39,15 +39,14 @@ const build = {
     plugins: [
         url(),
         replace({
-            'process.env.ENV_MODE': JSON.stringify(process.env.ENV_MODE),
             preventAssignment: true,
+            'process.env.ENV_MODE': JSON.stringify(process.env.ENV_MODE),
         }),
         depsExternal(),
         resolve({
             modulesOnly: true,
         }),
         typescript({
-            rollupCommonJSResolveHack: true,
             clean: true,
         }),
         commonjs(),

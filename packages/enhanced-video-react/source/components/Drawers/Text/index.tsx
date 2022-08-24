@@ -74,7 +74,7 @@ const DrawerText: React.FC<any> = (
     }
 
     const handleMarkTextTime = () => {
-        setShowTimescrollText(show => !show);
+        setShowTimescrollText((show: any) => !show);
     }
 
 
@@ -83,7 +83,7 @@ const DrawerText: React.FC<any> = (
         <Drawer
             title="Text"
             expand={expandTextDrawer}
-            toggleExpand={() => setExpandTextDrawer(expand => !expand)}
+            toggleExpand={() => setExpandTextDrawer((expand: any) => !expand)}
             theme={theme}
         >
             {generator && (
@@ -124,7 +124,7 @@ const DrawerText: React.FC<any> = (
                 <li>
                     <ButtonCheckmark
                         theme={theme}
-                        toggle={() => setRevealedText(show => !show)}
+                        toggle={() => setRevealedText((show: any) => !show)}
                         text="Reveal Text"
                         checked={revealedText}
                     />

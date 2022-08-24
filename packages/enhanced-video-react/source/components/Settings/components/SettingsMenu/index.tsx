@@ -128,7 +128,7 @@ const SettingsMenu: React.FC<any> = () => {
     }
 
     const handleMarkTextTime = () => {
-        setShowTimescrollText(show => !show);
+        setShowTimescrollText((show: any) => !show);
     }
 
     const handleAboutClick = () => {
@@ -260,7 +260,7 @@ const SettingsMenu: React.FC<any> = () => {
                     <Drawer
                         title="Text"
                         expand={expandTextDrawer}
-                        toggleExpand={() => setExpandTextDrawer(expand => !expand)}
+                        toggleExpand={() => setExpandTextDrawer((expand: any) => !expand)}
                         theme={theme}
                     >
                         <li>
@@ -324,7 +324,7 @@ const SettingsMenu: React.FC<any> = () => {
                     <Drawer
                         title="Color"
                         expand={expandColorDrawer}
-                        toggleExpand={() => setExpandColorDrawer(expand => !expand)}
+                        toggleExpand={() => setExpandColorDrawer((expand: any) => !expand)}
                         theme={theme}
                     >
 
@@ -334,7 +334,7 @@ const SettingsMenu: React.FC<any> = () => {
                     <Drawer
                         title="Topology"
                         expand={expandTopologyDrawer}
-                        toggleExpand={() => setExpandTopologyDrawer(expand => !expand)}
+                        toggleExpand={() => setExpandTopologyDrawer((expand: any) => !expand)}
                         theme={theme}
                     >
 
@@ -344,7 +344,7 @@ const SettingsMenu: React.FC<any> = () => {
                     <Drawer
                         title="Varia"
                         expand={expandVariaDrawer}
-                        toggleExpand={() => setExpandVariaDrawer(expand => !expand)}
+                        toggleExpand={() => setExpandVariaDrawer((expand: any) => !expand)}
                         theme={theme}
                     >
                         {about && (

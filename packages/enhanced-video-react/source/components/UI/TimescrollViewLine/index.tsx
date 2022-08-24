@@ -1,5 +1,5 @@
 import React, { PureComponent } from 'react';
-import Context from '../../../services/utilities/context';
+import Context from '../../../services/context';
 
 import {
     StyledTimescrollViewLine,
@@ -195,7 +195,7 @@ class TimescrollViewLine extends PureComponent<
 
         const {
             setVideoTime,
-        } = this.context;
+        } = this.context as any;
 
         const clientX = event.clientX;
 

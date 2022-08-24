@@ -51,7 +51,7 @@ const DrawerVaria: React.FC<any> = (
         <Drawer
             title="Varia"
             expand={expandVariaDrawer}
-            toggleExpand={() => setExpandVariaDrawer(expand => !expand)}
+            toggleExpand={() => setExpandVariaDrawer((expand: any) => !expand)}
             theme={theme}
         >
             <ul>

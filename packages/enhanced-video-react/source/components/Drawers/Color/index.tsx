@@ -55,14 +55,14 @@ const DrawerColor: React.FC<any> = (
         <Drawer
             title="Color"
             expand={expandColorDrawer}
-            toggleExpand={() => setExpandColorDrawer(expand => !expand)}
+            toggleExpand={() => setExpandColorDrawer((expand: any) => !expand)}
             theme={theme}
         >
             <ul>
                 <li>
                     <ButtonCheckmark
                         theme={theme}
-                        toggle={() => setVideoColorsInvert(invert => !invert)}
+                        toggle={() => setVideoColorsInvert((invert: any) => !invert)}
                         text="Invert Colors"
                         checked={videoColorsInvert}
                     />

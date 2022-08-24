@@ -53,7 +53,8 @@ import TEST_VIDEO_TEXT_DATA from '../../__test-data__/data';
 
 
 
-const TextSelectVideo: React.FC<TextSelectVideoProperties> = (properties) => {
+// const TextSelectVideo: React.FC<TextSelectVideoProperties> = (properties) => {
+const TextSelectVideo: React.FC<any> = (properties) => {
     const {
         src,
         type,
@@ -420,7 +421,8 @@ const TextSelectVideo: React.FC<TextSelectVideoProperties> = (properties) => {
         : themes.plurid;
     const _controls = controls === undefined ? true : controls;
 
-    const context: IContext = {
+    // const context: IContext = {
+    const context: any = {
         src,
         type,
 

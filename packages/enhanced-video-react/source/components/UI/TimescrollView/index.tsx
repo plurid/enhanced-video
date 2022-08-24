@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import Context from '../../../services/utilities/context';
+import Context from '../../../services/context';
 
 import {
     StyledTimescrollView,
@@ -67,7 +67,7 @@ class TimescrollView extends Component<
             theme,
             videoTime,
             videoDuration,
-        } = this.context;
+        } = this.context as any;
 
         const {
             textTimescroll,
@@ -215,7 +215,7 @@ class TimescrollView extends Component<
             videoTime,
             videoDuration,
             setVideoTime,
-        } = this.context;
+        } = this.context as any;
 
         let newVideoTime = videoTime;
 
@@ -267,7 +267,7 @@ class TimescrollView extends Component<
             videoTime,
             videoDuration,
             setVideoTime,
-        } = this.context;
+        } = this.context as any;
 
         const deltaTimeValue = 1;
         let newVideoTime = videoTime;

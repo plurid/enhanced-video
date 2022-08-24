@@ -45,14 +45,14 @@ const DrawerTopology: React.FC<any> = (
         <Drawer
             title="Topology"
             expand={expandTopologyDrawer}
-            toggleExpand={() => setExpandTopologyDrawer(expand => !expand)}
+            toggleExpand={() => setExpandTopologyDrawer((expand: any) => !expand)}
             theme={theme}
         >
             <ul>
                 <li>
                     <ButtonCheckmark
                         theme={theme}
-                        toggle={() => setFlipVertical(flip => !flip)}
+                        toggle={() => setFlipVertical((flip: any) => !flip)}
                         text="Flip Vertical"
                         checked={flipVertical}
                     />
@@ -61,7 +61,7 @@ const DrawerTopology: React.FC<any> = (
                 <li>
                     <ButtonCheckmark
                         theme={theme}
-                        toggle={() => setFlipHorizontal(flip => !flip)}
+                        toggle={() => setFlipHorizontal((flip: any) => !flip)}
                         text="Flip Horizontal"
                         checked={flipHorizontal}
                     />

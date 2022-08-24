@@ -36,7 +36,7 @@ class Timescroll extends Component<
             videoDuration,
             loadedVideo,
             checkAndSetVideoDuration,
-        } = this.context;
+        } = this.context as any;
 
         if (!loadedVideo) {
             checkAndSetVideoDuration;
@@ -70,7 +70,7 @@ class Timescroll extends Component<
         const {
             theme,
             videoTime,
-        } = this.context;
+        } = this.context as any;
 
         const timePercentage = this.computeTimePercentage();
         const currentTime = true;
@@ -117,7 +117,7 @@ class Timescroll extends Component<
         const {
             videoTime,
             videoDuration,
-        } = this.context;
+        } = this.context as any;
 
         const timePercentage = videoTime / videoDuration * 100;
         return timePercentage;
@@ -129,7 +129,7 @@ class Timescroll extends Component<
         const {
             handleVideoTime,
             videoDuration,
-        } = this.context;
+        } = this.context as any;
 
         const {
             width,
@@ -227,7 +227,7 @@ class Timescroll extends Component<
             videoTime,
             videoDuration,
             handleVideoTime,
-        } = this.context;
+        } = this.context as any;
 
         let newVideoTime = videoTime;
 
@@ -279,7 +279,7 @@ class Timescroll extends Component<
             videoTime,
             videoDuration,
             handleVideoTime,
-        } = this.context;
+        } = this.context as any;
 
         const deltaTimeValue = 1;
         let newVideoTime = videoTime;

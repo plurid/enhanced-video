@@ -16,6 +16,7 @@ export interface DrawerProperties {
     title: string;
     theme: Theme;
     expand: boolean;
+    children: React.ReactNode;
     toggleExpand: () => void;
 }
 

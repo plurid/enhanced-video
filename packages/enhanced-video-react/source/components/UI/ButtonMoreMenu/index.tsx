@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 
-import Context from '../../../services/utilities/context';
+import Context from '../../../services/context';
 
 import {
     StyledButtonMoreMenu,
@@ -24,7 +24,7 @@ class ButtonMoreMenu extends Component<any, any> {
     public render() {
         const {
             theme
-        } = this.context;
+        } = this.context as any;
 
         return (
             <StyledButtonMoreMenu

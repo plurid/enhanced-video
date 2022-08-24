@@ -189,7 +189,7 @@ const TimescrollTime: React.FC<any> = () => {
                                     <StyledControlsLI
                                         theme={theme}
                                         active={loopVideo}
-                                        onClick={() => setLoopVideo(show => !show)}
+                                        onClick={() => setLoopVideo((show: any) => !show)}
                                     >
                                         {MarkLoopIcon}
                                     </StyledControlsLI>
@@ -197,7 +197,7 @@ const TimescrollTime: React.FC<any> = () => {
                                     <StyledControlsLI
                                         theme={theme}
                                         active={loopVideo}
-                                        onClick={() => setLoopVideo(show => !show)}
+                                        onClick={() => setLoopVideo((show: any) => !show)}
                                     >
                                         {LoopIcon}
                                     </StyledControlsLI>
@@ -209,7 +209,7 @@ const TimescrollTime: React.FC<any> = () => {
                                     <StyledControlsLI
                                         theme={theme}
                                         active={microviewVideo}
-                                        onClick={() => setMicroviewVideo(show => !show)}
+                                        onClick={() => setMicroviewVideo((show: any) => !show)}
                                     >
                                         {MarkMicroviewIcon}
                                     </StyledControlsLI>
@@ -217,7 +217,7 @@ const TimescrollTime: React.FC<any> = () => {
                                     <StyledControlsLI
                                         theme={theme}
                                         active={microviewVideo}
-                                        onClick={() => setMicroviewVideo(show => !show)}
+                                        onClick={() => setMicroviewVideo((show: any) => !show)}
                                     >
                                         {MicroviewIcon}
                                     </StyledControlsLI>
